@@ -1,0 +1,48 @@
+{{ if .Vars.ubuntu22cis_rule_3_3_7 }}
+kernel-param:
+  net.ipv4.conf.all.rp_filter:
+    title: 3.3.7 | Ensure Reverse Path Filtering is enabled | ipv4 all rp_filter
+    value: '1'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.7
+  net.ipv4.conf.default.rp_filter:
+    title: 3.3.7 | Ensure Reverse Path Filtering is enabled | ipv4 default rp_filter
+    value: '1'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.7
+command:
+  ipv4_all_rp_filter:
+    title: 3.3.7 | Ensure Reverse Path Filtering is enabled | ipv4 all rp_filter conf
+    exec: grep "net\.ipv4\.conf\.all\.rp_filter" /etc/sysctl.conf /etc/sysctl.d/*
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/net.ipv4.conf.all.rp_filter = 1/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.7
+  ipv4_def_rp_filter:
+    title: 3.3.7 | Ensure Reverse Path Filtering is enabled | ipv4 def rp_filter conf
+    exec: grep "net\.ipv4\.conf\.default\.rp_filter" /etc/sysctl.conf /etc/sysctl.d/*
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/net.ipv4.conf.default.rp_filter = 1/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.7
+{{ end }}

@@ -1,0 +1,26 @@
+{{ if .Vars.ubuntu22cis_level_1 }}
+  {{ if .Vars.ubuntu22cis_rule_5_4_1 }}
+package:
+  libpam-pwquality:
+    title: 5.4.1 | Ensure password creation requirements are configured | package
+    installed: true
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 5.4.1
+file:
+  /etc/security/pwquality.conf:
+    title: 5.4.1 | Ensure password creation requirements are configured | pwquality
+    exists: true
+    contains:
+    {{ range .Vars.ubuntu22cis_pam_password }}
+    - {{ . }}
+    {{ end }}
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 5.4.1
+  {{ end }}
+{{ end }}

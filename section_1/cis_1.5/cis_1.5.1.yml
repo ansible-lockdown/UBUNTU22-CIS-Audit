@@ -1,0 +1,16 @@
+{{ if .Vars.ubuntu22cis_level_1 }}
+  {{ if .Vars.ubuntu22cis_rule_1_5_1 }}
+command:
+  kernel_nx:
+    title: 1.5.1 | Ensure XD/NX support is enabled
+    exit-status: 0
+    exec: "journalctl | grep 'protection: active'"
+    stdout:
+    - "kernel: NX (Execute Disable) protection: active"
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 1.5.1
+  {{ end }}
+{{ end }}

@@ -1,0 +1,29 @@
+{{ if .Vars.ubuntu22cis_rule_4_1_7 }}
+command:
+  auditd_logins_cnf:
+    title: 4.1.7 | Ensure login and logout events are collected | Config
+    exec: grep logins /etc/audit/rules.d/*.rules
+    exit-status: 0
+    stdout:
+    - '/-w /var/log/faillog -p wa -k logins/'
+    - '/-w /var/log/lastlog -p wa -k logins/'
+    - '/-w /var/log/tallylog -p wa -k logins/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID: 
+      - 4.1.7
+  auditd_logins_live:
+    title: 4.1.7 | Ensure login and logout events are collected | Live
+    exec: auditctl -l | grep logins
+    exit-status: 0
+    stdout:
+    - '-w /var/log/faillog -p wa -k logins'
+    - '-w /var/log/lastlog -p wa -k logins'
+    - '-w /var/log/tallylog -p wa -k logins'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID: 
+      - 4.1.7
+{{ end }}

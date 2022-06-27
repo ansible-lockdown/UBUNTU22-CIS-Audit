@@ -1,0 +1,16 @@
+{{ if .Vars.ubuntu22cis_level_1 }}
+  {{ if .Vars.ubuntu22cis_rule_5_4_4 }}
+file:
+  /etc/pam.d/common-password:
+    title: 5.4.4 | Ensure password hashing algorithm is SHA-512 | password-auth
+    exists: true
+    contains:
+    - '/^password\s+\[success=1 default=ignore\]\s+pam_unix.so obscure.*\ssha512/'
+    - '!/^password.*md5/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 5.4.4
+  {{ end }}
+{{ end }}

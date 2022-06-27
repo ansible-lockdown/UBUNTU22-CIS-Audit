@@ -1,0 +1,48 @@
+{{ if .Vars.ubuntu22cis_rule_3_3_2 }}
+kernel-param:
+  net.ipv4.conf.all.accept_redirects:
+    title: 3.3.2 | Ensure ICMP redirects are not accepted | ipv4 all icmp redirects
+    value: '0'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.2
+  net.ipv4.conf.default.accept_redirects:
+    title: 3.3.2 | Ensure ICMP redirects are not accepted | ipv4 default icmp redirects
+    value: '0'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.2
+command:
+  ipv4_all_icmp_redirects:
+    title: 3.3.2 | Ensure ICMP redirects are not accepted | ipv4 all icmp redirects conf
+    exec: grep "net\.ipv4\.conf\.all\.accept_redirects" /etc/sysctl.conf /etc/sysctl.d/*
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout: 
+    - '/^net.ipv4.conf.all.accept_redirects= 0/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.2
+  ipv4_def_icmp_redirects:
+    title: 3.3.2 | Ensure ICMP redirects are not accepted | ipv4 def icmp redirects conf
+    exec: grep "net\.ipv4\.conf\.default\.accept_redirects" /etc/sysctl.conf /etc/sysctl.d/*
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout: 
+    - '/^net.ipv4.conf.default.accept_redirects= 0/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.2
+{{ end }}

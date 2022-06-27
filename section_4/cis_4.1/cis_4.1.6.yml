@@ -1,0 +1,29 @@
+{{ if not .Vars.ubuntu22cis_apparmor_disable }}
+command:
+  {{ if .Vars.ubuntu22cis_rule_4_1_6 }}
+  auditd_MAC_cnf:
+    title: 4.1.6 | Ensure events that modify the system's Mandatory Access Controls are collected | Config
+    exec: grep MAC-policy /etc/audit/rules.d/*.rules
+    exit-status: 0
+    stdout:
+    - '-w /etc/apparmor/ -p wa -k MAC-policy'
+    - '-w /etc/apparmor.d/ -p wa -k MAC-policy'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID: 
+      - 4.1.6
+  auditd_MAC_live:
+    title: 4.1.6 | Ensure events that modify the system's Mandatory Access Controls are collected | Live
+    exec: auditctl -l | grep MAC-policy
+    exit-status: 0
+    stdout:
+    - '-w /etc/apparmor -p wa -k MAC-policy'
+    - '-w /etc/apparmor.d -p wa -k MAC-policy'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID: 
+      - 4.1.6
+  {{ end }}
+{{ end }}

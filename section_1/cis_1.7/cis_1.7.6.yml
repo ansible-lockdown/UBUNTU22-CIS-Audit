@@ -1,0 +1,16 @@
+{{ if .Vars.ubuntu22cis_level_1 }}
+  {{ if .Vars.ubuntu22cis_rule_1_7_6 }}
+file:
+  /etc/issue.net:
+    title: 1.7.6 | Ensure permissions on /etc/issue.net are configured
+    exists: true
+    owner: root
+    group: root
+    mode: '0644'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 1.7.6
+  {{ end }}
+{{ end }}

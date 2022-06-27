@@ -1,0 +1,13 @@
+{{ if .Vars.ubuntu22cis_rule_6_2_1 }}
+file:
+  /etc/passwd:
+    title: 6.2.1 | Ensure accounts in /etc/passwd use shadowed passwords
+    exists: true
+    contains:
+    - '/^.*:x:/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.2.1
+{{ end }}

@@ -1,0 +1,16 @@
+{{ if .Vars.ubuntu22cis_level_1 }}
+  {{ if .Vars.ubuntu22cis_rule_1_4_2 }}
+file:
+  {{ .Vars.ubuntu22cis_grub_conf_file }}:
+    title: 1.4.2 | Ensure bootloader password is set 
+    exists: true
+    contains: 
+    - '/set superusers="{{ .Vars.ubuntu22cis_grub_username }}"/'
+    - '/password_pbkdf2 {{ .Vars.ubuntu22cis_grub_username }} {{ .Vars.ubuntu22cis_grub_hash }}'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 1.4.2
+  {{ end }}
+{{ end }}

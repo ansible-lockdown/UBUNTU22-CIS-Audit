@@ -1,0 +1,25 @@
+{{ if .Vars.ubuntu22cis_level_1 }}
+  {{ if .Vars.ubuntu22cis_rule_1_5_2 }}
+kernel-param:
+  kernel.randomize_va_space:
+    title: 1.5.2 | Ensure address space layout randomization (ASLR) is enabled | sysctl_live
+    value: '2'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 1.5.2
+command:
+  aslr_enabled_2:
+    title: 1.5.2 | Ensure address space layout randomization (ASLR) is enabled | sysctl_configured
+    exit-status: 0
+    exec: 'grep "^kernel\.randomize_va_space" /etc/sysctl.conf /etc/sysctl.d/* | cut -d ":" -f2'
+    stdout: 
+    - '/kernel.randomize_va_space\s=\s2/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 1.5.2
+  {{ end }}
+{{ end }}

@@ -1,0 +1,59 @@
+{{ if .Vars.ubuntu22cis_level_1 }}
+  {{ if .Vars.ubuntu22cis_rule_1_5_4 }}
+command:
+  core_dumps_limits:
+    title: 1.5.4 | Ensure core dumps are restricted | security/limits.conf
+    exit-status: 0
+    exec: 'grep -E "\*.*hard.*core.*0" /etc/security/limits.conf /etc/security/limits.d/*'
+    stdout: 
+    - '/^\/*.*\shard.*core.*0/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 1.5.4
+  suid_dumpable_2:
+    title: 1.5.4 | Ensure core dumps are restricted | sysctl.conf
+    exit-status: 0
+    exec: 'grep "fs\.suid_dumpable" /etc/sysctl.conf /etc/sysctl.d/*'
+    stdout: 
+    - fs.suid_dumpable=0
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 1.5.4
+kernel-param:
+  fs.suid_dumpable:
+    title: 1.5.4 | Ensure core dumps are restricted | kernel_sysctl
+    value: '0'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 1.5.4
+service:
+  coredump:
+    title: 1.5.4 | Ensure core dumps are restricted | coredump service
+    enabled: false
+    running: false
+    skip: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 1.5.4
+file:
+  /etc/systemd/coredump.conf:
+    title: 1.5.4 | Ensure core dumps are restricted | coredump.conf
+    exists: true
+    contains:
+    - '/^Storage=none/'
+    - '/^ProcessSizeMax=0/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 1.5.4
+  {{ end }}
+{{ end }}

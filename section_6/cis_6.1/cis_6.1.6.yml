@@ -1,0 +1,14 @@
+{{ if .Vars.ubuntu22cis_rule_6_1_6 }}
+command:
+  shadow_perms:
+    title: 6.1.6 | Ensure permissions on /etc/shadow are configured
+    exec: stat -L -c "%a %U %G" /etc/shadow
+    exit-status: 0
+    stdout:
+    - '/6[0.4]0 root (root|shadow)/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.1.6
+{{ end }}

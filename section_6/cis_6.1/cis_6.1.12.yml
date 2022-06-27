@@ -1,0 +1,17 @@
+{{ if .Vars.run_heavy_tests }}
+  {{ if .Vars.ubuntu22cis_rule_6_1_12 }}
+command:
+  no_ungrouped:
+    title: 6.1.12 | Ensure no ungrouped files or directories exist
+    exec: "df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -nogroup"
+    exit-status: 0
+    timeout: {{ .Vars.timeout_ms }}
+    stdout:
+    - '!/./'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.1.12
+  {{ end }}
+{{ end }}

@@ -1,0 +1,35 @@
+{{ if .Vars.ubuntu22cis_rule_4_2_1_6 }}
+command:
+  rsyslog_des_hosts:
+    title: 4.2.1.6 | Ensure remote rsyslog messages are only accepted on designated log hosts | ModLoad
+    exec: grep '$ModLoad imtcp' /etc/rsyslog.conf /etc/rsyslog.d/*.conf
+    exit-status: 0
+    stdout:
+    {{ if .Vars.ubuntu22cis_is_syslog_server }}
+    - '/^.*:\$ModLoad imtcp/'
+    {{ end }}
+    {{ if not .Vars.ubuntu22cis_is_syslog_server }}
+    - '/^# \$ModLoad imtcp/'
+    {{ end }}
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 4.2.1.6
+  rsyslog_des_hosts_tcp:
+    title: 4.2.1.6 | Ensure remote rsyslog messages are only accepted on designated log hosts | TCP Port
+    exec: grep '$InputTCPServerRun' /etc/rsyslog.conf /etc/rsyslog.d/*.conf
+    exit-status: 0
+    stdout:
+    {{ if .Vars.ubuntu22cis_is_syslog_server }}
+    - '/^.*:\$InputTCPServerRun 514/'
+    {{ end }}
+    {{ if not .Vars.ubuntu22cis_is_syslog_server }}
+    - '/^# \$InputTCPServerRun 514/'
+    {{ end }}
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 4.2.1.6
+{{ end }}

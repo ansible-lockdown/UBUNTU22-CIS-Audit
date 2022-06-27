@@ -1,0 +1,58 @@
+{{ if eq .Vars.ubuntu22cis_time_service "chronyd" }}
+  {{ if .Vars.ubuntu22cis_rule_2_1_1_4 }}
+service:
+  chronyd:
+    title: 2.1.1.4 | Ensure chrony is configured | chronyd service
+    enabled: true
+    running: true
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 2.1.1.4
+  timesyncd:
+    title: 2.1.1.4 | Ensure chrony is configured | timesync service
+    enabled: false
+    running: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 2.1.1.4
+package:
+  ntp:
+    title: 2.1.1.4 | Ensure chrony is configured | ntp installed
+    installed: true
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 2.1.1.4
+  chrony:
+    title: 2.1.1.4 | Ensure chrony is configured | chrony not installed
+    installed: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 2.1.1.4
+file:
+  /etc/ntp.conf:
+    title: 2.1.1.4 | Ensure chrony is configured | ntp.conf
+    exists: true
+    contains:
+    - '/^restrict -4 default kod nomodify notrap nopeer noquery/'
+    - '/^restrict -6 default kod nomodify notrap nopeer noquery/'
+    - '/^server {{ .Vars.ubuntu22cis_ntp_servers }}/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 2.1.1.4
+  /etc/init.d/ntp:
+    title: 2.1.1.4 | Ensure chrony is configured | init ntp
+    exists: true
+    contains:
+    - '/^RUNASUSER=ntp/'
+    - '!/^RUNASUSER=root/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 2.1.1.4
+  {{ end }}
+{{ end  }}

@@ -1,0 +1,14 @@
+{{ if .Vars.ubuntu22cis_rule_3_5_1_5 }}
+command:
+  ufw_outbound:
+    title: 3.5.1.5 | Ensure ufw outbound connections are configured
+    exec: echo "Manual - Please confirm firewall outbound Policies match site policies"
+    exit-status: 0
+    stdout:
+    - '!/^Manual/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.5.1.5
+{{ end }}

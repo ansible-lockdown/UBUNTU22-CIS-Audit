@@ -1,0 +1,18 @@
+{{ if .Vars.ubuntu22cis_level_1 }}
+  {{ if .Vars.ubuntu22cis_rule_5_1_2 }}
+file:
+  /etc/crontab:
+    title: 5.1.2 | Ensure permissions on /etc/crontab are configured
+    exists: true
+    owner: root
+    group: root    
+    mode: "0600"
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 5.1.2
+  {{ end }}
+{{ end }}
+
+

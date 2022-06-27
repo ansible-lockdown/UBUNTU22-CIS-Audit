@@ -1,0 +1,16 @@
+{{ if .Vars.ubuntu22cis_level_1 }}
+  {{ if .Vars.ubuntu22cis_rule_1_4_4 }}
+command:
+  check_root_pw:
+    title: 1.4.4 | Ensure authentication required for single user mode
+    exec: grep -Eq '^root:\$[0-9]' /etc/shadow || echo "root is not locked"
+    exit-status: 1
+    stdout: 
+    - '!/^root is not locked/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 1.4.4
+  {{ end }}
+{{ end }}

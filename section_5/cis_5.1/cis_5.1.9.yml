@@ -1,0 +1,24 @@
+{{ if .Vars.ubuntu22cis_level_1 }}
+  {{ if .Vars.ubuntu22cis_rule_5_1_9 }}
+file:
+  /etc/at.deny:
+    title: 5.1.9 | Ensure at is restricted to authorized users
+    exists: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 5.1.9
+  /etc/at.allow:
+    title: 5.1.9 | Ensure at is restricted to authorized users
+    exists: true
+    owner: root
+    group: root
+    mode: "0640"
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 5.1.9
+  {{ end }}
+{{ end }}

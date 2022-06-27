@@ -1,0 +1,24 @@
+  {{ if .Vars.ubuntu22cis_rule_3_4_1 }}
+command:
+  modprobe_dccp:
+    title: 3.4.1 | Ensure DCCP is disabled | DCCP config
+    exit-status: 0
+    exec: 'modprobe -n -v dccp'
+    stdout: ['install /bin/true']
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 3.4.1
+  lsmod_dccp:
+    title: 3.4.1 | Ensure DCCP is disabled | running dccp
+    exit-status: 0
+    exec: lsmod | grep dccp
+    stdout:
+    - '!/^.*/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 3.4.1
+{{ end }}

@@ -1,0 +1,32 @@
+{{ if .Vars.ubuntu22cis_level_1 }}
+  {{ if .Vars.ubuntu22cis_rule_5_5_1_2 }}
+file:
+  /etc/login.defs:
+    title: 5.5.1.2 | Ensure password expiration is 365 days or less | logins.def
+    exists: true
+    contains:
+    - '/^PASS_MAX_DAYS\s*{{ .Vars.ubuntu22cis_pass.max_days }}/'
+    - '!/^PASS_MAX_DAYS\s*(36[6-9]|[4-9][0-9][0-9]|[1-9][0-9]{3,})/'
+    - '!/^PASS_MAX_DAYS\s*-1/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 5.5.1.2
+command:
+  users_max_pw_expire:
+    title: 5.5.1.2 | Ensure password expiration is 365 days or less | user_check
+    exec: "awk -F: '(/^[^:]+:[^!*]/ && ($5>365 || $5~/([0-1]|-1|\\s*)/)){print $1 \" \" $5}' /etc/shadow"
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '!/^.*/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 5.5.1.2
+  {{ end }}
+{{ end }}

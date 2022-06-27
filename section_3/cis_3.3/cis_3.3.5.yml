@@ -1,0 +1,26 @@
+{{ if .Vars.ubuntu22cis_rule_3_3_5 }}
+kernel-param:
+  net.ipv4.icmp_echo_ignore_broadcasts:
+    title: 3.3.5 | Ensure broadcast ICMP requests are ignored | ipv4 ignore broadcast icmp
+    value: '1'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.5
+command:
+  ipv4_ignore_icmp_broadcast:
+    title: 3.3.5 | Ensure broadcast ICMP requests are ignored | ipv4 ignore broadcast icmp conf
+    exec: grep "net\.ipv4\.icmp_echo_ignore_broadcasts" /etc/sysctl.conf /etc/sysctl.d/*
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/^net.ipv4.icmp_echo_ignore_broadcasts = 1/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.5
+{{ end }}

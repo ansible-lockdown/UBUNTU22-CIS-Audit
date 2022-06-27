@@ -1,0 +1,13 @@
+{{ if not .Vars.ubuntu22cis_gui }}
+  {{ if .Vars.ubuntu22cis_rule_1_8_1 }}
+package:
+  gdm3:
+    title: 1.8.1 | Ensure GNOME Display Manager is removed
+    installed: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 1.8.1
+  {{ end }}
+{{ end }}

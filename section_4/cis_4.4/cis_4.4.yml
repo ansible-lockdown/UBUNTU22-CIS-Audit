@@ -1,0 +1,26 @@
+{{ if .Vars.ubuntu22cis_rule_4_4 }}
+command:
+  logrotate_perms:
+    title: 4.4 | Ensure logrotate assigns appropriate permissions | existing
+    exec: grep -Es "^\s*create\s+\S+" /etc/logrotate.conf /etc/logrotate.d/* | grep - E -v "\s(0)?[0-6][04]0\s"
+    exit-status: 0
+    stdout:
+    - '!/^Manual/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 4.4
+file:
+  /etc/logrotate.conf:
+    title: 4.4 | Ensure logrotate assigns appropriate permissions | default
+    exists: true
+    contains:
+    - '/^create 0640/'
+    - '!/^create (?!0640).{4}/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 4.4
+{{ end }}

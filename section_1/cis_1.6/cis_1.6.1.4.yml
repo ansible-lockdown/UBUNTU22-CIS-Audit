@@ -1,0 +1,16 @@
+{{ if .Vars.ubuntu22cis_apparmor_enforce_only }}
+  {{ if .Vars.ubuntu22cis_rule_1_6_1_4 }}
+command:
+  apparmor_enf_only:
+    title: 1.6.1.4 | Ensure all AppArmor Profiles are enforcing
+    exec: if [ `apparmor_status | grep 'profiles are in complain mode.' | awk '{print $1}'` == 0 ]; then echo "Not Enforcing" ;fi
+    exit-status: 0
+    stdout:
+    - '!/Not Enforcing/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID: 
+      - 1.6.1.4
+  {{ end }}
+{{ end }}

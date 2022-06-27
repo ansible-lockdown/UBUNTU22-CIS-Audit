@@ -1,0 +1,13 @@
+{{ if .Vars.ubuntu22cis_level_1 }}
+  {{ if .Vars.ubuntu22cis_rule_1_5_4 }}
+package:
+  prelink:
+    title: 1.5.3 | Ensure prelink is not installed
+    installed: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 1.5.3
+  {{ end }}
+{{ end }}

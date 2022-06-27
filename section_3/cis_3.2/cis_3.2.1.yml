@@ -1,0 +1,48 @@
+{{ if .Vars.ubuntu22cis_rule_3_2_1 }}
+kernel-param:
+  net.ipv4.conf.all.send_redirects:
+    title: 3.2.1 | Ensure packet redirect sending is disabled | all send_redirect
+    value: '0'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.2.1
+  net.ipv4.conf.default.send_redirects:
+    title: 3.2.1 | Ensure packet redirect sending is disabled | default send_redirects
+    value: '0'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.2.1
+command:
+  ipv4_disable_all_redirect:
+    title: 3.2.1 | Ensure packet redirect sending is disabled | all send_redirect config
+    exec: grep -E "^\s*net\.ipv4\.conf\.all\.send_redirects" /etc/sysctl.conf /etc/sysctl.d/*
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/.*:net.ipv4.conf.all.send_redirects=0/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.2.1
+  ipv4_disable_def_redirect:
+    title: 3.2.1 | Ensure packet redirect sending is disabled | default send_redirect config
+    exec: grep -E "^\s*net\.ipv4\.conf\.default\.send_redirects" /etc/sysctl.conf /etc/sysctl.d/*
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/.*:net.ipv4.conf.default.send_redirects=0/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.2.1
+{{ end }}

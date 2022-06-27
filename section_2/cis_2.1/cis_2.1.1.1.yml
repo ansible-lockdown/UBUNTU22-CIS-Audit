@@ -1,0 +1,33 @@
+{{ if .Vars.ubuntu22cis_rule_2_1_1_1 }}
+  {{ if eq .Vars.ubuntu22cis_time_service "timesyncd" }}
+service:
+  timesyncd:
+    title: 2.1.1.1 | Ensure time synchronization is in use | timesyncd
+    enabled: true
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 2.1.1.1
+  {{ end }}
+{{ if ne .Vars.ubuntu22cis_time_service "timesyncd" }}
+package:
+  {{ if eq .Vars.ubuntu22cis_time_service "chrony" }}
+  chrony:
+    title: 2.1.1.1 |Ensure time synchronization is in use | chrony
+    installed: true
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 2.1.1.1
+  {{ end  }}
+  {{ if eq .Vars.ubuntu22cis_time_service "ntp" }}
+  ntp:
+    title: 2.1.1.1 | Ensure time synchronization is in use | ntp
+    installed: true
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 2.1.1.1
+  {{ end }}
+{{ end  }}
+{{ end }}

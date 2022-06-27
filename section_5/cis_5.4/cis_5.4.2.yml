@@ -1,0 +1,16 @@
+{{ if .Vars.ubuntu22cis_level_1 }}
+  {{ if .Vars.ubuntu22cis_rule_5_4_2 }}
+file:
+  /etc/pam.d/common-auth:
+    title: 5.4.2 | Ensure lockout for failed password attempts is configured
+    exists: true
+    contains:
+    - '/^account\s*requisite\s*deny.so/'
+    - '/^account\s*required\s*pam_tally2.so/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 5.4.2
+  {{ end }}
+{{ end }}

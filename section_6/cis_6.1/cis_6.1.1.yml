@@ -1,0 +1,19 @@
+{{ if .Vars.ubuntu22cis_level_2 }}
+  {{ if .Vars.run_heavy_tests }}
+    {{ if .Vars.ubuntu22cis_rule_6_1_1 }}
+command:
+  rpm_filecheck:
+    title: 6.1.1 | Audit system file permissions
+    exec: echo "Manual Check of packages required"
+    exit-status: 0
+    stdout:
+    - '!/^Manual/'
+    timeout: {{ .Vars.timeout_ms }}
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.1.1
+    {{ end }}
+  {{ end }}
+{{ end }}

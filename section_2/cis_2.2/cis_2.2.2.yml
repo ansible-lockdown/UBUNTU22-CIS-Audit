@@ -1,0 +1,12 @@
+{{ if not .Vars.ubuntu22cis_rsh_required }}
+  {{ if .Vars.ubuntu22cis_rule_2_2_2 }}
+package:
+  rsh-client:
+    title: 2.2.2 | Ensure rsh client is not installed
+    installed: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 2.2.2
+  {{ end }}
+{{ end }}

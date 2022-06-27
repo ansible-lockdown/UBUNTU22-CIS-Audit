@@ -1,0 +1,14 @@
+{{ if .Vars.ubuntu22cis_rule_3_5_2_6 }}
+command:
+  nft_loopback:
+    title: 3.5.2.6 | Ensure nftables loopback traffic is configured
+    exec: echo "Manual - Please confirm nfttables loopback traffic configured and matched site policy"
+    exit-status: 0
+    stdout:
+    - '!/^Manual/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.5.2.6
+{{ end }}

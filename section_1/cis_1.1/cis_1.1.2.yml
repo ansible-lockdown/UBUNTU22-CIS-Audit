@@ -1,0 +1,13 @@
+{{ if .Vars.ubuntu22cis_level_1 }}
+  {{ if .Vars.ubuntu22cis_rule_1_1_2 }}
+mount:
+  /tmp:
+    title: 1.1.2 | Ensure /tmp is configured
+    exists: true
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 1.1.2
+  {{ end }}
+{{ end }}

@@ -1,0 +1,13 @@
+{{ if .Vars.ubuntu22cis_rule_2_3 }}
+command:
+  non_essen_svcs:
+    title: 2.3 | Ensure nonessential services are removed or masked
+    exec: echo "Manual -  checking of services that are not required are removed or masked"
+    exit-status: 0
+    stdout:
+    - '/^Manual/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 2.3
+{{ end }}

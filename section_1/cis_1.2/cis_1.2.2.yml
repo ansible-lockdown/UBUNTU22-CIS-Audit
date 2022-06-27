@@ -1,0 +1,13 @@
+{{ if .Vars.ubuntu22cis_rule_1_2_2}}
+command:
+  repos_configd:
+    title: 1.2.2 | Ensure GPG keys are configured 
+    exec: echo "Please check manually for gpg keys"
+    exit-status: 0
+    stdout:
+    - '!/^Please.*'
+    meta:
+      server: 1
+      workstation: 2
+      CIS_ID: 1.2.2
+{{ end }}

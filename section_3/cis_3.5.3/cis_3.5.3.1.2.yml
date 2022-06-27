@@ -1,0 +1,11 @@
+{{ if .Vars.ubuntu22cis_rule_3_5_3_1_2 }}
+package:
+  nftables:
+    title: 3.5.3.1.2 | Ensure nftables is not installed with iptables
+    installed: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.5.3.1.2
+{{ end }}

@@ -1,0 +1,48 @@
+{{ if .Vars.ubuntu22cis_rule_3_3_1 }}
+kernel-param:
+  net.ipv6.conf.all.accept_source_route:
+    title: 3.3.1 | Ensure source routed packets are not accepted | IPv6 all source routed
+    value: '0'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.1
+  net.ipv6.conf.default.accept_source_route:
+    title: 3.3.1 | Ensure source routed packets are not accepted | IPv6 default source routed
+    value: '0'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.1
+command:
+  ipv6_all_source_route:
+    title: 3.3.1 | Ensure source routed packets are not accepted | IPv6 all source routed conf
+    exec: grep "net\.ipv6\.conf\.all\.accept_source_route" /etc/sysctl.conf /etc/sysctl.d/*
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/^net.ipv6.conf.all.accept_source_route= 0/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.1
+  ipv6_def_source_route:
+    title: 3.3.1 | Ensure source routed packets are not accepted | IPv6 default source routed conf
+    exec: grep "net\.ipv6\.conf\.default\.accept_source_route" /etc/sysctl.conf /etc/sysctl.d/*
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/^net.ipv6.conf.default.accept_source_route= 0/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.1
+{{ end }}

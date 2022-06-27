@@ -1,0 +1,29 @@
+{{ if .Vars.ubuntu22cis_rule_4_2_1_4 }}
+file:
+  /etc/rsyslog.conf:
+    title: 4.2.1.4 | Ensure rsyslog default file permissions configured | conf file
+    exists: true
+    contains:
+    - '/\$FileCreateMode 0[0,6][0,4]0/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 4.2.1.4
+command:
+  rsyslog_d_perms:
+    title: 4.2.1.4 | Ensure rsyslog default file permissions configured | conf.d files
+    exec: grep '\$FileCreateMode' /etc/rsyslog.d/*.conf | grep -cv '\$FileCreateMode 0[0,6][0,4]0'
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '0'
+    - '!/[1-9]/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 4.2.1.4
+{{ end }}

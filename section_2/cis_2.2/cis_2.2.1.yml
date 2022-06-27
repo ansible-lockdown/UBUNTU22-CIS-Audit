@@ -1,0 +1,12 @@
+{{ if not .Vars.ubuntu22cis_nis_server }}
+  {{ if .Vars.ubuntu22cis_rule_2_2_1 }}
+package:
+  nis:
+    title: 2.2.1 | Ensure NIS Client is not installed
+    installed: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 2.2.1
+  {{ end }}
+{{ end }}

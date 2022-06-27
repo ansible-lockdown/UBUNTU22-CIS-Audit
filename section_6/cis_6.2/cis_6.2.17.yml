@@ -1,0 +1,17 @@
+{{ if .Vars.ubuntu22cis_rule_6_2_17 }}
+command:
+  empty_shadow_group:
+    title: 6.2.17 | Ensure shadow group is empty (Automated)
+    exec: grep ^shadow /etc/group | awk -F':''{print $NF}'
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '!/.*/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.2.17
+{{ end }}

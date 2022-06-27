@@ -1,0 +1,14 @@
+{{ if .Vars.ubuntu22cis_rule_3_5_3_2_2 }}
+command:
+  ipt_conns_config:
+    title: 3.5.3.2.2 | Ensure iptables outbound and established connections are configured 
+    exec: echo "Manual - Please confirm iptables outbound and connections are configured and matched site policy"
+    exit-status: 0
+    stdout:
+    - '!/^Manual/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.5.3.2.2
+{{ end }}

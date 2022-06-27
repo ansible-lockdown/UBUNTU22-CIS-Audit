@@ -1,0 +1,11 @@
+{{ if .Vars.ubuntu22cis_rule_3_5_1_2 }}
+package:
+  iptables-persistent:
+    title: 3.5.1.2 | Ensure iptables-persistent is not installed with ufw
+    installed: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.5.1.2
+{{ end }}

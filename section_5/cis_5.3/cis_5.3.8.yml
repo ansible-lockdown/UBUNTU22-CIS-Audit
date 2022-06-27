@@ -1,0 +1,16 @@
+{{ if .Vars.ubuntu22cis_level_1 }}
+  {{ if .Vars.ubuntu22cis_rule_5_3_8 }}
+file:
+  /etc/ssh/sshd_config:
+    title: 5.3.8 | Ensure SSH IgnoreRhosts is enabled
+    exists: true
+    contains:
+    - '/^(?i)Ignorerhosts yes/'
+    - '!/^(?i)Ignorerhosts no/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 5.3.8
+  {{ end }}
+{{ end }}

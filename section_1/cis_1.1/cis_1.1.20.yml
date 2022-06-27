@@ -1,0 +1,25 @@
+{{ if .Vars.ubuntu22cis_level_1 }}
+  {{ if .Vars.ubuntu22cis_rule_1_1_20 }}
+command:
+  floppy_nosuid:
+    title: 1.1.20 | Ensure nosuid option set on removable media partitions | floppy
+    exit-status: 0
+    exec: "if [ `grep -c -i floppy /etc/fstab` = 1 ] ; then if [ `grep -c -E 'floppy.*nosuid' /etc/fstab` -eq 1 ]; then echo FAIL; fi; else echo Passed_Check; fi"
+    stdout: 
+    - Passed_Check 
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 1.1.20
+  cdrom_nosuid:
+    title: 1.1.20 | Ensure nosuid option set on removable media partitions | cdrom
+    exit-status: 0
+    exec: "if [ `grep -c -i cdrom /etc/fstab` = 1 ] ; then if [ `grep -c -E 'cdrom.*nosuid' /etc/fstab` -eq 1 ]; then echo FAIL; fi; else echo Passed_Check; fi"
+    stdout: 
+    - Passed_Check
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 1.1.20
+  {{ end }}
+{{ end }}

@@ -1,0 +1,23 @@
+{{ if .Vars.ubuntu22cis_rule_3_5_2_10}}
+file:
+  /etc/nftables.conf:
+    title: 3.5.2.10 | Ensure nftables rules are permanent | conf file exists
+    exists: true
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.5.2.10
+command:
+  nft_rules:
+    title: 3.5.2.10 | Ensure nftables rules are permanent | conf file exists
+    exec: echo "Manual - Please review nfttables configuration and matches site policy"
+    exit-status: 0
+    stdout:
+    - '!/.*/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.5.2.10
+{{ end }}

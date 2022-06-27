@@ -1,0 +1,11 @@
+{{ if .Vars.ubuntu22cis_rule_3_5_2_2 }}
+package:
+  ufw:
+    title: 3.5.2.2 | Ensure ufw is uninstalled or disabled with nftables
+    installed: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.5.2.2
+{{ end }}

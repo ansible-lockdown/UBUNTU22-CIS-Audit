@@ -1,0 +1,26 @@
+{{ if .Vars.ubuntu22cis_rule_3_3_6 }}
+kernel-param:
+  net.ipv4.icmp_ignore_bogus_error_responses:
+    title: 3.3.6 | Ensure bogus ICMP responses are ignored | ignore bogus icmp
+    value: '1'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.6
+command:
+  ipv4_ignore_bogus:
+    title: 3.3.6 | Ensure bogus ICMP responses are ignored | ignore bogus icmp conf
+    exec: grep "net.ipv4.icmp_ignore_bogus_error_responses" /etc/sysctl.conf /etc/sysctl.d/*
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/^net.ipv4.icmp_ignore_bogus_error_responses = 1/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.6
+{{ end }}

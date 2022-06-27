@@ -1,0 +1,17 @@
+{{ if .Vars.run_heavy_tests }}
+  {{ if .Vars.ubuntu22cis_rule_6_1_14 }}
+command:
+  audit_sgid:
+    title: 6.1.14 | Audit SGID executables
+    exec: "df --local -P | awk '{if (NR!=1) print $6}' | xargs -I '{}' find '{}' -xdev -type f -perm -2000"
+    timeout: {{ .Vars.timeout_ms }}
+    exit-status: 0
+    stdout:
+    - '!/./'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.1.14
+  {{ end }}
+{{ end }}

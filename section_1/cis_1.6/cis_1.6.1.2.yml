@@ -1,0 +1,27 @@
+{{ if .Vars.ubuntu22cis_rule_1_6_1_2 }}
+file:
+  {{ .Vars.ubuntu22cis_grub_conf_file }}:
+    title: 1.6.1.2 | Ensure AppArmor is enabled in the bootloader configuration | running grub
+    exists: true
+    contains:
+    - '/apparmor=1/'
+    - '/security=apparmor/'
+    - '!/apparmor=0/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 1.6.1.2
+  /etc/default/grub:
+    title: 1.6.1.2 | Ensure AppArmor is enabled in the bootloader configuration | running grub
+    exists: true
+    contains:
+    - '/^GRUB_CMDLINE_LINUX.*apparmor=1/'
+    - '/^GRUB_CMDLINE_LINUX.*security=apparmor/'
+    - '!/apparmor=0/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 1.6.1.2
+{{ end }}

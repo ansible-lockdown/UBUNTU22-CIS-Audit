@@ -1,0 +1,18 @@
+{{ if .Vars.ubuntu22cis_rule_6_2_4 }}
+command:
+  home_dirs_exist:
+    title: 6.2.4 | Ensure all users' home directories exist
+    exec: pwck -r
+    exit-status: 
+      or:
+      - 0
+      - 1
+      - 2
+    stdout:
+    - '!/./'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.2.4
+{{ end }}

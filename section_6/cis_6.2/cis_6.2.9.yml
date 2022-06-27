@@ -1,0 +1,14 @@
+{{ if .Vars.ubuntu22cis_rule_6_2_9 }}
+command:
+  dot_forward_files:
+    title: 6.2.9 | Ensure no users have .forward files
+    exec: 'find /home/ -name .forward'
+    exit-status: 0
+    stdout: 
+    - '!/./'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.2.9
+{{ end }}

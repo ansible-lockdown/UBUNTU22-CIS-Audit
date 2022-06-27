@@ -1,0 +1,18 @@
+{{ if .Vars.ubuntu22cis_level_1 }}
+  {{ if .Vars.ubuntu22cis_rule_5_3_15 }}
+file:
+  /etc/ssh/sshd_config:
+    title: 5.3.15 | Ensure only strong Key Exchange algorithms are used
+    exists: true
+    contains:
+    - {{ .Vars.ubuntu22cis_ssh_strong_kex }}
+    {{ range .Vars.ubuntu22cis_ssh_weak_kex }}
+    - !{{ . }}
+    {{ end }}
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 5.3.15
+  {{ end }}
+{{ end }}

@@ -1,0 +1,14 @@
+{{ if .Vars.ubuntu22cis_rule_6_2_5 }}
+command:
+  home_dirs_owned:
+    title: 6.2.5 | Ensure users own their home directories
+    exec: "getent passwd {1000..60000} |  awk -F: '{ print $1  \" \"  $7 }' | while read user dir; do if [ $user != 'ftpd' ]; then owner=$(stat -L -c \"%U\" \"$dir\"); if [ \"$owner\" != \"$user\" ]; then echo \"home dir for $user owned by $owner\"; fi; fi; done"
+    exit-status: 0
+    stdout:
+    - '!/./'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.2.5
+{{ end }}

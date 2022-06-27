@@ -1,0 +1,40 @@
+{{ if eq .Vars.ubuntu22cis_time_service "timesyncd" }}
+  {{ if .Vars.ubuntu22cis_rule_2_1_1_2 }}
+service:
+  timesyncd:
+    title: 2.1.1.2 | Ensure systemd-timesyncd is configured | timesync service
+    enabled: true
+    running: true
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 2.1.1.2
+package:
+  ntp:
+    title: 2.1.1.2 | Ensure systemd-timesyncd is configured | ntp not installed
+    installed: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 2.1.1.2
+  chrony:
+    title: 2.1.1.2 | Ensure systemd-timesyncd is configured | chrony not installed
+    installed: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 2.1.1.2
+file:
+  /etc/systemd/timesyncd.conf:
+    title: 2.1.1.2 | Ensure systemd-timesyncd is configured | timesyncd.conf
+    exists: true
+    contains:
+    - '/^NTP={{ .Vars.ubuntu22cis_ntp_servers }}/'
+    - '/^FallbackNTP={{ .Vars.ubuntu22cis_ntp_fallback }}/'
+    - '/^RootDistanceMax={{ .Vars.ubuntu22cis_ntp_root_distance }}/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 2.1.1.2
+  {{ end }}
+{{ end  }}

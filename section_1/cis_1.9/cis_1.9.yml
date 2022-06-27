@@ -1,0 +1,16 @@
+{{ if .Vars.ubuntu22cis_rule_1_9 }}
+command:
+  check_updates:
+    title: 1.9 | Ensure updates, patches, and additional security software are installed
+    exec: apt update | tail -1
+    exit-status: 0
+    timeout: {{ .Vars.timeout_ms }}
+    stdout:
+    - '!/^[1-9]{0,4}$ packages can be upgraded/'
+    - '/^All packages are up to date/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 1.9
+{{ end }}

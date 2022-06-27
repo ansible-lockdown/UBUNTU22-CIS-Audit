@@ -1,0 +1,16 @@
+{{ if not .Vars.ubuntu22cis_apparmor_enforce_only }}
+  {{ if .Vars.ubuntu22cis_rule_1_6_1_3 }}
+command:
+  apparmor_enf_or_comp:
+    title: 1.6.1.3 | Ensure all AppArmor Profiles are in enforce or complain mode | profile
+    exec: LOADED=`apparmor_status | grep 'profiles are loaded' | awk '{print $1}'` && ENFORCE=`apparmor_status | grep 'profiles are in enforce mode.' | awk '{print $1}'` && COMPLAIN=`apparmor_status | grep 'profiles are in complain mode.' | awk '{print $1}'` && if [ $((LOADED + COMPLAIN)) != "$ENFORCE" ]; then echo "Profiles Error";fi
+    exit-status: 0
+    stdout:
+    - '!/Profiles Error/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 1.6.1.3
+  {{ end }}
+{{ end }}

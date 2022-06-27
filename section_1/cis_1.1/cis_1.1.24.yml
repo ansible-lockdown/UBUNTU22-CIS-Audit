@@ -1,0 +1,15 @@
+{{ if .Vars.ubuntu22cis_level_1 }}
+  {{ if .Vars.ubuntu22cis_rule_1_1_24 }}
+command:
+  cramfs:
+    title: 1.1.24 | Ensure mounting of usb-storage is disabled 
+    exit-status: 0
+    exec: "modprobe -n -v usb-storage | grep -E '(usb-storage|install)'"
+    stdout: 
+    - install /bin/true
+    meta:
+      server: 1
+      workstation: 2
+      CIS_ID: 1.1.24
+  {{ end }}
+{{ end }}

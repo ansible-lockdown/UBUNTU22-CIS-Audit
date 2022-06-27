@@ -1,0 +1,14 @@
+{{ if .Vars.ubuntu22cis_rule_6_2_12 }}
+command:
+  root_path_check:
+    title: 6.2.12 | Ensure root PATH Integrity
+    exec: "/bin/bash --login -c 'env | grep ^PATH=' | sed -e 's/PATH=//' -e 's/::/:/' -e 's/:$//' -e 's/:/\\n/g'"
+    exit-status: 0
+    stdout:
+    - '!/\\./'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.2.12
+{{ end }}

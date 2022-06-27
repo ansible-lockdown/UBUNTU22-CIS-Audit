@@ -1,0 +1,72 @@
+gossfile:
+  {{ if .Vars.ubuntu22cis_section1 }}
+  section_1/*/*.yml: {}
+  {{ end }}
+
+ # Section 2
+  {{ if .Vars.ubuntu22cis_section2 }}
+  section_2/*/*.yml: {}
+  {{ end }}
+
+# Section 3
+  {{ if .Vars.ubuntu22cis_section3 }}
+  section_3/cis_3.1/*.yml: {}
+  section_3/cis_3.2/*.yml: {}
+    {{ if .Vars.ubuntu22cis_ipv6_required }}
+  section_3/cis_3.3/ipv6/*.yml: {}
+    {{ end }}
+    # If ufw firewall
+    {{ if eq .Vars.ubuntu22cis_firewall "ufw" }}
+  section_3/cis_3.5.1/*.yml: {}
+    {{ end }}
+    # If nftables firewall
+    {{ if eq .Vars.ubuntu22cis_firewall "nftables" }}
+  section_3/cis_3.5.2/*.yml: {}
+    {{ end }}
+    # If iptables firewall
+    {{ if eq .Vars.ubuntu22cis_firewall "iptables" }}
+  section_3/cis_3.5.3/*.yml: {}
+    {{ end }}
+  {{ end }}
+
+# Section 4
+  {{ if .Vars.ubuntu22cis_section4 }}
+  # Auditd and level 2
+    {{ if .Vars.ubuntu22cis_level_2 }}
+      {{ if .Vars.ubuntu22cis_auditd }}
+  section_4/cis_4.1/*.yml: {}
+      {{ end }}
+    {{ end }}
+  section_4/cis_4.2/*.yml: {}
+  section_4/cis_4.3/*.yml: {}
+  section_4/cis_4.4/*.yml: {}
+  {{ end }}
+
+# Section 5
+  {{ if .Vars.ubuntu22cis_section5 }}
+  section_5/*/*.yml: {}
+  {{ end }}
+
+# Section 6
+  {{ if .Vars.ubuntu22cis_section6 }}
+  section_6/*/*.yml: {}
+  {{ end }}
+
+# Metadata
+command:
+  benchmark_meta:
+    title: Benchmark MetaData
+    exec: echo BenchMark MetaData
+    exit-status: 0
+    meta:
+      host_machine_uuid: {{ .Vars.machine_uuid }}
+      host_epoch: {{ .Vars.epoch }}
+      host_os_locale: {{ .Vars.os_locale }}
+      host_os_release: {{ .Vars.os_release }}
+      host_os_distribution: {{ .Vars.os_distribution }}
+      host_automation_group: {{ .Vars.auto_group }}
+      host_hostname: {{ .Vars.os_hostname }}
+      host_system_type: {{ .Vars.system_type }}
+      benchmark_type: {{ .Vars.benchmark_type }}
+      benchmark_version: {{ .Vars.benchmark_version }}
+      benchmark_os: {{ .Vars.benchmark_os }}

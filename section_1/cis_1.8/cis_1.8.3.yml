@@ -1,0 +1,16 @@
+{{ if .Vars.ubuntu22cis_gui }}
+  {{ if .Vars.ubuntu22cis_rule_1_8_3 }}
+file:
+  /etc/gdm3/greeter.dconf-defaults:
+    title: 1.8.3 | Ensure disable-user-list is enabled
+    exists: true
+    contains:
+    - '/^disable-user-list=true/'
+    - '!/^disable-user-list=false/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 1.8.3
+  {{ end }}
+{{ end }}

@@ -1,0 +1,13 @@
+{{ if .Vars.ubuntu22cis_rule_6_2_2 }}
+file:
+  /etc/shadow:
+    title: 6.2.2 | Ensure password fields are not empty
+    exists: true
+    contains:
+    - '!/^*.[a-z]::/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.2.2
+{{ end }}

@@ -1,0 +1,16 @@
+{{ if .Vars.ubuntu22cis_level_1 }}
+  {{ if .Vars.ubuntu22cis_rule_1_7_4 }}
+exec:
+  motd_permissions:
+    title: 1.7.4 | Ensure permissions on /etc/motd are configured
+    exec: FILE=/etc/motd && if [ -f $FILE ]; then PERMS=`stat  -c '%U %G %a' $FILE`; if [ "$PERMS" != "root root 644" ]; then echo "Permissions Incorrect"; fi; fi
+    exit-status: 0
+    stdout:
+    - '!/^Permissions Incorrect/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 1.7.4
+  {{ end }}
+{{ end }}

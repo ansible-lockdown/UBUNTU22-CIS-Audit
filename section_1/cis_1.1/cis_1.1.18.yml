@@ -1,0 +1,17 @@
+{{ if .Vars.ubuntu22cis_level_2 }}
+  {{ if .Vars.ubuntu22cis_rule_1_1_17 }}  # This is required for the next rule to exist
+    {{ if .Vars.ubuntu22cis_rule_1_1_18 }}
+mount:
+  /home:
+    title: 1.1.18 | Ensure /home partition includes the nodev option
+    exists: true
+    opts:
+    - nodev
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 1.1.17
+    {{ end }}
+  {{ end }}
+{{ end }}

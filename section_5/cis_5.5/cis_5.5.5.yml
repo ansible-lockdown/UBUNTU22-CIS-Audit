@@ -1,0 +1,16 @@
+{{ if .Vars.ubuntu22cis_level_1}}
+  {{ if .Vars.ubuntu22cis_rule_5_5_5 }}
+file:
+  /etc/profile.d/tmout.sh:
+    title: 5.5.5 | Ensure default user shell timeout is configured | profile.d
+    exists: true
+    contains:
+    - '/^TMOUT=([1-8][0-9]{0,2}|900)/'
+    - '/^readonly TMOUT/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 5.5.5
+  {{ end }}
+{{ end }}

@@ -1,0 +1,15 @@
+{{ if .Vars.ubuntu22cis_rule_4_1_2_3 }}
+file:
+  /etc/audit/auditd.conf:
+    title: 4.1.2.3 | Ensure system is disabled when audit logs are full
+    exists: true
+    contains:
+    - space_left_action = {{ .Vars.ubuntu22cis_auditd.space_left_action }}
+    - action_mail_acct = {{ .Vars.ubuntu22cis_auditd.action_mail_acct }}
+    - '/^admin_space_left_action = {{ .Vars.ubuntu22cis_auditd.admin_space_left_action }}/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID: 
+      - 4.1.2.3
+{{ end }}

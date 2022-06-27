@@ -1,0 +1,11 @@
+{{ if .Vars.ubuntu22cis_rule_1_6_1_1 }}
+package:
+  apparmor:
+    title: 1.6.1.1 | Ensure AppArmor is installed
+    installed: true
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 1.6.1.1
+{{ end }}

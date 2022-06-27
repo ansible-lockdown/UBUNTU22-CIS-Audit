@@ -1,0 +1,12 @@
+{{ if not .Vars.ubuntu22cis_vsftpd_server }}
+  {{ if .Vars.ubuntu22cis_rule_2_1_9 }}
+package:
+  vsftpd:
+    title: 2.1.9 | Ensure FTP Server is not installed
+    installed: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 2.1.9
+  {{ end }}
+{{ end }}

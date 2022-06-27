@@ -1,0 +1,13 @@
+{{ if .Vars.ubuntu22cis_level_2 }}
+  {{ if .Vars.ubuntu22cis_rule_1_1_10 }}
+mount:
+  /var:
+    title: 1.1.10 | Ensure separate partition exists for /var
+    exists: true
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID: 
+      - 1.1.10
+  {{ end }}
+{{ end }}

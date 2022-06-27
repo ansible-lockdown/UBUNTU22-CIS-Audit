@@ -1,0 +1,26 @@
+{{ if .Vars.ubuntu22cis_rule_4_1_1_4 }}
+command:
+  auditd_grub_backlog:
+    title: 4.1.1.4 | Ensure audit_backlog_limit is sufficient | bootloader file
+    exec: grep "^\s*linux" {{ .Vars.ubuntu22cis_grub_conf_file }} | grep -Evc "audit_backlog_limit="
+    exit-status: 1
+    stdout:
+    - '0'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID: 
+      - 4.1.1.4
+file:
+  /etc/default/grub:
+    exists: true
+    title: 4.1.1.4 | Ensure audit_backlog_limit is sufficient | default grub
+    contains: 
+    - '/GRUB_CMDLINE_LINUX=".*audit_backlog_limit={{ .Vars.ubuntu22cis_auditd.auditd_backlog_limit }}/'
+    - '/audit_backlog_limit=(819[2-9]|8[2-9]{2,}|9[0-9]{3,}|[1-9]{5,})/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID: 
+      - 4.1.1.4
+{{ end }}

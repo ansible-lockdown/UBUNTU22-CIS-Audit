@@ -1,0 +1,19 @@
+{{ if not .Vars.ubuntu22cis_is_mail_server }}
+  {{ if .Vars.ubuntu22cis_rule_2_1_11 }}
+package:
+  dovecot-imapd:
+    title: 2.1.11 |  Ensure IMAP and POP3 server are not installed | imap
+    installed: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 2.1.11
+  dovecot-pop3d:
+    title: 2.1.11 |  Ensure IMAP and POP3 server are not installed | pop3d
+    installed: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 2.1.11
+  {{ end }}
+{{ end }}

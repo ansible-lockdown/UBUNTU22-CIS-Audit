@@ -1,0 +1,12 @@
+{{ if .Vars.ubuntu22cis_rule_4_1_1_2 }}
+service:
+  auditd:
+    title: 4.1.1.2 | Ensure auditd service is enabled and running
+    enabled: true
+    running: true
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID: 
+      - 4.1.1.2
+{{ end }}

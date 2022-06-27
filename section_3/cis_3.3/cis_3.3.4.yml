@@ -1,0 +1,48 @@
+{{ if .Vars.ubuntu22cis_rule_3_3_4 }}
+kernel-param:
+  net.ipv4.conf.all.log_martians:
+    title: 3.3.4 | Ensure suspicious packets are logged | ipv4 all martians
+    value: '1'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.4
+  net.ipv4.conf.default.log_martians:
+    title: 3.3.4 | Ensure suspicious packets are logged | ipv4 default martians
+    value: '1'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.4
+command:
+  ipv4_all_martians:
+    title: 3.3.4 | Ensure suspicious packets are logged | ipv4 all martians conf
+    exec: grep "net\.ipv4\.conf\.all\.log_martians" /etc/sysctl.conf /etc/sysctl.d/*
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/^net.ipv4.conf.all.log_martians = 1/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.4
+  ipv4_def_martians:
+    title: 3.3.4 | Ensure suspicious packets are logged | ipv4 default martians conf
+    exec: grep "net\.ipv4\.conf\.default\.log_martians" /etc/sysctl.conf /etc/sysctl.d/*
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/^net.ipv4.conf.default.log_martians = 1/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.4
+{{ end }}

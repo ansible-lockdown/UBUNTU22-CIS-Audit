@@ -1,0 +1,14 @@
+{{ if .Vars.ubuntu22cis_rule_1_4_1 }}
+file:
+  /usr/sbin/grub-mkconfig:
+    title: 1.4.1 | Ensure permissions on bootloader config are not overridden
+    exists: True
+    contains:
+    - '/s+chmod 400${grub_cfg}.new || true/'
+    - '!/chmod ([0-3]|[5-7)[[1-7][1-7])/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.4.1
+{{ end }}

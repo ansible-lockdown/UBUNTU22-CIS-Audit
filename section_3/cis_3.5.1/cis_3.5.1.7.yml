@@ -1,0 +1,14 @@
+{{ if .Vars.ubuntu22cis_rule_3_5_1_7 }}
+command:
+  ufw_def_deny:
+    title: 3.5.1.7 | Ensure ufw default deny firewall policy
+    exec: echo "Manual - Please confirm firewall default deny policy match site policies"
+    exit-status: 0
+    stdout:
+    - '!/^Manual/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.5.1.7
+{{ end }}

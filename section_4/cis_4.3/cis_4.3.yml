@@ -1,0 +1,14 @@
+{{ if .Vars.ubuntu22cis_rule_4_3 }}
+command:
+  logrotate_config:
+    title: 4.3 | Ensure logrotate is configured
+    exec: echo " Manual - Please ensure lograote is configured as per site policy"
+    exit-status: 0
+    stdout:
+    - '!/^Manual/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 4.3
+{{ end }}

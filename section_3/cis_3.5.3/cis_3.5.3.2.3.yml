@@ -1,0 +1,14 @@
+{{ if .Vars.ubuntu22cis_rule_3_5_3_2_3 }}
+command:
+  ipt_def_deny:
+    title: 3.5.3.2.3 | Ensure iptables default deny firewall policy
+    exec: echo "Manual - Please confirm iptables default denies are configured and matched site policy"
+    exit-status: 0
+    stdout:
+    - '!/^Manual/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.5.3.2.3
+{{ end }}

@@ -1,0 +1,18 @@
+{{ if .Vars.ubuntu22cis_level_1 }}
+  {{ if .Vars.ubuntu22cis_rule_5_3_16 }}
+file:
+  /etc/ssh/sshd_config:
+    title: 5.3.16 | Ensure SSH Idle Timeout Interval is configured
+    exists: true
+    contains:
+    - ClientAliveInterval {{ .Vars.ubuntu22cis_ssh_aliveinterval }} 
+    - ClientAliveCountMax {{ .Vars.ubuntu22cis_ssh_countmax }}
+    - '/ClientAliveInterval ([1-9]|[1-2][0-9][0-9]|300)/'
+    - '/ClientAliveCountMax [1-3]/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 5.3.16
+  {{ end }}
+{{ end }}

@@ -1,0 +1,14 @@
+{{ if .Vars.ubuntu22cis_rule_6_2_15 }}
+command:
+  no_dup_username:
+    title: 6.2.15 | Ensure no duplicate user names exist
+    exec: "cat /etc/passwd | cut -d: -f1 | uniq -d"
+    exit-status: 0
+    stdout:
+    - '!/./'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.2.15
+{{ end }}

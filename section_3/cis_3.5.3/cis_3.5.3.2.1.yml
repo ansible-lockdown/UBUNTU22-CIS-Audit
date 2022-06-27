@@ -1,0 +1,14 @@
+{{ if .Vars.ubuntu22cis_rule_3_5_3_2_1 }}
+command:
+  ipt_loopback:
+    title: 3.5.3.2.1 | Ensure iptables loopback traffic is configured
+    exec: echo "Manual - Please confirm iptables loopback connections are configured and matched site policy"
+    exit-status: 0
+    stdout:
+    - '!/^Manual/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.5.3.2.1
+{{ end }}

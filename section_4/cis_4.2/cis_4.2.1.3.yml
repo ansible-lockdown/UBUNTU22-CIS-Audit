@@ -1,0 +1,28 @@
+{{ if .Vars.ubuntu22cis_rule_4_2_1_3 }}
+file:
+  /etc/rsyslog.conf:
+    title: 4.2.1.3 | Ensure logging is configured
+    exists: true
+    contains:
+    - '/^mail.*                                            -/var/log/mail/'
+    - '/^auth,authpriv.*\s*                                 /var/log/secure/'
+    - '/^mail.info\s*                                      -/var/log/mail.info/'
+    - '/^mail.warning\s*                                   -/var/log/mail.warn/'
+    - '/^mail.err\s*                                        /var/log/mail.err/'
+    - '/^news.err\s*                                       -/var/log/news/news.err/'
+    - '/^news.crit\s*                                      -/var/log/news/news.crit/'
+    - '/^news.notice\s*                                    -/var/log/news/news.notice/'
+    - '/^*.=warning;\*.=err\s*                             -/var/log/warn/'
+    - '/^*.crit\s*                                          /var/log/warn/'
+    - '/^*.*;mail.none;news.none\s*                         /var/log/messages/'
+    - '/^local0,local1.\*\s*                               -/var/log/localmessages/'
+    - '/^local2,local3.\*\s*                               -/var/log/localmessages/'
+    - '/^local4,local5.\*\s*                               -/var/log/localmessages/'
+    - '/^local6,local7.\*\s*                               -/var/log/localmessages/'
+    - '/^*.emerg\s*                                        :omusrmsg:*/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 4.2.1.3
+{{ end }}

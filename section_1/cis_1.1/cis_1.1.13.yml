@@ -1,0 +1,17 @@
+{{ if .Vars.ubuntu22cis_level_1 }}
+  {{ if .Vars.ubuntu22cis_rule_1_1_11 }} # This L2 control is required to be enabled in order for this to run
+  {{ if .Vars.ubuntu22cis_rule_1_1_13 }} 
+mount:
+  /var/tmp:
+    title: 1.1.13 | Ensure nosuid option set on /var/tmp partition
+    exists: true
+    opts:
+    - nosuid
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 1.1.13
+  {{ end }}
+  {{ end }}
+{{ end }}

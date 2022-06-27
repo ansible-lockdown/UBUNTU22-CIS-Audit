@@ -1,0 +1,14 @@
+{{ if .Vars.ubuntu22cis_rule_3_5_2_5 }}
+command:
+  nft_chains:
+    title: 3.5.2.5 | Ensure nftables base chains exist
+    exec: echo "Manual - Please confirm nfttables base chain exists and matched site policy"
+    exit-status: 0
+    stdout:
+    - '!/^Manual/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.5.2.5
+{{ end }}

@@ -1,0 +1,24 @@
+  {{ if .Vars.ubuntu22cis_rule_3_4_3 }}
+command:
+  modprobe_RDS:
+    title: 3.4.3 | Ensure RDS is disabled | rds config
+    exit-status: 0
+    exec: 'modprobe -n -v RDS'
+    stdout: ['install /bin/true']
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 3.4.3
+  lsmod_RDS:
+    title: 3.4.3 | Ensure RDS is disabled | running rds
+    exit-status: 0
+    exec: lsmod | grep rds
+    stdout:
+    - '!/^.*/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 3.4.3
+{{ end }}

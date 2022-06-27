@@ -1,0 +1,32 @@
+{{ if not .Vars.ubuntu22cis_is_mail_server }}
+  {{ if .Vars.ubuntu22cis_rule_2_1_15 }}
+command:
+  port_25_local_only:
+   title: 2.1.15 | Ensure mail transfer agent is configured for local-only mode | port listening
+   exec: ss -lntu | grep -E ':25\s' | grep -E -v '\s(127.0.0.1|::1):25\s'
+   exit-status: 
+     or:
+     - 0
+     - 1 
+   stdout:
+   - '!/.*/'
+   meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 2.1.15
+  {{ if eq .Vars.ubuntu22cis_mailserver "exim4" }}
+file:
+  /etc/exim4/update-exim4.conf.conf:
+    title: 2.1.15 | Ensure mail transfer agent is configured for local-only mode | exim config
+    exists: true
+    contains:
+    {{ range .Vars.ubuntu22_exim_conf }}
+    - {{ . }}
+    {{ end }}
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 2.1.15
+  {{ end }}
+  {{ end }}
+{{ end }}

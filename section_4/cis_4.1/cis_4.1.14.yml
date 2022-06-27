@@ -1,0 +1,27 @@
+{{ if .Vars.ubuntu22cis_rule_4_1_14 }}
+command:
+  auditd_admin_scope_cnf:
+    title: 4.1.14 | Ensure changes to system administration scope (sudoers) is collected | Config
+    exec: grep scope /etc/audit/rules.d/*.rules
+    exit-status: 0
+    stdout:
+    - '-w /etc/sudoers -p wa -k scope'
+    - '-w /etc/sudoers.d/ -p wa -k scope'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID: 
+      - 4.1.14
+  auditd_admin_scope_live:
+    title: 4.1.14 | Ensure changes to system administration scope (sudoers) is collected | Live
+    exec: auditctl -l | grep scope
+    exit-status: 0
+    stdout:
+    - '-w /etc/sudoers -p wa -k scope'
+    - '-w /etc/sudoers.d -p wa -k scope'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID: 
+      - 4.1.14
+{{ end }}

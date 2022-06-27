@@ -1,0 +1,17 @@
+{{ if .Vars.run_heavy_tests }}
+  {{ if .Vars.ubuntu22cis_rule_6_1_11 }}
+command:
+  unowned_dirs:
+    title: 6.1.11 | Ensure no unowned files or directories exist
+    exec: "df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -nouser"
+    exit-status: 0
+    timeout: {{ .Vars.timeout_ms }}
+    stdout:
+    - '!/./'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.1.11
+  {{ end }}
+{{ end }}

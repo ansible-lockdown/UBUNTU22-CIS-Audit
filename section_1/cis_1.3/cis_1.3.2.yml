@@ -1,0 +1,46 @@
+{{ if .Vars.ubuntu22cis_level_1 }}
+  {{ if .Vars.ubuntu22cis_config_aide }}
+    {{ if .Vars.ubuntu22cis_rule_1_3_2 }}
+      {{ if eq .Vars.ubuntu22cis_aide_scan "cron" }}
+command:
+  aide_cron:
+    title: 1.3.2 | Ensure filesystem integrity is regularly checked | aide cron
+    exit-status:
+      or:
+      - 0
+      - 2
+    exec: "grep -rs aide /etc/cron.* /etc/crontab /var/spool/cron/*"
+    stdout:
+    - '!/^#/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 1.3.2
+      {{ end }}
+service:
+    {{ if eq .Vars.ubuntu22cis_aide_scan "timer" }}
+  aidecheck:
+    title: 1.3.2 | Ensure filesystem integrity is regularly checked | aidecheck service
+    enabled: true
+    running: true
+    skip: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 1.3.2
+  aidecheck.timer:
+    title: 1.3.2 | Ensure filesystem integrity is regularly checked | aidecheck timer
+    enabled: true
+    running: true
+    skip: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 1.3.2
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}

@@ -1,0 +1,16 @@
+{{ if .Vars.ubuntu22cis_level_1 }}
+  {{ if .Vars.ubuntu22cis_rule_5_5_1_1 }}
+file:
+  /etc/login.defs:
+    title: 5.5.1.1 | Ensure minimum days between password changes is configured
+    exists: true
+    contains:
+    - '/^PASS_MIN_DAYS\s*{{ .Vars.ubuntu22cis_pass.min_days }}/'
+    - '!/^PASS_MIN_DAYS\s*([2-9]|[1-9][0-9]{2,})/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 5.5.1.1
+  {{ end }}
+{{ end }}

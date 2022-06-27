@@ -1,0 +1,15 @@
+{{ if .Vars.ubuntu22cis_level_1 }}
+  {{ if .Vars.ubuntu22cis_rule_1_1_4  }}
+mount:
+  /tmp:
+    title: 1.1.4 | Ensure nosuid option set on /tmp partition 
+    exists: true
+    opts:
+    - nosuid
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 1.1.4
+  {{ end }}
+{{ end }}

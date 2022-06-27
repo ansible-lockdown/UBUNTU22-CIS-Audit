@@ -1,0 +1,14 @@
+{{ if .Vars.ubuntu22cis_rule_3_5_3_3_1 }}
+command:
+  ipt6_loopback:
+    title: 3.5.3.3.1 | Ensure ip6tables loopback traffic is configured
+    exec: echo "Manual - Please confirm ip6tables loopback connections are configured and matched site policy"
+    exit-status: 0
+    stdout:
+    - '!/^Manual/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.5.3.3.1
+{{ end }}

@@ -1,0 +1,13 @@
+{{ if .Vars.ubuntu22cis_level_2 }}
+  {{ if .Vars.ubuntu22cis_rule_1_1_16 }}
+mount:
+  /var/log/audit:
+    title: 1.1.16 | Ensure seperate partition for /var/log/audit
+    exists: true
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 1.1.16
+  {{ end }}
+{{ end }}

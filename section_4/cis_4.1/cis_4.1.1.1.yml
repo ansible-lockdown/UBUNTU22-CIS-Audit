@@ -1,0 +1,19 @@
+{{ if .Vars.ubuntu22cis_rule_4_1_1_1 }}
+package:
+  auditd:
+    title: 4.1.1.1 | Ensure auditd is installed | auditd pkg
+    installed: true
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID: 
+      - 4.1.1.1
+  audispd-plugins:
+    title: 4.1.1.1 | Ensure auditd is installed | audispd-plugins pkg
+    installed: true
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID: 
+      - 4.1.1.1
+{{ end }}

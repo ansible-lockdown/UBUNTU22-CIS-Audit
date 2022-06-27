@@ -1,0 +1,26 @@
+{{ if .Vars.ubuntu22cis_rule_4_1_1_3 }}
+command:
+  auditd_grub:
+    title: 4.1.1.3 | Ensure auditing for processes that start prior to auditd is enabled | bootloader file
+    exec: grep "^\s*linux" {{ .Vars.ubuntu22cis_grub_conf_file }} | grep -Evc "audit=1"
+    exit-status: 1
+    stdout:
+    - '0'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID: 
+      - 4.1.1.3
+file:
+  /etc/default/grub:
+    title: 4.1.1.3 | Ensure auditing for processes that start prior to auditd is enabled | default grub
+    exists: true
+    contains:
+    - '/^GRUB_CMDLINE_LINUX=.*"audit=1"/'
+    - '!/audit=0/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID: 
+      - 4.1.1.3
+{{ end }}

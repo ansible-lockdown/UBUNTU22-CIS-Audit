@@ -1,0 +1,12 @@
+{{ if not .Vars.ubuntu22cis_rsyncd_server }}
+  {{ if .Vars.ubuntu22cis_rule_2_1_16 }}
+package:
+  rsync:
+    title: 2.1.16 | Ensure rsync service is not installed
+    installed: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 2.1.16
+  {{ end }}
+{{ end }}

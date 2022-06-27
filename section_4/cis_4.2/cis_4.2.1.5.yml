@@ -1,0 +1,14 @@
+{{ if .Vars.ubuntu22cis_rule_4_2_1_5 }}
+command:
+  remote_syslog:
+    title: 4.2.1.5 | Ensure rsyslog is configured to send logs to a remote host
+    exec: 'grep "^*.*[^I][^I]*@" /etc/rsyslog.conf /etc/rsyslog.d/*.conf'
+    exit-status: 0
+    stdout:
+    - '/\*\.\* @@*./'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 4.2.1.5
+{{ end }}

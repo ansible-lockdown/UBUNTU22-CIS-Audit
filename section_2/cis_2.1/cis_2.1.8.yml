@@ -1,0 +1,12 @@
+{{ if not .Vars.ubuntu22cis_dns_server }}
+  {{ if .Vars.ubuntu22cis_rule_2_1_8 }}
+package:
+  bind9:
+    title: 2.1.8 | Ensure DNS Server is not installed
+    installed: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 2.1.8
+  {{ end }}
+{{ end }}

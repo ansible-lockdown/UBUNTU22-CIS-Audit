@@ -1,0 +1,12 @@
+{{ if not .Vars.ubuntu22cis_talk_required }}
+  {{ if .Vars.ubuntu22cis_rule_2_2_3 }}
+package:
+  talk:
+    title: 2.2.3 | Ensure talk client is not installed
+    installed: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 2.2.3
+  {{ end }}
+{{ end }}

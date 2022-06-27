@@ -1,0 +1,17 @@
+{{ if .Vars.run_heavy_tests }}
+  {{ if .Vars.ubuntu22cis_level_1 }}
+    {{ if .Vars.ubuntu22cis_rule_1_1_22 }}
+command:
+  sticky_bit:
+    title: 1.1.22 | Ensure sticky bit is set on all world-writable directories
+    exit-status: 0
+    exec: "df --local -P 2> /dev/null | awk '{if (NR!=1) print $6}' | xargs -I '{}' find '{}' -xdev -type d \\( -perm -0002 -a ! -perm -1000 \\) 2>/dev/null"
+    timeout: {{ .Vars.timeout_ms }}
+    stdout: ['!/./']
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 1.1.22
+    {{ end }}
+  {{ end }}
+{{ end }}

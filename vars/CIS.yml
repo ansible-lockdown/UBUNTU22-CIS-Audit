@@ -1,0 +1,488 @@
+## metadata for Audit benchmark
+benchmark_version: '1.1.0'
+
+
+#  timeout for each command to run where set - default = 10seconds/10000ms
+timeout_ms: 60000
+
+
+ubuntu22cis_notauto: false
+ubuntu22cis_section1: true
+ubuntu22cis_section2: true
+ubuntu22cis_section3: true
+ubuntu22cis_section4: true
+ubuntu22cis_section5: true
+ubuntu22cis_section6: true
+
+ubuntu22cis_level_1: true
+ubuntu22cis_level_2: true
+
+ubuntu22cis_apparmor_disable: true
+
+#  to enable rules that may have IO impact on a system e.g. full filesystem scans or CPU heavy
+run_heavy_tests: true
+
+#  True is BIOS based system else set to false
+ubuntu22_legacy_boot: true
+
+ubuntu22_set_boot_pass: true
+
+# These variables correspond with the CIS rule IDs or paragraph numbers defined in
+# the CIS benchmark documents.
+# PLEASE NOTE: These work in coordination with the section # group variables and tags.
+# You must enable an entire section in order for the variables below to take effect.
+# Section 1 rules
+ubuntu22cis_rule_1_1_1_1: true
+ubuntu22cis_rule_1_1_1_2: true
+ubuntu22cis_rule_1_1_1_3: true
+ubuntu22cis_rule_1_1_1_4: true
+ubuntu22cis_rule_1_1_1_5: true
+ubuntu22cis_rule_1_1_1_6: true
+ubuntu22cis_rule_1_1_1_7: true
+ubuntu22cis_rule_1_1_2: true
+ubuntu22cis_rule_1_1_3: true
+ubuntu22cis_rule_1_1_4: true
+ubuntu22cis_rule_1_1_5: true
+ubuntu22cis_rule_1_1_6: true
+ubuntu22cis_rule_1_1_7: true
+ubuntu22cis_rule_1_1_8: true
+ubuntu22cis_rule_1_1_9: true
+ubuntu22cis_rule_1_1_10: true
+ubuntu22cis_rule_1_1_11: true
+ubuntu22cis_rule_1_1_12: true
+ubuntu22cis_rule_1_1_13: true
+ubuntu22cis_rule_1_1_14: true
+ubuntu22cis_rule_1_1_15: true
+ubuntu22cis_rule_1_1_16: true
+ubuntu22cis_rule_1_1_17: true
+ubuntu22cis_rule_1_1_18: true
+ubuntu22cis_rule_1_1_19: true
+ubuntu22cis_rule_1_1_20: true
+ubuntu22cis_rule_1_1_21: true
+ubuntu22cis_rule_1_1_22: true
+ubuntu22cis_rule_1_1_23: true
+ubuntu22cis_rule_1_1_24: true
+ubuntu22cis_rule_1_2_1: true
+ubuntu22cis_rule_1_2_2: true
+ubuntu22cis_rule_1_3_1: true
+ubuntu22cis_rule_1_3_2: true
+ubuntu22cis_rule_1_4_1: true
+ubuntu22cis_rule_1_4_2: true
+ubuntu22cis_rule_1_4_3: true
+ubuntu22cis_rule_1_4_4: true
+ubuntu22cis_rule_1_5_1: true
+ubuntu22cis_rule_1_5_2: true
+ubuntu22cis_rule_1_5_3: true
+ubuntu22cis_rule_1_5_4: true
+
+ubuntu22cis_rule_1_6_1_1: true
+ubuntu22cis_rule_1_6_1_2: true
+ubuntu22cis_rule_1_6_1_3: true
+ubuntu22cis_rule_1_6_1_4: true
+ubuntu22cis_rule_1_7_1: true
+ubuntu22cis_rule_1_7_2: true
+ubuntu22cis_rule_1_7_3: true
+ubuntu22cis_rule_1_7_4: true
+ubuntu22cis_rule_1_7_5: true
+ubuntu22cis_rule_1_7_6: true
+ubuntu22cis_rule_1_8_1: true
+ubuntu22cis_rule_1_8_2: true
+ubuntu22cis_rule_1_8_3: true
+ubuntu22cis_rule_1_8_4: true
+ubuntu22cis_rule_1_9: true
+
+# section 2 rules
+
+ubuntu22cis_rule_2_1_1_1: true
+ubuntu22cis_rule_2_1_1_2: true
+ubuntu22cis_rule_2_1_1_3: true
+ubuntu22cis_rule_2_1_1_4: true
+ubuntu22cis_rule_2_1_2: true
+ubuntu22cis_rule_2_1_3: true
+ubuntu22cis_rule_2_1_4: true
+ubuntu22cis_rule_2_1_5: true
+ubuntu22cis_rule_2_1_6: true
+ubuntu22cis_rule_2_1_7: true
+ubuntu22cis_rule_2_1_8: true
+ubuntu22cis_rule_2_1_9: true
+ubuntu22cis_rule_2_1_10: true
+ubuntu22cis_rule_2_1_11: true
+ubuntu22cis_rule_2_1_12: true
+ubuntu22cis_rule_2_1_13: true
+ubuntu22cis_rule_2_1_14: true
+ubuntu22cis_rule_2_1_15: true
+ubuntu22cis_rule_2_1_16: true
+ubuntu22cis_rule_2_1_17: true
+ubuntu22cis_rule_2_2_1: true
+ubuntu22cis_rule_2_2_2: true
+ubuntu22cis_rule_2_2_3: true
+ubuntu22cis_rule_2_2_4: true
+ubuntu22cis_rule_2_2_5: true
+ubuntu22cis_rule_2_2_6: true
+ubuntu22cis_rule_2_3: true
+
+# Section 3 rules
+ubuntu22cis_rule_3_1_1: true
+ubuntu22cis_rule_3_1_2: true
+ubuntu22cis_rule_3_2_1: true
+ubuntu22cis_rule_3_2_2: true
+ubuntu22cis_rule_3_3_1: true
+ubuntu22cis_rule_3_3_2: true
+ubuntu22cis_rule_3_3_3: true
+ubuntu22cis_rule_3_3_4: true
+ubuntu22cis_rule_3_3_5: true
+ubuntu22cis_rule_3_3_6: true
+ubuntu22cis_rule_3_3_7: true
+ubuntu22cis_rule_3_3_8: true
+ubuntu22cis_rule_3_3_9: true
+ubuntu22cis_rule_3_4_1: true
+ubuntu22cis_rule_3_4_2: true
+ubuntu22cis_rule_3_4_3: true
+ubuntu22cis_rule_3_4_4: true
+# UFW
+ubuntu22cis_rule_3_5_1_1: true
+ubuntu22cis_rule_3_5_1_2: true
+ubuntu22cis_rule_3_5_1_3: true
+ubuntu22cis_rule_3_5_1_4: true
+ubuntu22cis_rule_3_5_1_5: true
+ubuntu22cis_rule_3_5_1_6: true
+ubuntu22cis_rule_3_5_1_7: true
+# NFTables
+ubuntu22cis_rule_3_5_2_1: true
+ubuntu22cis_rule_3_5_2_2: true
+ubuntu22cis_rule_3_5_2_3: true
+ubuntu22cis_rule_3_5_2_4: true
+ubuntu22cis_rule_3_5_2_5: true
+ubuntu22cis_rule_3_5_2_6: true
+ubuntu22cis_rule_3_5_2_7: true
+ubuntu22cis_rule_3_5_2_8: true
+ubuntu22cis_rule_3_5_2_9: true
+ubuntu22cis_rule_3_5_2_10: true
+# IPTables
+ubuntu22cis_rule_3_5_3_1_1: true
+ubuntu22cis_rule_3_5_3_1_2: true
+ubuntu22cis_rule_3_5_3_1_3: true
+ubuntu22cis_rule_3_5_3_2_1: true
+ubuntu22cis_rule_3_5_3_2_2: true
+ubuntu22cis_rule_3_5_3_2_3: true
+ubuntu22cis_rule_3_5_3_2_4: true
+ubuntu22cis_rule_3_5_3_3_1: true
+ubuntu22cis_rule_3_5_3_3_2: true
+ubuntu22cis_rule_3_5_3_3_3: true
+ubuntu22cis_rule_3_5_3_3_4: true
+
+# Section 4 rules
+ubuntu22cis_rule_4_1_1_1: true
+ubuntu22cis_rule_4_1_1_2: true
+ubuntu22cis_rule_4_1_1_3: true
+ubuntu22cis_rule_4_1_1_4: true
+ubuntu22cis_rule_4_1_2_1: true
+ubuntu22cis_rule_4_1_2_2: true
+ubuntu22cis_rule_4_1_2_3: true
+ubuntu22cis_rule_4_1_3: true
+ubuntu22cis_rule_4_1_4: true
+ubuntu22cis_rule_4_1_5: true
+ubuntu22cis_rule_4_1_6: true
+ubuntu22cis_rule_4_1_7: true
+ubuntu22cis_rule_4_1_8: true
+ubuntu22cis_rule_4_1_9: true
+ubuntu22cis_rule_4_1_10: true
+ubuntu22cis_rule_4_1_11: true
+ubuntu22cis_rule_4_1_12: true
+ubuntu22cis_rule_4_1_13: true
+ubuntu22cis_rule_4_1_14: true
+ubuntu22cis_rule_4_1_15: true
+ubuntu22cis_rule_4_1_16: true
+ubuntu22cis_rule_4_1_17: true
+ubuntu22cis_rule_4_2_1: true
+ubuntu22cis_rule_4_2_1_1: true
+ubuntu22cis_rule_4_2_1_2: true
+ubuntu22cis_rule_4_2_1_3: true
+ubuntu22cis_rule_4_2_1_4: true
+ubuntu22cis_rule_4_2_1_5: true
+ubuntu22cis_rule_4_2_1_6: true
+ubuntu22cis_rule_4_2_2_1: true
+ubuntu22cis_rule_4_2_2_2: true
+ubuntu22cis_rule_4_2_2_3: true
+ubuntu22cis_rule_4_2_3: true
+ubuntu22cis_rule_4_3: true
+ubuntu22cis_rule_4_4: true
+
+# Section 5
+ubuntu22cis_rule_5_1_1: true
+ubuntu22cis_rule_5_1_2: true
+ubuntu22cis_rule_5_1_3: true
+ubuntu22cis_rule_5_1_4: true
+ubuntu22cis_rule_5_1_5: true
+ubuntu22cis_rule_5_1_6: true
+ubuntu22cis_rule_5_1_7: true
+ubuntu22cis_rule_5_1_8: true
+ubuntu22cis_rule_5_1_9: true
+ubuntu22cis_rule_5_2_1: true
+ubuntu22cis_rule_5_2_2: true
+ubuntu22cis_rule_5_2_3: true
+ubuntu22cis_rule_5_3_1: true
+ubuntu22cis_rule_5_3_2: true
+ubuntu22cis_rule_5_3_3: true
+ubuntu22cis_rule_5_3_4: true
+ubuntu22cis_rule_5_3_5: true
+ubuntu22cis_rule_5_3_6: true
+ubuntu22cis_rule_5_3_7: true
+ubuntu22cis_rule_5_3_8: true
+ubuntu22cis_rule_5_3_9: true
+ubuntu22cis_rule_5_3_10: true
+ubuntu22cis_rule_5_3_11: true
+ubuntu22cis_rule_5_3_12: true
+ubuntu22cis_rule_5_3_13: true
+ubuntu22cis_rule_5_3_14: true
+ubuntu22cis_rule_5_3_15: true
+ubuntu22cis_rule_5_3_16: true
+ubuntu22cis_rule_5_3_17: true
+ubuntu22cis_rule_5_3_18: true
+ubuntu22cis_rule_5_3_19: true
+ubuntu22cis_rule_5_3_20: true
+ubuntu22cis_rule_5_3_21: true
+ubuntu22cis_rule_5_3_22: true
+ubuntu22cis_rule_5_4_1: true
+ubuntu22cis_rule_5_4_2: true
+ubuntu22cis_rule_5_4_3: true
+ubuntu22cis_rule_5_4_4: true
+ubuntu22cis_rule_5_5_1_1: true
+ubuntu22cis_rule_5_5_1_2: true
+ubuntu22cis_rule_5_5_1_3: true
+ubuntu22cis_rule_5_5_1_4: true
+ubuntu22cis_rule_5_5_1_5: true
+ubuntu22cis_rule_5_5_2: true
+ubuntu22cis_rule_5_5_3: true
+ubuntu22cis_rule_5_5_4: true
+ubuntu22cis_rule_5_5_5: true
+ubuntu22cis_rule_5_6: true
+ubuntu22cis_rule_5_7: true
+
+# Section 6
+ubuntu22cis_rule_6_1_1: true
+ubuntu22cis_rule_6_1_2: true
+ubuntu22cis_rule_6_1_3: true
+ubuntu22cis_rule_6_1_4: true
+ubuntu22cis_rule_6_1_5: true
+ubuntu22cis_rule_6_1_6: true
+ubuntu22cis_rule_6_1_7: true
+ubuntu22cis_rule_6_1_8: true
+ubuntu22cis_rule_6_1_9: true
+ubuntu22cis_rule_6_1_10: true
+ubuntu22cis_rule_6_1_11: true
+ubuntu22cis_rule_6_1_12: true
+ubuntu22cis_rule_6_1_13: true
+ubuntu22cis_rule_6_1_14: true
+
+ubuntu22cis_rule_6_2_1: true
+ubuntu22cis_rule_6_2_2: true
+ubuntu22cis_rule_6_2_3: true
+ubuntu22cis_rule_6_2_4: true
+ubuntu22cis_rule_6_2_5: true
+ubuntu22cis_rule_6_2_6: true
+ubuntu22cis_rule_6_2_7: true
+ubuntu22cis_rule_6_2_8: true
+ubuntu22cis_rule_6_2_9: true
+ubuntu22cis_rule_6_2_10: true
+ubuntu22cis_rule_6_2_11: true
+ubuntu22cis_rule_6_2_12: true
+ubuntu22cis_rule_6_2_13: true
+ubuntu22cis_rule_6_2_14: true
+ubuntu22cis_rule_6_2_15: true
+ubuntu22cis_rule_6_2_16: true
+ubuntu22cis_rule_6_2_17: true
+
+# AIDE
+ubuntu22cis_config_aide: false
+
+# aide setup via - cron, timer
+ubuntu22cis_aide_scan: cron
+
+# AIDE cron settings
+ubuntu22_aide_cron:
+  cron_user: root
+  cron_file: /etc/crontab
+  aide_job: '/usr/sbin/aide --check'
+  aide_minute: 0
+  aide_hour: 5
+  aide_day: '*'
+  aide_month: '*'
+  aide_weekday: '*'
+
+# 1.1
+ubuntu22cis_allow_autofs: false
+
+# 1.4
+ubuntu22cis_grub_conf_file: /boot/grub/grub.cfg
+ubuntu22cis_grub_username: root
+ubuntu22cis_grub_hash: blah
+# 1.5.1 Bootloader password
+ubuntu22cis_bootloader_password: random
+
+# 1.6 - Only have apparmor enforcing
+ubuntu22cis_apparmor_enforce_only: false
+
+# Warning Banner Content (issue, issue.net, motd)
+ubuntu22_warning_banner: Authorized uses only. All activity may be monitored and reported.
+# End Banner
+
+# Section 2
+# Time sync - can be timesync or chriny or ntp
+ubuntu22cis_time_service: chrony
+ubuntu22cis_ntp_servers:
+ubuntu22cis_ntp_fallback:
+ubuntu22cis_ntp_root_distance:
+
+# Whether or not to run tasks related to auditing/patching the desktop environment
+ubuntu22cis_gui: false
+
+# Service configuration booleans set true to keep service
+ubuntu22cis_avahi_server: false
+ubuntu22cis_cups_server: false
+ubuntu22cis_nfs_server: true
+ubuntu22cis_dhcp_server: false
+ubuntu22cis_ldap_server: false
+ubuntu22cis_dns_server: false
+ubuntu22cis_vsftpd_server: false
+ubuntu22cis_httpd_server: false
+ubuntu22cis_is_mail_server: false
+ubuntu22cis_dovecot_server: false
+ubuntu22cis_samba_server: false
+ubuntu22cis_squid_server: false
+ubuntu22cis_snmp_server: false
+
+# Mail Server config - needs to be defined as exim4 or Not_defined
+ubuntu22cis_mailserver: Not_defined
+
+ubuntu22_exim_conf:
+  - dc_eximconfig_configtype='local'
+  - dc_local_interfaces='127.0.0.1 ; ::1'
+  - dc_readhost=''
+  - dc_relay_domains=''
+  - dc_minimaldns='false'
+  - dc_relay_nets=''
+  - dc_smarthost=''
+  - dc_use_split_config='false'
+  - dc_hide_mailname=''
+  - dc_mailname_in_oh='true'
+  - dc_localdelivery='mail_spool'
+
+ubuntu22cis_rsyncd_server: false
+ubuntu22cis_nis_server: false
+
+ubuntu22cis_xwindows_required: false
+
+# 2.2 client services
+ubuntu22cis_rsh_required: false
+ubuntu22cis_talk_required: false
+ubuntu22cis_telnet_required: false
+ubuntu22cis_ldap_clients_required: false
+ubuntu22cis_rpc_required: false
+
+
+# Section 3
+# IPv6 required
+ubuntu22cis_ipv6_required: true
+
+# System network parameters (host only OR host and router)
+ubuntu22cis_is_router: false
+
+
+ubuntu22cis_firewall: ufw
+
+# ubuntu22_firewall: iptables
+ubuntu22_default_firewall_zone: public
+ubuntu22_firewall_interface:
+  - ['ens224']
+  - ['ens192']
+ubuntu22_firewall_services:
+  - ssh
+  - dhcpv6-client
+
+### Section 4
+## auditd settings
+ubuntu22cis_auditd:
+  space_left_action: email
+  action_mail_acct: root
+  admin_space_left_action: halt
+  max_log_file_action: keep_logs
+  auditd_backlog_limit: 2048
+
+## syslog
+ubuntu22cis_is_syslog_server: false
+### Section 5
+ubuntu22cis_sshd_limited: false
+# Note the following to understand precedence and layout
+ubuntu22cis_sshd_access:
+  - AllowUser
+  - AllowGroup
+  - DenyUser
+  - DenyGroup
+
+ubuntu22cis_ssh_strong_ciphers: Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr
+ubuntu22cis_ssh_weak_ciphers:
+  - 3des-cbc
+  - aes128-cbc
+  - aes192-cbc
+  - aes256-cbc
+  - arcfour
+  - arcfour128
+  - arcfour256
+  - blowfish-cbc
+  - cast128-cbc
+  - rijndael-cbc@lysator.liu.se
+
+ubuntu22cis_ssh_strong_macs: MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512,hmac-sha2-256
+ubuntu22cis_ssh_weak_macs:
+  - hmac-md5
+  - hmac-md5-96
+  - hmac-ripemd160
+  - hmac-sha1
+  - hmac-sha1-96
+  - umac-64@openssh.com
+  - umac-128@openssh.com
+  - hmac-md5-etm@openssh.com
+  - hmac-md5-96-etm@openssh.com
+  - hmac-ripemd160-etm@openssh.com
+  - hmac-sha1-etm@openssh.com
+  - hmac-sha1-96-etm@openssh.com
+  - umac-64-etm@openssh.com
+  - umac-128-etm@openssh.com
+
+ubuntu22cis_ssh_strong_kex: KexAlgorithms curve25519-sha256,curve25519-sha256@libssh.org,diffie-hellman-group14-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,ecdh-sha2-nistp521,ecdh-sha2-nistp384,ecdh-sha2-nistp256,diffie-hellman-group-exchange-sha256
+ubuntu22cis_ssh_weak_kex:
+  - diffie-hellman-group1-sha1
+  - diffie-hellman-group14-sha1
+  - diffie-hellman-group-exchange-sha1
+
+
+ubuntu22cis_ssh_aliveinterval: 300
+ubuntu22cis_ssh_countmax: 3
+## PAM
+ubuntu22cis_pam_password:
+  minlen: "14"
+  minclass: "4"
+
+ubuntu22cis_pam_passwd_retry: "3"
+
+# choose one of below
+ubuntu22cis_pwhistory_so: "14"
+ubuntu22cis_unix_so: false
+ubuntu22cis_passwd_remember: "5"
+
+# logins.def password settings
+ubuntu22cis_pass:
+  max_days: "365"
+  min_days: "1"
+  warn_age: "7"
+
+# set sugroup if differs from wheel
+ubuntu22cis_sugroup: wheel
+
+# sugroup users list
+ubuntu22_sugroup_users: "root"
+
+# var log location variable
+ubuntu22_varlog_location: "/var/log/sudo.log"
+

@@ -1,0 +1,31 @@
+{{ if .Vars.ubuntu22cis_rule_3_5_2_3 }}
+command:
+  iptables_flushed:
+    title: 3.5.2.3 | Ensure iptables are flushed with nftables | iptable IPv4 flushed
+    exec: iptables -L
+    exit-status: 
+      or:
+      - 0
+      - 1
+    stdout:
+    - '!/^.*/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.5.2.3
+  ip6tables_flushed:
+    title: 3.5.2.3 | Ensure iptables are flushed with nftables | iptable IPv4 flushed
+    exec: ip6tables -L
+    exit-status: 
+      or:
+      - 0
+      - 1
+    stdout:
+    - '!/^.*/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.5.2.3
+{{ end }}

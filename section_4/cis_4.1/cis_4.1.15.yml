@@ -1,0 +1,27 @@
+{{ if .Vars.ubuntu22cis_rule_4_1_15 }}
+command:
+  auditd_sudolog_cnf:
+    title: 4.1.15 | Ensure system administrator command executions (sudo) are collected | Config
+    exec: grep actions /etc/audit/rules.d/*.rules
+    exit-status: 0
+    stdout:
+    - '-a always,exit -F arch=b64 -C euid!=uid -F euid=0 -F auid>=1000 -F auid!=4294967295 -S execve -k actions'
+    - '-a always,exit -F arch=b32 -C euid!=uid -F euid=0 -F auid>=1000 -F auid!=4294967295 -S execve -k actions'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID: 
+      - 4.1.15
+  auditd_sudolog_live:
+    title: 4.1.15 | Ensure system administrator command executions (sudo) are collected | Live
+    exec: auditctl -l | grep actions
+    exit-status: 0
+    stdout:
+    - '-a always,exit -F arch=b64 -S execve -C uid!=euid -F euid=0 -F auid>=1000 -F auid!=-1 -F key=actions'
+    - '-a always,exit -F arch=b32 -S execve -C uid!=euid -F euid=0 -F auid>=1000 -F auid!=-1 -F key=actions'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID: 
+      - 4.1.15
+{{ end }}

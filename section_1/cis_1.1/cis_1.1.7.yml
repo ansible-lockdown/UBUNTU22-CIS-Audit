@@ -1,0 +1,15 @@
+{{ if .Vars.ubuntu22cis_level_1 }}
+  {{ if .Vars.ubuntu22cis_rule_1_1_7 }}
+mount:
+  /dev/shm:
+    title: 1.1.7 | Ensure nodev option set on /dev/shm partition
+    exists: true
+    opts:
+    - nodev
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 1.1.7
+  {{ end }}
+{{ end }}

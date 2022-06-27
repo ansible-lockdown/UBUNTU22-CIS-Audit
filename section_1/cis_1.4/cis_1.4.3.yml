@@ -1,0 +1,16 @@
+{{ if .Vars.ubuntu22cis_level_1 }}
+  {{ if .Vars.ubuntu22cis_rule_1_4_3 }}
+file:
+  {{ .Vars.ubuntu22cis_grub_conf_file }}:
+    title: 1.4.3 | Ensure permissions on bootloader config are configured
+    exists: true
+    owner: root
+    group: root
+    mode: 0400
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 1.4.3
+  {{ end }}
+{{ end }}

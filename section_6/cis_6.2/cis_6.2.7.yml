@@ -1,0 +1,14 @@
+{{ if .Vars.ubuntu22cis_rule_6_2_7 }}
+command:
+  dot_file_perms:
+    title: 6.2.7 | Ensure users dot files are not group or world writable
+    exec: 'find /home/ -name "\.*" -perm /g+w,o+w'
+    exit-status: 0
+    stdout: 
+    - '!/./'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.2.7
+{{ end }}

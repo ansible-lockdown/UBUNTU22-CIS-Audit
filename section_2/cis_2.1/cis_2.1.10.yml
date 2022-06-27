@@ -1,0 +1,12 @@
+{{ if not .Vars.ubuntu22cis_httpd_server }}
+  {{ if .Vars.ubuntu22cis_rule_2_1_10 }}
+package:
+  httpd:
+    title: 2.1.10 | Ensure HTTP Server is not installed
+    installed: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 2.1.10
+  {{ end }}
+{{ end }}

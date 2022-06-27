@@ -1,0 +1,18 @@
+{{ if .Vars.ubuntu22cis_level_1 }}
+  {{ if .Vars.ubuntu22cis_rule_5_3_14 }}
+file:
+  /etc/ssh/sshd_config:
+    title: 5.3.14 | Ensure only strong MACs are used
+    exists: true
+    contains:
+    - {{ .Vars.ubuntu22cis_ssh_strong_macs }}
+    {{ range .Vars.ubuntu22cis_ssh_weak_macs }}
+    - !{{ . }}
+    {{ end }}
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 5.3.14
+  {{ end }}
+{{ end }}

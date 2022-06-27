@@ -1,0 +1,14 @@
+{{ if .Vars.ubuntu22cis_rule_3_5_2_7 }}
+command:
+  nft_conns:
+    title: 3.5.2.7 | Ensure nftables outbound and established connections are configured
+    exec: echo "Manual - Please confirm nfttables connections are configured and matched site policy"
+    exit-status: 0
+    stdout:
+    - '!/^Manual/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.5.2.7
+{{ end }}

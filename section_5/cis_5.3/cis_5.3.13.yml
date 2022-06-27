@@ -1,0 +1,18 @@
+{{ if .Vars.ubuntu22cis_level_1 }}
+  {{ if .Vars.ubuntu22cis_rule_5_3_13 }}
+file:
+  /etc/ssh/sshd_config:
+    title: 5.3.13 | Ensure only strong Ciphers are used
+    exists: true
+    contains:
+    - {{ .Vars.ubuntu22cis_ssh_strong_ciphers }}
+    {{ range .Vars.ubuntu22cis_ssh_weak_ciphers }}
+    - !{{ . }}
+    {{ end }}
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 5.3.13
+  {{ end }}
+{{ end }}

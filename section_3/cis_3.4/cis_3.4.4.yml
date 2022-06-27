@@ -1,0 +1,24 @@
+  {{ if .Vars.ubuntu22cis_rule_3_4_4 }}
+command:
+  modprobe_TIPC:
+    title: 3.4.4 | Ensure TIPC is disabled | tipc config
+    exit-status: 0
+    exec: 'modprobe -n -v TIPC'
+    stdout: ['install /bin/true']
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 3.4.4
+  lsmod_TIPC:
+    title: 3.4.4 | Ensure TIPC is disabled | running tipc
+    exit-status: 0
+    exec: lsmod | grep tipc
+    stdout:
+    - '!/^.*/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 3.4.4
+{{ end }}

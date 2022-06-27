@@ -1,0 +1,35 @@
+{{ if .Vars.ubuntu22cis_level_1 }}
+  {{ if .Vars.ubuntu22cis_rule_5_3_3 }}
+command:
+  /etc/ssh/ssh_host_key_user:
+    title: 5.3.3 | Ensure permissions on SSH pub host key files are configured | user
+    exec: "userkeys=$(sudo find /etc/ssh/ -name *_key.pub -type f ! -user root ); echo $userkeys"
+    exit-status: 0
+    stdout: ['!/./']
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 5.3.3
+  /etc/ssh/ssh_host_key_group:
+    title: 5.3.3 | Ensure permissions on SSH private host key files are configured | group
+    exec: "groupkeys=$(sudo find /etc/ssh/ -name *_key.pub -type f ! -group root ); echo $groupkeys"
+    exit-status: 0
+    stdout: ['!/./']
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 5.3.3
+  /etc/ssh/ssh_host_key_perms:
+    title: 5.3.3 | Ensure permissions on SSH private host key files are configured | perms
+    exec: "keysperm=$(sudo find /etc/ssh/ -name *_key.pub -type f  -perm /137 ); echo $keyperms"
+    exit-status: 0
+    stdout: ['!/./']
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 5.3.3
+  {{ end }}
+{{ end }}

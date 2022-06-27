@@ -1,0 +1,27 @@
+{{ if .Vars.ubuntu22cis_rule_4_1_13 }}
+command:
+  auditd_delete_cnf:
+    title: 4.1.13 | Ensure file deletion events by users are collected | Conf
+    exec: grep delete /etc/audit/rules.d/*.rules
+    exit-status: 0
+    stdout:
+    - '/-a always,exit -F arch=b64 -S unlink -S unlinkat -S rename -S renameat -F auid>=1000 -F auid!=4294967295 -k delete|-a always,exit -F arch=b64 -S rmdir,unlink,unlinkat,rename -S renameat -F auid>=1000 -F auid!=4294967295 -F key=delete/'
+    - '/-a always,exit -F arch=b32 -S unlink -S unlinkat -S rename -S renameat -F auid>=1000 -F auid!=4294967295 -k delete|-a always,exit -F arch=b32 -S rmdir,unlink,unlinkat,rename -S renameat -F auid>=1000 -F auid!=4294967295 -F key=delete/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID: 
+      - 4.1.13
+  auditd_delete_live:
+    title: 4.1.13 | Ensure file deletion events by users are collected | Live
+    exec: auditctl -l | grep delete
+    exit-status: 0
+    stdout:
+    - '-a always,exit -F arch=b64 -S rename,unlink,unlinkat,renameat -F auid>=1000 -F auid!=-1 -F key=delete'
+    - '-a always,exit -F arch=b32 -S unlink,rename,unlinkat,renameat -F auid>=1000 -F auid!=-1 -F key=delete'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID: 
+      - 4.1.13
+{{ end }}

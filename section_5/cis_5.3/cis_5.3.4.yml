@@ -1,0 +1,19 @@
+{{ if .Vars.ubuntu22cis_level_1 }}
+  {{ if .Vars.ubuntu22cis_rule_5_3_4 }}
+   {{ if .Vars.ubuntu22cis_sshd_limited }}
+file:
+  /etc/ssh/sshd_config:
+    title: 5.3.4 | Ensure SSH access is limited 
+    exists: true
+    contains:
+    {{ range .Vars.ubuntu22cis_sshd_access }}
+    - {{ . }}
+    {{ end }}
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 5.3.4
+    {{ end }}
+  {{ end }}
+{{ end }}

@@ -1,0 +1,15 @@
+{{ if .Vars.ubuntu22cis_level_1 }}
+  {{ if .Vars.ubuntu22cis_rule_5_4_3 }}
+file:
+  /etc/pam.d/common-password:
+    title: 5.4.3 | Ensure password reuse is limited | password-auth
+    exists: true
+    contains:
+    - '/^password.*required.*pam_pwhistory.so.*remember=\b(?:[1-5]\d+|5)\b/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 
+      - 5.4.3
+  {{ end }}
+{{ end }}

@@ -1,0 +1,19 @@
+{{ if .Vars.ubuntu22cis_rule_3_5_1_4 }}
+command:
+  ufw_local:
+    title: 3.5.1.4 | Ensure ufw loopback traffic is configured
+    exec: ufw status verbose
+    exit-status: 0
+    stdout:
+    - '/^Anywhere on lo             ALLOW IN    Anywhere/'
+    - '/^Anywhere                   DENY IN     127.0.0.0\/8/'
+    - '/^Anywhere (v6) on lo        ALLOW IN    Anywhere (v6)/'
+    - '/^Anywhere (v6)              DENY IN     ::1/'
+    - '/^Anywhere                   ALLOW OUT   Anywhere on lo/'
+    - '/^Anywhere (v6)              ALLOW OUT   Anywhere (v6) on lo/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.5.1.4
+{{ end }}
