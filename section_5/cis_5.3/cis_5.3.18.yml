@@ -1,10 +1,14 @@
 {{ if .Vars.ubuntu22cis_level_1 }}
   {{ if .Vars.ubuntu22cis_rule_5_3_18 }}
-file:
-  /etc/ssh/sshd_config:
+command:
+  ssh_banner:
     title: 5.3.18 | Ensure SSH warning banner configured | sshd_default
-    exists: true
-    contains:
+    exec: grep -Ei "^banner" /etc/ssh/sshd_config
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
     - 'Banner /etc/issue.net'
     - '!/^Banner none/'
     meta:
@@ -12,8 +16,7 @@ file:
       workstation: 1
       CIS_ID: 
       - 5.3.18
-command:
-  ssh_config_banner:
+  ssh_configd_banner:
     title: 5.3.18 | Ensure SSH warning banner configured | conf.d banner settings
     exec: grep -Eis '^\s*Banner\s+"?none\b'/etc/ssh/sshd_config.d/*.conf
     exit-status: 

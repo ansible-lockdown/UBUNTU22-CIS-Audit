@@ -1,11 +1,15 @@
 {{ if .Vars.ubuntu22cis_level_1 }}
   {{ if .Vars.ubuntu22cis_rule_5_3_17 }}
-file:
-  /etc/ssh/sshd_config:
+command:
+  ssh_logingrace:
     title: 5.3.17 | Ensure SSH LoginGraceTime is set to one minute or less
-    exists: true
-    contains:
-    - '/^(?i)LoginGraceTime ([1-9]|[1-5][0-9])$/'
+    exec: grep -Ei "^logingrace" /etc/ssh/sshd_config
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/^(?i)LoginGraceTime ([1-9]|[1-5][0-9]|60)$/'
     meta:
       server: 1
       workstation: 1

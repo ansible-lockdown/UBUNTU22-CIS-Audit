@@ -1,11 +1,15 @@
 {{ if .Vars.ubuntu22cis_level_1 }}
   {{ if .Vars.ubuntu22cis_rule_5_3_4 }}
    {{ if .Vars.ubuntu22cis_sshd_limited }}
-file:
-  /etc/ssh/sshd_config:
+command:
+  sshd_access_limited:
     title: 5.3.4 | Ensure SSH access is limited 
-    exists: true
-    contains:
+    exec: grep -E "^(Allow|Deny)(User|Group)" /etc/ssh/sshd_config
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
     {{ range .Vars.ubuntu22cis_sshd_access }}
     - {{ . }}
     {{ end }}
