@@ -407,7 +407,7 @@ ubuntu22cis_auditd:
   action_mail_acct: root
   admin_space_left_action: halt
   max_log_file_action: keep_logs
-  auditd_backlog_limit: 2048
+  auditd_backlog_limit: 8192
 
 ## syslog
 ubuntu22cis_is_syslog_server: false
