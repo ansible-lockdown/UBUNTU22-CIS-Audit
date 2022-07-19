@@ -1,10 +1,11 @@
 {{ if .Vars.ubuntu22cis_gui }}
   {{ if .Vars.ubuntu22cis_rule_1_8_3 }}
-file:
-  /etc/gdm3/greeter.dconf-defaults:
+command:
+  gdm_disable_user:
     title: 1.8.3 | Ensure disable-user-list is enabled
-    exists: true
-    contains:
+    exec: grep -E "^disable-user-list" /etc/gdm3/greeter.dconf-defaults
+    exit-status: 0
+    stdout:
     - '/^disable-user-list=true/'
     - '!/^disable-user-list=false/'
     meta:
