@@ -1,10 +1,14 @@
 {{ if .Vars.ubuntu22cis_level_1 }}
   {{ if .Vars.ubuntu22cis_rule_5_3_15 }}
-file:
-  /etc/ssh/sshd_config:
+command:
+  sshd_KEX:
     title: 5.3.15 | Ensure only strong Key Exchange algorithms are used
-    exists: true
-    contains:
+    exec: grep -Ei "^KEX" /etc/ssh/sshd_config
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
     - {{ .Vars.ubuntu22cis_ssh_strong_kex }}
     {{ range .Vars.ubuntu22cis_ssh_weak_kex }}
     - !{{ . }}

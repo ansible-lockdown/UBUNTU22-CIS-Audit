@@ -25,7 +25,7 @@ command:
       - 0
       - 1
     stdout:
-    - '/net.ipv4.conf.all.rp_filter = 1/'
+    - '/^\/etc\/sysctl.*:net.ipv4.conf.all.rp_filter(\s|)=(\s|)1/'
     meta:
       server: 1
       workstation: 1
@@ -39,7 +39,7 @@ command:
       - 0
       - 1
     stdout:
-    - '/net.ipv4.conf.default.rp_filter = 1/'
+    - '/^\/etc\/sysctl.*:net.ipv4.conf.default.rp_filter(\s|)=(\s|)/'
     meta:
       server: 1
       workstation: 1

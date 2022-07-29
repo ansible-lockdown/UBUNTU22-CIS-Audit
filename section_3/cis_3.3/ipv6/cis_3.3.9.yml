@@ -39,7 +39,7 @@ command:
       - 0
       - 1
     stdout:
-    - '/^net.ipv6.conf.default.accept_ra = 0/'
+    - '/^net.ipv6.conf.default.accept_ra(\s|)=(\s|)0/'
     meta:
       server: 1
       workstation: 1

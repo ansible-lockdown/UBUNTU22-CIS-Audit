@@ -12,10 +12,13 @@ kernel-param:
 command:
   aslr_enabled_2:
     title: 1.5.2 | Ensure address space layout randomization (ASLR) is enabled | sysctl_configured
-    exit-status: 0
+    exit-status: 
+      or:
+      - 0
+      - 2
     exec: 'grep "^kernel\.randomize_va_space" /etc/sysctl.conf /etc/sysctl.d/* | cut -d ":" -f2'
     stdout: 
-    - '/kernel.randomize_va_space\s=\s2/'
+    - '/kernel.randomize_va_space(\s|)=(\s|)2/'
     meta:
       server: 1
       workstation: 1

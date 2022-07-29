@@ -17,7 +17,7 @@ command:
       - 0
       - 1
     stdout:
-    - '/^net.ipv4.icmp_ignore_bogus_error_responses = 1/'
+    - '/^\/etc\/sysctl.*:net.ipv4.icmp_ignore_bogus_error_responses(\s|)=(\s|)1/'
     meta:
       server: 1
       workstation: 1

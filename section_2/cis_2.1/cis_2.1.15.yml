@@ -20,7 +20,7 @@ file:
     title: 2.1.15 | Ensure mail transfer agent is configured for local-only mode | exim config
     exists: true
     contains:
-    {{ range .Vars.ubuntu22_exim_conf }}
+    {{ range .Vars.ubuntu20_exim_conf }}
     - {{ . }}
     {{ end }}
     meta:

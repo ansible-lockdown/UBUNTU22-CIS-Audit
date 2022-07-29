@@ -5,8 +5,8 @@ file:
     title: 5.4.2 | Ensure lockout for failed password attempts is configured
     exists: true
     contains:
-    - '/^account\s*requisite\s*deny.so/'
-    - '/^account\s*required\s*pam_tally2.so/'
+    - '/^account\s+requisite\s+deny.so/'
+    - '/^account\s+required\s+pam_tally2.so/'
     meta:
       server: 1
       workstation: 1

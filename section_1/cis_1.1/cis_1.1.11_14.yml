@@ -1,0 +1,25 @@
+{{ if .Vars.ubuntu22cis_level_2 }}
+  {{ if .Vars.ubuntu22cis_rule_1_1_11 }}
+mount:
+  /var/tmp:
+    title: 1.1.11 | Ensure separate partition exists for /var/tmp
+    exists: true
+    opts:
+    {{ if .Vars.ubuntu22cis_rule_1_1_12 }}
+    - nodev
+    {{ end }}
+    {{ if .Vars.ubuntu22cis_rule_1_1_13 }}
+    - nosuid
+    {{ end }}
+    {{ if .Vars.ubuntu22cis_rule_1_1_14 }}
+    - noexec
+    {{ end }}
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.1.12
+      - 1.1.13
+      - 1.1.14
+  {{ end }}
+{{ end }}

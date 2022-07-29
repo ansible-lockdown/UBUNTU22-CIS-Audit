@@ -1,7 +1,7 @@
 {{ if .Vars.ubuntu22cis_rule_3_1_2 }}
 command:
   wireless_disabled:
-    title: 3.1.2 | Ensure wireless interfaces are disabled
+    title: 3.1.2 | L1 | Ensure wireless interfaces are disabled
     exit-status: 0
     exec: 'nmcli radio all | tail -1'
     stdout:

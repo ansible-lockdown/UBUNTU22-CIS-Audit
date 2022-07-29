@@ -1,17 +1,17 @@
 {{ if .Vars.ubuntu22cis_level_1 }}
   {{ if .Vars.ubuntu22cis_rule_5_2_2 }}
-file:
-  /etc/sudoers:
+command:
+  sudoers_use_pty:
     title: 5.2.2 | Ensure sudo commands use pty | Config
-    exists: true
-    contains: 
+    exec: grep -Ei "^use_pty" /etc/sudoers
+    exit-status: 0
+    stdout:
     - '/^Defaults.*\suse_pty/'
     meta:
       server: 1
       workstation: 1
       CIS_ID: 
       - 5.2.2
-command:
   pty_sudoers_d:
     title: 5.2.2 | Ensure sudo commands use pty | sudoers.d
     exec: "ls -1 /etc/sudoers.d/* > /dev/null 2>&1; if [ '$?' = '0' ]; then grep -c '^Defaults.*\\suse_pty' /etc/sudoers.d/*; else echo 99;fi"

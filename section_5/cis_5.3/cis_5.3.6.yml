@@ -1,12 +1,16 @@
 {{ if .Vars.ubuntu22cis_level_2 }}
   {{ if .Vars.ubuntu22cis_rule_5_3_6 }}
-file:
-  /etc/ssh/sshd_config:
+command:
+  ssh_x11:
     title: 5.3.6 | Ensure SSH X11 forwarding is disabled
-    exists: true
-    contains:
+    exec: grep -Ei "X11forwarding" /etc/ssh/sshd_config
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
     - '/^(?i)X11forwarding no/'
-    - '!/^(?i)X11forwarding yes/'
+    - '!/^(\s+|)x11forwarding yes/'
     meta:
       server: 2
       workstation: 1

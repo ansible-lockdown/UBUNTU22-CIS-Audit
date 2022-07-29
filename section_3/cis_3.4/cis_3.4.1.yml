@@ -1,4 +1,4 @@
-  {{ if .Vars.ubuntu22cis_rule_3_4_1 }}
+{{ if .Vars.ubuntu22cis_rule_3_4_1 }}
 command:
   modprobe_dccp:
     title: 3.4.1 | Ensure DCCP is disabled | DCCP config
@@ -12,7 +12,7 @@ command:
       - 3.4.1
   lsmod_dccp:
     title: 3.4.1 | Ensure DCCP is disabled | running dccp
-    exit-status: 0
+    exit-status: 1
     exec: lsmod | grep dccp
     stdout:
     - '!/^.*/'

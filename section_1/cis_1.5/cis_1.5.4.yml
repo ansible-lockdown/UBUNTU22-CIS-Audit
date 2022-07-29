@@ -3,9 +3,12 @@
 command:
   core_dumps_limits:
     title: 1.5.4 | Ensure core dumps are restricted | security/limits.conf
-    exit-status: 0
+    exit-status:
+      or:
+      - 0
+      - 2
     exec: 'grep -E "\*.*hard.*core.*0" /etc/security/limits.conf /etc/security/limits.d/*'
-    stdout: 
+    stdout:
     - '/^\/*.*\shard.*core.*0/'
     meta:
       server: 1
@@ -16,7 +19,7 @@ command:
     title: 1.5.4 | Ensure core dumps are restricted | sysctl.conf
     exit-status: 0
     exec: 'grep "fs\.suid_dumpable" /etc/sysctl.conf /etc/sysctl.d/*'
-    stdout: 
+    stdout:
     - fs.suid_dumpable=0
     meta:
       server: 1
