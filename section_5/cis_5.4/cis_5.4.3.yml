@@ -1,6 +1,6 @@
 {{ if .Vars.ubuntu22cis_level_1 }}
   {{ if .Vars.ubuntu22cis_rule_5_4_3 }}
-file:
+command:
   passwd_remember:
     title: 5.4.3 | Ensure password reuse is limited | password-auth
     exec: grep remember /etc/pam.d/common-password
