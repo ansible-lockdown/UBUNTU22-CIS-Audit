@@ -5,7 +5,7 @@ command:
     exit-status: 0
     exec: grep -Ei "^ForwardToSyslog" /etc/systemd/journald.conf
     stdout:
-    - '/^ForwardToSyslog=yes'
+    - '/^ForwardToSyslog=yes/'
     - '!/^ForwardToSyslog=[Nn][Oo]/'
     meta:
       server: 1
