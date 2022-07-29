@@ -1,20 +1,16 @@
 {{ if .Vars.ubuntu22cis_level_1 }}
+  {{ if .Vars.ubuntu22cis_rule_5_4_3 }}
 file:
-  /etc/pam.d/common-password:
+  passwd_remember:
     title: 5.4.3 | Ensure password reuse is limited | password-auth
-           5.4.4 | Ensure password hashing algorithm is SHA-512 | password-auth
-    exists: true
-    contains:
-    {{ if .Vars.ubuntu22cis_rule_5_4_3 }}
+    exec: grep remember /etc/pam.d/common-password
+    exit-status: 0
+    stdout:
     - '/^password.*required.*pam_pwhistory.so.*remember=\b(?:[1-5]\d+|5)\b/'
-    {{ end }}
-    {{ if .Vars.ubuntu22cis_rule_5_4_4 }}
-    - '/^password\s+\[success=1 default=ignore\]\s+pam_unix.so obscure.*\ssha512/'
-    - '!/^password.*md5/'
-    {{ end }}
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 
+      CIS_ID:
       - 5.4.3
+  {{ end }}
 {{ end }}

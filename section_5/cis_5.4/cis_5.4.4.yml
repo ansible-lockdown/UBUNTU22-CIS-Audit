@@ -1,0 +1,17 @@
+{{ if .Vars.ubuntu22cis_level_1 }}
+  {{ if .Vars.ubuntu22cis_rule_5_4_4 }}
+command:
+  sha512_common_password:
+    title: 5.4.4 | Ensure password hashing algorithm is SHA-512 | password-auth
+    exec: grep sha512 /etc/pam.d/common-password
+    exit-status: 0
+    stdout:
+    - '/^password\s+\[success=1 default=ignore\]\s+pam_unix.so sha512/'
+    - '!/^password.*md5/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.4.3
+  {{ end }}
+{{ end }}
