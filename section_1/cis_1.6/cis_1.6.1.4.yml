@@ -1,5 +1,5 @@
-{{ if .Vars.ubuntu22cis_apparmor_enforce_only }}
-  {{ if .Vars.ubuntu22cis_rule_1_6_1_4 }}
+{{ if .Vars.ubtu22cis_apparmor_enforce_only }}
+  {{ if .Vars.ubtu22cis_rule_1_6_1_4 }}
 command:
   apparmor_enf_only:
     title: 1.6.1.4 | Ensure all AppArmor Profiles are enforcing

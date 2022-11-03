@@ -1,5 +1,5 @@
-{{ if .Vars.ubuntu22cis_gui }}
-  {{ if .Vars.ubuntu22cis_rule_1_8_3 }}
+{{ if .Vars.ubtu22cis_gui }}
+  {{ if .Vars.ubtu22cis_rule_1_8_3 }}
 command:
   gdm_disable_user:
     title: 1.8.3 | Ensure disable-user-list is enabled

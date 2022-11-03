@@ -1,4 +1,4 @@
-{{ if .Vars.ubuntu22cis_rule_1_9 }}
+{{ if .Vars.ubtu22cis_rule_1_9 }}
 command:
   check_updates:
     title: 1.9 | Ensure updates, patches, and additional security software are installed

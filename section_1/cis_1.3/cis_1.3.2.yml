@@ -1,7 +1,7 @@
-{{ if .Vars.ubuntu22cis_level_1 }}
-  {{ if .Vars.ubuntu22cis_config_aide }}
-    {{ if .Vars.ubuntu22cis_rule_1_3_2 }}
-      {{ if eq .Vars.ubuntu22cis_aide_scan "cron" }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_config_aide }}
+    {{ if .Vars.ubtu22cis_rule_1_3_2 }}
+      {{ if eq .Vars.ubtu22cis_aide_scan "cron" }}
 command:
   aide_cron:
     title: 1.3.2 | L1 | Ensure filesystem integrity is regularly checked | aide cron
@@ -34,7 +34,7 @@ command:
         Mitigations: M1022
       {{ end }}
 service:
-    {{ if eq .Vars.ubuntu22cis_aide_scan "timer" }}
+    {{ if eq .Vars.ubtu22cis_aide_scan "timer" }}
   aidecheck:
     title: 1.3.2 | L1 | Ensure filesystem integrity is regularly checked | aidecheck service
     enabled: true

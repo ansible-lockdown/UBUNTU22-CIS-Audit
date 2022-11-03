@@ -1,5 +1,5 @@
-{{ if not .Vars.ubuntu22cis_allow_autofs}}
-  {{ if .Vars.ubuntu22cis_rule_1_1_9 }}
+{{ if not .Vars.ubtu22cis_allow_autofs}}
+  {{ if .Vars.ubtu22cis_rule_1_1_9 }}
 service:
   autofs:
     title: 1.1.9 | Disable Automounting

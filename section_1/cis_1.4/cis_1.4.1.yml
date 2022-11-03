@@ -1,4 +1,4 @@
-{{ if .Vars.ubuntu22cis_rule_1_4_1 }}
+{{ if .Vars.ubtu22cis_rule_1_4_1 }}
 file:
   /usr/sbin/grub-mkconfig:
     title: 1.4.1 | Ensure permissions on bootloader config are not overridden

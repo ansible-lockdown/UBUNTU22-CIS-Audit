@@ -1,5 +1,5 @@
-{{ if .Vars.ubuntu22cis_gui }}
-  {{ if .Vars.ubuntu22cis_rule_1_8_5 }}
+{{ if .Vars.ubtu22cis_gui }}
+  {{ if .Vars.ubtu22cis_rule_1_8_5 }}
 file:
   /etc/dconf/db/local.d/locks/00-screensave_lock:
     title: 1.8.5 | Ensure GDM login banner is configured

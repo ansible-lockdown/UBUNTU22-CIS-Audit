@@ -1,4 +1,4 @@
-{{ if .Vars.ubuntu22cis_level_1 }}
+{{ if .Vars.ubtu22cis_level_1 }}
 mount:
   /dev/shm:
     title: |
@@ -7,13 +7,13 @@ mount:
         1.1.8.3 | Ensure nosuid option set on /var/log/audit partition
     exists: true
     opts:
-    {{ if .Vars.ubuntu22cis_rule_1_1_8_1 }}
+    {{ if .Vars.ubtu22cis_rule_1_1_8_1 }}
     - nodev
     {{ end }}
-    {{ if .Vars.ubuntu22cis_rule_1_1_8_2 }}
+    {{ if .Vars.ubtu22cis_rule_1_1_8_2 }}
     - noexec
     {{ end }}
-    {{ if .Vars.ubuntu22cis_rule_1_1_8_3 }}
+    {{ if .Vars.ubtu22cis_rule_1_1_8_3 }}
     - nosuid
     {{ end }}
     meta:

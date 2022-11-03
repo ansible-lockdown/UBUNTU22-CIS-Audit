@@ -1,4 +1,4 @@
-{{ if .Vars.ubuntu22cis_rule_1_2_1 }}
+{{ if .Vars.ubtu22cis_rule_1_2_1 }}
 command:
   repos_configd:
     title: 1.2.1 | Ensure package manager repositories are configured
