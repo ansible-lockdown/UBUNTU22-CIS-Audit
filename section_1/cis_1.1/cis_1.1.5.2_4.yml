@@ -1,7 +1,7 @@
 
 
-{{ if .Vars.rhel8cis_level_1 }}
-  {{ if .Vars.rhel8cis_rule_1_1_5_1 }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_1_1_5_1 }}
 mount:
   /var/log:
     title: |
@@ -10,13 +10,13 @@ mount:
         1.1.5.4 | Ensure nosuid option set on /var/log partition
     exists: true
     opts:
-    {{ if .Vars.rhel8cis_rule_1_1_5_2 }}
+    {{ if .Vars.ubtu22cis_rule_1_1_5_2 }}
     - nodev
     {{ end }}
-    {{ if .Vars.rhel8cis_rule_1_1_5_3 }}
+    {{ if .Vars.ubtu22cis_rule_1_1_5_3 }}
     - noexec
     {{ end }}
-    {{ if .Vars.rhel8cis_rule_1_1_5_4 }}
+    {{ if .Vars.ubtu22cis_rule_1_1_5_4 }}
     - nosuid
     {{ end }}
     meta:
@@ -37,7 +37,7 @@ mount:
         Tactics: TA0005
         Mitigations: M1022
 command:
-  {{ if .Vars.rhel8cis_rule_1_1_5_2 }}
+  {{ if .Vars.ubtu22cis_rule_1_1_5_2 }}
   nodev_varlog_fstab:
      title: 1.1.5.2 | Ensure nodev option set on /var/log partition | fstab config
      exec: grep '.*\/var/log\s.*nodev.*$' \/etc\/fstab
@@ -63,7 +63,7 @@ command:
         Tactics: TA0005
         Mitigations: M1022
   {{ end }}
-  {{ if .Vars.rhel8cis_rule_1_1_5_3 }}
+  {{ if .Vars.ubtu22cis_rule_1_1_5_3 }}
   noexec_varlog_fstab:
      title: 1.1.5.3 | Ensure noexec option set on /var/log partition | fstab config
      exec: grep '.*\/var/log\s.*noexec.*$' \/etc\/fstab
@@ -89,7 +89,7 @@ command:
         Tactics: TA0005
         Mitigations: M1022
   {{ end }}
-  {{ if .Vars.rhel8cis_rule_1_1_5_4 }}
+  {{ if .Vars.ubtu22cis_rule_1_1_5_4 }}
   nosuid_varlog_fstab:
      title: 1.1.5.4 | Ensure nosuid option set on /var/log partition | fstab config
      exec: grep '.*\/var/log\s.*nosuid.*$' \/etc\/fstab

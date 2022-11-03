@@ -24,7 +24,7 @@ mount:
       - 1.1.8.2
       - 1.1.8.3
 command:
-  {{ if .Vars.rhel8cis_rule_1_1_8_2 }}
+  {{ if .Vars.ubtu22cis_rule_1_1_8_2 }}
   nodev_devshm_fstab:
      title: 1.1.8.2 | Ensure nodev option set on /dev/shm partition | fstab config
      exec: grep '.*\/dev/shm\s.*nodev.*$' \/etc\/fstab
@@ -50,7 +50,7 @@ command:
         Tactics: TA0005
         Mitigations: M1022
   {{ end }}
-  {{ if .Vars.rhel8cis_rule_1_1_8_3 }}
+  {{ if .Vars.ubtu22cis_rule_1_1_8_3 }}
   noexec_devshm_fstab:
      title: 1.1.8.3 | Ensure noexec option set on /dev/shm partition | fstab config
      exec: grep '.*\/dev/shm\s.*noexec.*$' \/etc\/fstab
@@ -76,7 +76,7 @@ command:
         Tactics: TA0005
         Mitigations: M1022
   {{ end }}
-  {{ if .Vars.rhel8cis_rule_1_1_8_4 }}
+  {{ if .Vars.ubtu22cis_rule_1_1_8_4 }}
   nosuid_devshm_fstab:
      title: 1.1.8.4 | Ensure nosuid option set on /dev/shm partition | fstab config
      exec: grep '.*\/dev/shm\s.*nosuid.*$' \/etc\/fstab
