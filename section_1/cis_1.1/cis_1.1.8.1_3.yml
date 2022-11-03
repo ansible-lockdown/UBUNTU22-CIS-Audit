@@ -24,9 +24,9 @@ mount:
       - 1.1.8.2
       - 1.1.8.3
 command:
-  {{ if .Vars.ubtu22cis_rule_1_1_8_2 }}
+  {{ if .Vars.ubtu22cis_rule_1_1_8_1 }}
   nodev_devshm_fstab:
-     title: 1.1.8.2 | Ensure nodev option set on /dev/shm partition | fstab config
+     title: 1.1.8.1 | Ensure nodev option set on /dev/shm partition | fstab config
      exec: grep '.*\/dev/shm\s.*nodev.*$' \/etc\/fstab
      exit-status:
        or:
@@ -38,7 +38,7 @@ command:
       server: 1
       workstation: 1
       CIS_ID:
-      - 1.1.8.2
+      - 1.1.8.1
       CISv8: 3.3
       CISv8_IG1: true
       CISv8_IG2: true
@@ -50,9 +50,9 @@ command:
         Tactics: TA0005
         Mitigations: M1022
   {{ end }}
-  {{ if .Vars.ubtu22cis_rule_1_1_8_3 }}
-  noexec_devshm_fstab:
-     title: 1.1.8.3 | Ensure noexec option set on /dev/shm partition | fstab config
+  {{ if .Vars.ubtu22cis_rule_1_1_8_2 }}
+  noexec_execshm_fstab:
+     title: 1.1.8.2 | Ensure noexec option set on /dev/shm partition | fstab config
      exec: grep '.*\/dev/shm\s.*noexec.*$' \/etc\/fstab
      exit-status:
        or:
@@ -64,7 +64,7 @@ command:
       server: 1
       workstation: 1
       CIS_ID:
-      - 1.1.8.3
+      - 1.1.8.2
       CISv8: 3.3
       CISv8_IG1: true
       CISv8_IG2: true
@@ -76,9 +76,9 @@ command:
         Tactics: TA0005
         Mitigations: M1022
   {{ end }}
-  {{ if .Vars.ubtu22cis_rule_1_1_8_4 }}
-  nosuid_devshm_fstab:
-     title: 1.1.8.4 | Ensure nosuid option set on /dev/shm partition | fstab config
+  {{ if .Vars.ubtu22cis_rule_1_1_8_3 }}
+  nosuid_nosuidshm_fstab:
+     title: 1.1.8.3 | Ensure nosuid option set on /dev/shm partition | fstab config
      exec: grep '.*\/dev/shm\s.*nosuid.*$' \/etc\/fstab
      exit-status:
        or:
@@ -90,7 +90,7 @@ command:
       server: 1
       workstation: 1
       CIS_ID:
-      - 1.1.8.4
+      - 1.1.8.3
       CISv8: 3.3
       CISv8_IG1: true
       CISv8_IG2: true
