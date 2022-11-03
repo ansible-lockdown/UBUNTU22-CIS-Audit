@@ -19,7 +19,7 @@ command:
         Tactics: TA0005
         Mitigations: M1050
   {{ end }}
-{{ if .Vars.ubtu22cis_level2 }}
+{{ if .Vars.ubtu22cis_level_2 }}
   {{ if .Vars.ubtu22cis_rule_1_1_1_2 }}
   squashfs:
     title: 1.1.1.2 | Ensure mounting of squashfs filesystems is disabled
