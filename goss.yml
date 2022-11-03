@@ -1,41 +1,41 @@
 gossfile:
-  {{ if .Vars.ubuntu22cis_section1 }}
+  {{ if .Vars.ubtu22cis_section1 }}
   section_1/*/*.yml: {}
   {{ end }}
 
  # Section 2
-  {{ if .Vars.ubuntu22cis_section2 }}
+  {{ if .Vars.ubtu22cis_section2 }}
   section_2/*/*.yml: {}
   {{ end }}
 
 # Section 3
-  {{ if .Vars.ubuntu22cis_section3 }}
+  {{ if .Vars.ubtu22cis_section3 }}
   section_3/cis_3.1/*.yml: {}
   section_3/cis_3.2/*.yml: {}
   section_3/cis_3.3/*.yml: {}
-    {{ if .Vars.ubuntu22cis_ipv6_required }}
+    {{ if .Vars.ubtu22cis_ipv6_required }}
   section_3/cis_3.3/ipv6/*.yml: {}
     {{ end }}
   section_3/cis_3.4/*.yml: {}
     # If ufw firewall
-    {{ if eq .Vars.ubuntu22cis_firewall "ufw" }}
+    {{ if eq .Vars.ubtu22cis_firewall "ufw" }}
   section_3/cis_3.5.1/*.yml: {}
     {{ end }}
     # If nftables firewall
-    {{ if eq .Vars.ubuntu22cis_firewall "nftables" }}
+    {{ if eq .Vars.ubtu22cis_firewall "nftables" }}
   section_3/cis_3.5.2/*.yml: {}
     {{ end }}
     # If iptables firewall
-    {{ if eq .Vars.ubuntu22cis_firewall "iptables" }}
+    {{ if eq .Vars.ubtu22cis_firewall "iptables" }}
   section_3/cis_3.5.3/*.yml: {}
     {{ end }}
   {{ end }}
 
 # Section 4
-  {{ if .Vars.ubuntu22cis_section4 }}
+  {{ if .Vars.ubtu22cis_section4 }}
   # Auditd and level 2
-    {{ if .Vars.ubuntu22cis_level_2 }}
-      {{ if .Vars.ubuntu22cis_auditd }}
+    {{ if .Vars.ubtu22cis_level_2 }}
+      {{ if .Vars.ubtu22cis_auditd }}
   section_4/cis_4.1/*.yml: {}
       {{ end }}
     {{ end }}
@@ -45,12 +45,12 @@ gossfile:
   {{ end }}
 
 # Section 5
-  {{ if .Vars.ubuntu22cis_section5 }}
+  {{ if .Vars.ubtu22cis_section5 }}
   section_5/*/*.yml: {}
   {{ end }}
 
 # Section 6
-  {{ if .Vars.ubuntu22cis_section6 }}
+  {{ if .Vars.ubtu22cis_section6 }}
   section_6/*/*.yml: {}
   {{ end }}
 
