@@ -1,0 +1,25 @@
+{{ if .Vars.ubuntu22cis_level_2 }}
+  {{ if .Vars.ubuntu22cis_rule_1_1_5_1 }}
+mount:
+  /var/log:
+    title: 1.1.5.1 | Ensure separate partition exists for /var/log
+    exists: true
+    opts:
+    {{ if .Vars.ubuntu22cis_rule_1_1_5_2 }}
+    - nodev
+    {{ end }}
+    {{ if .Vars.ubuntu22cis_rule_1_1_5_3 }}
+    - noexec
+    {{ end }}
+    {{ if .Vars.ubuntu22cis_rule_1_1_5_4 }}
+    - nosuid
+    {{ end }}
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.1.5.2
+      - 1.1.5.3
+      - 1.1.5.4
+  {{ end }}
+{{ end }}

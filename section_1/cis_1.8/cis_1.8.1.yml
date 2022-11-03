@@ -7,7 +7,17 @@ package:
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 
+      CIS_ID:
       - 1.8.1
+      CISv8: 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre:
+        Techniques:
+        - T1543
+        - T1543.002
+        Tactics: TA0002
+        Mitigations: M1022
   {{ end }}
 {{ end }}

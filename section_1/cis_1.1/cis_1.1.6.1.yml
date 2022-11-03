@@ -1,0 +1,25 @@
+{{ if .Vars.ubuntu22cis_level_2 }}
+  {{ if .Vars.ubuntu22cis_rule_1_1_6_1 }}
+mount:
+  /var/log/audit:
+    title: 1.1.6.1 | Ensure separate partition exists for /var/log/audit
+    exists: true
+    opts:
+    {{ if .Vars.ubuntu22cis_rule_1_1_6_2 }}
+    - nodev
+    {{ end }}
+    {{ if .Vars.ubuntu22cis_rule_1_1_6_3 }}
+    - noexec
+    {{ end }}
+    {{ if .Vars.ubuntu22cis_rule_1_1_6_4 }}
+    - nosuid
+    {{ end }}
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.1.6.2
+      - 1.1.6.3
+      - 1.1.6.4
+  {{ end }}
+{{ end }}

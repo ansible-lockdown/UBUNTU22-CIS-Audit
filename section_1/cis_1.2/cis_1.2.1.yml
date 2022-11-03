@@ -2,12 +2,33 @@
 command:
   repos_configd:
     title: 1.2.1 | Ensure package manager repositories are configured
-    exec: echo "Please check manually for configured repos"
+    exec: echo "MANUAL - Please check manually for configured repos"
     exit-status: 0
     stdout:
-    - '!/^Please.*'
+    - '!/^MANUAL.*/'
     meta:
       server: 1
       workstation: 2
       CIS_ID: 1.2.1
+      CISv8: 7.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre:
+        Techniques:
+        - T1068
+        - T1068.000
+        - T1195
+        - T1195.001
+        - T1195.002
+        - T1203
+        - T1203.000
+        - T1210
+        - T1210.000
+        - T1211
+        - T1211.000
+        - T1212
+        - T1212.000
+        Tactics: TA0001
+        Mitigations: M1051
 {{ end }}

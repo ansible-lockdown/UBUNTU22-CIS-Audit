@@ -1,18 +1,17 @@
 {{ if .Vars.ubuntu22cis_gui }}
-  {{ if .Vars.ubuntu22cis_rule_1_8_4 }}
+  {{ if .Vars.ubuntu22cis_rule_1_8_5 }}
 file:
-  /etc/dconf/db/local.d/00-screensaver:
-    title: 1.8.4 | Ensure GDM login banner is configured
+  /etc/dconf/db/local.d/locks/00-screensave_lock:
+    title: 1.8.5 | Ensure GDM login banner is configured
     exists: true
     contains:
-    - '/^[org/gnome/desktop/session]/'
-    - '/^idle-delay=uint32 (1|[1-9]|[1-8][0-9]{1,2}|900)$/'
-    - '/^lock-delay=uint32 [0-5]$/'
+    - '^\/org\/gnome\/desktop\/session\/idle-delay/'
+    - '^/\/org\/gnome\/desktop\/screensaver\/lock-delay/'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
-      - 1.8.4
+      - 1.8.5
       CISv8: 4.3
       CISv8_IG1: true
       CISv8_IG2: true

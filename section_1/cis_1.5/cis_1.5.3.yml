@@ -1,13 +1,41 @@
 {{ if .Vars.ubuntu22cis_level_1 }}
-  {{ if .Vars.ubuntu22cis_rule_1_5_4 }}
+  {{ if .Vars.ubuntu22cis_rule_1_5_3 }}
 package:
-  prelink:
-    title: 1.5.3 | Ensure prelink is not installed
+  apport:
+    title: 1.5.3 | Ensure Automatic Error Reporting is not enabled | Package
     installed: false
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 
+      CIS_ID:
       - 1.5.3
+      CISv8: 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre:
+        Techniques: NA
+        Tactics: NA
+        Mitigations: NA
+file:
+  /etc/default/apport:
+    title: 1.5.3 | Ensure Automatic Error Reporting is not enabled | disabled
+    exists: true
+    contains:
+    - 'enabled=0'
+    - '!/enabled=1/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.5.3
+      CISv8: 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre:
+        Techniques: NA
+        Tactics: NA
+        Mitigations: NA
   {{ end }}
 {{ end }}

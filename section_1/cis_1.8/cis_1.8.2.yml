@@ -11,7 +11,15 @@ file:
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 
+      CIS_ID:
       - 1.8.2
+      CISv8: NA
+      CISv8_IG1: NA
+      CISv8_IG2: NA
+      CISv8_IG3: NA
+      Mitre:
+        Techniques: NA
+        Tactics: TA0007
+        Mitigations: NA
   {{ end }}
 {{ end }}
