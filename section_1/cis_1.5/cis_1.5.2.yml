@@ -13,7 +13,7 @@ package:
       CISv8_IG1: false
       CISv8_IG2: false
       CISv8_IG3: true
-    Mitre_Techniques:
+      Mitre_Techniques:
       - T1055
       - T1055.009
       - T1065

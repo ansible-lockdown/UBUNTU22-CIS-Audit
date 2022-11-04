@@ -16,7 +16,7 @@ file:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-    Mitre_Techniques:
+      Mitre_Techniques:
       - T1222
       - T1222.002
       Mitre_Tactics: TA0005
