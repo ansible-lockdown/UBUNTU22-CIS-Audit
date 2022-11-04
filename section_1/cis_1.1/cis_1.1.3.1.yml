@@ -15,10 +15,10 @@ command:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-      Mitre:
-        Techniques: 
-        - T1499
-        - T1499.001
-        Tactics: TA0006
+      Mitre_Techniques:
+      - T1499
+      - T1499.001
+      Mitre_Tactics: TA0006
+      Mitre_Mitigations: NA
   {{ end }}
 {{ end }}

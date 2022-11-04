@@ -11,4 +11,13 @@ file:
       workstation: 1
       CIS_ID:
       - 1.4.1
+      CISv8: 5.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1542
+      - T1542.000
+      Mitre_Tactics: TA0003
+      Mitre_Mitigations: M1046
 {{ end }}

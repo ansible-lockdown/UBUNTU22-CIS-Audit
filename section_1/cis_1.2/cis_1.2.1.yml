@@ -14,21 +14,20 @@ command:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-      Mitre:
-        Techniques:
-        - T1068
-        - T1068.000
-        - T1195
-        - T1195.001
-        - T1195.002
-        - T1203
-        - T1203.000
-        - T1210
-        - T1210.000
-        - T1211
-        - T1211.000
-        - T1212
-        - T1212.000
-        Tactics: TA0001
-        Mitigations: M1051
+      Mitre_Techniques:
+      - T1068
+      - T1068.000
+      - T1195
+      - T1195.001
+      - T1195.002
+      - T1203
+      - T1203.000
+      - T1210
+      - T1210.000
+      - T1211
+      - T1211.000
+      - T1212
+      - T1212.000
+      Mitre_Tactics: TA0001
+      Mitre_Mitigations: M1051
 {{ end }}

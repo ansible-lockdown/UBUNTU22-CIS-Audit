@@ -19,13 +19,12 @@ command:
       CISv8_IG1: NA
       CISv8_IG2: NA
       CISv8_IG3: NA
-      Mitre:
-        Techniques:
-        - T1082
-        - T1082.000
-        - T1592
-        - T1592.004
-        Tactics: TA0007
-        Mitigations: NA
+      Mitre_Techniques:
+      - T1082
+      - T1082.000
+      - T1592
+      - T1592.004
+      Mitre_Tactics: TA0007
+      Mitre_Mitigations: NA
   {{ end }}
 {{ end }}

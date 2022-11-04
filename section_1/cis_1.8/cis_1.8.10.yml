@@ -15,15 +15,14 @@ file:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-      Mitre:
-        Techniques:
-        - T1040
-        - T1040.000
-        - T1056
-        - T1056.001
-        - T1557
-        - T1557.000
-        Tactics: TA0002
-        Mitigations: M1050
+      Mitre_Techniques:
+      - T1040
+      - T1040.000
+      - T1056
+      - T1056.001
+      - T1557
+      - T1557.000
+      Mitre_Tactics: TA0002
+      Mitre_Mitigations: M1050
   {{ end }}
 {{ end }}

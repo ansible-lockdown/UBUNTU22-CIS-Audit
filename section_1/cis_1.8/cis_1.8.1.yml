@@ -13,11 +13,10 @@ package:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-      Mitre:
-        Techniques:
-        - T1543
-        - T1543.002
-        Tactics: TA0002
-        Mitigations: M1022
+      Mitre_Techniques:
+      - T1543
+      - T1543.002
+      Mitre_Tactics: TA0002
+      Mitre_Mitigations: M1022
   {{ end }}
 {{ end }}

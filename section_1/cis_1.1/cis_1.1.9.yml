@@ -13,15 +13,16 @@ service:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-      Mitre:
-        Techniques:
-        - T1068
-        - T1068.000
-        - T1203
-        - T1203.000
-        - T1211
-        - T1211.000
-        - T1212
-        - T1212.000
+      Mitre_Techniques:
+      - T1068
+      - T1068.000
+      - T1203
+      - T1203.000
+      - T1211
+      - T1211.000
+      - T1212
+      - T1212.000
+      Mitre_Tactics: NA
+      Mitre_Mitigations: NA
   {{ end }}
 {{ end }}

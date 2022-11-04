@@ -17,9 +17,8 @@ file:
       CISv8_IG1: NA
       CISv8_IG2: NA
       CISv8_IG3: NA
-      Mitre:
-        Techniques: NA
-        Tactics: TA0007
-        Mitigations: NA
+      Mitre_Techniques: NA
+      Mitre_Tactics: TA0007
+      Mitre_Mitigations: NA
   {{ end }}
 {{ end }}

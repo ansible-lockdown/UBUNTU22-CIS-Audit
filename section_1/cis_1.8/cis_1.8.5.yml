@@ -16,9 +16,8 @@ file:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-      Mitre:
-        Techniques: NA
-        Tactics: NA
-        Mitigations: NA
+      Mitre_Techniques: NA
+      Mitre_Tactics: NA
+      Mitre_Mitigations: NA
   {{ end }}
 {{ end }}

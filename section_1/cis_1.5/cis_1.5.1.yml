@@ -13,12 +13,11 @@ kernel-param:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-      Mitre:
-        Techniques:
-        - T1068
-        - T1068.000
-        Tactics: TA0002
-        Mitigations: M1050
+      Mitre_Techniques:
+      - T1068
+      - T1068.000
+      Mitre_Tactics: TA0002
+      Mitre_Mitigations: M1050
 command:
   aslr_enabled_2:
     title: 1.5.1 | Ensure address space layout randomization (ASLR) is enabled | sysctl_configured
@@ -38,11 +37,10 @@ command:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-      Mitre:
-        Techniques:
-        - T1068
-        - T1068.000
-        Tactics: TA0002
-        Mitigations: M1050
+      Mitre_Techniques:
+      - T1068
+      - T1068.000
+      Mitre_Tactics: TA0002
+      Mitre_Mitigations: M1050
   {{ end }}
 {{ end }}

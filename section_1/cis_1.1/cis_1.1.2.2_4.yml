@@ -28,12 +28,11 @@ mount:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-      Mitre:
-        Techniques:
-        - T1499
-        - T1499.001
-        Tactics: TA0005
-        Mitigations: M1022
+      Mitre_Techniques:
+      - T1499
+      - T1499.001
+      Mitre_Tactics: TA0005
+      Mitre_Mitigations: M1022
 command:
   {{ if .Vars.ubtu22cis_rule_1_1_2_2 }}
   nodev_tmp_fstab:
@@ -54,12 +53,11 @@ command:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-      Mitre:
-        Techniques:
-        - T1200
-        - T1200.000
-        Tactics: TA0005
-        Mitigations: M1022
+      Mitre_Techniques:
+      - T1200
+      - T1200.000
+      Mitre_Tactics: TA0005
+      Mitre_Mitigations: M1022
   {{ end }}
   {{ if .Vars.ubtu22cis_rule_1_1_2_3 }}
   noexec_tmp_fstab:
@@ -80,12 +78,11 @@ command:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-      Mitre:
-        Techniques:
-        - T1204
-        - T1204.002
-        Tactics: TA0005
-        Mitigations: M1022
+      Mitre_Techniques:
+      - T1204
+      - T1204.002
+      Mitre_Tactics: TA0005
+      Mitre_Mitigations: M1022
   {{ end }}
   {{ if .Vars.ubtu22cis_rule_1_1_2_4 }}
   nosuid_tmp_fstab:
@@ -106,12 +103,11 @@ command:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-      Mitre:
-        Techniques:
-        - T1548
-        - T1548.001
-        Tactics: TA0005
-        Mitigations: M1022
+      Mitre_Techniques:
+      - T1548
+      - T1548.001
+      Mitre_Tactics: TA0005
+      Mitre_Mitigations: M1022
   {{ end }}
   {{ end }}
 {{ end }}

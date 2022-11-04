@@ -15,11 +15,20 @@ mount:
     - nosuid
     {{ end }}
     meta:
-      server: 1
-      workstation: 1
+      server: 2
+      workstation: 2
       CIS_ID:
       - 1.1.6.2
       - 1.1.6.3
       - 1.1.6.4
+      CIS_v8: 8.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1499
+      - T1499.001
+      Mitre_Tactics: TA0005
+      Mitre_Mitigations: M1022
   {{ end }}
 {{ end }}
