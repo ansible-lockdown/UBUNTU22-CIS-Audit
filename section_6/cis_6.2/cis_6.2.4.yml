@@ -2,7 +2,7 @@
 command:
   home_dirs_exist:
     title: 6.2.4 | Ensure all users' home directories exist
-    exec: pwck -r
+    exec: for i in `cat /etc/passwd | grep -Ev "halt|sync|shutdown|nfsnobody|nologin|false" | cut -d ':' -f6`; do if [ ! -d $i ]; then echo "homedir missing $i"; fi; done
     exit-status: 
       or:
       - 0

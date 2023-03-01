@@ -17,7 +17,7 @@ command:
       - 0
       - 1
     stdout:
-    - '/^net.ipv4.icmp_echo_ignore_broadcasts = 1/'
+    - '/^\/etc\/sysctl.*:net.ipv4.icmp_echo_ignore_broadcasts(\s|)=(\s|)1/'
     meta:
       server: 1
       workstation: 1

@@ -17,7 +17,7 @@ command:
       - 0
       - 1
     stdout:
-    - '/^net.ipv4.tcp_syncookies = 1/'
+    - '/^\/etc\/sysctl.*:net.ipv4.tcp_syncookies(\s|)=(\s|)1/'
     meta:
       server: 1
       workstation: 1

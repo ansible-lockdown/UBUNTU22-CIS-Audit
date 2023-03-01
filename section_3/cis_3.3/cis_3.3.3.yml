@@ -24,8 +24,8 @@ command:
       or:
       - 0
       - 1
-      stdout:
-      - '/^net.ipv4.conf.all.secure_redirects = 0/'
+    stdout:
+    - '/^\/etc\/sysctl.*:net.ipv4.conf.all.secure_redirects(\s|)=(\s|)0/'
     meta:
       server: 1
       workstation: 1
@@ -38,8 +38,8 @@ command:
       or:
       - 0
       - 1
-      stdout:
-      - '/^net.ipv4.conf.default.secure_redirects = 0/'
+    stdout:
+    - '/^\/etc\/sysctl.*:net.ipv4.conf.default.secure_redirects(\s|)=(\s|)0/'
     meta:
       server: 1
       workstation: 1

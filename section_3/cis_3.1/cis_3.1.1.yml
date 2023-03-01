@@ -1,28 +1,31 @@
 {{ if not .Vars.ubuntu22cis_ipv6_required }}
  {{ if .Vars.ubuntu22cis_rule_3_1_1 }}
-file:
-  {{ .Vars.ubuntu22cis_grub_conf_file }}:
+command:
+  grub_ipv6:
     title: 3.1.1 | Disable IPv6 | via grub boot
-    exists: true
-    contains:
+    exec: grep -i "^[^#]\s.*ipv6" {{ .Vars.ubuntu22cis_grub_conf_file }}
+    exit-status: 0
+    stdout:
     - '/^\s*linux.*ipv6.disable=1/'
     - '!/ipv6.disable=0/'
     meta:
       server: 2
       workstation: 2
       CIS_ID: 3.1.1
-  /etc/default/grub:
-    title: 3.1.1 |  Disable IPv6 | default grub
-    exists: true
-    contains:
+  etc_default_grub:
+    title: 3.1.1 | Disable IPv6 | default grub
+    exec: grep -i "GRUB_CMDLINE_LINUX=.*ipv6" /etc/default/grub
+    exit-status: 0
+    stdout:
     - '/^GRUB_CMDLINE_LINUX=.*ipv6.disable=1/'
     - '!/ipv6.disable=0/'
     meta:
       server: 2
       workstation: 2
       CIS_ID: 3.1.1
+file:
   /proc/sys/net/ipv6:
-    title: 3.1.1 |  Disable IPv6 | sysctl all disable
+    title: 3.1.1 | Disable IPv6 | sysctl all disable
     exists: false
     meta:
       server: 2

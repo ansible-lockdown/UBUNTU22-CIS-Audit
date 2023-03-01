@@ -3,10 +3,10 @@
 command:
   check_root_pw:
     title: 1.4.4 | Ensure authentication required for single user mode
-    exec: grep -Eq '^root:\$[0-9]' /etc/shadow || echo "root is not locked"
-    exit-status: 1
+    exec: grep -Eq '^root:\$[0-9]' /etc/shadow || echo "root is locked"
+    exit-status: 0
     stdout: 
-    - '!/^root is not locked/'
+    - '!/^root is locked/'
     meta:
       server: 1
       workstation: 1

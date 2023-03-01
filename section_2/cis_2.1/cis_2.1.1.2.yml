@@ -10,6 +10,7 @@ service:
       workstation: 1
       CIS_ID: 2.1.1.2
 package:
+  {{ if ne .Vars.ubuntu22cis_time_service "ntp" }}
   ntp:
     title: 2.1.1.2 | Ensure systemd-timesyncd is configured | ntp not installed
     installed: false
@@ -17,6 +18,8 @@ package:
       server: 1
       workstation: 1
       CIS_ID: 2.1.1.2
+  {{ end }}
+  {{ if ne .Vars.ubuntu22cis_time_service "chrony" }}
   chrony:
     title: 2.1.1.2 | Ensure systemd-timesyncd is configured | chrony not installed
     installed: false
@@ -24,6 +27,7 @@ package:
       server: 1
       workstation: 1
       CIS_ID: 2.1.1.2
+  {{ end }}
 file:
   /etc/systemd/timesyncd.conf:
     title: 2.1.1.2 | Ensure systemd-timesyncd is configured | timesyncd.conf

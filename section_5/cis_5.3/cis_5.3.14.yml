@@ -1,10 +1,14 @@
 {{ if .Vars.ubuntu22cis_level_1 }}
   {{ if .Vars.ubuntu22cis_rule_5_3_14 }}
-file:
-  /etc/ssh/sshd_config:
+command:
+  sshd_MACS:
     title: 5.3.14 | Ensure only strong MACs are used
-    exists: true
-    contains:
+    exec: grep -Ei "^MACs" /etc/ssh/sshd_config
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
     - {{ .Vars.ubuntu22cis_ssh_strong_macs }}
     {{ range .Vars.ubuntu22cis_ssh_weak_macs }}
     - !{{ . }}

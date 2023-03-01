@@ -1,7 +1,7 @@
 {{ if .Vars.ubuntu22cis_rule_4_2_1_2 }}
 service:
   rsyslog:
-    title: 4.2.1.2| Ensure rsyslog Service is enabled and running
+    title: 4.2.1.2 | Ensure rsyslog Service is enabled and running
     running: true
     enabled: true
     meta:

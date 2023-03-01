@@ -12,9 +12,11 @@ gossfile:
   {{ if .Vars.ubuntu22cis_section3 }}
   section_3/cis_3.1/*.yml: {}
   section_3/cis_3.2/*.yml: {}
+  section_3/cis_3.3/*.yml: {}
     {{ if .Vars.ubuntu22cis_ipv6_required }}
   section_3/cis_3.3/ipv6/*.yml: {}
     {{ end }}
+  section_3/cis_3.4/*.yml: {}
     # If ufw firewall
     {{ if eq .Vars.ubuntu22cis_firewall "ufw" }}
   section_3/cis_3.5.1/*.yml: {}
