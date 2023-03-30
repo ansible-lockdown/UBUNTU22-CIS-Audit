@@ -1,33 +1,87 @@
-{{ if .Vars.ubuntu22cis_rule_2_1_1_1 }}
-  {{ if eq .Vars.ubuntu22cis_time_service "timesyncd" }}
-service:
-  timesyncd:
-    title: 2.1.1.1 | Ensure time synchronization is in use | timesyncd
-    enabled: true
-    meta:
-      server: 1
-      workstation: 1
-      CIS_ID: 2.1.1.1
-  {{ end }}
-{{ if ne .Vars.ubuntu22cis_time_service "timesyncd" }}
+---
+
+{{ if .Vars.ubtu22cis_rule_2_1_1_1 }}
 package:
-  {{ if eq .Vars.ubuntu22cis_time_service "chrony" }}
-  chrony:
-    title: 2.1.1.1 | Ensure time synchronization is in use | chrony
+  {{ .Vars.ubtu22cis_time_service }}:
+    title: 2.1.1.1 | Ensure a single time synchronization daemon is in use
     installed: true
     meta:
       server: 1
       workstation: 1
       CIS_ID: 2.1.1.1
-  {{ end  }}
-  {{ if eq .Vars.ubuntu22cis_time_service "ntp" }}
+      CISv8:
+      - 8.4
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1070
+      - T1070.002
+      - T1562
+      - T1562.001
+      Mitre_Tactics: TA0005
+      Mitre_Mitigations: M1050
+  {{ if eq .Vars.ubtu22cis_time_service "timesyncd" }}
   ntp:
-    title: 2.1.1.1 | Ensure time synchronization is in use | ntp
-    installed: true
+    title: 2.1.1.1 | Ensure time synchronization is in use | ntp service
+    installed: false
     meta:
       server: 1
       workstation: 1
       CIS_ID: 2.1.1.1
+      CISv8:
+      - 8.4
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1070
+      - T1070.002
+      - T1562
+      - T1562.001
+      Mitre_Tactics: TA0005
+      Mitre_Mitigations: M1050
+  chrony:
+    title: 2.1.1.1 | Ensure time synchronization is in use | chrony service
+    installed: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 2.1.1.1
+      CISv8:
+      - 8.4
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1070
+      - T1070.002
+      - T1562
+      - T1562.001
+      Mitre_Tactics: TA0005
+      Mitre_Mitigations: M1050
   {{ end }}
-{{ end  }}
+  {{ if ne .Vars.ubtu22cis_time_service "timesyncd" }}
+file:
+  /etc/systemd/system/timesyncd.service:
+    title: 2.1.1.1 | Ensure time synchronization is in use | timesyncd masked
+    filetype: symlink
+    linked-to: /dev/null
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 2.1.1.1
+      CISv8:
+      - 8.4
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1070
+      - T1070.002
+      - T1562
+      - T1562.001
+      Mitre_Tactics: TA0005
+      Mitre_Mitigations: M1050
+  {{ end }}
 {{ end }}

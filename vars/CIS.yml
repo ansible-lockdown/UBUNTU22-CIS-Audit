@@ -378,7 +378,7 @@ ubuntu22_aide_cron:
 ubtu22cis_allow_autofs: false
 
 # 1.4
-ubtu22cis_grub_conf_file: /boot/grub/grub.cfg
+ubtu22cis_grub_conf_file: /etc/grub.d/00_user
 ubtu22cis_grub_username: root
 ubtu22cis_grub_hash: blah
 # 1.5.1 Bootloader password

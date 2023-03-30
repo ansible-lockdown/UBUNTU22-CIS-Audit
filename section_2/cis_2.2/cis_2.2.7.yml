@@ -1,13 +1,13 @@
-{{ if not .Vars.ubtu22cis_cups_server }}
-  {{ if .Vars.ubtu22cis_rule_2_2_3 }}
+{{ if not .Vars.ubuntu22cis_dns_server }}
+  {{ if .Vars.ubuntu22cis_rule_2_2_7 }}
 package:
-  cups:
-    title: 2.2.3 | Ensure CUPS Server is not installed
+  bind9:
+    title: 2.2.7 | Ensure DNS Server is not installed
     installed: false
     meta:
       server: 1
-      workstation: 2
-      CIS_ID: 2.2.3
+      workstation: 1
+      CIS_ID: 2.2.7
       CISv8:
       - 4.8
       CISv8_IG1: false

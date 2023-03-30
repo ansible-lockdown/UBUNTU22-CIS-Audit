@@ -5,7 +5,22 @@ gossfile:
 
  # Section 2
   {{ if .Vars.ubtu22cis_section2 }}
-  section_2/*/*.yml: {}
+  section_2/cis_2.1/cis_2.1.1.1.yml: {}
+    {{ if eq .Vars.ubtu22cis_time_service "chrony" }}
+  section_2/cis_2.1/cis_2.1.2.*.yml: {}
+    {{ end }}
+    {{ if eq .Vars.ubtu22cis_time_service "timesyncd" }}
+  section_2/cis_2.1/cis_2.1.3.*.yml: {}
+    {{ end }}
+    {{ if eq .Vars.ubtu22cis_time_service "ntp" }}
+  section_2/cis_2.1/cis_2.1.4.*.yml: {}
+    {{ end }}
+  # Special Services
+  section_2/cis_2.2/*.yml: {}
+  # Client Service
+  section_2/cis_2.3/*.yml: {}
+  # Essential service
+  section_2/cis_2.4/*.yml: {}
   {{ end }}
 
 # Section 3
