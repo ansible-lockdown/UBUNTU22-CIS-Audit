@@ -1,31 +1,17 @@
 {{ if .Vars.ubtu22cis_level_1 }}
   {{ if .Vars.ubtu22cis_rule_1_1_2_1 }}
-mount:
-  /tmp:
-    title: 1.1.2.1 | Ensure /tmp is configured with mount options
-    exists: true
-    filesystem: tmpfs
-    opts:
-    {{ if .Vars.ubtu22cis_rule_1_1_2_2 }} 
-    - nodev
-    {{ end }}
-    {{ if .Vars.ubtu22cis_rule_1_1_2_3 }}
-    - noexec
-    {{ end }}
-    {{ if .Vars.ubtu22cis_rule_1_1_2_4 }}
-    - nosuid
-    {{ end }}
+command:
+  tmp_fstab:
+    title: 1.1.2.1 | Ensure /tmp is a separate partition
+    exec: mount | grep "on /tmp\s" && grep "/tmp\s" /etc/fstab 
+    exit-status: 0
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 1.1.2.1
-      - 1.1.2.2
-      - 1.1.2.3
-      - 1.1.2.4
       CISv8:
       - 3.3
-      - 4.1
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
