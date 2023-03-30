@@ -1,4 +1,4 @@
-{{ if .Vars.ubuntu22cis_rule_3_3_4 }}
+{{ if .Vars.ubtu22cis_rule_3_3_4 }}
 kernel-param:
   net.ipv4.conf.all.log_martians:
     title: 3.3.4 | Ensure suspicious packets are logged | ipv4 all martians
@@ -8,6 +8,17 @@ kernel-param:
       workstation: 1
       CIS_ID:
       - 3.3.4
+      CISv8:
+      - 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1562
+      - T1562.006
+      Mitre_Tactics:
+      - TA0005
+      Mitre_Mitigations: NA
   net.ipv4.conf.default.log_martians:
     title: 3.3.4 | Ensure suspicious packets are logged | ipv4 default martians
     value: '1'
@@ -16,6 +27,17 @@ kernel-param:
       workstation: 1
       CIS_ID:
       - 3.3.4
+      CISv8:
+      - 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1562
+      - T1562.006
+      Mitre_Tactics:
+      - TA0005
+      Mitre_Mitigations: NA
 command:
   ipv4_all_martians:
     title: 3.3.4 | Ensure suspicious packets are logged | ipv4 all martians conf
@@ -31,6 +53,17 @@ command:
       workstation: 1
       CIS_ID:
       - 3.3.4
+      CISv8:
+      - 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1562
+      - T1562.006
+      Mitre_Tactics:
+      - TA0005
+      Mitre_Mitigations: NA
   ipv4_def_martians:
     title: 3.3.4 | Ensure suspicious packets are logged | ipv4 default martians conf
     exec: grep "net\.ipv4\.conf\.default\.log_martians" /etc/sysctl.conf /etc/sysctl.d/*
@@ -45,4 +78,15 @@ command:
       workstation: 1
       CIS_ID:
       - 3.3.4
+      CISv8:
+      - 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1562
+      - T1562.006
+      Mitre_Tactics:
+      - TA0005
+      Mitre_Mitigations: NA
 {{ end }}

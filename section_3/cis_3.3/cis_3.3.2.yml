@@ -1,4 +1,4 @@
-{{ if .Vars.ubuntu22cis_rule_3_3_2 }}
+{{ if .Vars.ubtu22cis_rule_3_3_2 }}
 kernel-param:
   net.ipv4.conf.all.accept_redirects:
     title: 3.3.2 | Ensure ICMP redirects are not accepted | ipv4 all icmp redirects
@@ -8,6 +8,20 @@ kernel-param:
       workstation: 1
       CIS_ID:
       - 3.3.2
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1557
+      - T1557.000
+      Mitre_Tactics:
+      - TA0006
+      - TA0000
+      Mitre_Mitigations:
+      - M1030
+      - M1042
   net.ipv4.conf.default.accept_redirects:
     title: 3.3.2 | Ensure ICMP redirects are not accepted | ipv4 default icmp redirects
     value: '0'
@@ -16,6 +30,20 @@ kernel-param:
       workstation: 1
       CIS_ID:
       - 3.3.2
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1557
+      - T1557.000
+      Mitre_Tactics:
+      - TA0006
+      - TA0000
+      Mitre_Mitigations:
+      - M1030
+      - M1042
 command:
   ipv4_all_icmp_redirects:
     title: 3.3.2 | Ensure ICMP redirects are not accepted | ipv4 all icmp redirects conf
@@ -31,6 +59,20 @@ command:
       workstation: 1
       CIS_ID:
       - 3.3.2
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1557
+      - T1557.000
+      Mitre_Tactics:
+      - TA0006
+      - TA0000
+      Mitre_Mitigations:
+      - M1030
+      - M1042
   ipv4_def_icmp_redirects:
     title: 3.3.2 | Ensure ICMP redirects are not accepted | ipv4 def icmp redirects conf
     exec: grep "net\.ipv4\.conf\.default\.accept_redirects" /etc/sysctl.conf /etc/sysctl.d/*
@@ -45,4 +87,18 @@ command:
       workstation: 1
       CIS_ID:
       - 3.3.2
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1557
+      - T1557.000
+      Mitre_Tactics:
+      - TA0006
+      - TA0000
+      Mitre_Mitigations:
+      - M1030
+      - M1042
 {{ end }}

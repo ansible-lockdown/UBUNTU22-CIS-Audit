@@ -1,4 +1,4 @@
-{{ if .Vars.ubuntu22cis_rule_3_3_9 }}
+{{ if .Vars.ubtu22cis_rule_3_3_9 }}
 kernel-param:
   net.ipv6.conf.all.accept_ra:
     title: 3.3.9 | Ensure IPv6 router advertisements are not accepted | ipv6 all router adverts
@@ -8,6 +8,20 @@ kernel-param:
       workstation: 1
       CIS_ID:
       - 3.3.9
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1557
+      - T1557.001
+      Mitre_Tactics:
+      - TA0006
+      - TA0040
+      Mitre_Mitigations:
+      - M1030
+      - M1042
   net.ipv6.conf.default.accept_ra:
     title: 3.3.9 | Ensure IPv6 router advertisements are not accepted  | ipv6 def router adverts
     value: '0'
@@ -16,6 +30,20 @@ kernel-param:
       workstation: 1
       CIS_ID:
       - 3.3.9
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1557
+      - T1557.001
+      Mitre_Tactics:
+      - TA0006
+      - TA0040
+      Mitre_Mitigations:
+      - M1030
+      - M1042
 command:
   ipv6_all_rtr_adverts:
     title: 3.3.9 | Ensure IPv6 router advertisements are not accepted | ipv6 all router adverts conf
@@ -31,6 +59,20 @@ command:
       workstation: 1
       CIS_ID:
       - 3.3.9
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1557
+      - T1557.001
+      Mitre_Tactics:
+      - TA0006
+      - TA0040
+      Mitre_Mitigations:
+      - M1030
+      - M1042
   ipv6_def_rtr_adverts:
     title: 3.3.9 | Ensure IPv6 router advertisements are not accepted | ipv6 default router adverts conf
     exec: grep "net\.ipv6\.conf\.default\.accept_ra" /etc/sysctl.conf /etc/sysctl.d/*
@@ -45,4 +87,18 @@ command:
       workstation: 1
       CIS_ID:
       - 3.3.9
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1557
+      - T1557.001
+      Mitre_Tactics:
+      - TA0006
+      - TA0040
+      Mitre_Mitigations:
+      - M1030
+      - M1042
 {{ end }}

@@ -1,4 +1,4 @@
-{{ if .Vars.ubuntu22cis_rule_3_5_3_1_3 }}
+{{ if .Vars.ubtu22cis_rule_3_5_3_1_3 }}
 package:
   ufw:
     title: 3.5.3.1.3 | Ensure ufw is uninstalled or disabled with iptables
@@ -8,4 +8,16 @@ package:
       workstation: 1
       CIS_ID:
       - 3.5.3.1.3
+      CISv8:
+      - 4.4
+      - 4.5
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1562
+      - T1562.004
+      Mitre_Tactics:
+      - TA0011
+      Mitre_Mitigations: NA
 {{ end }}

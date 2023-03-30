@@ -1,4 +1,4 @@
-{{ if .Vars.ubuntu22cis_rule_3_3_5 }}
+{{ if .Vars.ubtu22cis_rule_3_3_5 }}
 kernel-param:
   net.ipv4.icmp_echo_ignore_broadcasts:
     title: 3.3.5 | Ensure broadcast ICMP requests are ignored | ipv4 ignore broadcast icmp
@@ -8,6 +8,17 @@ kernel-param:
       workstation: 1
       CIS_ID:
       - 3.3.5
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1498
+      - T1498.001
+      Mitre_Tactics:
+      - TA0040
+      Mitre_Mitigations: M1037
 command:
   ipv4_ignore_icmp_broadcast:
     title: 3.3.5 | Ensure broadcast ICMP requests are ignored | ipv4 ignore broadcast icmp conf
@@ -23,4 +34,15 @@ command:
       workstation: 1
       CIS_ID:
       - 3.3.5
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1498
+      - T1498.001
+      Mitre_Tactics:
+      - TA0040
+      Mitre_Mitigations: M1037
 {{ end }}

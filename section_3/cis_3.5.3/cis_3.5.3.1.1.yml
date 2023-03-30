@@ -1,4 +1,4 @@
-{{ if .Vars.ubuntu22cis_rule_3_5_3_1_1 }}
+{{ if .Vars.ubtu22cis_rule_3_5_3_1_1 }}
 package:
   iptables:
     title: 3.5.3.1.1 | Ensure iptables packages are installed | iptables pkg
@@ -8,6 +8,20 @@ package:
       workstation: 1
       CIS_ID:
       - 3.5.3.1.1
+      CISv8:
+      - 4.4
+      - 4.5
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1562
+      - T1562.004
+      Mitre_Tactics:
+      - TA0011
+      Mitre_Mitigations:
+      - M1031
+      - M1037
   iptables-persistent:
     title: 3.5.3.1.1 | Ensure iptables packages are installed | iptables-persistent pkg
     installed: true
@@ -16,4 +30,18 @@ package:
       workstation: 1
       CIS_ID:
       - 3.5.3.1.1
+      CISv8:
+      - 4.4
+      - 4.5
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1562
+      - T1562.004
+      Mitre_Tactics:
+      - TA0011
+      Mitre_Mitigations:
+      - M1031
+      - M1037
 {{ end }}

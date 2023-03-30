@@ -1,4 +1,4 @@
-{{ if .Vars.ubuntu22cis_rule_3_5_2_3 }}
+{{ if .Vars.ubtu22cis_rule_3_5_2_3 }}
 command:
   iptables_flushed:
     title: 3.5.2.3 | Ensure iptables are flushed with nftables | iptable IPv4 flushed
@@ -14,6 +14,18 @@ command:
       workstation: 1
       CIS_ID:
       - 3.5.2.3
+      CISv8:
+      - 4.4
+      - 4.5
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1562
+      - T1562.004
+      Mitre_Tactics:
+      - TA0005
+      Mitre_Mitigations: NA
   ip6tables_flushed:
     title: 3.5.2.3 | Ensure iptables are flushed with nftables | iptable IPv4 flushed
     exec: ip6tables -L
@@ -28,4 +40,16 @@ command:
       workstation: 1
       CIS_ID:
       - 3.5.2.3
+      CISv8:
+      - 4.4
+      - 4.5
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1562
+      - T1562.004
+      Mitre_Tactics:
+      - TA0005
+      Mitre_Mitigations: NA
 {{ end }}
