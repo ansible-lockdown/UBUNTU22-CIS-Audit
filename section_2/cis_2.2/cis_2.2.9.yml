@@ -1,5 +1,5 @@
-{{ if not .Vars.ubuntu22cis_httpd_server }}
-  {{ if .Vars.ubuntu22cis_rule_2_2_9 }}
+{{ if not .Vars.ubtu22cis_httpd_server }}
+  {{ if .Vars.ubtu22cis_rule_2_2_9 }}
 package:
   httpd:
     title: 2.2.9 | Ensure HTTP Server is not installed

@@ -1,5 +1,5 @@
-{{ if not .Vars.ubuntu22cis_is_mail_server }}
-  {{ if .Vars.ubuntu22cis_rule_2_2_15 }}
+{{ if not .Vars.ubtu22cis_is_mail_server }}
+  {{ if .Vars.ubtu22cis_rule_2_2_15 }}
 command:
   port_25_local_only:
    title: 2.2.15 | Ensure mail transfer agent is configured for local-only mode | port listening
@@ -28,13 +28,13 @@ command:
       - T1543.002
       Mitre_Tactics: TA0008
       Mitre_Mitigations: M1042
-  {{ if eq .Vars.ubuntu22cis_mailserver "exim4" }}
+  {{ if eq .Vars.ubtu22cis_mailserver "exim4" }}
 file:
   /etc/exim4/update-exim4.conf.conf:
     title: 2.2.15 | Ensure mail transfer agent is configured for local-only mode | exim config
     exists: true
     contains:
-    {{ range .Vars.ubuntu22_exim_conf }}
+    {{ range .Vars.ubtu22_exim_conf }}
     - {{ . }}
     {{ end }}
     meta:

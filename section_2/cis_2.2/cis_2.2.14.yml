@@ -1,5 +1,5 @@
-{{ if not .Vars.ubuntu22cis_nis_server }}
-  {{ if .Vars.ubuntu22cis_rule_2_2_14 }}
+{{ if not .Vars.ubtu22cis_nis_server }}
+  {{ if .Vars.ubtu22cis_rule_2_2_14 }}
 package:
   nis:
     title: 2.2.14 | Ensure NIS Server is not installed

@@ -1,5 +1,5 @@
-{{ if not .Vars.ubuntu22cis_dhcp_server }}
-  {{ if .Vars.ubuntu22cis_rule_2_2_4 }}
+{{ if not .Vars.ubtu22cis_dhcp_server }}
+  {{ if .Vars.ubtu22cis_rule_2_2_4 }}
 package:
   cups:
     title: 2.2.4 | Ensure DHCP Server is not installed

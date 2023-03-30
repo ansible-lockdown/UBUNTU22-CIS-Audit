@@ -1,5 +1,5 @@
-{{ if not .Vars.ubuntu22cis_rsyncd_server }}
-  {{ if .Vars.ubuntu22cis_rule_2_2_16 }}
+{{ if not .Vars.ubtu22cis_rsyncd_server }}
+  {{ if .Vars.ubtu22cis_rule_2_2_16 }}
 package:
   rsync:
     title: 2.2.16 | Ensure rsync service is not installed

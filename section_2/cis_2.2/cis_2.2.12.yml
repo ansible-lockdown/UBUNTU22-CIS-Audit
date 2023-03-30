@@ -1,5 +1,5 @@
-{{ if not .Vars.ubuntu22cis_squid_server }}
-  {{ if .Vars.ubuntu22cis_rule_2_2_12 }}
+{{ if not .Vars.ubtu22cis_squid_server }}
+  {{ if .Vars.ubtu22cis_rule_2_2_12 }}
 package:
   squid:
     title: 2.2.12 | Ensure HTTP Proxy Server is not installed

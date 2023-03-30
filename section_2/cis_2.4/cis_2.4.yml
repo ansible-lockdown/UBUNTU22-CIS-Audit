@@ -1,4 +1,4 @@
-{{ if .Vars.ubuntu22cis_rule_2_4 }}
+{{ if .Vars.ubtu22cis_rule_2_4 }}
 command:
   non_essen_svcs:
     title: 2.4 | Ensure nonessential services are removed or masked

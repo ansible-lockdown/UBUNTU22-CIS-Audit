@@ -1,5 +1,5 @@
-{{ if not .Vars.ubuntu22cis_is_mail_server }}
-  {{ if .Vars.ubuntu22cis_rule_2_2_10 }}
+{{ if not .Vars.ubtu22cis_is_mail_server }}
+  {{ if .Vars.ubtu22cis_rule_2_2_10 }}
 package:
   dovecot-imapd:
     title: 2.2.10 | Ensure IMAP and POP3 server are not installed | imap

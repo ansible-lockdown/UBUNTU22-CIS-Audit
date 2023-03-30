@@ -1,5 +1,5 @@
-{{ if not .Vars.ubuntu22cis_dns_server }}
-  {{ if .Vars.ubuntu22cis_rule_2_2_7 }}
+{{ if not .Vars.ubtu22cis_dns_server }}
+  {{ if .Vars.ubtu22cis_rule_2_2_7 }}
 package:
   bind9:
     title: 2.2.7 | Ensure DNS Server is not installed

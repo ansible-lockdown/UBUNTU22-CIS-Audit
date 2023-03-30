@@ -1,5 +1,5 @@
-{{ if not .Vars.ubuntu22cis_rsh_required }}
-  {{ if .Vars.ubuntu22cis_rule_2_3_2 }}
+{{ if not .Vars.ubtu22cis_rsh_required }}
+  {{ if .Vars.ubtu22cis_rule_2_3_2 }}
 package:
   rsh-client:
     title: 2.3.2 | Ensure rsh client is not installed

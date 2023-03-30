@@ -1,5 +1,5 @@
-{{ if not .Vars.ubuntu22cis_snmp_server }}
-  {{ if .Vars.ubuntu22cis_rule_2_2_13 }}
+{{ if not .Vars.ubtu22cis_snmp_server }}
+  {{ if .Vars.ubtu22cis_rule_2_2_13 }}
 package:
   snmpd:
     title: 2.2.13 | Ensure SNMP Server is not installed

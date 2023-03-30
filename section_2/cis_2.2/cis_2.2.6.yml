@@ -1,5 +1,5 @@
-{{ if not .Vars.ubuntu22cis_nfs_server }}
-  {{ if .Vars.ubuntu22cis_rule_2_2_6 }}
+{{ if not .Vars.ubtu22cis_nfs_server }}
+  {{ if .Vars.ubtu22cis_rule_2_2_6 }}
 package:
   nfs-kernel-server:
     title: 2.2.6 | Ensure NFS is not installed
