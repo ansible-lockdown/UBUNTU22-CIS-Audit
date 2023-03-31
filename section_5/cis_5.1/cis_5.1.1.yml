@@ -1,5 +1,5 @@
-{{ if .Vars.ubuntu22cis_level_1 }}
-  {{ if .Vars.ubuntu22cis_rule_5_1_1 }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_5_1_1 }}
 package:
   cron:
     title: 5.1.1 | Ensure cron daemon is enabled and running | pkg
@@ -7,8 +7,18 @@ package:
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 
+      CIS_ID:
       - 5.1.1
+      CISv8: NA
+      CISv8_IG1: NA
+      CISv8_IG2: NA
+      CISv8_IG3: NA
+      Mitre_Techniques:
+      - T1562
+      - T1562.001
+      Mitre_Tactics:
+      - TA0005
+      Mitre_Mitigations: M1018
 service:
   cron:
     title: 5.1.1 | Ensure cron daemon is enabled and running | service
@@ -17,7 +27,17 @@ service:
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 
+      CIS_ID:
       - 5.1.1
+      CISv8: NA
+      CISv8_IG1: NA
+      CISv8_IG2: NA
+      CISv8_IG3: NA
+      Mitre_Techniques:
+      - T1562
+      - T1562.001
+      Mitre_Tactics:
+      - TA0005
+      Mitre_Mitigations: M1018
   {{ end }}
 {{ end }}

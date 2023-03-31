@@ -1,0 +1,34 @@
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_5_2_13 }}
+command:
+  sshd_ciphers:
+    title: 5.2.13 | Ensure only strong Ciphers are used
+    exec: grep -Ei "^Ciphers" /etc/ssh/sshd_config
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - {{ .Vars.ubtu22cis_ssh_strong_ciphers }}
+    {{ range .Vars.ubtu22cis_ssh_weak_ciphers }}
+    - !{{ . }}
+    {{ end }}
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.2.13
+      CISv8:
+      - 3.10
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1040
+      - T1040.000
+      - T1557
+      Mitre_Tactics:
+      - TA0006
+      Mitre_Mitigations: M1041
+  {{ end }}
+{{ end }}

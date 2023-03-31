@@ -1,0 +1,32 @@
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_5_2_11 }}
+command:
+  ssh_rhosts:
+    title: 5.2.11 | Ensure SSH IgnoreRhosts is enabled
+    exec: grep -Ei "Ignorerhosts" /etc/ssh/sshd_config
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/^(?i)Ignorerhosts yes/'
+    - '!/^(?i)Ignorerhosts no/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.2.11
+      CISv8:
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1078
+      - T1078.00
+      - T1078.003
+      Mitre_Tactics:
+      - TA0001
+      Mitre_Mitigations: M1027
+  {{ end }}
+{{ end }}

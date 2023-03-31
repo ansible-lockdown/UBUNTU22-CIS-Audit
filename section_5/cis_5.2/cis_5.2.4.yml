@@ -1,0 +1,34 @@
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_5_2_4 }}
+   {{ if .Vars.ubtu22cis_sshd_limited }}
+command:
+  sshd_access_limited:
+    title: 5.2.4 | Ensure SSH access is limited 
+    exec: grep -E "^(Allow|Deny)(User|Group)" /etc/ssh/sshd_config
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    {{ range .Vars.ubtu22cis_sshd_access }}
+    - {{ . }}
+    {{ end }}
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.2.4
+      CISv8:
+      - 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1021
+      - T1021.004
+      Mitre_Tactics:
+      - TA0008
+      Mitre_Mitigations: M1018
+    {{ end }}
+  {{ end }}
+{{ end }}

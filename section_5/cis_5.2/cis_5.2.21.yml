@@ -1,0 +1,34 @@
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_5_2_21 }}
+command:
+  ssh_logingrace:
+    title: 5.2.21 | Ensure SSH LoginGraceTime is set to one minute or less
+    exec: grep -Ei "^logingrace" /etc/ssh/sshd_config
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/^(?i)LoginGraceTime ([1-9]|[1-5][0-9]|60)$/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.2.21
+      CISv8:
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1110
+      - T1110.001
+      - T1110.003
+      - T1110.004
+      - T1499
+      - T1499.002
+      Mitre_Tactics:
+      - TA0006
+      Mitre_Mitigations: M1036
+  {{ end }}
+{{ end }}

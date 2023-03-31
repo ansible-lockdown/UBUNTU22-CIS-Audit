@@ -1,0 +1,32 @@
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_5_2_18 }}
+command:
+  sshd_authtries:
+    title: 5.2.18 | Ensure SSH MaxAuthTries is set to 4 or less
+    exec: grep -Ei "maxauthtries" /etc/ssh/sshd_config
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/(?i)maxauthtries [1-4]/'
+    - '!/(?i)maxauthtries ([5-9]|[1-9]{2,})/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.2.18
+      CISv8:
+      - 8.5
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1110
+      - T1110.001
+      - T1110.003
+      Mitre_Tactics:
+      - TA0006
+      Mitre_Mitigations: M1036
+  {{ end }}
+{{ end }}
