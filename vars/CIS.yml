@@ -475,6 +475,9 @@ ubtu22cis_auditd:
 
 ## syslog
 ubtu22cis_is_syslog_server: false
+
+ubtu22cis_syslog_service: journald
+
 ### Section 5
 ubtu22cis_sshd_limited: false
 # Note the following to understand precedence and layout
