@@ -1,0 +1,38 @@
+{{ if .Vars.ubtu22cis_rule_4_2_2_5 }}
+command:
+  rsyslog_conf:
+    title: 4.2.2.5 | Ensure logging is configured
+    exec: grep -RE "/var/log/|emerg" /etc/rsyslog*
+    exit-status: 0
+    stdout:
+    - '/.*conf:mail.\*\s+                  -/var/log/mail/'
+    - '/.*conf:auth,authpriv.\*\s+          /var/log/secure/'
+    - '/.*conf:mail.info\s+                -/var/log/mail.info/'
+    - '/.*conf:mail.warning\s+             -/var/log/mail.warn/'
+    - '/.*conf:mail.err\s+                  /var/log/mail.err/'
+    - '/.*conf:cron.\*\s+                   /var/log/cron/'
+    - '/.*conf:\*.=warning;\*.=err\s+       -/var/log/warn/'
+    - '/.*conf:\*.crit\s*                    /var/log/warn/'
+    - '/.*conf:\*.\*;mail.none;news.none\s+ -/var/log/messages/'
+    - '/.*conf:local0,local1.\*\s+          -/var/log/localmessages/'
+    - '/.*conf:local2,local3.\*\s+          -/var/log/localmessages/'
+    - '/.*conf:local4,local5.\*\s+          -/var/log/localmessages/'
+    - '/.*conf:local6,local7.\*\s+          -/var/log/localmessages/'
+    - '/.*conf:\*.emerg\s+ :omusrmsg:\*/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.2.2.5
+      CISv8:
+      - 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1070
+      - T1070.002
+      Mitre_Tactics:
+      - TA0005
+      Mitre_Mitigations: NA
+{{ end }}

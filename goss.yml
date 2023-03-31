@@ -57,9 +57,12 @@ gossfile:
   section_4/cis_4.1.4/*.yml: {}
       {{ end }}
     {{ end }}
-  section_4/cis_4.2/*.yml: {}
-  section_4/cis_4.3/*.yml: {}
-  section_4/cis_4.4/*.yml: {}
+    {{ if eq .Vars.ubtu22cis_syslog_service "journald" }}
+  section_4/cis_4.2.1/*.yml: {}
+    {{ end }}
+    {{ if eq .Vars.ubtu22cis_syslog_service "rsyslog" }}
+  section_4/cis_4.2.2/*.yml: {}
+    {{ end }}
   {{ end }}
 
 # Section 5
