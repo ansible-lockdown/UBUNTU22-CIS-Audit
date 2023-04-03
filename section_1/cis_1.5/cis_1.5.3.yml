@@ -13,10 +13,9 @@ package:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-      Mitre:
-        Mitre_Mitre_Techniques: NA
-        Mitre_Mitre_Tactics: NA
-        Mitre_Mitre_Mitigations: NA
+      Mitre_Techniques: NA
+      Mitre_Tactics: NA
+      Mitre_Mitigations: NA
 file:
   /etc/default/apport:
     title: 1.5.3 | Ensure Automatic Error Reporting is not enabled | disabled
@@ -33,8 +32,8 @@ file:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-      Mitre_Mitre_Techniques: NA
-      Mitre_Mitre_Tactics: NA
-      Mitre_Mitre_Mitigations: NA
+      Mitre_Techniques: NA
+      Mitre_Tactics: NA
+      Mitre_Mitigations: NA
   {{ end }}
 {{ end }}
