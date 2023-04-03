@@ -1,6 +1,6 @@
 {{ if not .Vars.ubtu22cis_ipv6_required }}
  {{ if .Vars.ubtu22cis_rule_3_1_1 }}
-   {{ if eq .Vars ubuntu22cis_ipv6_disable "grub" }}
+   {{ if eq .Vars.ubtu22cis_ipv6_disable "grub" }}
 command:
   grub_ipv6:
     title: 3.1.1 | Disable IPv6 | via grub boot
@@ -55,7 +55,7 @@ command:
       Mitre_Mitigations:
       - M1042
     {{ end }}
-    {{ if eq .Vars ubuntu22cis_ipv6_disable "sysctl" }}
+    {{ if eq .Vars.ubtu22cis_ipv6_disable "sysctl" }}
 file:
   /proc/sys/net/ipv6:
     title: 3.1.1 | Disable IPv6 | sysctl all disable
