@@ -3,7 +3,7 @@
 command:
   grub_ipv6:
     title: 3.1.1 | Disable IPv6 | via grub boot
-    exec: grep -i "^[^#]\s.*ipv6" {{ .Vars.ubtu22cis_grub_conf_file }}
+    exec: grep -i "^[^#]\s.*ipv6" /boot/grub/grub.cfg
     exit-status: 0
     stdout:
     - '/^\s*linux.*ipv6.disable=1/'

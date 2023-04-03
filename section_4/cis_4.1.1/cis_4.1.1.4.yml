@@ -2,7 +2,7 @@
 command:
   auditd_grub_backlog:
     title: 4.1.1.4 | Ensure audit_backlog_limit is sufficient | bootloader file
-    exec: grep "^\s*linux" {{ .Vars.ubtu22cis_grub_conf_file }} | grep -Evc "audit_backlog_limit="
+    exec: grep "^\s*linux" /boot/grub/grub.cfg | grep -Evc "audit_backlog_limit="
     exit-status: 1
     stdout:
     - '0'
