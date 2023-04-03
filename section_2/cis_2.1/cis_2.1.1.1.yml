@@ -67,6 +67,7 @@ file:
     title: 2.1.1.1 | Ensure time synchronization is in use | timesyncd masked
     filetype: symlink
     linked-to: /dev/null
+    exists: true
     meta:
       server: 1
       workstation: 1
