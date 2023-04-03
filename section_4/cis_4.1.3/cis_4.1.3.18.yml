@@ -24,7 +24,7 @@ command:
     exec: auditctl -l | grep usermod
     exit-status: 0
     stdout:
-    - "-a always,exit -F path=/usr/sbin/usermod -F perm=x -F auid>=1000 -F auid!=unset -k usermod"
+    - "-a always,exit -S all -F path=/usr/sbin/usermod -F perm=x -F auid>=1000 -F auid!=-1 -F key=usermod"
     meta:
       server: 2
       workstation: 2

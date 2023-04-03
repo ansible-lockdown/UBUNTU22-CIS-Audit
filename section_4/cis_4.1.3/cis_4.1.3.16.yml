@@ -24,7 +24,7 @@ command:
     exec: auditctl -l | grep setfacl
     exit-status: 0
     stdout:
-    - "-a always,exit -S all -F path=/usr/bin/setfacl -F perm=x -F auid>=1000 -F auid!=unset -k perm_chng"
+    - "-a always,exit -S all -F path=/usr/bin/setfacl -F perm=x -F auid>=1000 -F auid!=-1 -F key=perm_chng"
     meta:
       server: 2
       workstation: 2
