@@ -5,7 +5,7 @@ command:
     exec: augenrules --check
     exit-status: 0
     stdout:
-    - '.*: No change'
+    - '/.*: No change/'
     meta:
       server: 2
       workstation: 2

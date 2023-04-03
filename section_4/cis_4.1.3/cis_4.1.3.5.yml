@@ -5,8 +5,8 @@ command:
     exec: grep system-locale /etc/audit/rules.d/*.rules
     exit-status: 0
     stdout:
-    - '-a always,exit -F arch=b64 -S sethostname -S setdomainname -k system-locale'
-    - '-a always,exit -F arch=b32 -S sethostname -S setdomainname -k system-locale'
+    - '-a always,exit -F arch=b64 -S sethostname,setdomainname -k system-locale'
+    - '-a always,exit -F arch=b32 -S sethostname,setdomainname -k system-locale'
     - '-w /etc/issue -p wa -k system-locale'
     - '-w /etc/issue.net -p wa -k system-locale'
     - '-w /etc/hosts -p wa -k system-locale'
@@ -39,7 +39,7 @@ command:
     - '-w /etc/issue.net -p wa -k system-locale'
     - '-w /etc/hosts -p wa -k system-locale'
     - '-w /etc/networks -p wa -k system-locale'
-    - '-w /etc/network/ -p wa -k system-locale'
+    - '-w /etc/network -p wa -k system-locale'
     meta:
       server: 2
       workstation: 2

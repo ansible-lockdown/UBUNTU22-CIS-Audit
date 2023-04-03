@@ -30,7 +30,7 @@ command:
     exit-status: 0
     stdout:
     - '-a always,exit -F arch=b64 -S adjtimex,settimeofday,clock_settime -F key=time-change'
-    - '-a always,exit -F arch=b32 -S adjtimex,settimeofday,clock_settime -F key=time-changee'
+    - '-a always,exit -F arch=b32 -S adjtimex,settimeofday,clock_settime -F key=time-change'
     - '-w /etc/localtime -p wa -k time-change'
     meta:
       server: 2
