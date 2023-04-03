@@ -394,9 +394,14 @@ ubtu22_warning_banner: Authorized uses only. All activity may be monitored and r
 # Section 2
 # Time sync - can be timesync or chriny or ntp
 ubtu22cis_time_service: chrony
-ubtu22cis_ntp_servers:
-ubtu22cis_ntp_fallback:
-ubtu22cis_ntp_root_distance:
+
+ubtu22cis_time_pool:
+- name: time.nist.gov
+  options: iburst maxsources 4
+
+ubtu22cis_time_servers:
+- name: time.nist.gov
+  options: iburst maxsources 4
 
 # Whether or not to run tasks related to auditing/patching the desktop environment
 ubtu22cis_gui: false

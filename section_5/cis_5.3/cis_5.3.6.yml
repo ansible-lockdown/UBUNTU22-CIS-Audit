@@ -1,4 +1,4 @@
-{{ if .Vars.rhel9cis_rule_5_3_6 }}
+{{ if .Vars.ubtu22cis_rule_5_3_6 }}
 command:
   sudo_timeout: 
     title: 5.3.6 | Ensure sudo authentication timeout is configured correctly
