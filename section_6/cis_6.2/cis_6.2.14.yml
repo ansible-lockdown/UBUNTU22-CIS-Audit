@@ -1,14 +1,24 @@
-{{ if .Vars.ubuntu22cis_rule_6_2_14 }}
+{{ if .Vars.ubtu22cis_rule_6_2_14 }}
 command:
-  no_dup_gid:
-    title: 6.2.14 | Ensure no duplicate GIDs exist
-    exec: "cat /etc/group | cut -d: -f3 | uniq -d"
+  dot_netrc_files:
+    title: 6.2.14 | Ensure no local interactive user has .netrc files
+    exec: 'find /home/ -name .netrc'
     exit-status: 0
-    stdout:
+    stdout: 
     - '!/./'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 6.2.14
+      CISv8: 3.3
+      CISv8_IG1: True
+      CISv8_IG2: True
+      CISv8_IG3: True
+      Mitre_Techniques:
+      - T1152
+      - T1552.001
+      Mitre_Tactics: TA0006
+      Mitre_Mitigations: M1027
 {{ end }}
+

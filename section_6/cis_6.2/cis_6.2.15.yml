@@ -1,14 +1,23 @@
-{{ if .Vars.ubuntu22cis_rule_6_2_15 }}
+{{ if .Vars.ubtu22cis_rule_6_2_15 }}
 command:
-  no_dup_username:
-    title: 6.2.15 | Ensure no duplicate user names exist
-    exec: "cat /etc/passwd | cut -d: -f1 | uniq -d"
+  dot_forward_files:
+    title: 6.2.15 | Ensure no users have .forward files
+    exec: 'find /home/ -name .forward'
     exit-status: 0
-    stdout:
+    stdout: 
     - '!/./'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 6.2.15
+      CISv8: 3.3
+      CISv8_IG1: True
+      CISv8_IG2: True
+      CISv8_IG3: True
+      Mitre_Techniques:
+      - T1114
+      - T1114.002
+      Mitre_Tactics: TA0010
+      Mitre_Mitigations: M1031
 {{ end }}

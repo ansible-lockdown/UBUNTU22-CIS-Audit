@@ -1,4 +1,4 @@
-{{ if .Vars.ubuntu22cis_rule_6_2_2 }}
+{{ if .Vars.ubtu22cis_rule_6_2_2 }}
 file:
   /etc/shadow:
     title: 6.2.2 | Ensure password fields are not empty
@@ -10,4 +10,14 @@ file:
       workstation: 1
       CIS_ID:
       - 6.2.2
+      CISv8: 5.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1078
+      - T1078.001
+      - T1078.003
+      Mitre_Tactics: TA0003
+      Mitre_Mitigations: M1027
 {{ end }}

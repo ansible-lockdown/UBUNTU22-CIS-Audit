@@ -1,14 +1,23 @@
-{{ if .Vars.ubuntu22cis_rule_6_2_9 }}
+{{ if .Vars.ubtu22cis_rule_6_2_9 }}
 command:
-  dot_forward_files:
-    title: 6.2.9 | Ensure no users have .forward files
-    exec: 'find /home/ -name .forward'
+  root_path_check:
+    title: 6.2.9 | Ensure root PATH Integrity
+    exec: "/bin/bash --login -c 'env | grep ^PATH=' | sed -e 's/PATH=//' -e 's/::/:/' -e 's/:$//' -e 's/:/\\n/g'"
     exit-status: 0
-    stdout: 
-    - '!/./'
+    stdout:
+    - '!/\\./'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 6.2.9
+      CISv8: NA
+      CISv8_IG1: NA
+      CISv8_IG2: NA
+      CISv8_IG3: NA
+      Mitre_Techniques:
+      - T1204
+      - T1204
+      Mitre_Tactics: TA0006
+      Mitre_Mitigations: M1022
 {{ end }}
