@@ -1,3 +1,4 @@
+{{ if not .Vars.ubtu22cis_apparmor_disable }}
 {{ if .Vars.ubtu22cis_apparmor_enforce_only }}
   {{ if .Vars.ubtu22cis_rule_1_6_1_4 }}
 command:
@@ -25,4 +26,5 @@ command:
       Mitre_Tactics: TA0005
       Mitre_Mitigations: NA
   {{ end }}
+{{ end }}
 {{ end }}

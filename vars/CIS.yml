@@ -6,7 +6,6 @@ benchmark_version: '1.1.0'
 timeout_ms: 60000
 
 
-ubtu22cis_notauto: false
 ubtu22cis_section1: true
 ubtu22cis_section2: true
 ubtu22cis_section3: true
@@ -17,7 +16,6 @@ ubtu22cis_section6: true
 ubtu22cis_level_1: true
 ubtu22cis_level_2: true
 
-ubtu22cis_apparmor_disable: true
 
 #  to enable rules that may have IO impact on a system e.g. full filesystem scans or CPU heavy
 run_heavy_tests: true
@@ -385,6 +383,7 @@ ubtu22cis_grub_hash: blah
 ubtu22cis_bootloader_password: random
 
 # 1.6 - Only have apparmor enforcing
+ubtu22cis_apparmor_disable: false
 ubtu22cis_apparmor_enforce_only: false
 
 # Warning Banner Content (issue, issue.net, motd)
