@@ -1,4 +1,4 @@
-{{ if .Vars.ubuntu22cis_rule_5_5_1_5 }}
+{{ if .Vars.ubtu22cis_rule_5_5_1_5 }}
 command:
   passwd_chg_past:
     title: 5.5.1.5 | Ensure all users last password change date is in the past
@@ -9,6 +9,23 @@ command:
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 
+      CIS_ID:
       - 5.5.1.5
+      CISv8: 5.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1078
+      - T1078.001
+      - T1078.002
+      - T1078.003
+      - T1078.004
+      - T1110
+      - T1110.001
+      - T1110.002
+      - T1110.003
+      - T1110.004
+      Mitre_Tactics: NA
+      Mitre_Mitigations: NA
 {{ end }}

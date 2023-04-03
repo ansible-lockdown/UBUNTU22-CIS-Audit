@@ -1,5 +1,5 @@
-{{ if .Vars.ubuntu22cis_level_1 }}
-  {{ if .Vars.ubuntu22cis_rule_5_5_1_4 }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_5_5_1_4 }}
 command:
   inactive_passwd:
     title: 5.5.1.4 | Ensure inactive password lock is 30 days or less | password
@@ -10,9 +10,19 @@ command:
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 
+      CIS_ID:
       - 5.5.1.4
-  inactive_users:  
+      CISv8: 5.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1078
+      - T1078.002
+      - T1078.003
+      Mitre_Tactics: T0001
+      Mitre_Mitigations: M1027
+  inactive_users:
     title: 5.5.1.4 | Ensure inactive password lock is 30 days or less | users
     exec: 'grep -E ^[^:]+:[^\!*] /etc/shadow | grep -vw root | cut -d : -f1,7'
     stdout:
@@ -21,7 +31,17 @@ command:
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 
+      CIS_ID:
       - 5.5.1.4
+      CISv8: 5.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1078
+      - T1078.002
+      - T1078.003
+      Mitre_Tactics: T0001
+      Mitre_Mitigations: M1027
   {{ end }}
 {{ end }}

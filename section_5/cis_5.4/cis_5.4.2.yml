@@ -1,16 +1,75 @@
-{{ if .Vars.ubuntu22cis_level_1 }}
-  {{ if .Vars.ubuntu22cis_rule_5_4_2 }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_5_4_2 }}
 file:
   /etc/pam.d/common-auth:
     title: 5.4.2 | Ensure lockout for failed password attempts is configured
     exists: true
     contains:
-    - '/^account\s+requisite\s+deny.so/'
-    - '/^account\s+required\s+pam_tally2.so/'
+    - '/^auth\s+ required\s+ pam_faillock.so preauth/'
+    - '/^auth\s+ [default=die]\s+ pam_faillock.so authfail/'
+    - '/^auth\s+ sufficient\s+ pam_faillock.so authsucc/'
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 
+      CIS_ID:
       - 5.4.2
+      CISv8: 6.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1110
+      - T1110.001
+      - T1110.003
+      Mitre_Tactics:
+      - TA0006
+      Mitre_Mitigations: M1027
+  /etc/pam.d/common-account:
+    title: 5.4.2 | Ensure lockout for failed password attempts is configured
+    exists: true
+    contains:
+    - '/^account\s+ required\s+ pam_faillock.so/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.4.2
+      CISv8: 6.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1110
+      - T1110.001
+      - T1110.003
+      Mitre_Tactics:
+      - TA0006
+      Mitre_Mitigations: M1027
+  /etc/security/faillock:
+    title: 5.4.2 | Ensure lockout for failed password attempts is configured
+    exists: true
+    contains:
+    - '/^deny = [0,4]/'
+    - '!/^deny = ([5-9]|[0-9]{2,})'
+    - '/^fail_interval = ([1-9]|[1-9][0-9]|[1-8][0-9]{1,2}|900)$/'
+    - '!/^'fail_interval = (90[[0-9]|9[1-9][0-9]|[1-9][0-9]{3,})
+    - '/^unlock time = ([1-9]|[1-9][0-9]|[1-5][0-9]{1,2}|600)$/'
+    - '!/^'unlock_time = (60[1-9]|6[1-9][0-9]|[7-9][0-9]{2,}|[1-9][0-9][0-9]{2,})/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.4.2
+      CISv8: 6.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1110
+      - T1110.001
+      - T1110.003
+      Mitre_Tactics:
+      - TA0006
+      Mitre_Mitigations: M1027
   {{ end }}
 {{ end }}

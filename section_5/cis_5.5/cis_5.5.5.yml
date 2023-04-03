@@ -1,16 +1,28 @@
-{{ if .Vars.ubuntu22cis_level_1}}
-  {{ if .Vars.ubuntu22cis_rule_5_5_5 }}
+{{ if .Vars.ubtu22cis_level_1}}
+  {{ if .Vars.ubtu22cis_rule_5_5_5 }}
 file:
   /etc/profile.d/tmout.sh:
-    title: 5.5.5 | Ensure default user shell timeout is configured | profile.d
+    title: 5.5.5 | Ensure default user shell timeout is 900 seconds or less | profile.d
     exists: true
     contains:
-    - '/^TMOUT=([1-8][0-9]{0,2}|900)/'
+    - '/^(TMOUT=([1-8][0-9]{0,2}|900)|readonly TMOUT=([1-8][0-9]{0,2}|900) ; export TMOUT)/'
     - '/^readonly TMOUT/'
+    -'/export TMOUT/'
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 
+      CIS_ID:
       - 5.5.5
+      CISv8: 4.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1078
+      - T1078.001
+      - T1078.002
+      - T1078.003
+      Mitre_Tactics: TA0005
+      Mitre_Mitigations: M1026
   {{ end }}
 {{ end }}
