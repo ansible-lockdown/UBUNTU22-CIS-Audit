@@ -5,7 +5,7 @@ command:
     exec:  stat -L -c "%a %U %G" /etc/group-
     exit-status: 0
     stdout:
-    - '/6[0.4][0,4] root root/'
+    - '/644 root root/'
     meta:
       server: 1
       workstation: 1

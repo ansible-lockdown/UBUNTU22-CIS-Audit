@@ -5,7 +5,7 @@ command:
     exec:  stat -L -c "%a %U %G" /etc/passwd-
     exit-status: 0
     stdout:
-    -  '/(0|[4,6][0,4][0,4]) root root/'
+    -  '/(0|6[0,4][0,4]) root root/'
     meta:
       server: 1
       workstation: 1
