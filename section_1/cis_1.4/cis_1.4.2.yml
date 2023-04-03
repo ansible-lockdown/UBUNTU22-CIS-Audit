@@ -1,24 +1,18 @@
 {{ if .Vars.ubtu22cis_level_1 }}
   {{ if .Vars.ubtu22cis_rule_1_4_2 }}
 file:
-  {{ .Vars.ubtu22cis_grub_conf_file }}:
-    title: 1.4.2 | Ensure bootloader password is set
-           1.4.3 | Ensure permissions on bootloader config are configured
+  /etc/default/grub:
+    title: 1.4.2 | Ensure permissions on bootloader config are configured
     exists: true
-    contains: 
-    - '/set superusers="{{ .Vars.ubtu22cis_grub_username }}"/'
-    - '/password_pbkdf2 {{ .Vars.ubtu22cis_grub_username }} {{ .Vars.ubtu22cis_grub_hash }}'
-     {{ if .Vars.ubtu22cis_rule_1_4_3 }}
+    contains:
     owner: root
     group: root
     mode: 0400
-    {{ end }}
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 1.4.2
-      - 1.4.3
       CISv8: 3.3
       CISv8_IG1: true
       CISv8_IG2: true
