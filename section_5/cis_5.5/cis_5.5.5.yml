@@ -6,8 +6,8 @@ file:
     exists: true
     contains:
     - '/^(TMOUT=([1-8][0-9]{0,2}|900)|readonly TMOUT=([1-8][0-9]{0,2}|900) ; export TMOUT)/'
-    - '/^readonly TMOUT/'
-    -'/export TMOUT/'
+    - '/readonly TMOUT/'
+    - '/export TMOUT/'
     meta:
       server: 1
       workstation: 1
