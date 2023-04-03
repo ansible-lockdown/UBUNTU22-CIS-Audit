@@ -1,4 +1,4 @@
-{{ if .Vars.ubuntu22cis_rule_3_1_2 }}
+{{ if .Vars.ubtu22cis_rule_3_1_2 }}
 command:
   wireless_disabled:
     title: 3.1.2 | Ensure wireless interfaces are disabled
