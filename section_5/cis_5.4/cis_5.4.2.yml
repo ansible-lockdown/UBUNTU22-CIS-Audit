@@ -45,7 +45,7 @@ file:
       Mitre_Tactics:
       - TA0006
       Mitre_Mitigations: M1027
-  /etc/security/faillock:
+  /etc/security/faillock.conf:
     title: 5.4.2 | Ensure lockout for failed password attempts is configured
     exists: true
     contains:

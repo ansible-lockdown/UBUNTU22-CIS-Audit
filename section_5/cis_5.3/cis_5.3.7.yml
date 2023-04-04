@@ -25,7 +25,7 @@ command:
     exec: grep {{ .Vars.ubtu22cis_sugroup }} /etc/group  | awk -F':' '{print $NF}'
     exit-status: 0
     stdout:
-    - '/.*/'
+    - '!/.*/'
     meta:
       server: 1
       workstation: 1

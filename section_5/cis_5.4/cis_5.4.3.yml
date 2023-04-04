@@ -6,7 +6,7 @@ command:
     exec: grep remember /etc/pam.d/common-password
     exit-status: 0
     stdout:
-    - '/^password.*required.*pam_pwhistory.so.*remember=\b(?:[1-5]\d+|5)\b/'
+    - '/^password.*pam_unix.so.*remember=\b(?:[1-5]\d+|5)\b/'
     meta:
       server: 1
       workstation: 1

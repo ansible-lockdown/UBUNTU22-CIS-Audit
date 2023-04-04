@@ -1,11 +1,15 @@
 {{ if .Vars.ubtu22cis_level_1 }}
   {{ if .Vars.ubtu22cis_rule_5_4_4 }}
-file:
-  /etc/pam.d/common-password:
+command:
+  common-password_algo:
     title: 5.4.4 | Ensure password hashing algorithm is up to date with the latest standards | common password
-    exists: true
-    contains:
-    - '!/[!^#].*(yescrypt|md5|bigcrypt|sha256|sha512|blowfish|)/'
+    exec: grep -E "yescrypt|md5|bigcrypt|sha256|sha512|blowfish" /etc/pam.d/common-password | grep -v '^#'
+    exit-status: 
+      or:
+      - 0
+      - 1
+    stdout:
+    - '!/.*/'
     meta:
       server: 1
       workstation: 1
@@ -22,7 +26,6 @@ file:
       - T1110.002
       Mitre_Tactics: TA0006
       Mitre_Mitigations: M1041
-command:
   yescrypt_login_defs:
     title: 5.4.4 | Ensure password hashing algorithm is up to date with the latest standards | common password
     exec: grep -i encrypt_method /etc/login.defs
