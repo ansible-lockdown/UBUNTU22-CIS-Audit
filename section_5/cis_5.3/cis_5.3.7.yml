@@ -4,7 +4,7 @@ file:
     title: 5.3.7 | Ensure access to the su command is restricted
     exists: true
     contains:
-      '/^auth\s+required\s+pam_wheel.so use_uid group={{ .Vars.ubtu22cis_sugroup }}/'
+    - '/^auth\s+required\s+pam_wheel.so use_uid group={{ .Vars.ubtu22cis_sugroup }}/'
     meta:
       server: 1
       workstation: 1

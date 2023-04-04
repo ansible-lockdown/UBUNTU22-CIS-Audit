@@ -2,7 +2,7 @@
 
 ## Overview
 
-based on CIS 1.0 for ubuntu 2004 - 2204 not yet released
+### Based on CIS Ubuntu Linux 22.04 LTS Benchmark v1.0.0 [Release](https://learn.cisecurity.org/l/799323/2022-09-15/3l9d2k)
 
 Set of configuration files and directories to run the first stages of CIS of Ubuntu 20.04 servers
 
@@ -29,7 +29,7 @@ If a site has specific options e.g. password complexity these can also be set.
 
 ## Usage
 
-You must have [goss](https://github.com/aelsabbahy/goss/) available to your host you would like to test.
+You must have [goss](https://github.com/goss-org/goss/) available to your host you would like to test.
 
 You must have root access to the system as some commands require privilege information.
 
@@ -121,7 +121,7 @@ Ability to add your own requirements is available in several sections
 
 ## further information
 
-- [goss documentation](https://github.com/aelsabbahy/goss/blob/master/docs/manual.md#patterns)
+- [goss documentation](https://github.com/goss-org/goss/blob/master/docs/manual.md#patterns)
 - [CIS standards](https://www.cisecurity.org)
 
 ## Feedback required
