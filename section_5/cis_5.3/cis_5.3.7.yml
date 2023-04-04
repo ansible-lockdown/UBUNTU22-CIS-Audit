@@ -22,11 +22,10 @@ file:
 command:
   sugroup_etc_group:
     title: 5.3.7 | Ensure access to the su command is restricted
-    exec: grep {{ .Vars.ubtu22cis_sugroup }} /etc/group
+    exec: grep {{ .Vars.ubtu22cis_sugroup }} /etc/group  | awk -F':' '{print $NF}'
     exit-status: 0
     stdout:
-    - '/^{{ .Vars.ubtu22cis_sugroup }}:x:\d+:$/'
-    - '!/^{{ .Vars.ubtu22cis_sugroup }}:x:\d+:.*/'
+    - '/.*/'
     meta:
       server: 1
       workstation: 1

@@ -5,7 +5,7 @@ file:
     title: 5.4.4 | Ensure password hashing algorithm is up to date with the latest standards | common password
     exists: true
     contains:
-    - '!/(yescrypt|md5|bigcrypt|sha256|sha512|blowfish)/'
+    - '!/[!^#].*(yescrypt|md5|bigcrypt|sha256|sha512|blowfish|)/'
     meta:
       server: 1
       workstation: 1
