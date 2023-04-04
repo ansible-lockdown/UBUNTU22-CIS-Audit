@@ -552,7 +552,7 @@ ubtu22cis_pass:
   warn_age: "7"
 
 # set sugroup if differs from wheel
-ubtu22cis_sugroup: wheel
+ubtu22cis_sugroup: nosugroup
 
 # sugroup users list
 ubtu22_sugroup_users: "root"
