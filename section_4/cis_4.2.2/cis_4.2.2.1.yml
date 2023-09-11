@@ -1,4 +1,5 @@
-{{ if .Vars.ubtu22cis_rule_4_2_2_1 }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_4_2_2_1 }}
 package:
   rsyslog:
     title: 4.2.2.1 | Ensure rsyslog is installed
@@ -21,4 +22,5 @@ package:
       Mitre_Tactics:
       - TA0005
       Mitre_Mitigations: NA
+  {{ end }}
 {{ end }}

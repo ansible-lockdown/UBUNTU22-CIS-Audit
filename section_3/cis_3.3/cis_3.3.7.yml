@@ -1,4 +1,5 @@
-{{ if .Vars.ubtu22cis_rule_3_3_7 }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_3_3_7 }}
 kernel-param:
   net.ipv4.conf.all.rp_filter:
     title: 3.3.7 | Ensure Reverse Path Filtering is enabled | ipv4 all rp_filter
@@ -24,7 +25,7 @@ kernel-param:
       Mitre_Tactics:
       - TA0006
       - TA0040
-      Mitre_Mitigations: 
+      Mitre_Mitigations:
       - M1030
       - M1042
   net.ipv4.conf.default.rp_filter:
@@ -46,7 +47,7 @@ kernel-param:
       Mitre_Tactics:
       - TA0006
       - TA0040
-      Mitre_Mitigations: 
+      Mitre_Mitigations:
       - M1030
       - M1042
 command:
@@ -75,7 +76,7 @@ command:
       Mitre_Tactics:
       - TA0006
       - TA0040
-      Mitre_Mitigations: 
+      Mitre_Mitigations:
       - M1030
       - M1042
   ipv4_def_rp_filter:
@@ -103,7 +104,8 @@ command:
       Mitre_Tactics:
       - TA0006
       - TA0040
-      Mitre_Mitigations: 
+      Mitre_Mitigations:
       - M1030
       - M1042
+  {{ end }}
 {{ end }}

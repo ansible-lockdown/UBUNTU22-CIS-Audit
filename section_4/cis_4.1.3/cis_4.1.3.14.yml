@@ -1,4 +1,5 @@
-{{ if not .Vars.ubtu22cis_apparmor_disable }}
+{{ if .Vars.ubtu22cis_level_2 }}
+  {{ if not .Vars.ubtu22cis_apparmor_disable }}
 command:
   {{ if .Vars.ubtu22cis_rule_4_1_3_14 }}
   auditd_MAC_cnf:
@@ -47,5 +48,6 @@ command:
       Mitre_Tactics:
       - TA0004
       Mitre_Mitigations: M1022
+    {{ end }}
   {{ end }}
 {{ end }}

@@ -1,5 +1,6 @@
-{{ if .Vars.ubtu22cis_gui }}
-  {{ if .Vars.ubtu22cis_rule_1_8_3 }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_gui }}
+    {{ if .Vars.ubtu22cis_rule_1_8_3 }}
 command:
   gdm_disable_user:
     title: 1.8.3 | Ensure disable-user-list is enabled
@@ -11,7 +12,7 @@ command:
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 
+      CIS_ID:
       - 1.8.3
       CISv8: NA
       CISv8_IG1: NA
@@ -27,5 +28,6 @@ command:
       - T1087.002
       Mitre_Tactics: TA0007
       Mitre_Mitigations: M1028
+    {{ end }}
   {{ end }}
 {{ end }}

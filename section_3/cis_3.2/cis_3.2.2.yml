@@ -1,5 +1,6 @@
-{{ if not .Vars.ubtu22cis_is_router }}
-  {{ if .Vars.ubtu22cis_rule_3_2_2 }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if not .Vars.ubtu22cis_is_router }}
+    {{ if .Vars.ubtu22cis_rule_3_2_2 }}
 kernel-param:
   net.ipv4.ip_forward:
     title: 3.2.2 | Ensure IP forwarding is disabled | IPv4
@@ -107,6 +108,7 @@ command:
       Mitre_Mitigations:
       - M1030
       - M1042
-  {{ end }}
+      {{ end }}
+    {{ end }}
   {{ end }}
 {{ end }}

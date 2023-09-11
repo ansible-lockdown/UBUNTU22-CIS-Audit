@@ -1,4 +1,5 @@
-{{ if .Vars.ubtu22cis_rule_6_2_13 }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_6_2_13 }}
 command:
   home_dirs_restrict:
     title: 6.2.13 | Ensure all local interactive user home directories permissions are 750 or more restrictive
@@ -22,4 +23,5 @@ command:
       - T1222.002
       Mitre_Tactics: TA0005
       Mitre_Mitigations: M1022
+  {{ end }}
 {{ end }}

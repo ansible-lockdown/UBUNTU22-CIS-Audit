@@ -1,5 +1,6 @@
-{{ if .Vars.ubtu22cis_gui }}
-  {{ if .Vars.ubtu22cis_rule_1_8_10 }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_gui }}
+    {{ if .Vars.ubtu22cis_rule_1_8_10 }}
 file:
   /etc/gdm3/custom.conf:
     title: 1.8.10 | Ensure XDCMP is not enabled
@@ -24,5 +25,6 @@ file:
       - T1557.000
       Mitre_Tactics: TA0002
       Mitre_Mitigations: M1050
+    {{ end }}
   {{ end }}
 {{ end }}

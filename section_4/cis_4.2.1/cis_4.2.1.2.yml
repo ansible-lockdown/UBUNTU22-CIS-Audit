@@ -1,4 +1,5 @@
-{{ if .Vars.ubtu22cis_rule_4_2_1_2 }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_4_2_1_2 }}
 service:
   systemd-journald:
     title: 4.2.1.2 | Ensure journald service is enabled
@@ -21,4 +22,5 @@ service:
       Mitre_Tactics:
       - TA0005
       Mitre_Mitigations: NA
+  {{ end }}
 {{ end }}

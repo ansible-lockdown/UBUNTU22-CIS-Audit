@@ -1,10 +1,11 @@
 {{ if .Vars.ubtu22cis_rule_6_2_3 }}
+  {{ if .Vars.ubtu22cis_level_1 }}
 command:
   passwd_group_exist:
     title: 6.2.3 | Ensure all groups in /etc/passwd exist in /etc/group
     exec: "awk -F: '{print $4}' /etc/passwd |sort -u > /tmp/uid && awk -F: '{print $3}' /etc/group| sort -u> /tmp/gid && comm -23 /tmp/uid /tmp/gid && rm -f /tmp/uid /tmp/gid"
-    exit-status: 
-      or: 
+    exit-status:
+      or:
       or:
       - 0
       - 1
@@ -24,4 +25,5 @@ command:
       - T1222.002
       Mitre_Tactics: TA0003
       Mitre_Mitigations: M1027
+  {{ end }}
 {{ end }}

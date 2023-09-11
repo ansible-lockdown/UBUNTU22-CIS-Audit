@@ -1,4 +1,5 @@
-{{ if .Vars.ubtu22cis_rule_3_5_1_5 }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_3_5_1_5 }}
 command:
   ufw_outbound:
     title: 3.5.1.5 | Ensure ufw outbound connections are configured
@@ -23,4 +24,5 @@ command:
       Mitre_Mitigations:
       - M1031
       - M1038
+  {{ end }}
 {{ end }}

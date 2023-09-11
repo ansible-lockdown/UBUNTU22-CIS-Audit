@@ -1,4 +1,5 @@
-{{ if .Vars.ubtu22cis_rule_4_1_1_4 }}
+{{ if .Vars.ubtu22cis_level_2 }}
+  {{ if .Vars.ubtu22cis_rule_4_1_1_4 }}
 command:
   auditd_grub_backlog:
     title: 4.1.1.4 | Ensure audit_backlog_limit is sufficient | bootloader file
@@ -26,7 +27,7 @@ file:
   /etc/default/grub:
     exists: true
     title: 4.1.1.4 | Ensure audit_backlog_limit is sufficient | default grub
-    contains: 
+    contains:
     - '/GRUB_CMDLINE_LINUX=".*audit_backlog_limit={{ .Vars.ubtu22cis_auditd.auditd_backlog_limit }}/'
     - '/audit_backlog_limit=(819[2-9]|8[2-9]{2,}|9[0-9]{3,}|[1-9]{5,})/'
     meta:
@@ -45,4 +46,5 @@ file:
       Mitre_Tactics:
       - TA0005
       Mitre_Mitigations: NA
+  {{ end }}
 {{ end }}

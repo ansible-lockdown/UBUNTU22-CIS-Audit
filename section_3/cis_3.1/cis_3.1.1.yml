@@ -1,6 +1,7 @@
-{{ if not .Vars.ubtu22cis_ipv6_required }}
- {{ if .Vars.ubtu22cis_rule_3_1_1 }}
-   {{ if eq .Vars.ubtu22cis_ipv6_disable "grub" }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if not .Vars.ubtu22cis_ipv6_required }}
+   {{ if .Vars.ubtu22cis_rule_3_1_1 }}
+     {{ if eq .Vars.ubtu22cis_ipv6_disable "grub" }}
 command:
   grub_ipv6:
     title: 3.1.1 | Disable IPv6 | via grub boot
@@ -79,6 +80,7 @@ file:
       - TA0008
       Mitre_Mitigations:
       - M1042
+      {{ end }}
     {{ end }}
   {{ end }}
 {{ end }}

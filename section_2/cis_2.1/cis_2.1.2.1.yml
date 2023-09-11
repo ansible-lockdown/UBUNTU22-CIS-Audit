@@ -1,7 +1,8 @@
 ---
 
 {{ if eq .Vars.ubtu22cis_time_service "chrony" }}
-  {{ if .Vars.ubtu22cis_rule_2_1_2_1 }}
+  {{ if .Vars.ubtu22cis_level_1 }}
+    {{ if .Vars.ubtu22cis_rule_2_1_2_1 }}
 file:
   /etc/chrony/sources.d/pool.source:
     title: 2.1.2.1 | Ensure chrony is configured with authorized timeserver | timeserver pool
@@ -49,5 +50,6 @@ file:
       - T1562.001
       Mitre_Tactics: TA0002
       Mitre_Mitigations: M1002
+    {{ end }}
   {{ end }}
 {{ end }}

@@ -1,4 +1,5 @@
-{{ if .Vars.ubtu22cis_rule_1_6_1_2 }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_1_6_1_2 }}
 file:
   /boot/grub/grub.cfg:
     title: 1.6.1.2 | Ensure AppArmor is enabled in the bootloader configuration | running grub
@@ -48,4 +49,5 @@ file:
       - T1565.003
       Mitre_Tactics: TA0003
       Mitre_Mitigations: M1206
+  {{ end }}
 {{ end }}

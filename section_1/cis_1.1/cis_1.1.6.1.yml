@@ -1,26 +1,15 @@
 {{ if .Vars.ubtu22cis_level_2 }}
   {{ if .Vars.ubtu22cis_rule_1_1_6_1 }}
-mount:
-  /var/log/audit:
+command:
+  var_log_audit_fstab:
     title: 1.1.6.1 | Ensure separate partition exists for /var/log/audit
-    exists: true
-    opts:
-    {{ if .Vars.ubtu22cis_rule_1_1_6_2 }}
-    - nodev
-    {{ end }}
-    {{ if .Vars.ubtu22cis_rule_1_1_6_3 }}
-    - noexec
-    {{ end }}
-    {{ if .Vars.ubtu22cis_rule_1_1_6_4 }}
-    - nosuid
-    {{ end }}
+    exec: mount | grep "on /var/log/audit\s" && grep "/var/log/audit\s" /etc/fstab
+    exit-status: 0
     meta:
       server: 2
       workstation: 2
       CIS_ID:
-      - 1.1.6.2
-      - 1.1.6.3
-      - 1.1.6.4
+      - 1.1.6.1
       CIS_v8: 8.3
       CISv8_IG1: true
       CISv8_IG2: true

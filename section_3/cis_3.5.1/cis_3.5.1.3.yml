@@ -1,4 +1,5 @@
-{{ if .Vars.ubtu22cis_rule_3_5_1_3 }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_3_5_1_3 }}
 service:
   ufw:
     title: 3.5.1.3 | Ensure ufw service is enabled
@@ -21,4 +22,5 @@ service:
       Mitre_Tactics:
       - TA0011
       Mitre_Mitigations: NA
+  {{ end }}
 {{ end }}

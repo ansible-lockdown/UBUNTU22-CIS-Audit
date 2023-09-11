@@ -1,4 +1,5 @@
-{{ if .Vars.ubtu22cis_rule_4_1_3_18 }}
+{{ if .Vars.ubtu22cis_level_2 }}
+  {{ if .Vars.ubtu22cis_rule_4_1_3_18 }}
 command:
   usermod_module_cnf:
     title: 4.1.3.18 | Ensure successful and unsuccessful attempts to use the usermod command are recorded | Config
@@ -38,4 +39,5 @@ command:
       Mitre_Techniques: NA
       Mitre_Tactics: NA
       Mitre_Mitigations: NA
+  {{ end }}
 {{ end }}

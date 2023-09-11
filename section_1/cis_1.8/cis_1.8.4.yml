@@ -1,5 +1,6 @@
-{{ if .Vars.ubtu22cis_gui }}
-  {{ if .Vars.ubtu22cis_rule_1_8_4 }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_gui }}
+    {{ if .Vars.ubtu22cis_rule_1_8_4 }}
 file:
   /etc/dconf/db/local.d/00-screensaver:
     title: 1.8.4 | Ensure GDM login banner is configured
@@ -20,5 +21,6 @@ file:
       Mitre_Techniques: NA
       Mitre_Tactics: NA
       Mitre_Mitigations: NA
+    {{ end }}
   {{ end }}
 {{ end }}

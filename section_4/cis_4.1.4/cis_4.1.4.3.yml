@@ -1,7 +1,8 @@
-{{ if .Vars.ubtu22cis_rule_4_1_4_3 }}
+{{ if .Vars.ubtu22cis_level_2 }}
+  {{ if .Vars.ubtu22cis_rule_4_1_4_3 }}
 command:
   audit_logfile_group_setting:
-    title: 4.1.4.3 | Ensure only authorized groups are assigned ownership of audit log files 
+    title: 4.1.4.3 | Ensure only authorized groups are assigned ownership of audit log files
     exec: grep log_group /etc/audit/audit* | awk '{ print $NF}'
     exit-status: 0
     stdout:
@@ -25,7 +26,7 @@ command:
       - TA0007
       Mitre_Mitigations: NA
   audit_logfile_group:
-    title: 4.1.4.3 | Ensure only authorized groups are assigned ownership of audit log files 
+    title: 4.1.4.3 | Ensure only authorized groups are assigned ownership of audit log files
     exec: for file in `grep ^log_file /etc/audit/auditd.conf | awk '{ print $NF }'`; do stat -Lc " %n_%G" $file; done
     exit-status: 0
     stdout:
@@ -48,4 +49,5 @@ command:
       Mitre_Tactics:
       - TA0007
       Mitre_Mitigations: NA
+  {{ end }}
 {{ end }}

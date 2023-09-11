@@ -1,5 +1,6 @@
-{{ if .Vars.ubtu22cis_gui }}
-  {{ if .Vars.ubtu22cis_rule_1_8_7 }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_gui }}
+    {{ if .Vars.ubtu22cis_rule_1_8_7 }}
 file:
   /etc/dconf/db/local.d/locks/00-automount_lock:
     title: 1.8.7 | Ensure GDM login banner is configured
@@ -19,5 +20,6 @@ file:
       Mitre_Techniques: NA
       Mitre_Tactics: NA
       Mitre_Mitigations: NA
+    {{ end }}
   {{ end }}
 {{ end }}

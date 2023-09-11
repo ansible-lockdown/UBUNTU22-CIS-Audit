@@ -1,7 +1,8 @@
 ---
 
 {{ if eq .Vars.ubtu22cis_time_service "chrony" }}
-  {{ if .Vars.ubtu22cis_rule_2_1_2_2 }}
+  {{ if .Vars.ubtu22cis_level_1 }}
+    {{ if .Vars.ubtu22cis_rule_2_1_2_2 }}
 file:
   /etc/chrony/chrony.conf:
     title: 2.1.2.2 | Ensure chrony is running as user _chrony
@@ -20,5 +21,6 @@ file:
       Mitre_Techniques: NA
       Mitre_Tactics: NA
       Mitre_Mitigations: NA
+    {{ end }}
   {{ end }}
 {{ end }}

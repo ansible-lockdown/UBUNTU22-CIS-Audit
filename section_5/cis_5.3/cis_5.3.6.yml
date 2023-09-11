@@ -1,6 +1,7 @@
-{{ if .Vars.ubtu22cis_rule_5_3_6 }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_5_3_6 }}
 command:
-  sudo_timeout: 
+  sudo_timeout:
     title: 5.3.6 | Ensure sudo authentication timeout is configured correctly
     exec: grep -rP "timestamp_timeout=\K[0-9]*" /etc/sudoers*
     exit-status: 0
@@ -17,4 +18,5 @@ command:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
+  {{ end }}
 {{ end }}

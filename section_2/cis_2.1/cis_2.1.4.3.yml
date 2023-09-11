@@ -1,7 +1,8 @@
 ---
 
 {{ if eq .Vars.ubtu22cis_time_service "ntp" }}
-  {{ if .Vars.ubtu22cis_rule_2_1_4_3 }}
+  {{ if .Vars.ubtu22cis_level_1 }}
+    {{ if .Vars.ubtu22cis_rule_2_1_4_3 }}
 file:
   /etc/init.d/ntp:
     title: 2.1.4.3 | Ensure ntp is running as user ntp
@@ -29,5 +30,6 @@ file:
       - T1562.001
       Mitre_Tactics: TA0002
       Mitre_Mitigations: M1002
+    {{ end }}
   {{ end }}
 {{ end }}

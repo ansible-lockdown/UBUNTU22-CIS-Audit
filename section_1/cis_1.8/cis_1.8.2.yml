@@ -1,5 +1,6 @@
-{{ if .Vars.ubtu22cis_gui }}
-  {{ if .Vars.ubtu22cis_rule_1_8_2 }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_gui }}
+    {{ if .Vars.ubtu22cis_rule_1_8_2 }}
 file:
   /etc/gdm3/greeter.dconf-defaults:
     title: 1.8.2 | Ensure GDM login banner is configured
@@ -20,5 +21,6 @@ file:
       Mitre_Techniques: NA
       Mitre_Tactics: TA0007
       Mitre_Mitigations: NA
+    {{ end }}
   {{ end }}
 {{ end }}

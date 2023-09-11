@@ -1,5 +1,6 @@
-{{ if .Vars.ubtu22cis_rule_4_2_1_1_4 }}
-  {{ if not .Vars.ubtu22cis_is_syslog_server }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_4_2_1_1_4 }}
+    {{ if not .Vars.ubtu22cis_is_syslog_server }}
 service:
   systemd-journal-remote.socket:
     title: 4.2.1.1.4 | Ensure journald is not configured to recieve logs from a remote client
@@ -29,7 +30,7 @@ command:
     title: 4.2.1.1.4 | Ensure journald is not configured to recieve logs from a remote client
     exec: systemctl is-enabled systemd-journal-remote.socket
     exit-status: 1
-    stdout: 
+    stdout:
     - '/^masked/'
     meta:
       server: 1
@@ -50,5 +51,6 @@ command:
       Mitre_Tactics:
       - TA0040
       Mitre_Mitigations: M1029
+    {{ end }}
   {{ end }}
 {{ end }}

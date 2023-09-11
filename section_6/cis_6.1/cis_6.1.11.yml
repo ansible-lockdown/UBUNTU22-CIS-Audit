@@ -1,5 +1,6 @@
-{{ if .Vars.run_heavy_tests }}
-  {{ if .Vars.ubtu22cis_rule_6_1_11 }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.run_heavy_tests }}
+    {{ if .Vars.ubtu22cis_rule_6_1_11 }}
 command:
   no_ungrouped:
     title: 6.1.11 | Ensure no ungrouped files or directories exist
@@ -22,5 +23,6 @@ command:
       - T1222.002
       Mitre_Tactics: TA0007
       Mitre_Mitigations: NA
+    {{ end }}
   {{ end }}
 {{ end }}

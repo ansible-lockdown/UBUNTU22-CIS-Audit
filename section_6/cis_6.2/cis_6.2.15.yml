@@ -1,10 +1,11 @@
-{{ if .Vars.ubtu22cis_rule_6_2_15 }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_6_2_15 }}
 command:
   dot_forward_files:
     title: 6.2.15 | Ensure no users have .forward files
     exec: 'find /home/ -name .forward'
     exit-status: 0
-    stdout: 
+    stdout:
     - '!/./'
     meta:
       server: 1
@@ -20,4 +21,5 @@ command:
       - T1114.002
       Mitre_Tactics: TA0010
       Mitre_Mitigations: M1031
+  {{ end }}
 {{ end }}

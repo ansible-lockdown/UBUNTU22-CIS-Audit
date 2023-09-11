@@ -1,4 +1,5 @@
-{{ if .Vars.ubtu22cis_rule_4_2_1_4 }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_4_2_1_4 }}
 command:
   storage_journald_conf:
     title: 4.2.1.4 | Ensure journald is configured to write logfiles to persistent disk
@@ -23,4 +24,5 @@ command:
       Mitre_Tactics:
       - TA0005
       Mitre_Mitigations: T1022
+  {{ end }}
 {{ end }}

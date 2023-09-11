@@ -1,5 +1,6 @@
-{{ if .Vars.run_heavy_tests }}
-  {{ if .Vars.ubtu22cis_rule_6_1_12 }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.run_heavy_tests }}
+    {{ if .Vars.ubtu22cis_rule_6_1_12 }}
 command:
   audit_suid_exec:
     title: 6.1.12 | Audit SUID executables
@@ -22,5 +23,6 @@ command:
       - T1548.001
       Mitre_Tactics: TA0004
       Mitre_Mitigations: M1028
+    {{ end }}
   {{ end }}
 {{ end }}

@@ -1,5 +1,6 @@
-{{ if .Vars.ubtu22cis_rule_4_2_1_1_1 }}
-  {{ if not .Vars.ubtu22cis_is_syslog_server }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_4_2_1_1_1 }}
+    {{ if not .Vars.ubtu22cis_is_syslog_server }}
 package:
   systemd-journal-remote:
     title: 4.2.1.1.1 | Ensure systemd-journal-remote is installed
@@ -21,5 +22,6 @@ package:
       Mitre_Tactics:
       - TA0040
       Mitre_Mitigations: M1029
+    {{ end }}
   {{ end }}
 {{ end }}

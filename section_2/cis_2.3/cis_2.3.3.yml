@@ -1,5 +1,6 @@
 {{ if not .Vars.ubtu22cis_talk_required }}
-  {{ if .Vars.ubtu22cis_rule_2_3_3 }}
+  {{ if .Vars.ubtu22cis_level_1 }}
+    {{ if .Vars.ubtu22cis_rule_2_3_3 }}
 package:
   talk:
     title: 2.3.3 | Ensure talk client is not installed
@@ -24,5 +25,6 @@ package:
       Mitre_Mitigations:
       - M1041
       - M1042
+    {{ end }}
   {{ end }}
 {{ end }}

@@ -1,6 +1,7 @@
-{{ if .Vars.run_heavy_tests }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.run_heavy_tests }}
+    {{ if .Vars.ubtu22cis_rule_6_1_9 }}
 command:
-  {{ if .Vars.ubtu22cis_rule_6_1_9 }}
   world_writable:
     title: 6.1.9 | Ensure no world writable files exist
     exec: "df --local -P | awk '{if (NR!=1) print $6}' | xargs -I '{}' find '{}' -xdev -type f -perm -0002"
@@ -22,5 +23,6 @@ command:
       - T1222.002
       Mitre_Tactics: TA0005
       Mitre_Mitigations: M1022
+    {{ end }}
   {{ end }}
 {{ end }}
