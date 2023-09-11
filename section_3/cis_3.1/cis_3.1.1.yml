@@ -29,7 +29,7 @@ command:
       - TA0008
       Mitre_Mitigations:
       - M1042
-  etc_default_grub:
+  ipv6_etc_default_grub:
     title: 3.1.1 | Disable IPv6 | default grub
     exec: grep -i "GRUB_CMDLINE_LINUX=.*ipv6" /etc/default/grub
     exit-status: 0
