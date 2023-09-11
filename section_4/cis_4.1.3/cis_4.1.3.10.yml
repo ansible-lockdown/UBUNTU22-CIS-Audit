@@ -6,8 +6,8 @@ command:
     exec: grep mounts /etc/audit/rules.d/*.rules
     exit-status: 0
     stdout:
-    - '/-a always,exit -F arch=b64 -S mount -F auid>=1000 -F auid!=4294967295 -k mounts/'
-    - '/-a always,exit -F arch=b32 -S mount -F auid>=1000 -F auid!=4294967295 -k mounts/'
+    - '/-a always,exit -F arch=b64 -S mount -F auid>=1000 -F auid!=(unset|4294967295|-1) -k mounts/'
+    - '/-a always,exit -F arch=b32 -S mount -F auid>=1000 -F auid!=(unset|4294967295|-1) -k mounts/'
     meta:
       server: 2
       workstation: 2
@@ -29,8 +29,8 @@ command:
     exec: auditctl -l | grep mounts
     exit-status: 0
     stdout:
-    - '-a always,exit -F arch=b64 -S mount -F auid>=1000 -F auid!=-1 -F key=mounts'
-    - '-a always,exit -F arch=b32 -S mount -F auid>=1000 -F auid!=-1 -F key=mounts'
+    - '/-a always,exit -F arch=b64 -S mount -F auid>=1000 -F auid!=(unset|4294967295|-1) -F key=mounts/'
+    - '/-a always,exit -F arch=b32 -S mount -F auid>=1000 -F auid!=(unset|4294967295|-1) -F key=mounts/'
     meta:
       server: 2
       workstation: 2

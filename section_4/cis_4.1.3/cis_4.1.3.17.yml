@@ -6,7 +6,7 @@ command:
     exec: grep chacl /etc/audit/rules.d/*.rules
     exit-status: 0
     stdout:
-    - '/-a always,exit -F path=/usr/bin/chacl -F perm=x -F auid>=1000 -F auid!=unset -k priv_cmd/'
+    - '/-a always,exit -F path=/usr/bin/chacl -F perm=x -F auid>=1000 -F auid!=(unset|4294967295|-1) -k priv_cmd/'
     meta:
       server: 2
       workstation: 2
@@ -25,7 +25,7 @@ command:
     exec: auditctl -l | grep chacl
     exit-status: 0
     stdout:
-    - "-a always,exit -S all -F path=/usr/bin/chacl -F perm=x -F auid>=1000 -F auid!=-1 -F key=priv_cmd"
+    - '/-a always,exit -S all -F path=/usr/bin/chacl -F perm=x -F auid>=1000 -F auid!=(unset|4294967295|-1) -F key=priv_cmd/'
     meta:
       server: 2
       workstation: 2

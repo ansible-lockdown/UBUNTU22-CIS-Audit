@@ -6,7 +6,7 @@ command:
     exec: grep chcon /etc/audit/rules.d/*.rules
     exit-status: 0
     stdout:
-    - '/-a always,exit -F path=/usr/bin/chcon -F perm=x -F auid>=1000 -F auid!=unset -k perm_chng/'
+    - '/-a always,exit -F path=/usr/bin/chcon -F perm=x -F auid>=1000 -F auid!=(unset|4294967295|-1) -k perm_chng/'
     meta:
       server: 2
       workstation: 2
@@ -25,7 +25,7 @@ command:
     exec: auditctl -l | grep chcon
     exit-status: 0
     stdout:
-    - "-a always,exit -S all -F path=/usr/bin/chcon -F perm=x -F auid>=1000 -F auid!=-1 -F key=perm_chng"
+    - '/-a always,exit -S all -F path=/usr/bin/chcon -F perm=x -F auid>=1000 -F auid!=(unset|4294967295|-1) -F key=perm_chng/'
     meta:
       server: 2
       workstation: 2
