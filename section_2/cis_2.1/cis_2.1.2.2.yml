@@ -6,7 +6,7 @@
 file:
   chrony_user:
     title: 2.1.2.2 | Ensure chrony is running as user _chrony
-    path; /etc/chrony/chrony.conf
+    path: /etc/chrony/chrony.conf
     exists: true
     contents:
     - '/^user _chrony/'

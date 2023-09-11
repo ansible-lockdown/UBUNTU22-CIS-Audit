@@ -25,7 +25,7 @@ package:
 file:
   pwquality_create_reqs:
     title: 5.4.1 | Ensure password creation requirements are configured | pwquality
-    file: /etc/security/pwquality.conf
+    path: /etc/security/pwquality.conf
     exists: true
     contents:
     {{ range .Vars.ubtu22cis_pam_password }}
