@@ -1,10 +1,10 @@
 {{ if .Vars.ubtu22cis_level_1 }}
   {{ if .Vars.ubtu22cis_rule_1_4_2 }}
 file:
-  /etc/default/grub:
+  default_grub_perms:
     title: 1.4.2 | Ensure permissions on bootloader config are configured
     exists: true
-    contains:
+    path: /etc/default/grub
     owner: root
     group: root
     mode: 0400

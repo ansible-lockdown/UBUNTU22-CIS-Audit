@@ -1,10 +1,11 @@
 {{ if .Vars.ubtu22cis_level_1}}
   {{ if .Vars.ubtu22cis_rule_5_5_5 }}
 file:
-  /etc/profile.d/tmout.sh:
+  shell_timeout_script:
     title: 5.5.5 | Ensure default user shell timeout is 900 seconds or less | profile.d
+    path: /etc/profile.d/tmout.sh
     exists: true
-    contains:
+    contents:
     - '/^: \${TMOUT=([1-8][0-9]{0,2}|900)}/'
     - '/readonly TMOUT/'
     - '/export TMOUT/'

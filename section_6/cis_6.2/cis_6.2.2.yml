@@ -1,10 +1,11 @@
 {{ if .Vars.ubtu22cis_level_1 }}
   {{ if .Vars.ubtu22cis_rule_6_2_2 }}
 file:
-  /etc/shadow:
+  passwd_fields_not_empty_shadow:
     title: 6.2.2 | Ensure password fields are not empty
+    path: /etc/shadow
     exists: true
-    contains:
+    contents:
     - '!/^*.[a-z]::/'
     meta:
       server: 1

@@ -1,8 +1,9 @@
 {{ if .Vars.ubtu22cis_level_1 }}
   {{ if .Vars.ubtu22cis_rule_5_1_8 }}
 file:
-  /etc/cron.deny:
+  cron_deny_absent:
     title: 5.1.8 | Ensure cron is restricted to authorized users
+    path: /etc/cron.deny
     exists: false
     meta:
       server: 1

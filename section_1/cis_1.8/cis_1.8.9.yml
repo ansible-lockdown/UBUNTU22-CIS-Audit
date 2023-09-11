@@ -2,10 +2,11 @@
   {{ if .Vars.ubtu22cis_gui }}
     {{ if .Vars.ubtu22cis_rule_1_8_9 }}
 file:
-  /etc/dconf/db/local.d/locks/00-autorun_lock:
-    title: 1.8.9 | Ensure GDM login banner is configured
+  gdm_autorun_lock:
+    title: 1.8.9 | Ensure GDM autorun-never is not overridden
+    path: /etc/dconf/db/local.d/locks/00-autorun_lock
     exists: true
-    contains:
+    contents:
     - '^/\/org\/gnome\/desktop\/media-handling\/autorun-never/'
     meta:
       server: 1

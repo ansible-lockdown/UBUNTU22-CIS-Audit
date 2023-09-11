@@ -24,10 +24,11 @@ command:
       - TA0005
       Mitre_Mitigations: NA
 file:
-  /etc/default/grub:
+  grub_audit_start:
     title: 4.1.1.3 | Ensure auditing for processes that start prior to auditd is enabled | default grub
+    path: /etc/default/grub
     exists: true
-    contains:
+    contents:
     - '/^GRUB_CMDLINE_LINUX=.*"audit=1"/'
     - '!/audit=0/'
     meta:

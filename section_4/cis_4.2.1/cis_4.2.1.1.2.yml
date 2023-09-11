@@ -2,10 +2,11 @@
   {{ if .Vars.ubtu22cis_rule_4_2_1_1_2 }}
     {{ if not .Vars.ubtu22cis_is_syslog_server }}
 file:
-  /etc/systemd/journal-upload.conf:
+  journal_remote_configured:
     title: 4.2.1.1.2 | Ensure systemd-journal-remote is configured
+    path: /etc/systemd/journal-upload.conf
     exists: true
-    contains:
+    contents:
     - '/^URL=/'
     - '/ServerKeyFile=.*.pem'
     - '/ServerCertificateFile=.*.pem'

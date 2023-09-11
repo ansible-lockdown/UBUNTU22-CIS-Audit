@@ -2,10 +2,11 @@
   {{ if .Vars.ubtu22cis_gui }}
     {{ if .Vars.ubtu22cis_rule_1_8_6 }}
 file:
-  /etc/dconf/db/local.d/00-media-automount:
-    title: 1.8.6 | Ensure GDM login banner is configured
+  gnome_automount_disable:
+    title: 1.8.6 | Ensure GDM automatic mounting of removable media is disabled
+    path: /etc/dconf/db/local.d/00-media-automount
     exists: true
-    contains:
+    contents:
     - '/^[org/gnome/desktop/media-handling]/'
     - '/^automount=false/'
     - '/^automount-open=false/'

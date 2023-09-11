@@ -1,10 +1,11 @@
 {{ if .Vars.ubtu22cis_level_1 }}
   {{ if .Vars.ubtu22cis_rule_5_3_7 }}
 file:
-  /etc/pam.d/su:
+  su_conf:
     title: 5.3.7 | Ensure access to the su command is restricted
+    path: /etc/pam.d/su
     exists: true
-    contains:
+    contents:
     - '/^auth\s+required\s+pam_wheel.so use_uid group={{ .Vars.ubtu22cis_sugroup }}/'
     meta:
       server: 1

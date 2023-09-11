@@ -83,10 +83,11 @@ service:
       Mitre_Tactics: TA0007
       Mitre_Mitigations: NA
 file:
-  /etc/systemd/coredump.conf:
+  coredump_restricted_conf:
     title: 1.5.4 | Ensure core dumps are restricted | coredump.conf
     exists: true
-    contains:
+    path: /etc/systemd/coredump.conf
+    contents:
     - '/^Storage=none/'
     - '/^ProcessSizeMax=0/'
     meta:

@@ -23,10 +23,11 @@ package:
       - TA0006
       Mitre_Mitigations: M1027
 file:
-  /etc/security/pwquality.conf:
+  pwquality_create_reqs:
     title: 5.4.1 | Ensure password creation requirements are configured | pwquality
+    file: /etc/security/pwquality.conf
     exists: true
-    contains:
+    contents:
     {{ range .Vars.ubtu22cis_pam_password }}
     - {{ . }}
     {{ end }}

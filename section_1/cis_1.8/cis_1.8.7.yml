@@ -2,10 +2,11 @@
   {{ if .Vars.ubtu22cis_gui }}
     {{ if .Vars.ubtu22cis_rule_1_8_7 }}
 file:
-  /etc/dconf/db/local.d/locks/00-automount_lock:
-    title: 1.8.7 | Ensure GDM login banner is configured
+  gnome_automount_lock:
+    title: 1.8.7 | Ensure GDM disabling automatic mounting of removable media is not overridden
+    path: /etc/dconf/db/local.d/locks/00-automount_lock
     exists: true
-    contains:
+    contents:
     - '^/\/org\/gnome\/desktop\/media-handling\/automount/'
     - '^/\/org\/gnome\/desktop\/media-handling\/automount-open/'
     meta:

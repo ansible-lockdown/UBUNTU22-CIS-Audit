@@ -64,8 +64,9 @@ package:
   {{ end }}
   {{ if ne .Vars.ubtu22cis_time_service "timesyncd" }}
 file:
-  /etc/systemd/system/timesyncd.service:
+  timesync_masked:
     title: 2.1.1.1 | Ensure time synchronization is in use | timesyncd masked
+    path: /etc/systemd/system/timesyncd.service
     filetype: symlink
     linked-to: /dev/null
     exists: true

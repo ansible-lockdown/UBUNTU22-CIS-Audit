@@ -31,10 +31,11 @@ command:
       Mitre_Mitigations: M1042
   {{ if eq .Vars.ubtu22cis_mailserver "exim4" }}
 file:
-  /etc/exim4/update-exim4.conf.conf:
+  exim_conf_local:
     title: 2.2.15 | Ensure mail transfer agent is configured for local-only mode | exim config
+    path: /etc/exim4/update-exim4.conf.conf
     exists: true
-    contains:
+    contents:
     {{ range .Vars.ubtu22_exim_conf }}
     - {{ . }}
     {{ end }}

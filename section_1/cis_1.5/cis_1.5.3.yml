@@ -17,10 +17,11 @@ package:
       Mitre_Tactics: NA
       Mitre_Mitigations: NA
 file:
-  /etc/default/apport:
+  error_report_apport_disable:
     title: 1.5.3 | Ensure Automatic Error Reporting is not enabled | disabled
     exists: true
-    contains:
+    path: /etc/default/apport
+    contents:
     - 'enabled=0'
     - '!/enabled=1/'
     meta:

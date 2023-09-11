@@ -1,8 +1,9 @@
 {{ if .Vars.ubtu22cis_level_1 }}
   {{ if .Vars.ubtu22cis_rule_5_1_3 }}
 file:
-  /etc/cron.hourly:
+  cron_hourly_perms:
     title: 5.1.3 | Ensure permissions on /etc/cron.hourly are configured
+    path: /etc/cron.hourly
     exists: true
     owner: root
     group: root
@@ -25,8 +26,9 @@ file:
       Mitre_Mitigations: M1018
   {{ end }}
   {{ if .Vars.ubtu22cis_rule_5_1_4 }}
-  /etc/cron.daily:
+  cron_daily_perms:
     title: 5.1.4 | Ensure permissions on /etc/cron.daily are configured
+    path: /etc/cron.daily
     exists: true
     owner: root
     group: root
@@ -49,8 +51,9 @@ file:
       Mitre_Mitigations: M1018
   {{ end }}
   {{ if .Vars.ubtu22cis_rule_5_1_5 }}
-  /etc/cron.weekly:
+  cron_weekly_perms:
     title: 5.1.5 | Ensure permissions on /etc/cron.weekly are configured
+    path: /etc/cron.weekly
     exists: true
     owner: root
     group: root
@@ -73,8 +76,9 @@ file:
       Mitre_Mitigations: M1018
   {{ end }}
   {{ if .Vars.ubtu22cis_rule_5_1_6 }}
-  /etc/cron.monthly:
+  cron_monthly_perms:
     title: 5.1.6 | Ensure permissions on /etc/cron.monthly are configured
+    path: /etc/cron.monthly
     exists: true
     owner: root
     group: root
@@ -97,8 +101,9 @@ file:
       Mitre_Mitigations: M1018
   {{ end }}
   {{ if .Vars.ubtu22cis_rule_5_1_7 }}
-  /etc/cron.d:
+  cron_d_perms:
     title: 5.1.7 | Ensure permissions on /etc/cron.d are configured
+    path: /etc/cron.d
     exists: true
     owner: root
     group: root

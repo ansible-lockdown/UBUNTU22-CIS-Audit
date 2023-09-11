@@ -2,10 +2,11 @@
   {{ if .Vars.ubtu22cis_gui }}
     {{ if .Vars.ubtu22cis_rule_1_8_2 }}
 file:
-  /etc/gdm3/greeter.dconf-defaults:
+  gdm_banner:
     title: 1.8.2 | Ensure GDM login banner is configured
+    path: /etc/gdm3/greeter.dconf-defaults
     exists: true
-    contains:
+    contents:
     - '/^[org/gnome/login-screen]/'
     - '/^banner-message-enable=true/'
     - '/^banner-message-text='{{ .Vars.ubtu22cis_warning_banner }}'/'

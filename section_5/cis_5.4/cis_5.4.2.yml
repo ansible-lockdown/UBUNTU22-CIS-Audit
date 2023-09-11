@@ -1,10 +1,11 @@
 {{ if .Vars.ubtu22cis_level_1 }}
   {{ if .Vars.ubtu22cis_rule_5_4_2 }}
 file:
-  /etc/pam.d/common-auth:
+  common_auth_passwd_tries:
     title: 5.4.2 | Ensure lockout for failed password attempts is configured
+    path: /etc/pam.d/common-auth
     exists: true
-    contains:
+    contents:
     - '/^auth\s+required\s+pam_faillock.so preauth/'
     - '/^auth\s+\[default=die\]\s+pam_faillock.so authfail/'
     - '/^auth\s+sufficient\s+pam_faillock.so authsucc/'
@@ -24,10 +25,11 @@ file:
       Mitre_Tactics:
       - TA0006
       Mitre_Mitigations: M1027
-  /etc/pam.d/common-account:
+  common_account_passwd_tries:
     title: 5.4.2 | Ensure lockout for failed password attempts is configured
+    path: /etc/pam.d/common-account
     exists: true
-    contains:
+    contents:
     - '/^account\s+required\s+pam_faillock.so/'
     meta:
       server: 1
@@ -45,10 +47,11 @@ file:
       Mitre_Tactics:
       - TA0006
       Mitre_Mitigations: M1027
-  /etc/security/faillock.conf:
+  faillock_passwd_retries:
     title: 5.4.2 | Ensure lockout for failed password attempts is configured
+    path: /etc/security/faillock.conf
     exists: true
-    contains:
+    contents:
     - '/^deny = [0,4]/'
     - '!/^deny = ([5-9]|[0-9]{2,})/'
     - '/^fail_interval = ([1-9]|[1-9][0-9]|[1-8][0-9]{1,2}|900)$/'

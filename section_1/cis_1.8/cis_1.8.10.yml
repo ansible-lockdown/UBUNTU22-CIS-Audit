@@ -2,10 +2,11 @@
   {{ if .Vars.ubtu22cis_gui }}
     {{ if .Vars.ubtu22cis_rule_1_8_10 }}
 file:
-  /etc/gdm3/custom.conf:
+  gdm_xdcmp:
     title: 1.8.10 | Ensure XDCMP is not enabled
+    path: /etc/gdm3/custom.conf
     exists: true
-    contains:
+    contents:
     - '!/^Enable=true/'
     meta:
       server: 1
