@@ -1,0 +1,25 @@
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_4_2_2_3 }}
+command:
+  journald_to_rsyslog:
+    title: 4.2.2.3 | Ensure journald is configured to send logs to rsyslog
+    exec: grep ^\s*ForwardToSyslog /etc/systemd/journald.conf
+    exit-status: 0
+    stdout:
+    - '/^ForwardToSyslog=yes/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.2.2.3
+      CISv8:
+      - 8.2
+      - 8.9
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques: NA
+      Mitre_Tactics: NA
+      Mitre_Mitigations: NA
+  {{ end }}
+{{ end }}

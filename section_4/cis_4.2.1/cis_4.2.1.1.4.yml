@@ -1,0 +1,56 @@
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_4_2_1_1_4 }}
+    {{ if not .Vars.ubtu22cis_is_syslog_server }}
+service:
+  systemd-journal-remote.socket:
+    title: 4.2.1.1.4 | Ensure journald is not configured to recieve logs from a remote client
+    running: false
+    enabled: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.2.1.1.4
+      CISv8:
+      - 4.8
+      - 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1070
+      - T1070.002
+      - T1562
+      - T1562.006
+      Mitre_Tactics:
+      - TA0040
+      Mitre_Mitigations: M1029
+command:
+  journald_socket_masked:
+    title: 4.2.1.1.4 | Ensure journald is not configured to recieve logs from a remote client
+    exec: systemctl is-enabled systemd-journal-remote.socket
+    exit-status: 1
+    stdout:
+    - '/^masked/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.2.1.1.4
+      CISv8:
+      - 4.8
+      - 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1070
+      - T1070.002
+      - T1562
+      - T1562.006
+      Mitre_Tactics:
+      - TA0040
+      Mitre_Mitigations: M1029
+    {{ end }}
+  {{ end }}
+{{ end }}

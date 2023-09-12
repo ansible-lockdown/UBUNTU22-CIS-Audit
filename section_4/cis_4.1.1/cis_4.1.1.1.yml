@@ -1,0 +1,43 @@
+{{ if .Vars.ubtu22cis_level_2 }}
+  {{ if .Vars.ubtu22cis_rule_4_1_1_1 }}
+package:
+  auditd:
+    title: 4.1.1.1 | Ensure auditd is installed | auditd pkg
+    installed: true
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 4.1.1.1
+      CISv8:
+      - 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1562
+      - T1562.001
+      Mitre_Tactics:
+      - TA0005
+      Mitre_Mitigations: NA
+  audispd-plugins:
+    title: 4.1.1.1 | Ensure auditd is installed | audispd-plugins pkg
+    installed: true
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 4.1.1.1
+      CISv8:
+      - 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1562
+      - T1562.001
+      Mitre_Tactics:
+      - TA0005
+      Mitre_Mitigations: NA
+  {{ end }}
+{{ end }}

@@ -1,0 +1,30 @@
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_4_2_1_7 }}
+command:
+  /etc/tmpfiles.d/systemd.conf:
+    title: 4.2.1.7 | Ensure journald default file permissions are configured | Manual Check Required
+    exec: echo "Manual - Please check journald default permissions"
+    exit-status: 0
+    stdout:
+    - '!/^Manual/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.2.1.7
+      CISv8:
+      - 3.3
+      - 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1070
+      - T1070.002
+      - T1083
+      - T1083.000
+      Mitre_Tactics:
+      - TA0007
+      Mitre_Mitigations: NA
+  {{ end }}
+{{ end }}

@@ -1,0 +1,51 @@
+{{ if .Vars.ubtu22cis_level_2 }}
+  {{ if .Vars.ubtu22cis_rule_4_1_1_4 }}
+command:
+  auditd_grub_backlog:
+    title: 4.1.1.4 | Ensure audit_backlog_limit is sufficient | bootloader file
+    exec: grep "^\s*linux" /boot/grub/grub.cfg | grep -Evc "audit_backlog_limit="
+    exit-status: 1
+    stdout:
+    - '0'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 4.1.1.4
+      CISv8:
+      - 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1562
+      - T1562.001
+      Mitre_Tactics:
+      - TA0005
+      Mitre_Mitigations: NA
+file:
+  grub_audit_backlog:
+    title: 4.1.1.4 | Ensure audit_backlog_limit is sufficient | default grub
+    path: /etc/default/grub
+    exists: true
+    contents:
+    - '/GRUB_CMDLINE_LINUX=".*audit_backlog_limit={{ .Vars.ubtu22cis_auditd.auditd_backlog_limit }}/'
+    - '/audit_backlog_limit=(819[2-9]|8[2-9]{2,}|9[0-9]{3,}|[1-9]{5,})/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 4.1.1.4
+      CISv8:
+      - 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1562
+      - T1562.001
+      Mitre_Tactics:
+      - TA0005
+      Mitre_Mitigations: NA
+  {{ end }}
+{{ end }}

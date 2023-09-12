@@ -1,5 +1,5 @@
-{{ if .Vars.ubuntu22cis_level_1 }}
-  {{ if .Vars.ubuntu22cis_rule_1_7_1 }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_1_7_1 }}
 command:
   check_motd_files:
     title: 1.7.1 | Ensure message of the day is configured properly
@@ -13,7 +13,18 @@ command:
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 
+      CIS_ID:
       - 1.7.1
+      CISv8: NA
+      CISv8_IG1: NA
+      CISv8_IG2: NA
+      CISv8_IG3: NA
+      Mitre_Techniques:
+      - T1082
+      - T1082.000
+      - T1592
+      - T1592.004
+      Mitre_Tactics: TA0007
+      Mitre_Mitigations: NA
   {{ end }}
 {{ end }}

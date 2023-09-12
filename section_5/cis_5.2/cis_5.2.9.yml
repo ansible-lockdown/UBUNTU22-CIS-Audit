@@ -1,0 +1,30 @@
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_5_2_9 }}
+command:
+  ssh_empty_passwd:
+    title: 5.2.9 | Ensure SSH PermitEmptyPasswords is disabled
+    exec: grep -Ei "permitemptypasswords" /etc/ssh/sshd_config
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/^(?i)PermitEmptyPasswords no/'
+    - '!/^(?i)PermitEmptyPasswords yes/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.2.9
+      CISv8:
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1021
+      Mitre_Tactics:
+      - TA0008
+      Mitre_Mitigations: M1042
+  {{ end }}
+{{ end }}

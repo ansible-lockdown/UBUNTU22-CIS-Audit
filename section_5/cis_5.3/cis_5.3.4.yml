@@ -1,23 +1,27 @@
-{{ if .Vars.ubuntu22cis_level_1 }}
-  {{ if .Vars.ubuntu22cis_rule_5_3_4 }}
-   {{ if .Vars.ubuntu22cis_sshd_limited }}
+{{ if .Vars.ubtu22cis_level_2 }}
+  {{ if .Vars.ubtu22cis_rule_5_3_4 }}
 command:
-  sshd_access_limited:
-    title: 5.3.4 | Ensure SSH access is limited 
-    exec: grep -E "^(Allow|Deny)(User|Group)" /etc/ssh/sshd_config
-    exit-status:
+  nopasswd_sudoers_d: 
+    title: 5.3.4 | Ensure users must provide password for escalation 
+    exec: grep -R NOPASSWD /etc/sudoers /etc/sudoers.d/* | grep -v '.*\:#'
+    exit-status: 
       or:
       - 0
       - 1
     stdout:
-    {{ range .Vars.ubuntu22cis_sshd_access }}
-    - {{ . }}
-    {{ end }}
+    - '!/.*/'
     meta:
-      server: 1
-      workstation: 1
-      CIS_ID: 
+      server: 2
+      workstation: 2
+      CIS_ID:
       - 5.3.4
-    {{ end }}
+      CISv8:
+      - 5.4
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques: NA
+      Mitre_Tactics: NA
+      Mitre_Mitigations: NA
   {{ end }}
 {{ end }}

@@ -1,0 +1,24 @@
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_1_1_2_1 }}
+command:
+  tmp_fstab:
+    title: 1.1.2.1 | Ensure /tmp is a separate partition
+    exec: mount | grep "on /tmp\s" && grep "/tmp\s" /etc/fstab
+    exit-status: 0
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.1.2.1
+      CISv8:
+      - 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1499
+      - T1499.001
+      Mitre_Tactics: TA0005
+      Mitre_Mitigations: M1022
+  {{ end }}
+{{ end }}

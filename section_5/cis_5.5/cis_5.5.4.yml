@@ -1,5 +1,5 @@
-{{ if .Vars.ubuntu22cis_level_1 }}
-  {{ if .Vars.ubuntu22cis_rule_5_5_4 }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_5_5_4 }}
 command:
   umask_027:
     title: 5.5.4 | Ensure default user umask is 027 or more restrictive | profile_files
@@ -11,20 +11,39 @@ command:
     stdout:
     - '!/.*/'
     meta:
-     server: 1
-     workstation: 1
-     CIS_ID: 
-     - 5.5.4
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.5.4
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1565
+      - T1565.001
+      Mitre_Tactics: TA0007
+      Mitre_Mitigations: NA
 file:
-  /etc/pam.d/common-session:
+  common_session_umask:
     title: 5.5.4 | Ensure default user umask is 027 or more restrictive | /etc/pam.d/common-session
+    path: /etc/pam.d/common-session
     exists: true
-    contains:
+    contents:
     - '/^session\s+optional\s+pam_umask.so/'
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 
+      CIS_ID:
       - 5.5.4
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1565
+      - T1565.001
+      Mitre_Tactics: TA0007
+      Mitre_Mitigations: NA
   {{ end }}
 {{ end }}

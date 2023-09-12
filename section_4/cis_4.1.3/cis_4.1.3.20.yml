@@ -1,0 +1,27 @@
+{{ if .Vars.ubtu22cis_level_2 }}
+  {{ if .Vars.ubtu22cis_rule_4_1_3_20 }}
+command:
+  auditd_immutable:
+    title: 4.1.3.20 | Ensure the audit configuration is immutable
+    exec: 'grep "-e 2" /etc/audit/rules.d/*.rules | cut -d ":" -f2'
+    exit-status: 0
+    stdout:
+    - '-e 2'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 4.1.3.20
+      CISv8:
+      - 3.3
+      - 8.5
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1562
+      - T1562.006
+      Mitre_Tactics: TA0005
+      Mitre_Mitigations: NA
+  {{ end }}
+{{ end }}

@@ -1,0 +1,30 @@
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_5_2_20}}
+command:
+  ssh_maxsessions:
+    title: 5.2.20 | Ensure SSH MaxSessions is limited
+    exec: grep -Ei "^MaxSessions" /etc/ssh/sshd_config
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/^(?i)MaxSessions ([2-9]|10)/'
+    - '!/^MaxSessions (1|1[1-9]|[2-9][0-9]|[1-9]{3,})/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.2.20
+      CISv8: NA
+      CISv8_IG1: NA
+      CISv8_IG2: NA
+      CISv8_IG3: NA
+      Mitre_Techniques:
+      - T1499
+      - T1499.002
+      Mitre_Tactics:
+      - TA0040
+      Mitre_Mitigations: NA
+  {{ end }}
+{{ end }}

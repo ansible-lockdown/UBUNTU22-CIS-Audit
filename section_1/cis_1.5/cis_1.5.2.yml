@@ -1,28 +1,24 @@
-{{ if .Vars.ubuntu22cis_level_1 }}
-  {{ if .Vars.ubuntu22cis_rule_1_5_2 }}
-kernel-param:
-  kernel.randomize_va_space:
-    title: 1.5.2 | Ensure address space layout randomization (ASLR) is enabled | sysctl_live
-    value: '2'
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_1_5_2 }}
+package:
+  prelink:
+    title: 1.5.2 | Ensure prelink is not installed
+    installed: false
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 
+      CIS_ID:
       - 1.5.2
-command:
-  aslr_enabled_2:
-    title: 1.5.2 | Ensure address space layout randomization (ASLR) is enabled | sysctl_configured
-    exit-status: 
-      or:
-      - 0
-      - 2
-    exec: 'grep "^kernel\.randomize_va_space" /etc/sysctl.conf /etc/sysctl.d/* | cut -d ":" -f2'
-    stdout: 
-    - '/kernel.randomize_va_space(\s|)=(\s|)2/'
-    meta:
-      server: 1
-      workstation: 1
-      CIS_ID: 
-      - 1.5.2
+      CISv8: 3.14
+      CISv8_IG1: false
+      CISv8_IG2: false
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1055
+      - T1055.009
+      - T1065
+      - T1065.001
+      Mitre_Tactics: TA0002
+      Mitre_Mitigations: M1050
   {{ end }}
 {{ end }}

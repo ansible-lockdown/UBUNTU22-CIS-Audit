@@ -1,0 +1,30 @@
+{{ if not .Vars.ubtu22cis_rpc_required }}
+  {{ if .Vars.ubtu22cis_level_1 }}
+    {{ if .Vars.ubtu22cis_rule_2_3_6 }}
+package:
+  rpcbind:
+    title: 2.3.6 | Ensure RPC is not installed
+    installed: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 2.3.6
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1203
+      - T1203.000
+      - T1543
+      - T1543.002
+      Mitre_Tactics:
+      - TA0006
+      - TA0008
+      Mitre_Mitigations:
+      - M1041
+      - M1042
+    {{ end }}
+  {{ end }}
+{{ end }}

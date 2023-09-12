@@ -1,0 +1,34 @@
+{{ if .Vars.ubtu22cis_level_2 }}
+  {{ if .Vars.ubtu22cis_rule_4_1_4_11 }}
+command:
+  audit_tools_crypto:
+    title: 4.1.4.11 | Ensure cryptographic mechanisms are used to protect the integrity of audit tools
+    exec: grep -P -- '(\/sbin\/(audit|au)\H*\b)' /etc/aide/aide.conf
+    exit-status: 0
+    stdout:
+    - '/sbin/auditctl p+i+n+u+g+s+b+acl+xattrs+sha512'
+    - '/sbin/auditd p+i+n+u+g+s+b+acl+xattrs+sha512'
+    - '/sbin/ausearch p+i+n+u+g+s+b+acl+xattrs+sha512'
+    - '/sbin/aureport p+i+n+u+g+s+b+acl+xattrs+sha512'
+    - '/sbin/autrace p+i+n+u+g+s+b+acl+xattrs+sha512'
+    - '/sbin/augenrules p+i+n+u+g+s+b+acl+xattrs+sha512'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 4.1.4.11
+      CISv8:
+      - 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1070
+      - T1070.002
+      - T1083
+      - T1083.000
+      Mitre_Tactics:
+      - TA0007
+      Mitre_Mitigations: NA
+  {{ end }}
+{{ end }}

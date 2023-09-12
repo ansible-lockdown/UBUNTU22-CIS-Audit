@@ -1,0 +1,43 @@
+{{ if .Vars.ubtu22cis_level_2 }}
+  {{ if .Vars.ubtu22cis_rule_4_1_3_18 }}
+command:
+  usermod_module_cnf:
+    title: 4.1.3.18 | Ensure successful and unsuccessful attempts to use the usermod command are recorded | Config
+    exec: grep usermod /etc/audit/rules.d/*.rules
+    exit-status: 0
+    stdout:
+    - '/-a always,exit -F path=/usr/sbin/usermod -F perm=x -F auid>=1000 -F auid!=(unset|4294967295|-1) -k usermod/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 4.1.3.18
+      CISv8:
+      - 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques: NA
+      Mitre_Tactics: NA
+      Mitre_Mitigations: NA
+  usermod_module_live:
+    title: 4.1.3.18 | Ensure successful and unsuccessful attempts to use the usermod command are recorded | Live
+    exec: auditctl -l | grep usermod
+    exit-status: 0
+    stdout:
+    - '/-a always,exit -S all -F path=/usr/sbin/usermod -F perm=x -F auid>=1000 -F auid!=(unset|4294967295|-1) -F key=usermod/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 4.1.3.18
+      CISv8:
+      - 8.5
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques: NA
+      Mitre_Tactics: NA
+      Mitre_Mitigations: NA
+  {{ end }}
+{{ end }}

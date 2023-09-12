@@ -1,17 +1,53 @@
-{{ if .Vars.ubuntu22cis_level_1 }}
-  {{ if .Vars.ubuntu22cis_rule_5_4_4 }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_5_4_4 }}
 command:
-  sha512_common_password:
-    title: 5.4.4 | Ensure password hashing algorithm is SHA-512 | password-auth
-    exec: grep sha512 /etc/pam.d/common-password
-    exit-status: 0
+  common-password_algo:
+    title: 5.4.4 | Ensure password hashing algorithm is up to date with the latest standards | common password
+    exec: grep -E "yescrypt|md5|bigcrypt|sha256|sha512|blowfish" /etc/pam.d/common-password | grep -v '^#'
+    exit-status: 
+      or:
+      - 0
+      - 1
     stdout:
-    - '/^password\s+\[success=1 default=ignore\]\s+pam_unix.so sha512/'
-    - '!/^password.*md5/'
+    - '!/.*/'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
-      - 5.4.3
+      - 5.4.4
+      CISv8: 3.11
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1003
+      - T1003.008
+      - T1110
+      - T1110.002
+      Mitre_Tactics: TA0006
+      Mitre_Mitigations: M1041
+  yescrypt_login_defs:
+    title: 5.4.4 | Ensure password hashing algorithm is up to date with the latest standards | common password
+    exec: grep -i encrypt_method /etc/login.defs
+    exit-status: 0
+    stdout:
+    - '/^ENCRYPT_METHOD yescrypt/'
+    - '!/^ENCRYPT_METHOD (md5|bigcrypt|sha256|sha512|blowfish)/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.4.4
+      CISv8: 3.11
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1003
+      - T1003.008
+      - T1110
+      - T1110.002
+      Mitre_Tactics: TA0006
+      Mitre_Mitigations: M1041
   {{ end }}
 {{ end }}

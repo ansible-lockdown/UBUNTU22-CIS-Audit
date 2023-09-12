@@ -1,0 +1,42 @@
+{{ if .Vars.ubtu22cis_level_2 }}
+  {{ if .Vars.ubtu22cis_rule_1_1_1_2 }}
+command:
+  squashfs:
+    title: 1.1.1.2 | Ensure mounting of squashfs filesystems is disabled
+    exit-status: 0
+    exec: if [ `lsmod | grep -c squashfs` != 0 ]; then  "modprobe -n -v squashfs | grep -E '(squashfs|install)'"; else echo OK; fi
+    stdout:
+    - '/(install /bin/false|OK)/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID: 1.1.1.2
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques: NA
+      Mitre_Tactics: TA0005
+      Mitre_Mitigations: M1050
+  squashfs_blacklist:
+    title: 1.1.1.2 | Ensure mounting of squashfs filesystems is disabled | blacklist
+    exit-status: 0
+    exec: grep "blacklist squashfs" /etc/modprobe.d/*.conf
+    stdout:
+    - '/^.*:blacklist squashfs$/'
+    - '!/.*#blacklist squashfs$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID: 1.1.1.2
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques: NA
+      Mitre_Tactics: TA0005
+      Mitre_Mitigations: M1050
+  {{ end }}
+{{ end }}

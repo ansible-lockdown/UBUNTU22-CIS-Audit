@@ -1,12 +1,28 @@
-{{ if not .Vars.ubuntu22cis_rpc_required }}
-  {{ if .Vars.ubuntu22cis_rule_2_2_6 }}
+{{ if not .Vars.ubtu22cis_nfs_server }}
+  {{ if .Vars.ubtu22cis_level_1 }}
+    {{ if .Vars.ubtu22cis_rule_2_2_6 }}
 package:
-  rpcbind:
-    title: 2.2.6 | Ensure RPC is not installed
+  nfs-kernel-server:
+    title: 2.2.6 | Ensure NFS is not installed
     installed: false
     meta:
       server: 1
       workstation: 1
       CIS_ID: 2.2.6
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1203
+      - T1203.000
+      - T1210
+      - T1210.000
+      - T1543
+      - T1543.002
+      Mitre_Tactics: TA0008
+      Mitre_Mitigations: M1042
+    {{ end }}
   {{ end }}
 {{ end }}

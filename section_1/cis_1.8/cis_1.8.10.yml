@@ -1,0 +1,31 @@
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_gui }}
+    {{ if .Vars.ubtu22cis_rule_1_8_10 }}
+file:
+  gdm_xdcmp:
+    title: 1.8.10 | Ensure XDCMP is not enabled
+    path: /etc/gdm3/custom.conf
+    exists: true
+    contents:
+    - '!/^Enable=true/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.8.10
+      CISv8: 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1040
+      - T1040.000
+      - T1056
+      - T1056.001
+      - T1557
+      - T1557.000
+      Mitre_Tactics: TA0002
+      Mitre_Mitigations: M1050
+    {{ end }}
+  {{ end }}
+{{ end }}

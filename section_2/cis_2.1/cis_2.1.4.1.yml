@@ -1,0 +1,28 @@
+---
+
+{{ if eq .Vars.ubtu22cis_time_service "ntp" }}
+  {{ if .Vars.ubtu22cis_level_1 }}
+    {{ if .Vars.ubtu22cis_rule_2_1_4_1 }}
+file:
+  ntp_conf_configured:
+    title: 2.1.4.1 | Ensure ntp access control is configured
+    path: /etc/ntp.conf
+    exists: true
+    contents:
+    - '/^restrict -4 default kod nomodify notrap nopeer noquery/'
+    - '/^restrict -6 default kod nomodify notrap nopeer noquery/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 2.1.4.1
+      CISv8:
+      - 8.4
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques: NA
+      Mitre_Tactics: NA
+      Mitre_Mitigations: NA
+    {{ end }}
+  {{ end }}
+{{ end }}

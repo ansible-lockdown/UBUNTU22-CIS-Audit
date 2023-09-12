@@ -1,14 +1,27 @@
-{{ if .Vars.ubuntu22cis_rule_6_2_11 }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_6_2_11 }}
 command:
-  uid_0_check:
-    title: 6.2.11 | Ensure root is the only UID 0 account
-    exec: "awk -F: '($3 == 0) { print $1 }' /etc/passwd"
-    exit-status: 0
+  home_dirs_exist:
+    title: 6.2.11 | Ensure all  local interactive user home directories exist
+    exec: for i in `cat /etc/passwd | grep -Ev "halt|sync|shutdown|nfsnobody|nologin|false" | cut -d ':' -f6`; do if [ ! -d $i ]; then echo "homedir missing $i"; fi; done
+    exit-status:
+      or:
+      - 0
+      - 1
+      - 2
     stdout:
-    - 'root'
+    - '!/./'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 6.2.11
+      CISv8: 3.3
+      CISv8_IG1: True
+      CISv8_IG2: True
+      CISv8_IG3: True
+      Mitre_Techniques: NA
+      Mitre_Tactics: TA0005
+      Mitre_Mitigations: M1021
+  {{ end }}
 {{ end }}

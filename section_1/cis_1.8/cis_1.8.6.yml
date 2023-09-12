@@ -1,0 +1,27 @@
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_gui }}
+    {{ if .Vars.ubtu22cis_rule_1_8_6 }}
+file:
+  gnome_automount_disable:
+    title: 1.8.6 | Ensure GDM automatic mounting of removable media is disabled
+    path: /etc/dconf/db/local.d/00-media-automount
+    exists: true
+    contents:
+    - '/^[org/gnome/desktop/media-handling]/'
+    - '/^automount=false/'
+    - '/^automount-open=false/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.8.6
+      CISv8: 10.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques: NA
+      Mitre_Tactics: NA
+      Mitre_Mitigations: NA
+    {{ end }}
+  {{ end }}
+{{ end }}

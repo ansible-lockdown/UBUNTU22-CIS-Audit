@@ -1,0 +1,32 @@
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_2_4 }}
+command:
+  non_essen_svcs:
+    title: 2.4 | Ensure nonessential services are removed or masked
+    exec: echo "Manual -  checking of services that are not required are removed or masked"
+    exit-status: 0
+    stdout:
+    - '/^Manual/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 2.4
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1203
+      - T1203.000
+      - T1210
+      - T1210.000
+      - T1543
+      - T1543.002
+      Mitre_Tactics:
+      - TA0006
+      - TA0008
+      Mitre_Mitigations:
+      - M1042
+  {{ end }}
+{{ end }}

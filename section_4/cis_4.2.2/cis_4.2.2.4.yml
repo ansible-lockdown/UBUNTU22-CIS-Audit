@@ -1,0 +1,34 @@
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_4_2_2_4 }}
+command:
+  rsyslog_d_perms:
+    title: 4.2.2.4 | Ensure rsyslog default file permissions configured
+    exec: grep '\$FileCreateMode' /etc/rsyslog.conf /etc/rsyslog.d/*.conf | grep -cv '\$FileCreateMode 0[0,6][0,4]0'
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '0'
+    - '!/[1-9]/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.2.2.4
+      CISv8:
+      - 3.3
+      - 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1070
+      - T1070.002
+      - T1083
+      - T1083.000
+      Mitre_Tactics:
+      - TA0007
+      Mitre_Mitigations: NA
+  {{ end }}
+{{ end }}

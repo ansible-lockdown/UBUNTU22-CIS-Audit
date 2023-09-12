@@ -1,0 +1,49 @@
+{{ if not .Vars.ubtu22cis_is_mail_server }}
+  {{ if .Vars.ubtu22cis_level_1 }}
+    {{ if .Vars.ubtu22cis_rule_2_2_10 }}
+package:
+  dovecot-imapd:
+    title: 2.2.10 | Ensure IMAP and POP3 server are not installed | imap
+    installed: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 2.2.10
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1203
+      - T1203.000
+      - T1210
+      - T1210.000
+      - T1543
+      - T1543.002
+      Mitre_Tactics: TA0008
+      Mitre_Mitigations: M1042
+  dovecot-pop3d:
+    title: 2.2.10 | Ensure IMAP and POP3 server are not installed | pop3d
+    installed: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 2.2.10
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1203
+      - T1203.000
+      - T1210
+      - T1210.000
+      - T1543
+      - T1543.002
+      Mitre_Tactics: TA0008
+      Mitre_Mitigations: M1042
+    {{ end }}
+  {{ end }}
+{{ end }}

@@ -1,14 +1,26 @@
-{{ if .Vars.ubuntu22cis_rule_6_2_8 }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_6_2_8 }}
 command:
-  dot_netrc_files:
-    title: 6.2.8 | Ensure no users have .netrc files
-    exec: 'find /home/ -name .netrc'
+  no_dup_groupname:
+    title: 6.2.8 | Ensure no duplicate group names exist
+    exec: "cat /etc/group | cut -d: -f1 | uniq -d"
     exit-status: 0
-    stdout: 
+    stdout:
     - '!/./'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 6.2.8
+      CISv8: NA
+      CISv8_IG1: NA
+      CISv8_IG2: NA
+      CISv8_IG3: NA
+      Mitre_Techniques:
+      - T1078
+      - T1078.001
+      - T1078.003
+      Mitre_Tactics: TA0004
+      Mitre_Mitigations: M1027
+  {{ end }}
 {{ end }}

@@ -1,8 +1,9 @@
-{{ if .Vars.ubuntu22cis_rule_6_2_5 }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_6_2_5 }}
 command:
-  home_dirs_owned:
-    title: 6.2.5 | Ensure users own their home directories
-    exec: "getent passwd {1000..60000} |  awk -F: '{ print $1  \" \"  $7 }' | while read user dir; do if [ $user != 'ftpd' ]; then owner=$(stat -L -c \"%U\" \"$dir\"); if [ \"$owner\" != \"$user\" ]; then echo \"home dir for $user owned by $owner\"; fi; fi; done"
+  no_dup_uid:
+    title: 6.2.5 | Ensure no duplicate UIDs exist
+    exec: "cat /etc/passwd | cut -d: -f3 | uniq -d"
     exit-status: 0
     stdout:
     - '!/./'
@@ -11,4 +12,15 @@ command:
       workstation: 1
       CIS_ID:
       - 6.2.5
+      CISv8: NA
+      CISv8_IG1: NA
+      CISv8_IG2: NA
+      CISv8_IG3: NA
+      Mitre_Techniques:
+      - T1078
+      - T1078.001
+      - T1078.003
+      Mitre_Tactics: TA0005
+      Mitre_Mitigations: M1027
+  {{ end }}
 {{ end }}

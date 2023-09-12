@@ -1,0 +1,27 @@
+{{ if .Vars.ubtu22cis_level_2 }}
+  {{ if .Vars.ubtu22cis_rule_4_1_2_1 }}
+command:
+  auditd_max_log_file:
+    title: 4.1.2.1 | Ensure audit log storage size is configured
+    exec: grep -E "^max_log_file" /etc/audit/auditd.conf
+    exit-status: 0
+    stdout:
+    - '/max_log_file = [1-9][0-9]{1,2}/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 4.1.2.1
+      CISv8:
+      - 8.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1562
+      - T1562.001
+      Mitre_Tactics:
+      - TA0040
+      Mitre_Mitigations: M1053
+  {{ end }}
+{{ end }}

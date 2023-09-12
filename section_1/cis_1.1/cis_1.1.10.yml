@@ -1,13 +1,31 @@
-{{ if .Vars.ubuntu22cis_level_2 }}
-  {{ if .Vars.ubuntu22cis_rule_1_1_10 }}
-mount:
-  /var:
-    title: 1.1.10 | Ensure separate partition exists for /var
-    exists: true
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_1_1_10 }}
+command:
+  usb-storage:
+    title: 1.1.10 | Ensure mounting of usb-storage is disabled
+    exit-status: 0
+    exec: "modprobe -n -v usb-storage | grep -E '(usb-storage|install)'"
+    stdout:
+    - install /bin/true
     meta:
-      server: 2
+      server: 1
       workstation: 2
-      CIS_ID: 
-      - 1.1.10
+      CIS_ID: 1.1.24
+      CISv8: 10.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1052
+      - T1052.001
+      - T1091
+      - T1091.000
+      - T1200
+      - T1200.000
+      Mitre_Tactics:
+      - TA0001
+      - TA0010
+      Mitre_Mitigations:
+      - M1034
   {{ end }}
 {{ end }}

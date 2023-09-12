@@ -1,19 +1,27 @@
-{{ if .Vars.ubuntu22cis_level_2 }}
-  {{ if .Vars.run_heavy_tests }}
-    {{ if .Vars.ubuntu22cis_rule_6_1_1 }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_6_1_1 }}
 command:
-  rpm_filecheck:
-    title: 6.1.1 | Audit system file permissions
-    exec: echo "Manual Check of packages required"
+  passwd_perms:
+    title: 6.1.1 | Ensure permissions on /etc/passwd are configured
+    exec:  stat -L -c "%a %U %G" /etc/passwd
     exit-status: 0
     stdout:
-    - '!/^Manual/'
-    timeout: {{ .Vars.timeout_ms }}
+    -  '/(0|6[0,4][0,4]) root root/'
     meta:
-      server: 2
-      workstation: 2
+      server: 1
+      workstation: 1
       CIS_ID:
       - 6.1.1
-    {{ end }}
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1003
+      - T1003.008
+      - T1222
+      - T1222.002
+      Mitre_Tactics: TA0005
+      Mitre_Mitigations: M1022
   {{ end }}
 {{ end }}

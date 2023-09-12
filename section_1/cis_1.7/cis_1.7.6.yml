@@ -1,8 +1,9 @@
-{{ if .Vars.ubuntu22cis_level_1 }}
-  {{ if .Vars.ubuntu22cis_rule_1_7_6 }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_1_7_6 }}
 file:
-  /etc/issue.net:
+  etc_issue_net_perms:
     title: 1.7.6 | Ensure permissions on /etc/issue.net are configured
+    path: /etc/issue.net
     exists: true
     owner: root
     group: root
@@ -10,7 +11,16 @@ file:
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 
+      CIS_ID:
       - 1.7.6
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1222
+      - T1222.002
+      Mitre_Tactics: TA0005
+      Mitre_Mitigations: M1022
   {{ end }}
 {{ end }}

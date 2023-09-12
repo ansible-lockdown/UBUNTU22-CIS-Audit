@@ -1,16 +1,46 @@
-{{ if .Vars.ubuntu22cis_level_1 }}
-  {{ if .Vars.ubuntu22cis_rule_1_5_1 }}
-command:
-  kernel_nx:
-    title: 1.5.1 | Ensure XD/NX support is enabled
-    exit-status: 0
-    exec: "journalctl | grep 'protection: active'"
-    stdout:
-    - "kernel: NX (Execute Disable) protection: active"
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_1_5_1 }}
+kernel-param:
+  kernel.randomize_va_space:
+    title: 1.5.1 | Ensure address space layout randomization (ASLR) is enabled | sysctl_live
+    value: '2'
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 
+      CIS_ID:
       - 1.5.1
+      CISv8: 10.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1068
+      - T1068.000
+      Mitre_Tactics: TA0002
+      Mitre_Mitigations: M1050
+command:
+  aslr_enabled_2:
+    title: 1.5.1 | Ensure address space layout randomization (ASLR) is enabled | sysctl_configured
+    exit-status:
+      or:
+      - 0
+      - 2
+    exec: 'grep "^kernel\.randomize_va_space" /etc/sysctl.conf /etc/sysctl.d/* | cut -d ":" -f2'
+    stdout: 
+    - '/kernel.randomize_va_space(\s|)=(\s|)2/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.5.1
+      CISv8: 10.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1068
+      - T1068.000
+      Mitre_Tactics: TA0002
+      Mitre_Mitigations: M1050
   {{ end }}
 {{ end }}

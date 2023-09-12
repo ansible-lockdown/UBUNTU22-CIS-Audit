@@ -1,0 +1,23 @@
+{{ if .Vars.ubtu22cis_level_2 }}
+  {{ if .Vars.ubtu22cis_rule_1_1_6_1 }}
+command:
+  var_log_audit_fstab:
+    title: 1.1.6.1 | Ensure separate partition exists for /var/log/audit
+    exec: mount | grep "on /var/log/audit\s" && grep "/var/log/audit\s" /etc/fstab
+    exit-status: 0
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 1.1.6.1
+      CIS_v8: 8.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1499
+      - T1499.001
+      Mitre_Tactics: TA0005
+      Mitre_Mitigations: M1022
+  {{ end }}
+{{ end }}

@@ -1,0 +1,26 @@
+{{ if .Vars.ubtu22cis_level_2 }}
+  {{ if .Vars.ubtu22cis_rule_4_1_3_6 }}
+command:
+  auditd_priv_cmds_cnf:
+    title: 4.1.3.6 | Ensure use of privileged commands is collected | Config
+    exec: grep delete /etc/audit/rules.d/*.rules
+    exit-status: 0
+    stdout:
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 4.1.3.6
+      CISv8:
+      - 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1562
+      - T1562.006
+      Mitre_Tactics:
+      - TA0002
+      Mitre_Mitigations: M1026
+  {{ end }}
+{{ end }}

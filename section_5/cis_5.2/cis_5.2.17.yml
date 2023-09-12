@@ -1,0 +1,55 @@
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_5_2_17 }}
+command:
+  ssh_banner:
+    title: 5.2.17 | Ensure SSH warning banner configured | sshd_default
+    exec: grep -Ei "^banner" /etc/ssh/sshd_config
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - 'Banner /etc/issue.net'
+    - '!/^Banner none/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.2.17
+      CISv8:
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques: NA
+      Mitre_Tactics:
+      - TA0001
+      - TA0007
+      Mitre_Mitigations: M1035
+  ssh_configd_banner:
+    title: 5.2.17 | Ensure SSH warning banner configured | conf.d banner settings
+    exec: grep -Eis '^\s*Banner\s+"?none\b'/etc/ssh/sshd_config.d/*.conf
+    exit-status: 
+      or:
+      - 0
+      - 1
+      - 2
+    stdout:
+    - '!/.*/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.2.17
+      CISv8:
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques: NA
+      Mitre_Tactics:
+      - TA0001
+      - TA0007
+      Mitre_Mitigations: M1035
+  {{ end }}
+{{ end }}

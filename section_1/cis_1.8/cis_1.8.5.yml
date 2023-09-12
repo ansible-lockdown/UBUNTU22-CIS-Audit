@@ -1,0 +1,26 @@
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_gui }}
+    {{ if .Vars.ubtu22cis_rule_1_8_5 }}
+file:
+  screensaver_lock_file:
+    title: 1.8.5 | Ensure GDM screen locks cannot be overridden
+    path: /etc/dconf/db/local.d/locks/00-screensave_lock
+    exists: true
+    contents:
+    - '^\/org\/gnome\/desktop\/session\/idle-delay/'
+    - '^/\/org\/gnome\/desktop\/screensaver\/lock-delay/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.8.5
+      CISv8: 4.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques: NA
+      Mitre_Tactics: NA
+      Mitre_Mitigations: NA
+    {{ end }}
+  {{ end }}
+{{ end }}

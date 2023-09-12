@@ -1,0 +1,57 @@
+---
+
+{{ if eq .Vars.ubtu22cis_time_service "chrony" }}
+  {{ if .Vars.ubtu22cis_level_1 }}
+    {{ if .Vars.ubtu22cis_rule_2_1_2_1 }}
+file:
+  chrony_pool:
+    title: 2.1.2.1 | Ensure chrony is configured with authorized timeserver | timeserver pool
+    path: /etc/chrony/sources.d/pool.source
+    exists: true
+    contents:
+    {{- range .Vars.ubtu22cis_time_pool }}
+    - '/^pool {{ .name }} {{ .options }}/'
+    {{ end }}
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 2.1.2.1
+      CISv8:
+      - 8.4
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1070
+      - T1070.002
+      - T1562
+      - T1562.001
+      Mitre_Tactics: TA0002
+      Mitre_Mitigations: M1002
+  chrony_timeservers:
+    title: 2.1.2.1 | Ensure chrony is configured with authorized timeserver | timeserver servers
+    path: /etc/chrony/sources.d/server.source
+    exists: true
+    contents:
+    {{- range .Vars.ubtu22cis_time_servers }}
+    - '/^server {{ .name }} {{ .options }}/'
+    {{ end }}
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 2.1.2.1
+      CISv8:
+      - 8.4
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1070
+      - T1070.002
+      - T1562
+      - T1562.001
+      Mitre_Tactics: TA0002
+      Mitre_Mitigations: M1002
+    {{ end }}
+  {{ end }}
+{{ end }}

@@ -1,7 +1,7 @@
-{{ if .Vars.ubuntu22cis_level_1 }}
-  {{ if .Vars.ubuntu22cis_config_aide }}
-    {{ if .Vars.ubuntu22cis_rule_1_3_2 }}
-      {{ if eq .Vars.ubuntu22cis_aide_scan "cron" }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_config_aide }}
+    {{ if .Vars.ubtu22cis_rule_1_3_2 }}
+      {{ if eq .Vars.ubtu22cis_aide_scan "cron" }}
 command:
   aide_cron:
     title: 1.3.2 | L1 | Ensure filesystem integrity is regularly checked | aide cron
@@ -15,11 +15,25 @@ command:
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 
+      CIS_ID:
       - 1.3.2
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1036
+      - T1036.002
+      - T1036.003
+      - T1036.004
+      - T1036.005
+      - T1565
+      - T1565.001
+      Mitre_Tactics: TA0040
+      Mitre_Mitigations: M1022
       {{ end }}
 service:
-    {{ if eq .Vars.ubuntu22cis_aide_scan "timer" }}
+    {{ if eq .Vars.ubtu22cis_aide_scan "timer" }}
   aidecheck:
     title: 1.3.2 | L1 | Ensure filesystem integrity is regularly checked | aidecheck service
     enabled: true
@@ -28,8 +42,22 @@ service:
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 
+      CIS_ID:
       - 1.3.2
+       CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1036
+      - T1036.002
+      - T1036.003
+      - T1036.004
+      - T1036.005
+      - T1565
+      - T1565.001
+      Mitre_Tactics: TA0040
+      Mitre_Mitigations: M1022
   aidecheck.timer:
     title: 1.3.2 | L1 | Ensure filesystem integrity is regularly checked | aidecheck timer
     enabled: true
@@ -38,8 +66,22 @@ service:
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 
+      CIS_ID:
       - 1.3.2
+       CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1036
+      - T1036.002
+      - T1036.003
+      - T1036.004
+      - T1036.005
+      - T1565
+      - T1565.001
+      Mitre_Tactics: TA0040
+      Mitre_Mitigations: M1022
       {{ end }}
     {{ end }}
   {{ end }}

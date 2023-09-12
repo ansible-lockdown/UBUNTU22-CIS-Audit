@@ -1,0 +1,33 @@
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_4_2_1_1_2 }}
+    {{ if not .Vars.ubtu22cis_is_syslog_server }}
+file:
+  journal_remote_configured:
+    title: 4.2.1.1.2 | Ensure systemd-journal-remote is configured
+    path: /etc/systemd/journal-upload.conf
+    exists: true
+    contents:
+    - '/^URL=/'
+    - '/ServerKeyFile=.*.pem'
+    - '/ServerCertificateFile=.*.pem'
+    - '/TrustedCertificateFile=.*.pem'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.2.1.1.2
+      CISv8: 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1070
+      - T1070.002
+      - T1562
+      - T1562.006
+      Mitre_Tactics:
+      - TA0040
+      Mitre_Mitigations: M1029
+    {{ end }}
+  {{ end }}
+{{ end }}

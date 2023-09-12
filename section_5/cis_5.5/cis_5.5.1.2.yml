@@ -1,19 +1,36 @@
-{{ if .Vars.ubuntu22cis_level_1 }}
-  {{ if .Vars.ubuntu22cis_rule_5_5_1_2 }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_5_5_1_2 }}
 command:
   login_defs_PASS_MAX_DAYS:
     title: 5.5.1.2 | Ensure password expiration is 365 days or less | logins.def
     exec: grep -Ei "^PASS_MAX_DAYS" /etc/login.defs
     exit-status: 0
     stdout:
-    - '/^PASS_MAX_DAYS\s*{{ .Vars.ubuntu22cis_pass.max_days }}/'
+    - '/^PASS_MAX_DAYS\s*{{ .Vars.ubtu22cis_pass.max_days }}/'
     - '!/^PASS_MAX_DAYS\s*(36[6-9]|[4-9][0-9][0-9]|[1-9][0-9]{3,})/'
     - '!/^PASS_MAX_DAYS\s*-1/'
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 
+      CIS_ID:
       - 5.5.1.2
+      CISv8: 5.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1078
+      - T1078.001
+      - T1078.002
+      - T1078.003
+      - T1078.004
+      - T1110
+      - T1110.001
+      - T1110.002
+      - T1110.003
+      - T1110.004
+      Mitre_Tactics: NA
+      Mitre_Mitigations: NA
   users_max_pw_expire:
     title: 5.5.1.2 | Ensure password expiration is 365 days or less | user_check
     exec: "awk -F: '(/^[^:]+:[^!*]/ && ($5>365 || $5~/([0-1]|-1|\\s*)/)){print $1 \" \" $5}' /etc/shadow"
@@ -26,7 +43,24 @@ command:
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 
+      CIS_ID:
       - 5.5.1.2
+      CISv8: 5.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1078
+      - T1078.001
+      - T1078.002
+      - T1078.003
+      - T1078.004
+      - T1110
+      - T1110.001
+      - T1110.002
+      - T1110.003
+      - T1110.004
+      Mitre_Tactics: NA
+      Mitre_Mitigations: NA
   {{ end }}
 {{ end }}

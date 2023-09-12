@@ -1,18 +1,25 @@
-{{ if .Vars.ubuntu22cis_rule_6_2_4 }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_6_2_4 }}
 command:
   home_dirs_exist:
-    title: 6.2.4 | Ensure all users' home directories exist
-    exec: for i in `cat /etc/passwd | grep -Ev "halt|sync|shutdown|nfsnobody|nologin|false" | cut -d ':' -f6`; do if [ ! -d $i ]; then echo "homedir missing $i"; fi; done
-    exit-status: 
-      or:
-      - 0
-      - 1
-      - 2
+    title: 6.2.4 | Ensure shadow group is empty
+    exec: getent group shadow | awk -F':' '{print $NF}'
+    exit-status: 0
     stdout:
-    - '!/./'
+    - '!/.*/'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 6.2.4
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1003
+      - T1003.008
+      Mitre_Tactics: TA0005
+      Mitre_Mitigations: M1022
+  {{ end }}
 {{ end }}

@@ -1,0 +1,25 @@
+{{ if .Vars.ubtu22cis_level_2 }}
+  {{ if .Vars.ubtu22cis_rule_4_1_1_2 }}
+service:
+  auditd:
+    title: 4.1.1.2 | Ensure auditd service is enabled and running
+    enabled: true
+    running: true
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 4.1.1.2
+      CISv8:
+      - 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1562
+      - T1562.001
+      Mitre_Tactics:
+      - TA0005
+      Mitre_Mitigations: NA
+  {{ end }}
+{{ end }}

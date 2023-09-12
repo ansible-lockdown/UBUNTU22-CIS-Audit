@@ -1,0 +1,30 @@
+{{ if not .Vars.ubtu22cis_allow_autofs}}
+  {{ if .Vars.ubtu22cis_level_1 }}
+    {{ if .Vars.ubtu22cis_rule_1_1_9 }}
+service:
+  autofs:
+    title: 1.1.9 | Disable Automounting
+    enabled: false
+    running: false
+    meta:
+      server: 1
+      workstation: 2
+      CIS_ID: 1.1.9
+      CISv8: 10.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1068
+      - T1068.000
+      - T1203
+      - T1203.000
+      - T1211
+      - T1211.000
+      - T1212
+      - T1212.000
+      Mitre_Tactics: NA
+      Mitre_Mitigations: NA
+      {{ end }}
+  {{ end }}
+{{ end }}

@@ -1,27 +1,55 @@
-{{ if .Vars.ubuntu22cis_rule_1_6_1_2 }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_1_6_1_2 }}
 file:
-  {{ .Vars.ubuntu22cis_grub_conf_file }}:
+  apparmor_boot_grub:
     title: 1.6.1.2 | Ensure AppArmor is enabled in the bootloader configuration | running grub
+    path: /boot/grub/grub.cfg
     exists: true
-    contains:
+    contents:
     - '/apparmor=1/'
     - '/security=apparmor/'
     - '!/apparmor=0/'
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 
+      CIS_ID:
       - 1.6.1.2
-  /etc/default/grub:
-    title: 1.6.1.2 | Ensure AppArmor is enabled in the bootloader configuration | running grub
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1068
+      - T1068.000
+      - T1565
+      - T1565.001
+      - T1565.003
+      Mitre_Tactics: TA0003
+      Mitre_Mitigations: M1206
+  grub_app_armor:
+    title: 1.6.1.2 | Ensure AppArmor is enabled in the bootloader configuration | default grub
     exists: true
-    contains:
+    path: /etc/default/grub
+    contents:
     - '/^GRUB_CMDLINE_LINUX.*apparmor=1/'
     - '/^GRUB_CMDLINE_LINUX.*security=apparmor/'
     - '!/apparmor=0/'
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 
+      CIS_ID:
       - 1.6.1.2
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1068
+      - T1068.000
+      - T1565
+      - T1565.001
+      - T1565.003
+      Mitre_Tactics: TA0003
+      Mitre_Mitigations: M1206
+  {{ end }}
 {{ end }}

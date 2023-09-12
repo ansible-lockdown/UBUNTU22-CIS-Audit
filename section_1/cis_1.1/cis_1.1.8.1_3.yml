@@ -1,0 +1,111 @@
+{{ if .Vars.ubtu22cis_level_1 }}
+mount:
+  /dev/shm:
+    title: |
+        1.1.8.1 | Ensure nodev option set on /var/log/audit partition
+        1.1.8.2 | Ensure noexec option set on /var/log/audit partition
+        1.1.8.3 | Ensure nosuid option set on /var/log/audit partition
+    exists: true
+    opts:
+    {{ if .Vars.ubtu22cis_rule_1_1_8_1 }}
+    - nodev
+    {{ end }}
+    {{ if .Vars.ubtu22cis_rule_1_1_8_2 }}
+    - noexec
+    {{ end }}
+    {{ if .Vars.ubtu22cis_rule_1_1_8_3 }}
+    - nosuid
+    {{ end }}
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.1.8.1
+      - 1.1.8.2
+      - 1.1.8.3
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1200
+      - T1200.000
+      Mitre_Tactics: TA0005
+      Mitre_Mitigations: M1022
+command:
+  {{ if .Vars.ubtu22cis_rule_1_1_8_1 }}
+  nodev_devshm_fstab:
+     title: 1.1.8.1 | Ensure nodev option set on /dev/shm partition | fstab config
+     exec: grep '.*\/dev/shm\s.*nodev.*$' \/etc\/fstab
+     exit-status:
+       or:
+       - 0
+       - 1
+     stdout:
+     - '/.*\/dev/shm\s.*nodev.*$/'
+     meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.1.8.1
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1200
+      - T1200.000
+      Mitre_Tactics: TA0005
+      Mitre_Mitigations: M1022
+  {{ end }}
+  {{ if .Vars.ubtu22cis_rule_1_1_8_2 }}
+  noexec_execshm_fstab:
+     title: 1.1.8.2 | Ensure noexec option set on /dev/shm partition | fstab config
+     exec: grep '.*\/dev/shm\s.*noexec.*$' \/etc\/fstab
+     exit-status:
+       or:
+       - 0
+       - 1
+     stdout:
+     - '/.*\/dev/shm\s.*noexec.*$/'
+     meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.1.8.2
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1204
+      - T1204.002
+      Mitre_Tactics: TA0005
+      Mitre_Mitigations: M1022
+  {{ end }}
+  {{ if .Vars.ubtu22cis_rule_1_1_8_3 }}
+  nosuid_nosuidshm_fstab:
+     title: 1.1.8.3 | Ensure nosuid option set on /dev/shm partition | fstab config
+     exec: grep '.*\/dev/shm\s.*nosuid.*$' \/etc\/fstab
+     exit-status:
+       or:
+       - 0
+       - 1
+     stdout:
+     - '/.*\/dev/shm\s.*nosuid.*$/'
+     meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.1.8.3
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1548
+      - T1548.001
+      Mitre_Tactics: TA0005
+      Mitre_Mitigations: M1022
+  {{ end }}
+{{ end }}

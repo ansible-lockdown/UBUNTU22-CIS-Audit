@@ -1,0 +1,29 @@
+{{ if .Vars.ubtu22cis_level_2 }}
+  {{ if .Vars.ubtu22cis_rule_4_1_2_3 }}
+command:
+  auditd_space_actions:
+    title: 4.1.2.3 | Ensure system is disabled when audit logs are full
+    exec: grep -E "action" /etc/audit/auditd.conf
+    exit-status: 0
+    stdout:
+    - space_left_action = {{ .Vars.ubtu22cis_auditd.space_left_action }}
+    - action_mail_acct = {{ .Vars.ubtu22cis_auditd.action_mail_acct }}
+    - '/^admin_space_left_action = {{ .Vars.ubtu22cis_auditd.admin_space_left_action }}/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 4.1.2.3
+      CISv8:
+      - 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1562
+      - T1562.001
+      Mitre_Tactics:
+      - TA0005
+      Mitre_Mitigations: NA
+  {{ end }}
+{{ end }}

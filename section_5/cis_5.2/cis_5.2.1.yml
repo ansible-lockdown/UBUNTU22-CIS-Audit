@@ -1,13 +1,30 @@
-{{ if .Vars.ubuntu22cis_level_1 }}
-  {{ if .Vars.ubuntu22cis_rule_5_2_1 }}
-package:
-  sudo: 
-    title: 5.2.1 | Ensure sudo is installed
-    installed: true
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_5_2_1 }}
+file:
+  sshd_config_perms:
+    title: 5.2.1 | Ensure permissions on /etc/ssh/sshd_config are configured
+    path: /etc/ssh/sshd_config
+    exists: true
+    mode: "0600"
+    owner: root
+    group: root
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 
+      CIS_ID:
       - 5.2.1
+      CISv8:
+      - 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1098
+      - T1098.004
+      - T1543
+      - T1543.002
+      Mitre_Tactics:
+      - TA0005
+      Mitre_Mitigations: M1022
   {{ end }}
 {{ end }}

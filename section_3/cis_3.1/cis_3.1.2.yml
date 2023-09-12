@@ -1,7 +1,8 @@
-{{ if .Vars.ubuntu22cis_rule_3_1_2 }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_3_1_2 }}
 command:
   wireless_disabled:
-    title: 3.1.2 | L1 | Ensure wireless interfaces are disabled
+    title: 3.1.2 | Ensure wireless interfaces are disabled
     exit-status: 0
     exec: 'nmcli radio all | tail -1'
     stdout:
@@ -11,4 +12,20 @@ command:
       workstation: 2
       CIS_ID:
       - 3.1.2
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1011
+      - T1011.000
+      - T1595
+      - T1595.001
+      - T1595.002
+      Mitre_Tactics:
+      - TA0010
+      Mitre_Mitigations:
+      - M1028
+  {{ end }}
 {{ end }}

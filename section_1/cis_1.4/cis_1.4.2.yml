@@ -1,0 +1,29 @@
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_1_4_2 }}
+file:
+  default_grub_perms:
+    title: 1.4.2 | Ensure permissions on bootloader config are configured
+    exists: true
+    path: /etc/default/grub
+    owner: root
+    group: root
+    mode: '0400'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.4.2
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1542
+      - T1542.000
+      Mitre_Tactics:
+      - TA0005
+      - TA0007
+      Mitre_Mitigations:
+      - M1022
+  {{ end }}
+{{ end }}

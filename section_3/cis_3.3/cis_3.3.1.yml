@@ -1,4 +1,5 @@
-{{ if .Vars.ubuntu22cis_rule_3_3_1 }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_3_3_1 }}
 kernel-param:
   net.ipv4.conf.all.accept_source_route:
     title: 3.3.1 | Ensure source routed packets are not accepted | IPv4 all source routed
@@ -8,6 +9,17 @@ kernel-param:
       workstation: 1
       CIS_ID:
       - 3.3.1
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1590
+      - T1590.005
+      Mitre_Tactics:
+      - TA0007
+      Mitre_Mitigations: NA
   net.ipv4.conf.default.accept_source_route:
     title: 3.3.1 | Ensure source routed packets are not accepted | IPv4 default source routed
     value: '0'
@@ -16,6 +28,17 @@ kernel-param:
       workstation: 1
       CIS_ID:
       - 3.3.1
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1590
+      - T1590.005
+      Mitre_Tactics:
+      - TA0007
+      Mitre_Mitigations: NA
 command:
   ipv4_all_source_route:
     title: 3.3.1 | Ensure source routed packets are not accepted | IPv4 all source routed conf
@@ -31,6 +54,17 @@ command:
       workstation: 1
       CIS_ID:
       - 3.3.1
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1590
+      - T1590.005
+      Mitre_Tactics:
+      - TA0007
+      Mitre_Mitigations: NA
   ipv4_def_source_route:
     title: 3.3.1 | Ensure source routed packets are not accepted | IPv4 default source routed conf
     exec: grep "net\.ipv4\.conf\.default\.accept_source_route" /etc/sysctl.conf /etc/sysctl.d/*
@@ -45,4 +79,16 @@ command:
       workstation: 1
       CIS_ID:
       - 3.3.1
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1590
+      - T1590.005
+      Mitre_Tactics:
+      - TA0007
+      Mitre_Mitigations: NA
+  {{ end }}
 {{ end }}

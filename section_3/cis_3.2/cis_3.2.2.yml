@@ -1,5 +1,6 @@
-{{ if not .Vars.ubuntu22cis_is_router }}
-  {{ if .Vars.ubuntu22cis_rule_3_2_2 }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if not .Vars.ubtu22cis_is_router }}
+    {{ if .Vars.ubtu22cis_rule_3_2_2 }}
 kernel-param:
   net.ipv4.ip_forward:
     title: 3.2.2 | Ensure IP forwarding is disabled | IPv4
@@ -9,7 +10,21 @@ kernel-param:
       workstation: 1
       CIS_ID:
       - 3.2.2
-  {{ if .Vars.ubuntu22cis_ipv6_required }}
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1557
+      - T1557.000
+      Mitre_Tactics:
+      - TA0006
+      - TA0009
+      Mitre_Mitigations:
+      - M1030
+      - M1042
+  {{ if .Vars.ubtu22cis_ipv6_required }}
   net.ipv6.conf.all.forwarding:
     title: 3.2.2 | Ensure IP forwarding is disabled | IPv6
     value: '0'
@@ -18,6 +33,20 @@ kernel-param:
       workstation: 1
       CIS_ID:
       - 3.2.2
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1557
+      - T1557.000
+      Mitre_Tactics:
+      - TA0006
+      - TA0009
+      Mitre_Mitigations:
+      - M1030
+      - M1042
   {{ end }}
 command:
   ipv4_ip_forward:
@@ -35,7 +64,21 @@ command:
       workstation: 1
       CIS_ID:
       - 3.2.2
-  {{ if .Vars.ubuntu22cis_ipv6_required }}
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1557
+      - T1557.000
+      Mitre_Tactics:
+      - TA0006
+      - TA0009
+      Mitre_Mitigations:
+      - M1030
+      - M1042
+  {{ if .Vars.ubtu22cis_ipv6_required }}
   ipv6_ip_forward:
     title: 3.2.2 | Ensure IP forwarding is disabled | IPv6 config
     exec: grep -E "^\s*net\.ipv6\.conf\.all\.forwarding" /etc/sysctl.conf /etc/sysctl.d/*.conf /usr/lib/sysctl.d/*.conf /run/sysctl.d/*.conf
@@ -51,6 +94,21 @@ command:
       workstation: 1
       CIS_ID:
       - 3.2.2
-  {{ end }}
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1557
+      - T1557.000
+      Mitre_Tactics:
+      - TA0006
+      - TA0009
+      Mitre_Mitigations:
+      - M1030
+      - M1042
+      {{ end }}
+    {{ end }}
   {{ end }}
 {{ end }}

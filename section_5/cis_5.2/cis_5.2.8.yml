@@ -1,0 +1,32 @@
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_5_2_8 }}
+command:
+  ssh_hostbased_auth:
+    title: 5.2.8 | Ensure SSH HostbasedAuthentication is disabled
+    exec: grep -Ei "HostBasedAuth" /etc/ssh/sshd_config
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/^(?i)HostbasedAuthentication no/'
+    - '!/^(?i)HostbasedAuthentication yes/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.2.8
+      CISv8:
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1078
+      - T1078.001
+      - T1078.003
+      Mitre_Tactics:
+      - TA0001
+      Mitre_Mitigations: M1042
+  {{ end }}
+{{ end }}

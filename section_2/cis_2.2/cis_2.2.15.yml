@@ -1,0 +1,61 @@
+{{ if not .Vars.ubtu22cis_is_mail_server }}
+  {{ if .Vars.ubtu22cis_level_1 }}
+    {{ if .Vars.ubtu22cis_rule_2_2_15 }}
+command:
+  port_25_local_only:
+   title: 2.2.15 | Ensure mail transfer agent is configured for local-only mode | port listening
+   exec: ss -ln | grep -E ':25\s' | grep -Ev "(127.0.0.1|.::1.):25"
+   exit-status:
+     or:
+     - 0
+     - 1
+   stdout:
+   - '!/.*/'
+   meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 2.2.15
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1203
+      - T1203.000
+      - T1210
+      - T1210.000
+      - T1543
+      - T1543.002
+      Mitre_Tactics: TA0008
+      Mitre_Mitigations: M1042
+  {{ if eq .Vars.ubtu22cis_mailserver "exim4" }}
+file:
+  exim_conf_local:
+    title: 2.2.15 | Ensure mail transfer agent is configured for local-only mode | exim config
+    path: /etc/exim4/update-exim4.conf.conf
+    exists: true
+    contents:
+    {{ range .Vars.ubtu22_exim_conf }}
+    - {{ . }}
+    {{ end }}
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 2.2.15
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1203
+      - T1203.000
+      - T1210
+      - T1210.000
+      Mitre_Tactics: TA0008
+      Mitre_Mitigations: M1042
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}
