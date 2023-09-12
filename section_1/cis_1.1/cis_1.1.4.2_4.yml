@@ -1,5 +1,3 @@
-
-
 {{ if .Vars.ubtu22cis_level_1 }}
   {{ if .Vars.ubtu22cis_rule_1_1_4_1 }}
 mount:

@@ -2,10 +2,10 @@
   {{ if .Vars.ubtu22cis_rule_1_1_10 }}
 command:
   usb-storage:
-    title: 1.1.10 | Ensure mounting of usb-storage is disabled 
+    title: 1.1.10 | Ensure mounting of usb-storage is disabled
     exit-status: 0
     exec: "modprobe -n -v usb-storage | grep -E '(usb-storage|install)'"
-    stdout: 
+    stdout:
     - install /bin/true
     meta:
       server: 1
