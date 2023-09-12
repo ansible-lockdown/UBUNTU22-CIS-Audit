@@ -29,7 +29,7 @@ file:
     path: /etc/default/grub
     exists: true
     contents:
-    - '/^GRUB_CMDLINE_LINUX=.*"audit=1"/'
+    - '/^GRUB_CMDLINE_LINUX=.*audit=1/'
     - '!/audit=0/'
     meta:
       server: 2
