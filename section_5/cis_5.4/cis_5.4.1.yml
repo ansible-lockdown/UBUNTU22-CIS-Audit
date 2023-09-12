@@ -29,7 +29,7 @@ file:
     exists: true
     contents:
     {{ range .Vars.ubtu22cis_pam_password }}
-    - {{ . }}
+    - '{{ . }}'
     {{ end }}
     meta:
       server: 1
