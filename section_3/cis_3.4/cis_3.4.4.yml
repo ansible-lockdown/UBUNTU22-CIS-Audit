@@ -1,8 +1,9 @@
-{{ if .Vars.ubtu22cis_rule_3_4_4 }}
+{{ if .Vars.ubtu22cis_level_2 }}
+  {{ if .Vars.ubtu22cis_rule_3_4_4 }}
 command:
   modprobe_TIPC:
     title: 3.4.4 | Ensure TIPC is disabled | tipc config
-    exit-status: 
+    exit-status:
       or:
       - 0
       - 1
@@ -51,4 +52,5 @@ command:
       - TA0008
       Mitre_Mitigations:
       - M1042
+  {{ end }}
 {{ end }}

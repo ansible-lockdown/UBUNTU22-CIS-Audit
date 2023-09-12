@@ -1,8 +1,9 @@
 {{ if .Vars.ubtu22cis_level_1 }}
   {{ if .Vars.ubtu22cis_rule_5_1_9 }}
 file:
-  /etc/at.deny:
+  at_deny_absent:
     title: 5.1.9 | Ensure at is restricted to authorized users
+    path: /etc/at.deny
     exists: false
     meta:
       server: 1

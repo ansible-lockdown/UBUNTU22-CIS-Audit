@@ -1,9 +1,11 @@
-{{ if .Vars.ubtu22cis_rule_6_2_1 }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_6_2_1 }}
 file:
-  /etc/passwd:
+  shadowed_passwds:
     title: 6.2.1 | Ensure accounts in /etc/passwd use shadowed passwords
+    path: /etc/passwd
     exists: true
-    contains:
+    contents:
     - '/^.*:x:/'
     meta:
       server: 1
@@ -19,4 +21,5 @@ file:
       - T1003.008
       Mitre_Tactics: TA0003
       Mitre_Mitigations: M1027
+  {{ end }}
 {{ end }}

@@ -1,9 +1,10 @@
 {{ if .Vars.ubtu22cis_level_1 }}
   {{ if .Vars.ubtu22cis_rule_1_7_5 }}
 file:
-  /etc/issue:
+  etc_issue_perms:
     title: 1.7.5 | Ensure permissions on /etc/issue are configured
     exists: true
+    path: /etc/issue
     owner: root
     group: root
     mode: '0644'

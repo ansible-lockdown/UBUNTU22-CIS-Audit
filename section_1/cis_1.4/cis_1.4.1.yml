@@ -1,10 +1,11 @@
 {{ if .Vars.ubtu22cis_level_1 }}
   {{ if .Vars.ubtu22cis_rule_1_4_1 }}
 file:
-  {{ .Vars.ubtu22cis_grub_conf_file }}:
+  bootloader_password_set:
     title: 1.4.1 | Ensure bootloader password is set
+    path: /etc/grub.d/00_user
     exists: true
-    contains: 
+    contents:
     - '/set superusers="{{ .Vars.ubtu22cis_grub_username }}"/'
     - '/password_pbkdf2 {{ .Vars.ubtu22cis_grub_username }} {{ .Vars.ubtu22cis_grub_hash }}'
     meta:

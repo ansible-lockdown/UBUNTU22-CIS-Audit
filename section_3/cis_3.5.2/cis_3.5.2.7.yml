@@ -1,4 +1,5 @@
-{{ if .Vars.ubtu22cis_rule_3_5_2_7 }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_3_5_2_7 }}
 command:
   nft_conns:
     title: 3.5.2.7 | Ensure nftables outbound and established connections are configured
@@ -24,4 +25,5 @@ command:
       Mitre_Mitigations:
       - M1031
       - M1037
+  {{ end }}
 {{ end }}

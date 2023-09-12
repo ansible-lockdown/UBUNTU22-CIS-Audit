@@ -1,9 +1,11 @@
-{{ if .Vars.ubtu22cis_rule_1_6_1_2 }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_1_6_1_2 }}
 file:
-  /boot/grub/grub.cfg:
+  apparmor_boot_grub:
     title: 1.6.1.2 | Ensure AppArmor is enabled in the bootloader configuration | running grub
+    path: /boot/grub/grub.cfg
     exists: true
-    contains:
+    contents:
     - '/apparmor=1/'
     - '/security=apparmor/'
     - '!/apparmor=0/'
@@ -24,10 +26,11 @@ file:
       - T1565.003
       Mitre_Tactics: TA0003
       Mitre_Mitigations: M1206
-  /etc/default/grub:
+  grub_app_armor:
     title: 1.6.1.2 | Ensure AppArmor is enabled in the bootloader configuration | default grub
     exists: true
-    contains:
+    path: /etc/default/grub
+    contents:
     - '/^GRUB_CMDLINE_LINUX.*apparmor=1/'
     - '/^GRUB_CMDLINE_LINUX.*security=apparmor/'
     - '!/apparmor=0/'
@@ -48,4 +51,5 @@ file:
       - T1565.003
       Mitre_Tactics: TA0003
       Mitre_Mitigations: M1206
+  {{ end }}
 {{ end }}

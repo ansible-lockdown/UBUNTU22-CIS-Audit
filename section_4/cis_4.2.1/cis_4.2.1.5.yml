@@ -1,4 +1,5 @@
-{{ if .Vars.ubtu22cis_rule_4_2_1_5 }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_4_2_1_5 }}
 command:
   forward_journald_conf:
     title: 4.2.1.5 | Ensure journald is not configured to send logs to rsyslog
@@ -11,7 +12,7 @@ command:
       workstation: 1
       CIS_ID:
       - 4.2.1.5
-      CISv8: 
+      CISv8:
       - 8.2
       - 8.9
       CISv8_IG1: true
@@ -25,4 +26,5 @@ command:
       Mitre_Tactics:
       - TA0005
       Mitre_Mitigations: T1029
+  {{ end }}
 {{ end }}

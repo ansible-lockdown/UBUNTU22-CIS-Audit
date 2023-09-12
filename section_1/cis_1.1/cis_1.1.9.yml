@@ -1,5 +1,6 @@
 {{ if not .Vars.ubtu22cis_allow_autofs}}
-  {{ if .Vars.ubtu22cis_rule_1_1_9 }}
+  {{ if .Vars.ubtu22cis_level_1 }}
+    {{ if .Vars.ubtu22cis_rule_1_1_9 }}
 service:
   autofs:
     title: 1.1.9 | Disable Automounting
@@ -24,5 +25,6 @@ service:
       - T1212.000
       Mitre_Tactics: NA
       Mitre_Mitigations: NA
+      {{ end }}
   {{ end }}
 {{ end }}

@@ -1,4 +1,5 @@
-{{ if .Vars.ubtu22cis_rule_6_2_6 }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_6_2_6 }}
 command:
   no_dup_gid:
     title: 6.2.6 | Ensure no duplicate GIDs exist
@@ -21,4 +22,5 @@ command:
       - T1078.003
       Mitre_Tactics: TA0005
       Mitre_Mitigations: M1027
+  {{ end }}
 {{ end }}

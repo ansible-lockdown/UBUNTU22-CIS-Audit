@@ -1,4 +1,5 @@
-{{ if .Vars.ubtu22cis_rule_4_2_2_4 }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_4_2_2_4 }}
 command:
   rsyslog_d_perms:
     title: 4.2.2.4 | Ensure rsyslog default file permissions configured
@@ -29,4 +30,5 @@ command:
       Mitre_Tactics:
       - TA0007
       Mitre_Mitigations: NA
+  {{ end }}
 {{ end }}

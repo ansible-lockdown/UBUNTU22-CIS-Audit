@@ -1,5 +1,6 @@
 {{ if not .Vars.ubtu22cis_nis_server }}
-  {{ if .Vars.ubtu22cis_rule_2_3_1 }}
+  {{ if .Vars.ubtu22cis_level_1 }}
+    {{ if .Vars.ubtu22cis_rule_2_3_1 }}
 package:
   nis:
     title: 2.3.1 | Ensure NIS Client is not installed
@@ -20,5 +21,6 @@ package:
       - T1543.002
       Mitre_Tactics: TA0008
       Mitre_Mitigations: M1042
+    {{ end }}
   {{ end }}
 {{ end }}

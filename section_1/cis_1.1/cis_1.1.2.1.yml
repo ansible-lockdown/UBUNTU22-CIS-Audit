@@ -3,7 +3,7 @@
 command:
   tmp_fstab:
     title: 1.1.2.1 | Ensure /tmp is a separate partition
-    exec: mount | grep "on /tmp\s" && grep "/tmp\s" /etc/fstab 
+    exec: mount | grep "on /tmp\s" && grep "/tmp\s" /etc/fstab
     exit-status: 0
     meta:
       server: 1

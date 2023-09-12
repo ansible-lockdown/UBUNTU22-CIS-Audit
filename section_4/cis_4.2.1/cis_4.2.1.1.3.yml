@@ -1,5 +1,6 @@
-{{ if .Vars.ubtu22cis_rule_4_2_1_1_3 }}
-  {{ if not .Vars.ubtu22cis_is_syslog_server }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_4_2_1_1_3 }}
+    {{ if not .Vars.ubtu22cis_is_syslog_server }}
 service:
   systemd-journal-upload.service:
     title: 4.2.1.1.3 | Ensure systemd-journal-remote is enabled
@@ -22,5 +23,6 @@ service:
       Mitre_Tactics:
       - TA0040
       Mitre_Mitigations: M1029
+    {{ end }}
   {{ end }}
 {{ end }}

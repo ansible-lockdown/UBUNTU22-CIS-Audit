@@ -1,10 +1,12 @@
-{{ if .Vars.ubtu22cis_gui }}
-  {{ if .Vars.ubtu22cis_rule_1_8_4 }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_gui }}
+    {{ if .Vars.ubtu22cis_rule_1_8_4 }}
 file:
-  /etc/dconf/db/local.d/00-screensaver:
-    title: 1.8.4 | Ensure GDM login banner is configured
+  gdm_screensaver:
+    title: 1.8.4 | Ensure GDM screen locks when the user is idle
+    path: /etc/dconf/db/local.d/00-screensaver
     exists: true
-    contains:
+    contents:
     - '/^[org/gnome/desktop/session]/'
     - '/^idle-delay=uint32 (1|[1-9]|[1-8][0-9]{1,2}|900)$/'
     - '/^lock-delay=uint32 [0-5]$/'
@@ -20,5 +22,6 @@ file:
       Mitre_Techniques: NA
       Mitre_Tactics: NA
       Mitre_Mitigations: NA
+    {{ end }}
   {{ end }}
 {{ end }}

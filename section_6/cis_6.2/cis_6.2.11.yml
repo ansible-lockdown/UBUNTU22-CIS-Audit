@@ -1,9 +1,10 @@
-{{ if .Vars.ubtu22cis_rule_6_2_11 }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_6_2_11 }}
 command:
   home_dirs_exist:
     title: 6.2.11 | Ensure all  local interactive user home directories exist
     exec: for i in `cat /etc/passwd | grep -Ev "halt|sync|shutdown|nfsnobody|nologin|false" | cut -d ':' -f6`; do if [ ! -d $i ]; then echo "homedir missing $i"; fi; done
-    exit-status: 
+    exit-status:
       or:
       - 0
       - 1
@@ -22,4 +23,5 @@ command:
       Mitre_Techniques: NA
       Mitre_Tactics: TA0005
       Mitre_Mitigations: M1021
+  {{ end }}
 {{ end }}

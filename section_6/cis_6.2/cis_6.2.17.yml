@@ -1,10 +1,11 @@
-{{ if .Vars.ubtu22cis_rule_6_2_17 }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_6_2_17 }}
 command:
   dot_file_perms:
     title: 6.2.17 | Ensure users dot files are not group or world writable
     exec: 'find /home/ -name "\.*" -perm /g+w,o+w'
     exit-status: 0
-    stdout: 
+    stdout:
     - '!/./'
     meta:
       server: 1
@@ -24,4 +25,5 @@ command:
       - T1522.004
       Mitre_Tactics: TA0005
       Mitre_Mitigations: M1022
+  {{ end }}
 {{ end }}

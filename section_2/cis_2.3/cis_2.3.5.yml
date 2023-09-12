@@ -1,5 +1,6 @@
 {{ if not .Vars.ubtu22cis_ldap_clients_required }}
-  {{ if .Vars.ubtu22cis_rule_2_3_5 }}
+  {{ if .Vars.ubtu22cis_level_1 }}
+    {{ if .Vars.ubtu22cis_rule_2_3_5 }}
 package:
   ldap-utils:
     title: 2.3.5 | Ensure LDAP client is not installed
@@ -22,5 +23,6 @@ package:
       - TA0008
       Mitre_Mitigations:
       - M1042
+    {{ end }}
   {{ end }}
 {{ end }}

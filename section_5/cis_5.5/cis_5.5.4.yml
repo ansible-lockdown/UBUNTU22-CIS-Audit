@@ -25,10 +25,11 @@ command:
       Mitre_Tactics: TA0007
       Mitre_Mitigations: NA
 file:
-  /etc/pam.d/common-session:
+  common_session_umask:
     title: 5.5.4 | Ensure default user umask is 027 or more restrictive | /etc/pam.d/common-session
+    path: /etc/pam.d/common-session
     exists: true
-    contains:
+    contents:
     - '/^session\s+optional\s+pam_umask.so/'
     meta:
       server: 1

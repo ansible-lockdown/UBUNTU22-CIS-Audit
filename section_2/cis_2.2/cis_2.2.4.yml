@@ -1,5 +1,6 @@
 {{ if not .Vars.ubtu22cis_dhcp_server }}
-  {{ if .Vars.ubtu22cis_rule_2_2_4 }}
+  {{ if .Vars.ubtu22cis_level_1 }}
+    {{ if .Vars.ubtu22cis_rule_2_2_4 }}
 package:
   cups:
     title: 2.2.4 | Ensure DHCP Server is not installed
@@ -22,5 +23,6 @@ package:
       - T1543.002
       Mitre_Tactics: TA0008
       Mitre_Mitigations: M1042
+    {{ end }}
   {{ end }}
 {{ end }}

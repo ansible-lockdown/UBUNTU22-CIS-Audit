@@ -1,7 +1,8 @@
-{{ if .Vars.ubtu22cis_rule_1_2_2}}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_1_2_2}}
 command:
   gpg_configd:
-    title: 1.2.2 | Ensure GPG keys are configured 
+    title: 1.2.2 | Ensure GPG keys are configured
     exec: echo "MANUAL - Please check manually for gpg keys"
     exit-status: 0
     stdout:
@@ -20,4 +21,5 @@ command:
       - T1195.002
       Mitre_Tactics: TA0001
       Mitre_Mitigations: M1051
+  {{ end }}
 {{ end }}

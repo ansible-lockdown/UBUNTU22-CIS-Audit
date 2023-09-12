@@ -27,11 +27,14 @@ run_heavy_tasks
 - bespoke options
 If a site has specific options e.g. password complexity these can also be set.
 
+## Requirements
+
+goss >= 0.4.0
+root privileges
+
 ## Usage
 
 You must have [goss](https://github.com/goss-org/goss/) available to your host you would like to test.
-
-You must have root access to the system as some commands require privilege information.
 
 - Run as root not sudo due to sudo and shared memory access
 

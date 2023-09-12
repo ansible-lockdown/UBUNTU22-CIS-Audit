@@ -1,0 +1,45 @@
+{{ if .Vars.ubtu22cis_level_2 }}
+  {{ if .Vars.ubtu22cis_rule_1_1_1_3 }}
+command:
+  udf:
+    title: 1.1.1.3 | Ensure mounting of udf filesystems is disabled
+    exit-status:
+      or:
+      - 0
+      - 1
+    exec: if [ `lsmod | grep -c udf` != 0 ]; then  "modprobe -n -v udf | grep -E '(udf|install)'"; else echo OK; fi
+    stdout:
+    - '/(install /bin/true|OK)/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID: 1.1.1.3
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques: NA
+      Mitre_Tactics: TA0005
+      Mitre_Mitigations: M1050
+  udf_blacklist:
+    title: 1.1.1.3 | Ensure mounting of squashfs filesystems is disabled
+    exit-status: 0
+    exec: grep "blacklist udf" /etc/modprobe.d/*.conf
+    stdout:
+    - '/^.*:blacklist udf$/'
+    - '!/.*#blacklist udf$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID: 1.1.1.3
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques: NA
+      Mitre_Tactics: TA0005
+      Mitre_Mitigations: M1050
+  {{ end }}
+{{ end }}

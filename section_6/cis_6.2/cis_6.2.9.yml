@@ -1,4 +1,5 @@
-{{ if .Vars.ubtu22cis_rule_6_2_9 }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_6_2_9 }}
 command:
   root_path_check:
     title: 6.2.9 | Ensure root PATH Integrity
@@ -20,4 +21,5 @@ command:
       - T1204
       Mitre_Tactics: TA0006
       Mitre_Mitigations: M1022
+  {{ end }}
 {{ end }}

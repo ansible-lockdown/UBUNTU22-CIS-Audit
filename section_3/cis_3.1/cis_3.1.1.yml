@@ -1,6 +1,7 @@
-{{ if not .Vars.ubtu22cis_ipv6_required }}
- {{ if .Vars.ubtu22cis_rule_3_1_1 }}
-   {{ if eq .Vars.ubtu22cis_ipv6_disable "grub" }}
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if not .Vars.ubtu22cis_ipv6_required }}
+   {{ if .Vars.ubtu22cis_rule_3_1_1 }}
+     {{ if eq .Vars.ubtu22cis_ipv6_disable "grub" }}
 command:
   grub_ipv6:
     title: 3.1.1 | Disable IPv6 | via grub boot
@@ -28,7 +29,7 @@ command:
       - TA0008
       Mitre_Mitigations:
       - M1042
-  etc_default_grub:
+  ipv6_etc_default_grub:
     title: 3.1.1 | Disable IPv6 | default grub
     exec: grep -i "GRUB_CMDLINE_LINUX=.*ipv6" /etc/default/grub
     exit-status: 0
@@ -57,8 +58,9 @@ command:
     {{ end }}
     {{ if eq .Vars.ubtu22cis_ipv6_disable "sysctl" }}
 file:
-  /proc/sys/net/ipv6:
+  ipv6_disabled:
     title: 3.1.1 | Disable IPv6 | sysctl all disable
+    path: /proc/sys/net/ipv6
     exists: false
     meta:
       server: 2
@@ -79,6 +81,7 @@ file:
       - TA0008
       Mitre_Mitigations:
       - M1042
+      {{ end }}
     {{ end }}
   {{ end }}
 {{ end }}
