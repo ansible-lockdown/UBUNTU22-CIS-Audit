@@ -7,7 +7,7 @@ file:
     path: /etc/default/grub
     owner: root
     group: root
-    mode: 0400
+    mode: '0400'
     meta:
       server: 1
       workstation: 1
