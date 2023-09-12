@@ -29,7 +29,7 @@ file:
   grub_app_armor:
     title: 1.6.1.2 | Ensure AppArmor is enabled in the bootloader configuration | default grub
     exists: true
-    path: /etc/default_grub
+    path: /etc/default/grub
     contents:
     - '/^GRUB_CMDLINE_LINUX.*apparmor=1/'
     - '/^GRUB_CMDLINE_LINUX.*security=apparmor/'
