@@ -2,7 +2,7 @@
   {{ if .Vars.ubtu22cis_rule_1_2_2}}
 command:
   gpg_configd:
-    title: 1.2.2 | Ensure GPG keys are configured
+    title: 1.2.2 | Ensure GPG keys are configured | Manual
     exec: echo "MANUAL - Please check manually for gpg keys"
     exit-status: 0
     stdout:
