@@ -1,4 +1,11 @@
-# Changes to Ubunut20-CIS-Audit
+# Changes to Ubuntu22-CIS-Audit
+
+## 1.0 updates - based on CIS 1.0.0
+
+script improvement
+Several tests improved
+sshd mac/ciphers/kex method updated
+more tests migrated to file from command
 
 ## 0.2 updates
 
