@@ -9,9 +9,11 @@ command:
       - 0
       - 1
     stdout:
-    - {{ .Vars.ubtu22cis_ssh_strong_ciphers }}
+    {{ range .Vars.ubtu22cis_ssh_strong_ciphers }}
+    - '/^Ciphers.*{{ . }}/'
+    {{ end }}
     {{ range .Vars.ubtu22cis_ssh_weak_ciphers }}
-    - !{{ . }}
+    - '!/^Ciphers.*{{ . }}/'
     {{ end }}
     meta:
       server: 1

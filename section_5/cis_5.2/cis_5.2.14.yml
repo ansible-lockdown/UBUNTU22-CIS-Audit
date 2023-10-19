@@ -9,9 +9,11 @@ command:
       - 0
       - 1
     stdout:
-    - {{ .Vars.ubtu22cis_ssh_strong_macs }}
+    {{ range .Vars.ubtu22cis_ssh_strong_macs }}
+    - '/^MACs.*{{ . }}/'
+    {{ end }}
     {{ range .Vars.ubtu22cis_ssh_weak_macs }}
-    - !{{ . }}
+    - '!/^MACs.*{{ . }}/'
     {{ end }}
     meta:
       server: 1
