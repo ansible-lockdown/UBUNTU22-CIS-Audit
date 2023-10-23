@@ -387,7 +387,8 @@ ubtu22cis_apparmor_disable: false
 ubtu22cis_apparmor_enforce_only: false
 
 # Warning Banner Content (issue, issue.net, motd)
-ubtu22_warning_banner: Authorized uses only. All activity may be monitored and reported.
+ubtu22_warning_banner: |
+  Authorized uses only. All activity may be monitored and reported.
 # End Banner
 
 # Section 2
