@@ -8,6 +8,8 @@ sshd mac/ciphers/kex method updated
 more tests migrated to file from command
 multiline banner now there
 1.4.2 updated thanks to @loz on discord community
+several other control and tests updfates and logic improved thanks to @loz
+new variable ubtu22cis_disable_dynamic_motd to set to true if you are not loading dynamic variables
 
 ## 0.2 updates
 
