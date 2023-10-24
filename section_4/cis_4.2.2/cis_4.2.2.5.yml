@@ -36,5 +36,27 @@ command:
       Mitre_Tactics:
       - TA0005
       Mitre_Mitigations: NA
+  rsyslog_conf_manual:
+    title: 4.2.2.5 | Ensure logging is configured | Manual check
+    exec: echo "Manual - Check rsyslog configuration is set according to site policy"
+    exit-status: 0
+    stdout:
+    - '!/Manual/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.2.2.5
+      CISv8:
+      - 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      Mitre_Techniques:
+      - T1070
+      - T1070.002
+      Mitre_Tactics:
+      - TA0005
+      Mitre_Mitigations: NA
   {{ end }}
 {{ end }}
