@@ -23,13 +23,14 @@ file:
 command:
   user_expire_warn:
     title: 5.5.1.3 | Ensure password expiration warning days is 7 or more | user_warning
-    exec: "awk -F: '(/^[^:]+:[^!*]/ && $6<7){print $1 \" \" $6}' /etc/shadow"
+    exec: "awk -F: '(/^[^:]+:[^!*]/) {print $6}' /etc/shadow"
     exit-status:
       or:
       - 0
       - 1
     stdout:
-    - '!/^.*/'
+    - '/^([7-9]|[1-3][0-9])$/'
+    - '!/^([0-6]|-1)$/'
     meta:
       server: 1
       workstation: 1

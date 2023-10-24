@@ -34,13 +34,14 @@ file:
 command:
   users_max_pw_expire:
     title: 5.5.1.2 | Ensure password expiration is 365 days or less | user_check
-    exec: "awk -F: '(/^[^:]+:[^!*]/ && ($5>365 || $5~/([0-1]|-1|\\s*)/)){print $1 \" \" $5}' /etc/shadow"
+    exec: "awk -F: '(/^[^:]+:[^!*]/)  {print $5}' /etc/shadow"
     exit-status:
       or:
       - 0
       - 1
     stdout:
-    - '!/^.*/'
+    - '/^(36[0-5]|3[0-5][0-9]|[1-2][0-9][0-9]|[0-9][0-9]|[1-9])$'
+    - '!/^(36[6-9]|3[7-9][0-9]|[4-9][0-9]{2,})$/'
     meta:
       server: 1
       workstation: 1
