@@ -5,7 +5,10 @@ command:
   unowned_dirs:
     title: 6.1.10 | Ensure no unowned files or directories exist
     exec: "df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -nouser | grep -v journal-upload"
-    exit-status: 0
+    exit-status:
+      or:
+      - 0
+      - 1
     timeout: {{ .Vars.timeout_ms }}
     stdout:
     - '!/./'
