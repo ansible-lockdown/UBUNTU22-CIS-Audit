@@ -389,6 +389,9 @@ ubtu22cis_apparmor_enforce_only: false
 # Warning Banner Content (issue, issue.net, motd)
 ubtu22_warning_banner: |
   Authorized uses only. All activity may be monitored and reported.
+
+# If configured to stop dynamic loading of files in /etc/update-motd.d
+ubtu22cis_disable_dynamic_motd: false
 # End Banner
 
 # Section 2
