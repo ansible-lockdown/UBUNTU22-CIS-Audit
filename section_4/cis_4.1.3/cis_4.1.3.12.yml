@@ -3,7 +3,7 @@
 command:
   auditd_logins_cnf:
     title: 4.1.3_12 | Ensure login and logout events are collected | Config
-    exec: grep logins /etc/audit/rules.d/*.rules
+    exec: grep -R --include="*.rules" logins /etc/audit/rules.d/
     exit-status: 0
     stdout:
     - '/-w /var/log/faillog -p wa -k logins/'

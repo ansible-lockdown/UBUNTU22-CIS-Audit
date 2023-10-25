@@ -1,11 +1,11 @@
 {{ if .Vars.ubtu22cis_level_1 }}
   {{ if .Vars.ubtu22cis_rule_5_5_1_2 }}
-command:
+file:
   login_defs_PASS_MAX_DAYS:
     title: 5.5.1.2 | Ensure password expiration is 365 days or less | logins.def
-    exec: grep -Ei "^PASS_MAX_DAYS" /etc/login.defs
-    exit-status: 0
-    stdout:
+    path: /etc/login.defs
+    exists: true
+    contents:
     - '/^PASS_MAX_DAYS\s*{{ .Vars.ubtu22cis_pass.max_days }}/'
     - '!/^PASS_MAX_DAYS\s*(36[6-9]|[4-9][0-9][0-9]|[1-9][0-9]{3,})/'
     - '!/^PASS_MAX_DAYS\s*-1/'
@@ -31,15 +31,17 @@ command:
       - T1110.004
       Mitre_Tactics: NA
       Mitre_Mitigations: NA
+command:
   users_max_pw_expire:
     title: 5.5.1.2 | Ensure password expiration is 365 days or less | user_check
-    exec: "awk -F: '(/^[^:]+:[^!*]/ && ($5>365 || $5~/([0-1]|-1|\\s*)/)){print $1 \" \" $5}' /etc/shadow"
+    exec: "awk -F: '(/^[^:]+:[^!*]/)  {print $5}' /etc/shadow"
     exit-status:
       or:
       - 0
       - 1
     stdout:
-    - '!/^.*/'
+    - '/^(36[0-5]|3[0-5][0-9]|[1-2][0-9][0-9]|[0-9][0-9]|[1-9])$'
+    - '!/^(36[6-9]|3[7-9][0-9]|[4-9][0-9]{2,})$/'
     meta:
       server: 1
       workstation: 1

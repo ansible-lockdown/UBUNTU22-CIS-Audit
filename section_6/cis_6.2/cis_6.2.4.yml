@@ -1,12 +1,13 @@
 {{ if .Vars.ubtu22cis_level_1 }}
   {{ if .Vars.ubtu22cis_rule_6_2_4 }}
-command:
-  home_dirs_exist:
+file:
+  shadow_group_empty:
     title: 6.2.4 | Ensure shadow group is empty
-    exec: getent group shadow | awk -F':' '{print $NF}'
-    exit-status: 0
-    stdout:
-    - '!/.*/'
+    path: /etc/group
+    exists: true
+    contents:
+    - '/^shadow:x:\d{2,}:$/'
+    - '!/^shadow:x:\d{2,}:./'
     meta:
       server: 1
       workstation: 1

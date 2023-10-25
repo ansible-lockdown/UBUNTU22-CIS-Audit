@@ -57,11 +57,13 @@ command:
       - M1042
     {{ end }}
     {{ if eq .Vars.ubtu22cis_ipv6_disable "sysctl" }}
-file:
+ file:
   ipv6_disabled:
     title: 3.1.1 | Disable IPv6 | sysctl all disable
-    path: /proc/sys/net/ipv6
-    exists: false
+    path: /proc/sys/net/ipv6/conf/all/disable_ipv6
+    exists: true
+    contents:
+    - '/^1/'
     meta:
       server: 2
       workstation: 2

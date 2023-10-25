@@ -4,8 +4,11 @@
 command:
   no_ungrouped:
     title: 6.1.11 | Ensure no ungrouped files or directories exist
-    exec: "df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -nogroup"
-    exit-status: 0
+    exec: "df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -nogroup | grep -v journal-upload"
+    exit-status:
+      or:
+      - 0
+      - 1
     timeout: {{ .Vars.timeout_ms }}
     stdout:
     - '!/.*/'

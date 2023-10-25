@@ -9,9 +9,11 @@ command:
       - 0
       - 1
     stdout:
-    - {{ .Vars.ubtu22cis_ssh_strong_kex }}
+    {{ range .Vars.ubtu22cis_ssh_strong_kex }}
+    - '/^KexAlgorithms.*{{ . }}/'
+    {{ end }}
     {{ range .Vars.ubtu22cis_ssh_weak_kex }}
-    - !{{ . }}
+    - '!/^KexAlgorithms.*!{{ . }}/'
     {{ end }}
     meta:
       server: 1
