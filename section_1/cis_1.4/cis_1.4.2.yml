@@ -4,7 +4,7 @@ file:
   default_grub_perms:
     title: 1.4.2 | Ensure permissions on bootloader config are configured
     exists: true
-    path: /etc/default/grub
+    path: /boot/grub/grub.cfg
     owner: root
     group: root
     mode: '0400'

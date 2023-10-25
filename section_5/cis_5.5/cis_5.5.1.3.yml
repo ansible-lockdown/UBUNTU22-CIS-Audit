@@ -1,11 +1,11 @@
 {{ if .Vars.ubtu22cis_level_1 }}
   {{ if .Vars.ubtu22cis_rule_5_5_1_3 }}
-command:
+file:
   login_def_PASS_WARN_AGE:
     title: 5.5.1.3 | Ensure password expiration warning days is 7 or more | logins.def
-    exec: grep -Ei "^PASS_WARN_AGE" /etc/login.defs
-    exit-status: 0
-    stdout:
+    path: /etc/login.defs
+    exists: 0
+    contents:
     - '/^PASS_WARN_AGE\s*{{ .Vars.ubtu22cis_pass.warn_age }}/'
     - '!/^PASS_WARN_AGE\s*[1-6]/'
     meta:
@@ -20,15 +20,17 @@ command:
       Mitre_Techniques: NA
       Mitre_Tactics: T0006
       Mitre_Mitigations: M1027
+command:
   user_expire_warn:
     title: 5.5.1.3 | Ensure password expiration warning days is 7 or more | user_warning
-    exec: "awk -F: '(/^[^:]+:[^!*]/ && $6<7){print $1 \" \" $6}' /etc/shadow"
-    exit-status: 
+    exec: "awk -F: '(/^[^:]+:[^!*]/) {print $6}' /etc/shadow"
+    exit-status:
       or:
       - 0
       - 1
     stdout:
-    - '!/^.*/'
+    - '/^([7-9]|[1-3][0-9])$/'
+    - '!/^([0-6]|-1)$/'
     meta:
       server: 1
       workstation: 1

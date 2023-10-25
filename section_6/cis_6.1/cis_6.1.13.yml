@@ -6,7 +6,10 @@ command:
     title: 6.1.13 | Audit SGID executables
     exec: "df --local -P | awk '{if (NR!=1) print $6}' | xargs -I '{}' find '{}' -xdev -type f -perm -2000"
     timeout: {{ .Vars.timeout_ms }}
-    exit-status: 0
+    exit-status:
+      or:
+      - 0
+      - 1
     stdout:
     - '!/./'
     meta:

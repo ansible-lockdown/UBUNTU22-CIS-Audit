@@ -2,7 +2,7 @@
   {{ if .Vars.ubtu22cis_rule_1_2_1 }}
 command:
   repos_configd:
-    title: 1.2.1 | Ensure package manager repositories are configured
+    title: 1.2.1 | Ensure package manager repositories are configured | Manual
     exec: echo "MANUAL - Please check manually for configured repos"
     exit-status: 0
     stdout:

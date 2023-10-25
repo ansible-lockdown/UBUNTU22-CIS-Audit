@@ -3,7 +3,7 @@
 command:
   home_dirs_restrict:
     title: 6.2.13 | Ensure all local interactive user home directories permissions are 750 or more restrictive
-    exec: export def_home=`grep "^HOME" /etc/default/useradd |cut -d= -f2` && for i in `ls $def_home`; do stat -c "%a %n" $def_home/$i; done
+    exec: export def_home=`grep "HOME=" /etc/default/useradd |cut -d= -f2` && for i in `ls $def_home`; do stat -c "%a %n" $def_home/$i; done
     exit-status: 0
     timeout: {{ .Vars.timeout_ms }}
     stdout:

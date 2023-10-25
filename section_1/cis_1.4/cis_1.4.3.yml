@@ -3,13 +3,13 @@
 command:
   root_passwd_set:
     title: 1.4.3 | Ensure authentication required for single user mode
-    exec: grep -Eq '^root:\$[0-9]' /etc/shadow || echo "root is locked"
+    exec: grep -Eq '^root:\$[0-9y]' /etc/shadow || echo "Root is locked"
     exit-status:
       or:
       - 0
       - 1
     stdout:
-    - '!/.*/'
+    - '!/Root is locked/'
     meta:
       server: 1
       workstation: 1
