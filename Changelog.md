@@ -11,6 +11,12 @@ multiline banner now there
 several other control and tests updfates and logic improved thanks to @loz
 new variable ubtu22cis_disable_dynamic_motd to set to true if you are not loading dynamic variables
 
+- #9 thanks to @zac90
+- #11 thanks to @big-yellow-duck
+- #13 thanks to @berdugonoa
+- #17 thanks to @LoZZoL
+- #18 thanks to @LoZZoL
+
 ## 0.2 updates
 
 Several control updates and new tests
