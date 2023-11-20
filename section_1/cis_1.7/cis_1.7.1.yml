@@ -5,7 +5,7 @@ file:
     title: 1.7.1 | Ensure message of the day is configured properly | motd file correct
     path: /etc/motd
     exists: true
-    contains:
+    contents:
     -  "{{ .Vars.ubtu22_warning_banner }}"
     - '!//\(v|r|m|s)/'
     - '!/\/etc\/os-release/'
@@ -31,7 +31,7 @@ file:
     title: 1.7.1 | Ensure message of the day is configured properly | stop dynamic load
     path: /etc/pam.d/sshd
     exists: true
-    contains:
+    contents:
     - '/#session\s+optional\s+pam_motd.so\s+motd=/run/motd.dynamic/'
     - '/#session\s+optional\s+pam_motd.so noupdate/'
     - '!/session\s+optional\s+pam_motd.so noupdate/'
