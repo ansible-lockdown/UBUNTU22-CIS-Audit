@@ -124,7 +124,7 @@ Ability to add your own requirements is available in several sections
 
 ## further information
 
-- [goss documentation](https://github.com/goss-org/goss/blob/master/docs/manual.md#patterns)
+- [goss documentation](https://github.com/goss-org/goss/blob/master/README.md)
 - [CIS standards](https://www.cisecurity.org)
 
 ## Feedback required
