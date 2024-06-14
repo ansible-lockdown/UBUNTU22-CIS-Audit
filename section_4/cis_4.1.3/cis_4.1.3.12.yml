@@ -2,12 +2,12 @@
   {{ if .Vars.ubtu22cis_rule_4_1_3_12 }}
 command:
   auditd_logins_cnf:
-    title: 4.1.3_12 | Ensure login and logout events are collected | Config
+    title: 4.1.3.12 | Ensure login and logout events are collected | Config
     exec: grep -R --include="*.rules" logins /etc/audit/rules.d/
     exit-status: 0
     stdout:
-    - '/-w /var/log/faillog -p wa -k logins/'
-    - '/-w /var/log/lastlog -p wa -k logins/'
+    - '/.*\:-w /var/run/faillock -p wa -k logins/'
+    - '/.*\:-w /var/log/lastlog -p wa -k logins/'
     meta:
       server: 2
       workstation: 2
@@ -29,7 +29,7 @@ command:
     exec: auditctl -l | grep logins
     exit-status: 0
     stdout:
-    - '-w /var/log/faillog -p wa -k logins'
+    - '-w /var/run/faillock -p wa -k logins'
     - '-w /var/log/lastlog -p wa -k logins'
     meta:
       server: 2
