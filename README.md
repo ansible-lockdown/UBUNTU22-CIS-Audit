@@ -29,8 +29,16 @@ If a site has specific options e.g. password complexity these can also be set.
 
 ## Requirements
 
-goss >= 0.4.0
+goss >= 0.4.4
 root privileges
+
+## Branches
+
+If running as part of the ansible playbook, this will pull in the relevant branch for the version of benchmark you are remediating.
+
+- e.g. v1.2 will pull in branch benchmark_v1.2
+
+Devel is normally the latest benchmark, so maybe different from the version of benchmark you wish to test. Details will show in the README.
 
 ## Usage
 
