@@ -1,9 +1,9 @@
 {{ if .Vars.ubtu22cis_level_1 }}
   {{ if .Vars.ubtu22cis_rule_3_3_6 }}
 kernel-param:
-  net.ipv4.icmp_ignore_bogus_error_responses:
-    title: 3.3.6 | Ensure bogus ICMP responses are ignored | ignore bogus icmp
-    value: '1'
+  net.ipv4.conf.all.secure_redirects:
+    title: 3.3.6 | Ensure secure ICMP redirects are not accepted | ipv4 all sec redirects
+    value: '0'
     meta:
       server: 1
       workstation: 1
@@ -14,22 +14,41 @@ kernel-param:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-      Mitre_Techniques:
-      - T1562
-      - T1562.006
-      Mitre_Tactics:
-      - TA0040
-      Mitre_Mitigations: M1053
+      NIST800-53R5:
+      - CM-1
+      - CM-2
+      - CM-6
+      - CM-7
+      - IA-5
+  net.ipv4.conf.default.secure_redirects:
+    title: 3.3.6 | Ensure secure ICMP redirects are not accepted | ipv4 def sec redirects
+    value: '0'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.2.6
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - CM-1
+      - CM-2
+      - CM-6
+      - CM-7
+      - IA-5
 command:
-  ipv4_ignore_bogus:
-    title: 3.3.6 | Ensure bogus ICMP responses are ignored | ignore bogus icmp conf
-    exec: grep "net.ipv4.icmp_ignore_bogus_error_responses" /etc/sysctl.conf /etc/sysctl.d/*
+  ipv4_all_sec_redirects:
+    title: 3.3.6 | Ensure secure ICMP redirects are not accepted | ipv4 all sec redirects conf
+    exec: grep "net\.ipv4\.conf\.all\.secure_redirects" /etc/sysctl.conf /etc/sysctl.d/*
     exit-status:
       or:
       - 0
       - 1
     stdout:
-    - '/^\/etc\/sysctl.*:net.ipv4.icmp_ignore_bogus_error_responses(\s|)=(\s|)1/'
+    - '/^\/etc\/sysctl.*:net.ipv4.conf.all.secure_redirects\s*=\s*0/'
     meta:
       server: 1
       workstation: 1
@@ -40,11 +59,36 @@ command:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-      Mitre_Techniques:
-      - T1562
-      - T1562.006
-      Mitre_Tactics:
-      - TA0040
-      Mitre_Mitigations: M1053
+      NIST800-53R5:
+      - CM-1
+      - CM-2
+      - CM-6
+      - CM-7
+      - IA-5
+  ipv4_def_sec_redirects:
+    title: 3.3.6 | Ensure secure ICMP redirects are not accepted | ipv4 all def redirects conf
+    exec: grep "net\.ipv4\.conf\.default\.secure_redirects" /etc/sysctl.conf /etc/sysctl.d/*
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/^\/etc\/sysctl.*:net.ipv4.conf.default.secure_redirects\s*=\s*0/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.6
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - CM-1
+      - CM-2
+      - CM-6
+      - CM-7
+      - IA-5
   {{ end }}
 {{ end }}

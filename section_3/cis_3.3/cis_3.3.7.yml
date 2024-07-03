@@ -1,3 +1,5 @@
+---
+
 {{ if .Vars.ubtu22cis_level_1 }}
   {{ if .Vars.ubtu22cis_rule_3_3_7 }}
 kernel-param:
@@ -14,15 +16,12 @@ kernel-param:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-      Mitre_Techniques:
-      - T1498
-      - T1498.001
-      Mitre_Tactics:
-      - TA0006
-      - TA0040
-      Mitre_Mitigations:
-      - M1030
-      - M1042
+      NIST800-53R5:
+      - CM-1
+      - CM-2
+      - CM-6
+      - CM-7
+      - IA-5
   net.ipv4.conf.default.rp_filter:
     title: 3.3.7 | Ensure Reverse Path Filtering is enabled | ipv4 default rp_filter
     value: '1'
@@ -36,15 +35,12 @@ kernel-param:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-      Mitre_Techniques:
-      - T1498
-      - T1498.001
-      Mitre_Tactics:
-      - TA0006
-      - TA0040
-      Mitre_Mitigations:
-      - M1030
-      - M1042
+      NIST800-53R5:
+      - CM-1
+      - CM-2
+      - CM-6
+      - CM-7
+      - IA-5
 command:
   ipv4_all_rp_filter:
     title: 3.3.7 | Ensure Reverse Path Filtering is enabled | ipv4 all rp_filter conf
@@ -54,7 +50,7 @@ command:
       - 0
       - 1
     stdout:
-    - '/^\/etc\/sysctl.*:net.ipv4.conf.all.rp_filter(\s|)=(\s|)1/'
+    - '/^\/etc\/sysctl.*:net.ipv4.conf.all.rp_filter\s*=\s*1/'
     meta:
       server: 1
       workstation: 1
@@ -65,15 +61,12 @@ command:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-      Mitre_Techniques:
-      - T1498
-      - T1498.001
-      Mitre_Tactics:
-      - TA0006
-      - TA0040
-      Mitre_Mitigations:
-      - M1030
-      - M1042
+      NIST800-53R5:
+      - CM-1
+      - CM-2
+      - CM-6
+      - CM-7
+      - IA-5
   ipv4_def_rp_filter:
     title: 3.3.7 | Ensure Reverse Path Filtering is enabled | ipv4 def rp_filter conf
     exec: grep "net\.ipv4\.conf\.default\.rp_filter" /etc/sysctl.conf /etc/sysctl.d/*
@@ -82,7 +75,7 @@ command:
       - 0
       - 1
     stdout:
-    - '/^\/etc\/sysctl.*:net.ipv4.conf.default.rp_filter(\s|)=(\s|)/'
+    - '/^\/etc\/sysctl.*:net.ipv4.conf.default.rp_filter\s*=\s*1/'
     meta:
       server: 1
       workstation: 1
@@ -93,14 +86,11 @@ command:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-      Mitre_Techniques:
-      - T1498
-      - T1498.001
-      Mitre_Tactics:
-      - TA0006
-      - TA0040
-      Mitre_Mitigations:
-      - M1030
-      - M1042
+      NIST800-53R5:
+      - CM-1
+      - CM-2
+      - CM-6
+      - CM-7
+      - IA-5
   {{ end }}
 {{ end }}

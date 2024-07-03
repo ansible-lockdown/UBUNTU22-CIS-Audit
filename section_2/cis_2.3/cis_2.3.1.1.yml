@@ -1,0 +1,75 @@
+---
+
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_2_3_1_1 }}
+package:
+  {{ .Vars.ubtu22cis_time_service }}:
+    title: 2.3.1.1 | Ensure a single time synchronization daemon is in use
+    installed: true
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 2.3.1.1
+      CISv8:
+      - 8.4
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-3
+      - AU-12
+  {{ if eq .Vars.ubtu22cis_time_service "systemd-timesyncd" }}
+  ntp:
+    title: 2.3.1.1 | Ensure time synchronization is in use | ntp service
+    installed: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 2.3.1.1
+      CISv8:
+      - 8.4
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-3
+      - AU-12
+  chrony:
+    title: 2.3.1.1 | Ensure time synchronization is in use | chrony service
+    installed: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 2.3.1.1
+      CISv8:
+      - 8.4
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-3
+      - AU-12
+  {{ end }}
+  {{ if ne .Vars.ubtu22cis_time_service "systemd-timesyncd" }}
+file:
+  timesync_masked:
+    title: 2.3.1.1 | Ensure time synchronization is in use | systemd-timesyncd masked
+    path: /etc/systemd/system/systemd-timesyncd.service
+    filetype: symlink
+    linked-to: /dev/null
+    exists: true
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 2.3.1.1
+      CISv8:
+      - 8.4
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-3
+      - AU-12
+    {{ end }}
+  {{ end }}
+{{ end }}

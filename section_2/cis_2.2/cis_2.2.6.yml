@@ -1,10 +1,13 @@
-{{ if not .Vars.ubtu22cis_nfs_server }}
+---
+
+{{ if not .Vars.ubtu22cis_ftp_client }}
   {{ if .Vars.ubtu22cis_level_1 }}
     {{ if .Vars.ubtu22cis_rule_2_2_6 }}
 package:
-  nfs-kernel-server:
-    title: 2.2.6 | Ensure NFS is not installed
+  ftp_client:
+    title: 2.2.6 | Ensure ftp client is not installed
     installed: false
+    name: ftp
     meta:
       server: 1
       workstation: 1
@@ -14,15 +17,9 @@ package:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-      Mitre_Techniques:
-      - T1203
-      - T1203.000
-      - T1210
-      - T1210.000
-      - T1543
-      - T1543.002
-      Mitre_Tactics: TA0008
-      Mitre_Mitigations: M1042
+      NIST800-53R5:
+      - CM-7
+      - CM-11
     {{ end }}
   {{ end }}
 {{ end }}

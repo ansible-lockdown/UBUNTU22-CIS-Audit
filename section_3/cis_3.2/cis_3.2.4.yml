@@ -1,19 +1,17 @@
----
-
 {{ if .Vars.ubtu22cis_level_2 }}
-  {{ if .Vars.ubtu22cis_rule_3_2_1 }}
+  {{ if .Vars.ubtu22cis_rule_3_2_4 }}
 command:
-  modprobe_dccp:
-    title: 3.2.1 | Ensure dccp kernel module is not available | DCCP config
+  modprobe_sctp:
+    title: 3.2.4 | Ensure sctp kernel module is not available | sctp config
     exit-status: 0
-    exec: 'modprobe -n -v dccp'
+    exec: 'modprobe -n -v sctp'
     stdout:
       - '/install /bin/(true|false)/'
     meta:
       server: 2
       workstation: 2
       CIS_ID:
-      - 3.2.1
+      - 3.2.4
       CISv8:
       - 4.8
       CISv8_IG1: false
@@ -22,17 +20,17 @@ command:
       NIST800-53R5:
       - CM-7
       - SI-4
-  lsmod_dccp:
-    title: 3.2.1 | Ensure dccp kernel module is not available | running dccp
+  lsmod_sctp:
+    title: 3.2.4 | Ensure sctp kernel module is not available | running sctp
     exit-status: 1
-    exec: lsmod | grep -i dccp
+    exec: lsmod | grep -i sctp
     stdout:
     - '!/^.*/'
     meta:
       server: 2
       workstation: 2
       CIS_ID:
-      - 3.2.1
+      - 3.2.4
       CISv8:
       - 4.8
       CISv8_IG1: false

@@ -1,9 +1,11 @@
-{{ if not .Vars.ubtu22cis_dhcp_server }}
+---
+
+{{ if not .Vars.ubtu22cis_telnet_required }}
   {{ if .Vars.ubtu22cis_level_1 }}
     {{ if .Vars.ubtu22cis_rule_2_2_4 }}
 package:
-  isc-dhcp-server:
-    title: 2.2.4 | Ensure DHCP Server is not installed
+  telnet:
+    title: 2.2.4 | Ensure telnet client is not installed
     installed: false
     meta:
       server: 1
@@ -14,15 +16,9 @@ package:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-      Mitre_Techniques:
-      - T1203
-      - T1203.000
-      - T1210
-      - T1210.000
-      - T1543
-      - T1543.002
-      Mitre_Tactics: TA0008
-      Mitre_Mitigations: M1042
+      NIST800-53R5:
+      - CM-7
+      - CM-11
     {{ end }}
   {{ end }}
 {{ end }}

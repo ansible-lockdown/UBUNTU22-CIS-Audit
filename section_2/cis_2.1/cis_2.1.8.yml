@@ -1,0 +1,82 @@
+---
+
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_2_1_8 }}
+    {{ if not .Vars.ubtu22cis_message_server }}
+      {{ if not .Vars.ubtu22cis_message_mask }}
+package:
+  dovecot_imapd_pkg:
+    title: 2.1.8 | Ensure message access server services are not in use | pkg removed
+    name: dovecot-imapd
+    installed: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 2.1.8
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - CM-7
+  dovecot_pop3d_pkg:
+    title: 2.1.8 | Ensure message access server services are not in use | pkg removed
+    name: dovecot-pop3d
+    installed: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 2.1.8
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - CM-7
+      {{ end }}
+      {{ if .Vars.ubtu22cis_message_mask }}
+file:
+  dovecot_service_masked:
+    title: 2.1.8 | Ensure message access server services are not in use | masked
+    path: /etc/systemd/system/dovecot.service
+    exists: true
+    filetype: symlink
+    linked-to: /dev/null
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 2.1.8
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - CM-7
+  dovecot_socket_masked:
+    title: 2.1.8 | Ensure message access server services are not in use | masked
+    path: /etc/systemd/system/dovecot.socket
+    exists: true
+    filetype: symlink
+    linked-to: /dev/null
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 2.1.8
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - CM-7
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}

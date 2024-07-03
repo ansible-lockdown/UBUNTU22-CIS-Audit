@@ -1,9 +1,11 @@
+---
+
 {{ if .Vars.ubtu22cis_level_1 }}
   {{ if .Vars.ubtu22cis_rule_3_3_5 }}
 kernel-param:
-  net.ipv4.icmp_echo_ignore_broadcasts:
-    title: 3.3.5 | Ensure broadcast ICMP requests are ignored | ipv4 ignore broadcast icmp
-    value: '1'
+  net.ipv4.conf.all.accept_redirects:
+    title: 3.3.5 | Ensure ICMP redirects are not accepted | ipv4 all icmp redirects
+    value: '0'
     meta:
       server: 1
       workstation: 1
@@ -14,22 +16,41 @@ kernel-param:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-      Mitre_Techniques:
-      - T1498
-      - T1498.001
-      Mitre_Tactics:
-      - TA0040
-      Mitre_Mitigations: M1037
+      NIST800-53R5:
+      - CM-1
+      - CM-2
+      - CM-6
+      - CM-7
+      - IA-5
+  net.ipv4.conf.default.accept_redirects:
+    title: 3.3.5 | Ensure ICMP redirects are not accepted | ipv4 default icmp redirects
+    value: '0'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.5
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - CM-1
+      - CM-2
+      - CM-6
+      - CM-7
+      - IA-5
 command:
-  ipv4_ignore_icmp_broadcast:
-    title: 3.3.5 | Ensure broadcast ICMP requests are ignored | ipv4 ignore broadcast icmp conf
-    exec: grep "net\.ipv4\.icmp_echo_ignore_broadcasts" /etc/sysctl.conf /etc/sysctl.d/*
+  ipv4_all_icmp_redirects:
+    title: 3.3.5 | Ensure ICMP redirects are not accepted | ipv4 all icmp redirects conf
+    exec: grep "net\.ipv4\.conf\.all\.accept_redirects" /etc/sysctl.conf /etc/sysctl.d/*
     exit-status:
       or:
       - 0
       - 1
     stdout:
-    - '/^\/etc\/sysctl.*:net.ipv4.icmp_echo_ignore_broadcasts(\s|)=(\s|)1/'
+    - '/^\/etc\/sysctl.*:net.ipv4.conf.all.accept_redirects\s*=\s*0/'
     meta:
       server: 1
       workstation: 1
@@ -40,11 +61,36 @@ command:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-      Mitre_Techniques:
-      - T1498
-      - T1498.001
-      Mitre_Tactics:
-      - TA0040
-      Mitre_Mitigations: M1037
+      NIST800-53R5:
+      - CM-1
+      - CM-2
+      - CM-6
+      - CM-7
+      - IA-5
+  ipv4_def_icmp_redirects:
+    title: 3.3.5 | Ensure ICMP redirects are not accepted | ipv4 def icmp redirects conf
+    exec: grep "net\.ipv4\.conf\.default\.accept_redirects" /etc/sysctl.conf /etc/sysctl.d/*
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/^\/etc\/sysctl.*:net.ipv4.conf.default.accept_redirects\s*=\s*0/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.5
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - CM-1
+      - CM-2
+      - CM-6
+      - CM-7
+      - IA-5
   {{ end }}
 {{ end }}

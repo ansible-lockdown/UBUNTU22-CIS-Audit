@@ -1,0 +1,26 @@
+---
+
+{{ if eq .Vars.ubtu22cis_time_service "systemd-timesyncd" }}
+  {{ if .Vars.ubtu22cis_level_1 }}
+    {{ if .Vars.ubtu22cis_rule_2_3_2_2 }}
+service:
+  timesyncd:
+    title: 2.3.2.2 | Ensure systemd-timesyncd is enabled and running
+    enabled: true
+    running: true
+    name: systemd-timesyncd
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID: 2.3.2.2
+      CISv8:
+      - 8.4
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-7
+      - AU-8
+    {{ end }}
+  {{ end }}
+{{ end }}

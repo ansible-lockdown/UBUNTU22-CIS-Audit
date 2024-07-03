@@ -1,0 +1,26 @@
+---
+
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_2_4_1_2 }}
+file:
+  crontab_perms:
+    title: 2.4.1.2 | Ensure permissions on /etc/crontab are configured
+    path: /etc/crontab
+    exists: true
+    owner: root
+    group: root
+    mode: "0600"
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 2.4.1.2
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AC-3
+      - MP-2
+  {{ end }}
+{{ end }}

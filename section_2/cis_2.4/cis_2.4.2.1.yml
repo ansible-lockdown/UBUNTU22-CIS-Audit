@@ -1,0 +1,41 @@
+---
+
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_2_4_2_1 }}
+file:
+  at_deny_absent:
+    title: 2.4.2.1 | Ensure at is restricted to authorized users
+    path: /etc/at.deny
+    exists: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 2.4.2.1
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AC-3
+      - MP-2
+  /etc/at.allow:
+    title: 2.4.2.1 | Ensure at is restricted to authorized users
+    exists: true
+    owner: root
+    group: root
+    mode: "0640"
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 2.4.2.1
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AC-3
+      - MP-2
+  {{ end }}
+{{ end }}

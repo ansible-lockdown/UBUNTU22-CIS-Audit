@@ -1,0 +1,46 @@
+---
+
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_2_4_1_1 }}
+package:
+  cron:
+    title: 2.4.1.1 | Ensure cron daemon is enabled and active | pkg
+    installed: true
+    name: cron
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 2.4.1.1
+      CISv8: NA
+      CISv8_IG1: NA
+      CISv8_IG2: NA
+      CISv8_IG3: NA
+      NIST800-53R5:
+      - CM-1
+      - CM-2
+      - CM-6
+      - CM-7
+      - IA-5
+service:
+  cron:
+    title: 2.4.1.1 | Ensure cron daemon is enabled and running | service
+    running: true
+    enabled: true
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 2.4.1.1
+      CISv8: NA
+      CISv8_IG1: NA
+      CISv8_IG2: NA
+      CISv8_IG3: NA
+      NIST800-53R5:
+      - CM-1
+      - CM-2
+      - CM-6
+      - CM-7
+      - IA-5
+  {{ end }}
+{{ end }}
