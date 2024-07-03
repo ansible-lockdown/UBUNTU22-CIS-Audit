@@ -1,7 +1,7 @@
 ---
 
 {{ if .Vars.ubtu22cis_level_1 }}
-  {{ if .Vars.ubtu22cis_gui }}
+  {{ if .Vars.ubtu22cis_desktop_required }}
     {{ if .Vars.ubtu22cis_rule_1_7_10 }}
 file:
   gdm_xdcmp:

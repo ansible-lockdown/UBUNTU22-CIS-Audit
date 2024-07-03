@@ -1,6 +1,6 @@
 ---
 
-{{ if eq .Vars.ubtu22cis_time_service "systemd-timesyncd" }}
+{{ if eq .Vars.ubtu22cis_time_sync_tool "systemd-timesyncd" }}
   {{ if .Vars.ubtu22cis_level_1 }}
     {{ if .Vars.ubtu22cis_rule_2_3_2_1 }}
 file:
@@ -9,7 +9,7 @@ file:
     path: /etc/systemd/timesyncd.conf.d/50-timesyncd.conf
     exists: true
     contents:
-    - '/^NTP={{ ubtu22cis_time_pool.name }}/'
+    - '/^NTP={{ .Vars.ubtu22cis_time_pool_name }}/'
     - '/^FallbackNTP={{- range .Vars.ubtu22cis_time_servers }}{{ .name }} {{ end }}/'
     meta:
       server: 1

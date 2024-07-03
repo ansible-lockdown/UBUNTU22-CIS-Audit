@@ -18,7 +18,7 @@ package:
       NIST800-53R5:
       - AU-3
       - AU-12
-  {{ if eq .Vars.ubtu22cis_time_service "systemd-timesyncd" }}
+  {{ if eq .Vars.ubtu22cis_time_sync_tool "systemd-timesyncd" }}
   ntp:
     title: 2.3.1.1 | Ensure time synchronization is in use | ntp service
     installed: false
@@ -50,7 +50,7 @@ package:
       - AU-3
       - AU-12
   {{ end }}
-  {{ if ne .Vars.ubtu22cis_time_service "systemd-timesyncd" }}
+  {{ if ne .Vars.ubtu22cis_time_sync_tool "systemd-timesyncd" }}
 file:
   timesync_masked:
     title: 2.3.1.1 | Ensure time synchronization is in use | systemd-timesyncd masked

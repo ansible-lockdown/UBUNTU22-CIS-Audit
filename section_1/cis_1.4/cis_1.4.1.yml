@@ -8,8 +8,8 @@ file:
     path: /etc/grub.d/00_user
     exists: true
     contents:
-    - '/set superusers="{{ .Vars.ubtu22cis_grub_username }}"/'
-    - '/password_pbkdf2 {{ .Vars.ubtu22cis_grub_username }} {{ .Vars.ubtu22cis_grub_hash }}'
+    - '/set superusers="{{ .Vars.ubtu22cis_grub_user }}"/'
+    - '/password_pbkdf2 {{ .Vars.ubtu22cis_grub_user }} {{ .Vars.ubtu22cis_bootloader_password_hash }}/'
     meta:
       server: 1
       workstation: 1

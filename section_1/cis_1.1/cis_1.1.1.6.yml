@@ -1,6 +1,7 @@
 ---
 
 {{ if .Vars.ubtu22cis_level_2 }}
+  {{ if not .Vars.ubtu22cis_squashfs_required }}
   {{ if .Vars.ubtu22cis_rule_1_1_1_6 }}
 file:
   squashfs_disabled:
@@ -35,5 +36,6 @@ file:
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5: CM-7
+    {{ end }}
   {{ end }}
 {{ end }}

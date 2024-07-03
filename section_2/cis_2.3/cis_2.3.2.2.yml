@@ -1,6 +1,6 @@
 ---
 
-{{ if eq .Vars.ubtu22cis_time_service "systemd-timesyncd" }}
+{{ if eq .Vars.ubtu22cis_time_sync_tool "systemd-timesyncd" }}
   {{ if .Vars.ubtu22cis_level_1 }}
     {{ if .Vars.ubtu22cis_rule_2_3_2_2 }}
 service:

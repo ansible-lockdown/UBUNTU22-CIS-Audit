@@ -8,8 +8,8 @@ file:
     path: /etc/motd
     exists: true
     contents:
-    -  "{{ .Vars.ubtu22_warning_banner }}"
-    - '!//\(v|r|m|s)/'
+    - {{ .Vars.ubtu22cis_warning_banner }}
+    - '!/(\\v|\\r|\\m|\\s)/'
     - '!/\/etc\/os-release/'
     - '!/(?i)ubuntu/'
     meta:
@@ -27,20 +27,20 @@ file:
       - CM-3
 {{ if .Vars.ubtu22cis_disable_dynamic_motd }}
   disable_dyn_motd:
-    title: 1.7.1 | Ensure message of the day is configured properly | stop dynamic load
+    title: 1.6.1 | Ensure message of the day is configured properly | stop dynamic load
     path: /etc/pam.d/sshd
     exists: true
     contents:
-    - '/#session\s+optional\s+pam_motd.so\s+motd=/run/motd.dynamic/'
-    - '/#session\s+optional\s+pam_motd.so noupdate/'
-    - '!/session\s+optional\s+pam_motd.so noupdate/'
+    - '/#\s*session\s+optional\s+pam_motd.so\s+motd=/run/motd.dynamic/'
+    - '/#\s*session\s+optional\s+pam_motd.so noupdate/'
+    - '!/^session\s+optional\s+pam_motd.so noupdate/'
     - '!/^session\s+optional\s+pam_motd.so\s+motd=/run/motd.dynamic/'
 {{ end }}
 {{ if not .Vars.ubtu22cis_disable_dynamic_motd }}
 command:
   check_motd_files:
-    title: 1.7.1 | Ensure message of the day is configured properly | dynamic motd files
-    exec: grep -Eis "(\\\v|\\\r|\\\m|\\\s|$(grep '^ID=' /etc/os-release | cut -d= -f2 | sed -e 's/"//g'))" /etc/update-motd.d/*
+    title: 1.6.1 | Ensure message of the day is configured properly | dynamic motd files
+    exec: "grep -Eis \"(\\\v|\\\r|\\\m|\\\s|$(grep '^ID=' /etc/os-release | cut -d= -f2 | sed -e 's/\"//g'))\" /etc/update-motd.d/*"
     exit-status:
       or:
       - 0
@@ -52,7 +52,7 @@ command:
       server: 1
       workstation: 1
       CIS_ID:
-      - 1.7.1
+      - 1.6.1
       CISv8: NA
       CISv8_IG1: NA
       CISv8_IG2: NA

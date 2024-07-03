@@ -10,9 +10,9 @@ file:
     owner: root
     group: root
     mode:
-      or
-      - '0400'
-      - '0600'
+      or:
+      - "0400"
+      - "0600"
     meta:
       server: 1
       workstation: 1

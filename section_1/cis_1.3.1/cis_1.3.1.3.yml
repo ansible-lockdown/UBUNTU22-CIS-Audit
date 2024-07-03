@@ -2,7 +2,6 @@
 
 {{ if .Vars.ubtu22cis_level_1 }}
 {{ if not .Vars.ubtu22cis_apparmor_disable }}
-{{ if not .Vars.ubtu22cis_apparmor_enforce_only }}
   {{ if .Vars.ubtu22cis_rule_1_3_1_3 }}
 command:
   apparmor_enf_or_comp:
@@ -23,5 +22,4 @@ command:
       NIST800-53R5: AC-3
   {{ end }}
   {{ end }}
-{{ end }}
 {{ end }}
