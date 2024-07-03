@@ -1,0 +1,96 @@
+---
+
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_3_3_8 }}
+kernel-param:
+  net.ipv6.conf.all.accept_source_route:
+    title: 3.3.8 | Ensure source routed packets are not accepted | IPv6 all source routed
+    value: '0'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.8
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - CM-1
+      - CM-2
+      - CM-6
+      - CM-7
+      - IA-5
+  net.ipv6.conf.default.accept_source_route:
+    title: 3.3.8 | Ensure source routed packets are not accepted | IPv6 default source routed
+    value: '0'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.8
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - CM-1
+      - CM-2
+      - CM-6
+      - CM-7
+      - IA-5
+command:
+  ipv6_all_source_route:
+    title: 3.3.8 | Ensure source routed packets are not accepted | IPv6 all source routed conf
+    exec: grep "net\.ipv6\.conf\.all\.accept_source_route" /etc/sysctl.conf /etc/sysctl.d/*
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/^net.ipv6.conf.all.accept_source_route= 0/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.8
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - CM-1
+      - CM-2
+      - CM-6
+      - CM-7
+      - IA-5
+  ipv6_def_source_route:
+    title: 3.3.8 | Ensure source routed packets are not accepted | IPv6 default source routed conf
+    exec: grep "net\.ipv6\.conf\.default\.accept_source_route" /etc/sysctl.conf /etc/sysctl.d/*
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/^net.ipv6.conf.default.accept_source_route(\s|)=(\s|)0/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.8
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - CM-1
+      - CM-2
+      - CM-6
+      - CM-7
+      - IA-5
+  {{ end }}
+{{ end }}

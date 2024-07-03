@@ -1,0 +1,96 @@
+---
+
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_3_3_5 }}
+kernel-param:
+  net.ipv6.conf.all.accept_redirects:
+    title: 3.3.5 | Ensure ICMP redirects are not accepted | ipv6 all icmp redirects
+    value: '0'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.5
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - CM-1
+      - CM-2
+      - CM-6
+      - CM-7
+      - IA-5
+  net.ipv6.conf.default.accept_redirects:
+    title: 3.3.5 | Ensure ICMP redirects are not accepted | ipv6 default icmp redirects
+    value: '0'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.5
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - CM-1
+      - CM-2
+      - CM-6
+      - CM-7
+      - IA-5
+command:
+  ipv6_all_icmp_redirects:
+    title: 3.3.5 | Ensure ICMP redirects are not accepted | ipv6 all icmp redirects conf
+    exec: grep "net\.ipv6\.conf\.all\.accept_redirects" /etc/sysctl.conf /etc/sysctl.d/*
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/^net.ipv6.conf.all.accept_redirects(\s|)=(\s|)0/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.5
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - CM-1
+      - CM-2
+      - CM-6
+      - CM-7
+      - IA-5
+  ipv6_def_icmp_redirects:
+    title: 3.3.5 | Ensure ICMP redirects are not accepted | ipv6 def icmp redirects conf
+    exec: grep "net\.ipv6\.conf\.default\.accept_redirects" /etc/sysctl.conf /etc/sysctl.d/*
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/^net.ipv6.conf.default.accept_redirects(\s|)=(\s|)0/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.5
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - CM-1
+      - CM-2
+      - CM-6
+      - CM-7
+      - IA-5
+  {{ end }}
+{{ end }}
