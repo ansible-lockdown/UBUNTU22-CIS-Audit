@@ -1,0 +1,25 @@
+---
+
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_1_2_2_1 }}
+command:
+  check_updates:
+    title: 1.2.2.1 | Ensure updates, patches, and additional security software are installed
+    exec: apt update | tail -1
+    exit-status: 0
+    timeout: {{ .Vars.timeout_ms }}
+    stdout:
+    - '!/^[1-9]{0,4}$ packages can be upgraded/'
+    - '/^All packages are up to date/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.2.2.1
+      CISv8: 7.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: SI-2
+  {{ end }}
+{{ end }}

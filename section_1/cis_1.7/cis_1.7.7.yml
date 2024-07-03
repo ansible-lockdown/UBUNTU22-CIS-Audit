@@ -2,21 +2,20 @@
 
 {{ if .Vars.ubtu22cis_level_1 }}
   {{ if .Vars.ubtu22cis_gui }}
-    {{ if .Vars.ubtu22cis_rule_1_7_2 }}
+    {{ if .Vars.ubtu22cis_rule_1_7_7 }}
 file:
-  gdm_banner:
-    title: 1.7.2 | Ensure GDM login banner is configured
-    path: /etc/gdm3/greeter.dconf-defaults
+  gnome_automount_lock:
+    title: 1.7.7 | Ensure GDM disabling automatic mounting of removable media is not overridden
+    path: /etc/dconf/db/local.d/locks/00-automount_lock
     exists: true
     contents:
-    - '/^[org/gnome/login-screen]/'
-    - '/^banner-message-enable=true/'
-    - '/^banner-message-text='{{ .Vars.ubtu22cis_warning_banner }}'/'
+    - '^/\/org\/gnome\/desktop\/media-handling\/automount/'
+    - '^/\/org\/gnome\/desktop\/media-handling\/automount-open/'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
-      - 1.7.2
+      - 1.7.7
       CISv8: NA
       CISv8_IG1: NA
       CISv8_IG2: NA

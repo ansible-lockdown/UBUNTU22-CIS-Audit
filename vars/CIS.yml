@@ -1,9 +1,9 @@
 ## metadata for Audit benchmark
-benchmark_version: '1.1.0'
+benchmark_version: '2.0.0'
 
 
 #  timeout for each command to run where set - default = 10seconds/10000ms
-timeout_ms: 60000
+timeout_ms: 120000
 
 
 ubtu22cis_section1: true
@@ -12,6 +12,7 @@ ubtu22cis_section3: true
 ubtu22cis_section4: true
 ubtu22cis_section5: true
 ubtu22cis_section6: true
+ubtu22cis_section7: true
 
 ubtu22cis_level_1: true
 ubtu22cis_level_2: true
@@ -25,129 +26,182 @@ ubtu22_legacy_boot: true
 
 ubtu22_set_boot_pass: true
 
-# These variables correspond with the CIS rule IDs or paragraph numbers defined in
-# the CIS benchmark documents.
-# PLEASE NOTE: These work in coordination with the section # group variables and tags.
-# You must enable an entire section in order for the variables below to take effect.
-# Section 1 rules
+##
+## Rule-specific switches
+##
+## Use the switches below to disable specific rules independently of the chosen profile
+##
+
+## Section 1 Fixes
+# Section 1 is Initial setup (FileSystem Configuration, Configure Software Updates, Filesystem Integrity Checking, Secure Boot Settings,
+# Additional Process Hardening, Mandatory Access Control, Command Line Warning Banners, and GNOME Display Manager)
+
+# 1.1 Filesystems
+# 1.1.1 Configure Filesystem Kernel Modules
 ubtu22cis_rule_1_1_1_1: true
 ubtu22cis_rule_1_1_1_2: true
 ubtu22cis_rule_1_1_1_3: true
-ubtu22cis_rule_1_1_2_1: true
-ubtu22cis_rule_1_1_2_2: true
-ubtu22cis_rule_1_1_2_3: true
-ubtu22cis_rule_1_1_2_4: true
-ubtu22cis_rule_1_1_3_1: true
-ubtu22cis_rule_1_1_3_2: true
-ubtu22cis_rule_1_1_3_3: true
-ubtu22cis_rule_1_1_4_1: true
-ubtu22cis_rule_1_1_4_2: true
-ubtu22cis_rule_1_1_4_3: true
-ubtu22cis_rule_1_1_4_4: true
-ubtu22cis_rule_1_1_5_1: true
-ubtu22cis_rule_1_1_5_2: true
-ubtu22cis_rule_1_1_5_3: true
-ubtu22cis_rule_1_1_5_4: true
-ubtu22cis_rule_1_1_6_1: true
-ubtu22cis_rule_1_1_6_2: true
-ubtu22cis_rule_1_1_6_3: true
-ubtu22cis_rule_1_1_6_4: true
-ubtu22cis_rule_1_1_7_1: true
-ubtu22cis_rule_1_1_7_2: true
-ubtu22cis_rule_1_1_7_3: true
-ubtu22cis_rule_1_1_8_1: true
-ubtu22cis_rule_1_1_8_2: true
-ubtu22cis_rule_1_1_8_3: true
-ubtu22cis_rule_1_1_9: true
-ubtu22cis_rule_1_1_10: true
-ubtu22cis_rule_1_2_1: true
-ubtu22cis_rule_1_2_2: true
-ubtu22cis_rule_1_3_1: true
-ubtu22cis_rule_1_3_2: true
+ubtu22cis_rule_1_1_1_4: true
+ubtu22cis_rule_1_1_1_5: true
+ubtu22cis_rule_1_1_1_6: true
+ubtu22cis_rule_1_1_1_7: true
+ubtu22cis_rule_1_1_1_8: true
+
+# 1.1.2 Configure Filesystem Partitions
+# /tmp
+ubtu22cis_rule_1_1_2_1_1: true
+ubtu22cis_rule_1_1_2_1_2: true
+ubtu22cis_rule_1_1_2_1_3: true
+ubtu22cis_rule_1_1_2_1_4: true
+
+# /dev/shm
+ubtu22cis_rule_1_1_2_2_1: true
+ubtu22cis_rule_1_1_2_2_2: true
+ubtu22cis_rule_1_1_2_2_3: true
+ubtu22cis_rule_1_1_2_2_4: true
+
+# /home
+ubtu22cis_rule_1_1_2_3_1: true
+ubtu22cis_rule_1_1_2_3_2: true
+ubtu22cis_rule_1_1_2_3_3: true
+
+# /var
+ubtu22cis_rule_1_1_2_4_1: true
+ubtu22cis_rule_1_1_2_4_2: true
+ubtu22cis_rule_1_1_2_4_3: true
+
+# /var/tmp
+ubtu22cis_rule_1_1_2_5_1: true
+ubtu22cis_rule_1_1_2_5_2: true
+ubtu22cis_rule_1_1_2_5_3: true
+ubtu22cis_rule_1_1_2_5_4: true
+
+# /var/log
+ubtu22cis_rule_1_1_2_6_1: true
+ubtu22cis_rule_1_1_2_6_2: true
+ubtu22cis_rule_1_1_2_6_3: true
+ubtu22cis_rule_1_1_2_6_4: true
+
+# /var/log/audit
+ubtu22cis_rule_1_1_2_7_1: true
+ubtu22cis_rule_1_1_2_7_2: true
+ubtu22cis_rule_1_1_2_7_3: true
+ubtu22cis_rule_1_1_2_7_4: true
+
+# 1.2 Package mgmt
+# 1.2.1 Configure Package repositories
+ubtu22cis_rule_1_2_1_1: true
+ubtu22cis_rule_1_2_1_2: true
+# 1.2.2 Configure Package updates
+ubtu22cis_rule_1_2_2_1: true
+
+# 1.3 Mandatory Access Control
+## 1.3.1 Configure AppArmor
+ubtu22cis_rule_1_3_1_1: true
+ubtu22cis_rule_1_3_1_2: true
+ubtu22cis_rule_1_3_1_3: true
+ubtu22cis_rule_1_3_1_4: true
+
+# 1.4 Configure Bootloader
 ubtu22cis_rule_1_4_1: true
 ubtu22cis_rule_1_4_2: true
-ubtu22cis_rule_1_4_3: true
+
+# 1.5 Configure additional Process Hardening
 ubtu22cis_rule_1_5_1: true
 ubtu22cis_rule_1_5_2: true
 ubtu22cis_rule_1_5_3: true
 ubtu22cis_rule_1_5_4: true
-ubtu22cis_rule_1_6_1_1: true
-ubtu22cis_rule_1_6_1_2: true
-ubtu22cis_rule_1_6_1_3: true
-ubtu22cis_rule_1_6_1_4: true
+ubtu22cis_rule_1_5_5: true
+
+# 1.6 Configure Command Line Warning Banners
+ubtu22cis_rule_1_6_1: true
+ubtu22cis_rule_1_6_2: true
+ubtu22cis_rule_1_6_3: true
+ubtu22cis_rule_1_6_4: true
+ubtu22cis_rule_1_6_5: true
+ubtu22cis_rule_1_6_6: true
+
+# 1.7 Configure GNOME Display Manager
 ubtu22cis_rule_1_7_1: true
 ubtu22cis_rule_1_7_2: true
 ubtu22cis_rule_1_7_3: true
 ubtu22cis_rule_1_7_4: true
 ubtu22cis_rule_1_7_5: true
 ubtu22cis_rule_1_7_6: true
-ubtu22cis_rule_1_8_1: true
-ubtu22cis_rule_1_8_2: true
-ubtu22cis_rule_1_8_3: true
-ubtu22cis_rule_1_8_4: true
-ubtu22cis_rule_1_8_5: true
-ubtu22cis_rule_1_8_6: true
-ubtu22cis_rule_1_8_7: true
-ubtu22cis_rule_1_8_8: true
-ubtu22cis_rule_1_8_9: true
-ubtu22cis_rule_1_8_10: true
-ubtu22cis_rule_1_9: true
+ubtu22cis_rule_1_7_7: true
+ubtu22cis_rule_1_7_8: true
+ubtu22cis_rule_1_7_9: true
+ubtu22cis_rule_1_7_10: true
 
-# Section 2 Fixes
+## Section 2 Fixes
 # Section 2 is Services (Special Purpose Services, and service clients)
-ubtu22cis_rule_2_1_1_1: true
-ubtu22cis_rule_2_1_1_2: true
-ubtu22cis_rule_2_1_1_3: true
-ubtu22cis_rule_2_1_1_4: true
-# Chrony
-ubtu22cis_rule_2_1_2_1: true
-ubtu22cis_rule_2_1_2_2: true
-ubtu22cis_rule_2_1_2_3: true
-# systemd-timesyncd
-ubtu22cis_rule_2_1_3_1: true
-ubtu22cis_rule_2_1_3_2: true
 
-# ntp
-ubtu22cis_rule_2_1_4_1: true
-ubtu22cis_rule_2_1_4_2: true
-ubtu22cis_rule_2_1_4_3: true
-ubtu22cis_rule_2_1_4_4: true
-# Services
+# 2.1 Configure Server Services
+ubtu22cis_rule_2_1_1: true
+ubtu22cis_rule_2_1_2: true
+ubtu22cis_rule_2_1_3: true
+ubtu22cis_rule_2_1_4: true
+ubtu22cis_rule_2_1_5: true
+ubtu22cis_rule_2_1_6: true
+ubtu22cis_rule_2_1_7: true
+ubtu22cis_rule_2_1_8: true
+ubtu22cis_rule_2_1_9: true
+ubtu22cis_rule_2_1_10: true
+ubtu22cis_rule_2_1_11: true
+ubtu22cis_rule_2_1_12: true
+ubtu22cis_rule_2_1_13: true
+ubtu22cis_rule_2_1_14: true
+ubtu22cis_rule_2_1_15: true
+ubtu22cis_rule_2_1_16: true
+ubtu22cis_rule_2_1_17: true
+ubtu22cis_rule_2_1_18: true
+ubtu22cis_rule_2_1_19: true
+ubtu22cis_rule_2_1_20: true
+ubtu22cis_rule_2_1_21: true
+ubtu22cis_rule_2_1_22: true
+
+# 2.2 Configure client services
 ubtu22cis_rule_2_2_1: true
 ubtu22cis_rule_2_2_2: true
 ubtu22cis_rule_2_2_3: true
 ubtu22cis_rule_2_2_4: true
 ubtu22cis_rule_2_2_5: true
 ubtu22cis_rule_2_2_6: true
-ubtu22cis_rule_2_2_7: true
-ubtu22cis_rule_2_2_8: true
-ubtu22cis_rule_2_2_9: true
-ubtu22cis_rule_2_2_10: true
-ubtu22cis_rule_2_2_11: true
-ubtu22cis_rule_2_2_12: true
-ubtu22cis_rule_2_2_13: true
-ubtu22cis_rule_2_2_14: true
-ubtu22cis_rule_2_2_15: true
-ubtu22cis_rule_2_2_16: true
-ubtu22cis_rule_2_2_17: true
-# Service Client
-ubtu22cis_rule_2_3_1: true
-ubtu22cis_rule_2_3_2: true
-ubtu22cis_rule_2_3_3: true
-ubtu22cis_rule_2_3_4: true
-ubtu22cis_rule_2_3_5: true
-ubtu22cis_rule_2_3_6: true
-# Non-essential services
-ubtu22cis_rule_2_4: true
 
-# Section 3 Network Configuration
-# Disable Unused Network
+# Ensure time synchronization is in use
+ubtu22cis_rule_2_3_1_1: true
+# Configure systemd-timesyncd
+ubtu22cis_rule_2_3_2_1: true
+ubtu22cis_rule_2_3_2_2: true
+# Configure Chrony
+ubtu22cis_rule_2_3_3_1: true
+ubtu22cis_rule_2_3_3_2: true
+ubtu22cis_rule_2_3_3_3: true
+
+# 2.4 Job Schedulers
+# 2.4.1 Configure Cron
+ubtu22cis_rule_2_4_1_1: true
+ubtu22cis_rule_2_4_1_2: true
+ubtu22cis_rule_2_4_1_3: true
+ubtu22cis_rule_2_4_1_4: true
+ubtu22cis_rule_2_4_1_5: true
+ubtu22cis_rule_2_4_1_6: true
+ubtu22cis_rule_2_4_1_7: true
+ubtu22cis_rule_2_4_1_8: true
+# Configure At
+ubtu22cis_rule_2_4_2_1: true
+
+## Section 3 Network Configuration
+# 3.1 Configure Network Devices
 ubtu22cis_rule_3_1_1: true
 ubtu22cis_rule_3_1_2: true
-# Network Parameters (Host Only)
+ubtu22cis_rule_3_1_3: true
+# 3.2 Configure Network Kernel Modules (Host Only)
 ubtu22cis_rule_3_2_1: true
 ubtu22cis_rule_3_2_2: true
-# Network Parameters (Host and Router)
+ubtu22cis_rule_3_2_3: true
+ubtu22cis_rule_3_2_4: true
+# 3.3 Configure Network Kernel Parameters (Host and Router)
 ubtu22cis_rule_3_3_1: true
 ubtu22cis_rule_3_3_2: true
 ubtu22cis_rule_3_3_3: true
@@ -157,115 +211,47 @@ ubtu22cis_rule_3_3_6: true
 ubtu22cis_rule_3_3_7: true
 ubtu22cis_rule_3_3_8: true
 ubtu22cis_rule_3_3_9: true
-# Uncommon Network Protocols
-ubtu22cis_rule_3_4_1: true
-ubtu22cis_rule_3_4_2: true
-ubtu22cis_rule_3_4_3: true
-ubtu22cis_rule_3_4_4: true
-# Firewall Configuration
-# UFW
-ubtu22cis_rule_3_5_1_1: true
-ubtu22cis_rule_3_5_1_2: true
-ubtu22cis_rule_3_5_1_3: true
-ubtu22cis_rule_3_5_1_4: true
-ubtu22cis_rule_3_5_1_5: true
-ubtu22cis_rule_3_5_1_6: true
-ubtu22cis_rule_3_5_1_7: true
-# nftables
-ubtu22cis_rule_3_5_2_1: true
-ubtu22cis_rule_3_5_2_2: true
-ubtu22cis_rule_3_5_2_3: true
-ubtu22cis_rule_3_5_2_4: true
-ubtu22cis_rule_3_5_2_5: true
-ubtu22cis_rule_3_5_2_6: true
-ubtu22cis_rule_3_5_2_7: true
-ubtu22cis_rule_3_5_2_8: true
-ubtu22cis_rule_3_5_2_9: true
-ubtu22cis_rule_3_5_2_10: true
-# iptables
-ubtu22cis_rule_3_5_3_1_1: true
-ubtu22cis_rule_3_5_3_1_2: true
-ubtu22cis_rule_3_5_3_1_3: true
-ubtu22cis_rule_3_5_3_2_1: true
-ubtu22cis_rule_3_5_3_2_2: true
-ubtu22cis_rule_3_5_3_2_3: true
-ubtu22cis_rule_3_5_3_2_4: true
-ubtu22cis_rule_3_5_3_3_1: true
-ubtu22cis_rule_3_5_3_3_2: true
-ubtu22cis_rule_3_5_3_3_3: true
-ubtu22cis_rule_3_5_3_3_4: true
+ubtu22cis_rule_3_3_10: true
+ubtu22cis_rule_3_3_11: true
 
-# Section 4 Fixes
-# Section 4 is Logging and Auditing (Configure System Accounting (auditd), Configure Data Retention, and Configure Logging)
-ubtu22cis_rule_4_1_1_1: true
-ubtu22cis_rule_4_1_1_2: true
-ubtu22cis_rule_4_1_1_3: true
-ubtu22cis_rule_4_1_1_4: true
-ubtu22cis_rule_4_1_2_1: true
-ubtu22cis_rule_4_1_2_2: true
-ubtu22cis_rule_4_1_2_3: true
-# Auditd rules
-ubtu22cis_rule_4_1_3_1: true
-ubtu22cis_rule_4_1_3_2: true
-ubtu22cis_rule_4_1_3_3: true
-ubtu22cis_rule_4_1_3_4: true
-ubtu22cis_rule_4_1_3_5: true
-ubtu22cis_rule_4_1_3_6: true
-ubtu22cis_rule_4_1_3_7: true
-ubtu22cis_rule_4_1_3_8: true
-ubtu22cis_rule_4_1_3_9: true
-ubtu22cis_rule_4_1_3_10: true
-ubtu22cis_rule_4_1_3_11: true
-ubtu22cis_rule_4_1_3_12: true
-ubtu22cis_rule_4_1_3_13: true
-ubtu22cis_rule_4_1_3_14: true
-ubtu22cis_rule_4_1_3_15: true
-ubtu22cis_rule_4_1_3_16: true
-ubtu22cis_rule_4_1_3_17: true
-ubtu22cis_rule_4_1_3_18: true
-ubtu22cis_rule_4_1_3_19: true
-ubtu22cis_rule_4_1_3_20: true
-ubtu22cis_rule_4_1_3_21: true
-# Auditd file access
-ubtu22cis_rule_4_1_4_1: true
-ubtu22cis_rule_4_1_4_2: true
-ubtu22cis_rule_4_1_4_3: true
-ubtu22cis_rule_4_1_4_4: true
-ubtu22cis_rule_4_1_4_5: true
-ubtu22cis_rule_4_1_4_6: true
-ubtu22cis_rule_4_1_4_7: true
-ubtu22cis_rule_4_1_4_8: true
-ubtu22cis_rule_4_1_4_9: true
-ubtu22cis_rule_4_1_4_10: true
-ubtu22cis_rule_4_1_4_11: true
-# Configure Logging
-## journald
-ubtu22cis_rule_4_2_1_1_1: true
-ubtu22cis_rule_4_2_1_1_2: true
-ubtu22cis_rule_4_2_1_1_3: true
-ubtu22cis_rule_4_2_1_1_4: true
-ubtu22cis_rule_4_2_1_1: true
-ubtu22cis_rule_4_2_1_2: true
-ubtu22cis_rule_4_2_1_3: true
-ubtu22cis_rule_4_2_1_4: true
-ubtu22cis_rule_4_2_1_5: true
-ubtu22cis_rule_4_2_1_6: true
-ubtu22cis_rule_4_2_1_7: true
-# rsyslog
-ubtu22cis_rule_4_2_2_1: true
-ubtu22cis_rule_4_2_2_2: true
-ubtu22cis_rule_4_2_2_3: true
-ubtu22cis_rule_4_2_2_4: true
-ubtu22cis_rule_4_2_2_5: true
-ubtu22cis_rule_4_2_2_6: true
-ubtu22cis_rule_4_2_2_7: true
+## Section 4 Host Based Firewall
+# 4.1 Configure UncomplicatedFirewall
+ubtu22cis_rule_4_1_1: true
+ubtu22cis_rule_4_1_2: true
+ubtu22cis_rule_4_1_3: true
+ubtu22cis_rule_4_1_4: true
+ubtu22cis_rule_4_1_5: true
+ubtu22cis_rule_4_1_6: true
+ubtu22cis_rule_4_1_7: true
+# 4.2 Configure nftables
+ubtu22cis_rule_4_2_1: true
+ubtu22cis_rule_4_2_2: true
 ubtu22cis_rule_4_2_3: true
-ubtu22cis_rule_4_3: true
-ubtu22cis_rule_4_4: true
+ubtu22cis_rule_4_2_4: true
+ubtu22cis_rule_4_2_5: true
+ubtu22cis_rule_4_2_6: true
+ubtu22cis_rule_4_2_7: true
+ubtu22cis_rule_4_2_8: true
+ubtu22cis_rule_4_2_9: true
+ubtu22cis_rule_4_2_10: true
+# Configure iptables software
+ubtu22cis_rule_4_3_1_1: true
+ubtu22cis_rule_4_3_1_2: true
+ubtu22cis_rule_4_3_1_3: true
 
-# Section 5 Fixes
-# Section 5 is Access, Authentication, and Authorization (Configure time-based job schedulers, Configure sudo, Configure SSH Server, Configure PAM
-# and User Accounts and Environment)
+# Configure IPv4 iptables
+ubtu22cis_rule_4_3_2_1: true
+ubtu22cis_rule_4_3_2_2: true
+ubtu22cis_rule_4_3_2_3: true
+ubtu22cis_rule_4_3_2_4: true
+# Configure IPv5 iptables
+ubtu22cis_rule_4_3_3_1: true
+ubtu22cis_rule_4_3_3_2: true
+ubtu22cis_rule_4_3_3_3: true
+ubtu22cis_rule_4_3_3_4: true
+
+## Section 5 Access Control
+# 5.1 Configure SSH Server
 ubtu22cis_rule_5_1_1: true
 ubtu22cis_rule_5_1_2: true
 ubtu22cis_rule_5_1_3: true
@@ -275,7 +261,20 @@ ubtu22cis_rule_5_1_6: true
 ubtu22cis_rule_5_1_7: true
 ubtu22cis_rule_5_1_8: true
 ubtu22cis_rule_5_1_9: true
-
+ubtu22cis_rule_5_1_10: true
+ubtu22cis_rule_5_1_11: true
+ubtu22cis_rule_5_1_12: true
+ubtu22cis_rule_5_1_13: true
+ubtu22cis_rule_5_1_14: true
+ubtu22cis_rule_5_1_15: true
+ubtu22cis_rule_5_1_16: true
+ubtu22cis_rule_5_1_17: true
+ubtu22cis_rule_5_1_18: true
+ubtu22cis_rule_5_1_19: true
+ubtu22cis_rule_5_1_20: true
+ubtu22cis_rule_5_1_21: true
+ubtu22cis_rule_5_1_22: true
+# 5.2 Configure privilege escalation
 ubtu22cis_rule_5_2_1: true
 ubtu22cis_rule_5_2_2: true
 ubtu22cis_rule_5_2_3: true
@@ -283,77 +282,150 @@ ubtu22cis_rule_5_2_4: true
 ubtu22cis_rule_5_2_5: true
 ubtu22cis_rule_5_2_6: true
 ubtu22cis_rule_5_2_7: true
-ubtu22cis_rule_5_2_8: true
-ubtu22cis_rule_5_2_9: true
-ubtu22cis_rule_5_2_10: true
-ubtu22cis_rule_5_2_11: true
-ubtu22cis_rule_5_2_12: true
-ubtu22cis_rule_5_2_13: true
-ubtu22cis_rule_5_2_14: true
-ubtu22cis_rule_5_2_15: true
-ubtu22cis_rule_5_2_16: true
-ubtu22cis_rule_5_2_17: true
-ubtu22cis_rule_5_2_18: true
-ubtu22cis_rule_5_2_19: true
-ubtu22cis_rule_5_2_20: true
-ubtu22cis_rule_5_2_21: true
-ubtu22cis_rule_5_2_22: true
-ubtu22cis_rule_5_3_1: true
-ubtu22cis_rule_5_3_2: true
-ubtu22cis_rule_5_3_3: true
-ubtu22cis_rule_5_3_4: true
-ubtu22cis_rule_5_3_5: true
-ubtu22cis_rule_5_3_6: true
-ubtu22cis_rule_5_3_7: true
-ubtu22cis_rule_5_4_1: true
-ubtu22cis_rule_5_4_2: true
-ubtu22cis_rule_5_4_3: true
-ubtu22cis_rule_5_4_4: true
-ubtu22cis_rule_5_4_5: true
-ubtu22cis_rule_5_5_1_1: true
-ubtu22cis_rule_5_5_1_2: true
-ubtu22cis_rule_5_5_1_3: true
-ubtu22cis_rule_5_5_1_4: true
-ubtu22cis_rule_5_5_1_5: true
-ubtu22cis_rule_5_5_2: true
-ubtu22cis_rule_5_5_3: true
-ubtu22cis_rule_5_5_4: true
-ubtu22cis_rule_5_5_5: true
-ubtu22cis_rule_5_6: true
-ubtu22cis_rule_5_7: true
+# 5.3.1 Configure PAM software packages
+ubtu22cis_rule_5_3_1_1: true
+ubtu22cis_rule_5_3_1_2: true
+ubtu22cis_rule_5_3_1_3: true
+# 5.3.2 Configure pam-auth-update profiles
+ubtu22cis_rule_5_3_2_1: true
+ubtu22cis_rule_5_3_2_2: true
+ubtu22cis_rule_5_3_2_3: true
+ubtu22cis_rule_5_3_2_4: true
+# 5.3.3.1 Configure pam_faillock module
+ubtu22cis_rule_5_3_3_1_1: true
+ubtu22cis_rule_5_3_3_1_2: true
+ubtu22cis_rule_5_3_3_1_3: true
+# 5.3.3.2 Configure pam_quality module
+ubtu22cis_rule_5_3_3_2_1: true
+ubtu22cis_rule_5_3_3_2_2: true
+ubtu22cis_rule_5_3_3_2_3: true
+ubtu22cis_rule_5_3_3_2_4: true
+ubtu22cis_rule_5_3_3_2_5: true
+ubtu22cis_rule_5_3_3_2_6: true
+ubtu22cis_rule_5_3_3_2_7: true
+ubtu22cis_rule_5_3_3_2_8: true
+# 5.3.3.3 Configure pam_history module
+# This are added as part of 5.3.2.4 using jinja2 template
+ubtu22cis_rule_5_3_3_3_1: true
+ubtu22cis_rule_5_3_3_3_2: true
+ubtu22cis_rule_5_3_3_3_3: true
+# 5.3.3.4 Configure pam_unix module
+ubtu22cis_rule_5_3_3_4_1: true
+ubtu22cis_rule_5_3_3_4_2: true
+ubtu22cis_rule_5_3_3_4_3: true
+ubtu22cis_rule_5_3_3_4_4: true
+# 5.4 User Accounts and Environment
+# 5.4.1 Configure shadow password suite parameters
+ubtu22cis_rule_5_4_1_1: true
+ubtu22cis_rule_5_4_1_2: true
+ubtu22cis_rule_5_4_1_3: true
+ubtu22cis_rule_5_4_1_4: true
+ubtu22cis_rule_5_4_1_5: true
+ubtu22cis_rule_5_4_1_6: true
+# 5.4.2 Configure root and system accounts and environment
+ubtu22cis_rule_5_4_2_1: true
+ubtu22cis_rule_5_4_2_2: true
+ubtu22cis_rule_5_4_2_3: true
+ubtu22cis_rule_5_4_2_4: true
+ubtu22cis_rule_5_4_2_5: true
+ubtu22cis_rule_5_4_2_6: true
+ubtu22cis_rule_5_4_2_7: true
+ubtu22cis_rule_5_4_2_8: true
+# 5.4.2 Configure user default environment
+ubtu22cis_rule_5_4_3_1: true
+ubtu22cis_rule_5_4_3_2: true
+ubtu22cis_rule_5_4_3_3: true
 
-# Section 6 Fixes
-# Section is System Maintenance (System File Permissions and User and Group Settings)
+## Section 6
+# 6.1 Configure Filesystem Integrity Checking
 ubtu22cis_rule_6_1_1: true
 ubtu22cis_rule_6_1_2: true
 ubtu22cis_rule_6_1_3: true
-ubtu22cis_rule_6_1_4: true
-ubtu22cis_rule_6_1_5: true
-ubtu22cis_rule_6_1_6: true
-ubtu22cis_rule_6_1_7: true
-ubtu22cis_rule_6_1_8: true
-ubtu22cis_rule_6_1_9: true
-ubtu22cis_rule_6_1_10: true
-ubtu22cis_rule_6_1_11: true
-ubtu22cis_rule_6_1_12: true
-ubtu22cis_rule_6_1_13: true
-ubtu22cis_rule_6_2_1: true
-ubtu22cis_rule_6_2_2: true
-ubtu22cis_rule_6_2_3: true
-ubtu22cis_rule_6_2_4: true
-ubtu22cis_rule_6_2_5: true
-ubtu22cis_rule_6_2_6: true
-ubtu22cis_rule_6_2_7: true
-ubtu22cis_rule_6_2_8: true
-ubtu22cis_rule_6_2_9: true
-ubtu22cis_rule_6_2_10: true
-ubtu22cis_rule_6_2_11: true
-ubtu22cis_rule_6_2_12: true
-ubtu22cis_rule_6_2_13: true
-ubtu22cis_rule_6_2_14: true
-ubtu22cis_rule_6_2_15: true
-ubtu22cis_rule_6_2_16: true
-ubtu22cis_rule_6_2_17: true
+# 6.2.1.1 Configure systemd-journald service
+ubtu22cis_rule_6_2_1_1_1: true
+ubtu22cis_rule_6_2_1_1_2: true
+ubtu22cis_rule_6_2_1_1_3: true
+ubtu22cis_rule_6_2_1_1_4: true
+ubtu22cis_rule_6_2_1_1_5: true
+ubtu22cis_rule_6_2_1_1_6: true
+# 6.2.1.2 Configure systemd-journald service
+ubtu22cis_rule_6_2_1_2_1: true
+ubtu22cis_rule_6_2_1_2_2: true
+ubtu22cis_rule_6_2_1_2_3: true
+ubtu22cis_rule_6_2_1_2_4: true
+# 6.2.2 Configure Logfiles
+ubtu22cis_rule_6_2_2_1: true
+# 6.3.1 Configure auditd Service
+ubtu22cis_rule_6_3_1_1: true
+ubtu22cis_rule_6_3_1_2: true
+ubtu22cis_rule_6_3_1_3: true
+ubtu22cis_rule_6_3_1_4: true
+# 6.3.2 Configure data retention
+ubtu22cis_rule_6_3_2_1: true
+ubtu22cis_rule_6_3_2_2: true
+ubtu22cis_rule_6_3_2_3: true
+ubtu22cis_rule_6_3_2_4: true
+# 6.3.3 Configure auditd rules
+ubtu22cis_rule_6_3_3_1: true
+ubtu22cis_rule_6_3_3_2: true
+ubtu22cis_rule_6_3_3_3: true
+ubtu22cis_rule_6_3_3_4: true
+ubtu22cis_rule_6_3_3_5: true
+ubtu22cis_rule_6_3_3_6: true
+ubtu22cis_rule_6_3_3_7: true
+ubtu22cis_rule_6_3_3_8: true
+ubtu22cis_rule_6_3_3_9: true
+ubtu22cis_rule_6_3_3_10: true
+ubtu22cis_rule_6_3_3_11: true
+ubtu22cis_rule_6_3_3_12: true
+ubtu22cis_rule_6_3_3_13: true
+ubtu22cis_rule_6_3_3_14: true
+ubtu22cis_rule_6_3_3_15: true
+ubtu22cis_rule_6_3_3_16: true
+ubtu22cis_rule_6_3_3_17: true
+ubtu22cis_rule_6_3_3_18: true
+ubtu22cis_rule_6_3_3_19: true
+ubtu22cis_rule_6_3_3_20: true
+ubtu22cis_rule_6_3_3_21: true
+# 6.3.4 Configure audit file access
+ubtu22cis_rule_6_3_4_1: true
+ubtu22cis_rule_6_3_4_2: true
+ubtu22cis_rule_6_3_4_3: true
+ubtu22cis_rule_6_3_4_4: true
+ubtu22cis_rule_6_3_4_5: true
+ubtu22cis_rule_6_3_4_6: true
+ubtu22cis_rule_6_3_4_7: true
+ubtu22cis_rule_6_3_4_8: true
+ubtu22cis_rule_6_3_4_9: true
+ubtu22cis_rule_6_3_4_10: true
+
+## Section 7
+# 7.1 System File Permissions
+ubtu22cis_rule_7_1_1: true
+ubtu22cis_rule_7_1_2: true
+ubtu22cis_rule_7_1_3: true
+ubtu22cis_rule_7_1_4: true
+ubtu22cis_rule_7_1_5: true
+ubtu22cis_rule_7_1_6: true
+ubtu22cis_rule_7_1_7: true
+ubtu22cis_rule_7_1_8: true
+ubtu22cis_rule_7_1_9: true
+ubtu22cis_rule_7_1_10: true
+ubtu22cis_rule_7_1_11: true
+ubtu22cis_rule_7_1_12: true
+ubtu22cis_rule_7_1_13: true
+# 7.2 Local User and Group Settings
+ubtu22cis_rule_7_2_1: true
+ubtu22cis_rule_7_2_2: true
+ubtu22cis_rule_7_2_3: true
+ubtu22cis_rule_7_2_4: true
+ubtu22cis_rule_7_2_5: true
+ubtu22cis_rule_7_2_6: true
+ubtu22cis_rule_7_2_7: true
+ubtu22cis_rule_7_2_8: true
+ubtu22cis_rule_7_2_9: true
+ubtu22cis_rule_7_2_10: true
+
 
 # AIDE
 ubtu22cis_config_aide: false
@@ -372,8 +444,9 @@ ubtu22_aide_cron:
   aide_month: '*'
   aide_weekday: '*'
 
-# 1.1
-ubtu22cis_allow_autofs: false
+# 1.3 - Only have apparmor enforcing
+ubtu22cis_apparmor_disable: false
+ubtu22cis_apparmor_enforce_only: false
 
 # 1.4
 ubtu22cis_grub_conf_file: /etc/grub.d/00_user
@@ -382,11 +455,7 @@ ubtu22cis_grub_hash: blah
 # 1.5.1 Bootloader password
 ubtu22cis_bootloader_password: random
 
-# 1.6 - Only have apparmor enforcing
-ubtu22cis_apparmor_disable: false
-ubtu22cis_apparmor_enforce_only: false
-
-# Warning Banner Content (issue, issue.net, motd)
+# 1.6 Warning Banner Content (issue, issue.net, motd)
 ubtu22_warning_banner: |
   Authorized uses only. All activity may be monitored and reported.
 
@@ -395,7 +464,7 @@ ubtu22cis_disable_dynamic_motd: false
 # End Banner
 
 # Section 2
-# Time sync - can be timesync or chriny or ntp
+# Time sync - can be timesync or chrony
 ubtu22cis_time_service: chrony
 
 ubtu22cis_time_pool:

@@ -2,21 +2,20 @@
 
 {{ if .Vars.ubtu22cis_level_1 }}
   {{ if .Vars.ubtu22cis_gui }}
-    {{ if .Vars.ubtu22cis_rule_1_7_6 }}
+    {{ if .Vars.ubtu22cis_rule_1_7_8 }}
 file:
-  gnome_automount_disable:
-    title: 1.7.6 | Ensure GDM automatic mounting of removable media is disabled
-    path: /etc/dconf/db/local.d/00-media-automount
+  gdm_autorun_never:
+    title: 1.7.8 | Ensure GDM autorun-never is enabled
+    path: /etc/dconf/db/local.d/00-media-autorun
     exists: true
     contents:
     - '/^[org/gnome/desktop/media-handling]/'
-    - '/^automount=false/'
-    - '/^automount-open=false/'
+    - '/^autrun-never=true/'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
-      - 1.7.6
+      - 1.7.8
       CISv8: 10.3
       CISv8_IG1: true
       CISv8_IG2: true

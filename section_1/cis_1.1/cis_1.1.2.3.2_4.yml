@@ -1,0 +1,58 @@
+---
+
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_1_1_2_3_1 }}
+mount:
+  home_options:
+    title: |
+      1.1.2.3.2 | Ensure nodev option set on /home partition
+      1.1.2.3.3 | Ensure nosuid option set on /home partition
+    mountpoint: /home
+    exists: true
+    opts:
+    {{ if .Vars.ubtu22cis_rule_1_1_2_3_2 }}
+    - nodev
+    {{ end }}
+    {{ if .Vars.ubtu22cis_rule_1_1_2_3_3 }}
+    - nosuid
+    {{ end }}
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.1.2.3.2
+      - 1.1.2.3.3
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - CM-7
+      - AC-3
+      - MP-2
+file:
+  home_fstab_options:
+     title: |
+        1.1.2.3.2 | Ensure nodev option set on /home partition
+        1.1.2.3.3 | Ensure nosuid option set on /home partition
+     exists: true
+     path: /etc/fstab
+     contents:
+     - '/\s\/home.*{{ if .Vars.ubtu22cis_rule_1_1_2_3_2 }}nodev{{ end }}/'
+     - '/\s\/home.*{{ if .Vars.ubtu22cis_rule_1_1_2_3_3 }}nosuid{{ end }}.*/'
+     meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.1.2.3.2
+      - 1.1.2.3.3
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - CM-7
+      - AC-3
+      - MP-2
+  {{ end }}
+{{ end }}

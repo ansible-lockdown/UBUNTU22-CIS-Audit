@@ -1,34 +1,34 @@
 ---
 
 {{ if .Vars.ubtu22cis_level_1 }}
-  {{ if .Vars.ubtu22cis_rule_1_1_1_3 }}
+  {{ if .Vars.ubtu22cis_rule_1_1_1_5 }}
 file:
-  hfs_disabled:
-    title: 1.1.1.3 | Ensure hfs kernel module is not available | modprobe
+  jffs2_disabled:
+    title: 1.1.1.5 | Ensure jffs2 kernel module is not available | modprobe
     path: /etc/modprobe.d/CIS.conf
     exists: true
     contents:
-    - '/^install hfs /bin/(true|false)/'
+    - '/^install jffs2 /bin/(true|false)/'
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 1.1.1.3
+      CIS_ID: 1.1.1.5
       CISv8:
       - 4.8
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
       NIST800-53R5: CM-7
-  hfs_blacklist:
-    title: 1.1.1.3 | Ensure hfs kernel module is not available | blacklist
+  jffs2_blacklist:
+    title: 1.1.1.5 | Ensure jffs2 kernel module is not available | blacklist
     path: /etc/modprobe.d/blacklist.conf
     exists: true
     contents:
-    - '/^blacklist hfs/'
+    - '/^blacklist jffs2/'
     meta:
       server: 1
       workstation: 1
-      CIS_ID: 1.1.1.3
+      CIS_ID: 1.1.1.5
       CISv8:
       - 4.8
       CISv8_IG1: false

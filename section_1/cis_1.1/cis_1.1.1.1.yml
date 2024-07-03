@@ -1,12 +1,14 @@
+---
+
 {{ if .Vars.ubtu22cis_level_1 }}
-command:
   {{ if .Vars.ubtu22cis_rule_1_1_1_1 }}
-  cramfs:
-    title: 1.1.1.1 | Ensure mounting of cramfs filesystems is disabled
-    exit-status: 0
-    exec: if [ `lsmod | grep -c cramfs` != 0 ]; then  "modprobe -n -v cramfs | grep -E '(cramfs|install)'"; else echo OK; fi
-    stdout:
-    - '/(install /bin/false|OK)/'
+file:
+  cramfs_disabled:
+    title: 1.1.1.1 | Ensure cramfs kernel module is not available | modprobe
+    path: /etc/modprobe.d/CIS.conf
+    exists: true
+    contents:
+    - '/^install cramfs /bin/(true|false)/'
     meta:
       server: 1
       workstation: 1
@@ -16,16 +18,13 @@ command:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-      Mitre_Techniques: NA
-      Mitre_Tactics: TA0005
-      Mitre_Mitigations: M1050
+      NIST800-53R5: CM-7
   cramfs_blacklist:
-    title: 1.1.1.1 | Ensure mounting of cramfs filesystems is disabled
-    exit-status: 0
-    exec: grep "blacklist cramfs" /etc/modprobe.d/*.conf
-    stdout:
-    - '/^.*:blacklist cramfs$/'
-    - '!/.*#blacklist cramfs/'
+    title: 1.1.1.1 | Ensure cramfs kernel module is not available | blacklist
+    path: /etc/modprobe.d/blacklist.conf
+    exists: true
+    contents:
+    - '/^blacklist cramfs/'
     meta:
       server: 1
       workstation: 1
@@ -35,8 +34,6 @@ command:
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-      Mitre_Techniques: NA
-      Mitre_Tactics: TA0005
-      Mitre_Mitigations: M1050
+      NIST800-53R5: CM-7
   {{ end }}
 {{ end }}

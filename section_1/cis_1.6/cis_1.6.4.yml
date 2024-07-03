@@ -1,0 +1,26 @@
+---
+
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_1_6_4 }}
+exec:
+  motd_permissions:
+    title: 1.6.4 | Ensure access to /etc/motd is configured
+    exec: FILE=/etc/motd && if [ -f $FILE ]; then PERMS=`stat  -c '%U %G %a' $FILE`; if [ "$PERMS" != "root root 644" ]; then echo "Permissions Incorrect"; fi; fi
+    exit-status: 0
+    stdout:
+    - '!/^Permissions Incorrect/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.6.4
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - CM-6
+      - CM-1
+      - CM-3
+  {{ end }}
+{{ end }}

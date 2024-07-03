@@ -1,24 +1,40 @@
+---
+
 {{ if .Vars.ubtu22cis_level_1 }}
   {{ if .Vars.ubtu22cis_rule_1_5_2 }}
-package:
-  prelink:
-    title: 1.5.2 | Ensure prelink is not installed
-    installed: false
+kernel-param:
+  kernel.yama.ptrace_scope:
+    title: 1.5.2 | Ensure ptrace_scope is restricted | sysctl_live
+    value: '1'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
-      - 1.5.2
-      CISv8: 3.14
+      - 1.5.1
+      CISv8: 10.5
       CISv8_IG1: false
-      CISv8_IG2: false
+      CISv8_IG2: true
       CISv8_IG3: true
-      Mitre_Techniques:
-      - T1055
-      - T1055.009
-      - T1065
-      - T1065.001
-      Mitre_Tactics: TA0002
-      Mitre_Mitigations: M1050
+      NIST800-53R5: CM-6
+command:
+  ptrace_restrict_2:
+    title: 1.5.1 | Ensure ptrace_scope is restricted | sysctl_configured
+    exit-status:
+      or:
+      - 0
+      - 2
+    exec: 'grep "^kernel\.yama.ptrace_scope" /etc/sysctl.conf /etc/sysctl.d/* | cut -d ":" -f2'
+    stdout:
+    - '/kernel.yama.ptrace_scope\s*=\s*1/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.5.1
+      CISv8: 10.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: CM-6
   {{ end }}
 {{ end }}

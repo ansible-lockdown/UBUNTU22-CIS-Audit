@@ -1,0 +1,22 @@
+---
+
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_1_2_1_2}}
+command:
+  gpg_configd:
+    title: 1.2.1.2 | Ensure package manager repositories are configured | Manual
+    exec: echo "MANUAL - Please check manually that repositories are configured as expected"
+    exit-status: 0
+    stdout:
+    - '!/^MANUAL.*/'
+    meta:
+      server: 1
+      workstation: 2
+      CIS_ID: 1.2.1.2
+      CISv8: 7.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: SI-2
+  {{ end }}
+{{ end }}

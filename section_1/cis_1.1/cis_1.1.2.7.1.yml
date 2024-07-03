@@ -1,0 +1,21 @@
+---
+
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_1_1_2_7_1 }}
+mount:
+  var_log_audit_mount:
+    title: 1.1.2.7.1 | Ensure separate partition exists for /var/log/audit
+    mountpoint: /var/log/audit
+    exists: true
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 1.1.2.7.1
+      CISv8: 8.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: CM-7
+  {{ end }}
+{{ end }}

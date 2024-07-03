@@ -1,3 +1,5 @@
+---
+
 {{ if .Vars.ubtu22cis_level_1 }}
   {{ if .Vars.ubtu22cis_rule_1_4_1 }}
 file:
@@ -17,12 +19,6 @@ file:
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-      Mitre_Techniques:
-      - T1542
-      - T1542.000
-      Mitre_Tactics:
-      - TA0003
-      Mitre_Mitigations:
-      - M1046
+      NIST800-53R5: AC-3
   {{ end }}
 {{ end }}

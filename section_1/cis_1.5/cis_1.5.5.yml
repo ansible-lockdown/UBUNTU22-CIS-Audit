@@ -1,0 +1,36 @@
+---
+
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_1_5_5 }}
+package:
+  apport:
+    title: 1.5.5 | Ensure Automatic Error Reporting is not enabled | Package
+    installed: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.5.5
+      CISv8: 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+file:
+  error_report_apport_disable:
+    title: 1.5.5 | Ensure Automatic Error Reporting is not enabled | disabled
+    exists: true
+    path: /etc/default/apport
+    contents:
+    - 'enabled=0'
+    - '!/enabled=1/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.5.5
+      CISv8: 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+  {{ end }}
+{{ end }}

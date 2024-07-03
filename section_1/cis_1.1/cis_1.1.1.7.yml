@@ -1,0 +1,39 @@
+---
+
+{{ if .Vars.ubtu22cis_level_2 }}
+  {{ if .Vars.ubtu22cis_rule_1_1_1_7 }}
+file:
+  udf_disabled:
+    title: 1.1.1.7 | Ensure udf kernel module is not available | modprobe
+    path: /etc/modprobe.d/CIS.conf
+    exists: true
+    contents:
+    - '/^install udf /bin/(true|false)/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID: 1.1.1.7
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: CM-7
+  udf_blacklist:
+    title: 1.1.1.7 | Ensure udf kernel module is not available | blacklist
+    path: /etc/modprobe.d/blacklist.conf
+    exists: true
+    contents:
+    - '/^blacklist udf/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID: 1.1.1.7
+      CISv8:
+      - 4.8
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: CM-7
+  {{ end }}
+{{ end }}

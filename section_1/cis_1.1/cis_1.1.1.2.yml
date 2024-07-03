@@ -1,42 +1,39 @@
-{{ if .Vars.ubtu22cis_level_2 }}
+---
+
+{{ if .Vars.ubtu22cis_level_1 }}
   {{ if .Vars.ubtu22cis_rule_1_1_1_2 }}
-command:
-  squashfs:
-    title: 1.1.1.2 | Ensure mounting of squashfs filesystems is disabled
-    exit-status: 0
-    exec: if [ `lsmod | grep -c squashfs` != 0 ]; then  "modprobe -n -v squashfs | grep -E '(squashfs|install)'"; else echo OK; fi
-    stdout:
-    - '/(install /bin/false|OK)/'
+file:
+  freevxfs_disabled:
+    title: 1.1.1.2 | Ensure freevxfs kernel module is not available | modprobe
+    path: /etc/modprobe.d/CIS.conf
+    exists: true
+    contents:
+    - '/^install freevxfs /bin/(true|false)/'
     meta:
-      server: 2
-      workstation: 2
+      server: 1
+      workstation: 1
       CIS_ID: 1.1.1.2
       CISv8:
       - 4.8
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-      Mitre_Techniques: NA
-      Mitre_Tactics: TA0005
-      Mitre_Mitigations: M1050
-  squashfs_blacklist:
-    title: 1.1.1.2 | Ensure mounting of squashfs filesystems is disabled | blacklist
-    exit-status: 0
-    exec: grep "blacklist squashfs" /etc/modprobe.d/*.conf
-    stdout:
-    - '/^.*:blacklist squashfs$/'
-    - '!/.*#blacklist squashfs$/'
+      NIST800-53R5: CM-7
+  freevxfs_blacklist:
+    title: 1.1.1.2 | Ensure freevxfs kernel module is not available | blacklist
+    path: /etc/modprobe.d/blacklist.conf
+    exists: true
+    contents:
+    - '/^blacklist freevxfs/'
     meta:
-      server: 2
-      workstation: 2
+      server: 1
+      workstation: 1
       CIS_ID: 1.1.1.2
       CISv8:
       - 4.8
       CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-      Mitre_Techniques: NA
-      Mitre_Tactics: TA0005
-      Mitre_Mitigations: M1050
+      NIST800-53R5: CM-7
   {{ end }}
 {{ end }}
