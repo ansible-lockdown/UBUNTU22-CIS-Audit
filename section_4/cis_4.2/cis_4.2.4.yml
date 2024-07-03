@@ -1,0 +1,27 @@
+---
+
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_4_2_4 }}
+command:
+  nft_tables:
+    title: 4.2.4 | Ensure a nftables table exists | Manual
+    exec: echo "Manual - Please confirm nfttables table exists and matched site policy"
+    exit-status: 0
+    stdout:
+    - '!/^Manual/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.2.4
+      CISv8:
+      - 4.4
+      - 4.5
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - CA-9
+      - SC-7
+  {{ end }}
+{{ end }}

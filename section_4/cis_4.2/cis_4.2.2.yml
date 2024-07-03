@@ -1,0 +1,23 @@
+---
+
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_4_2_2 }}
+package:
+  ufw:
+    title: 4.2.2 | Ensure ufw is uninstalled or disabled with nftables
+    installed: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.2.2
+      CISv8:
+      - 4.4
+      - 4.5
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - SC-7
+  {{ end }}
+{{ end }}

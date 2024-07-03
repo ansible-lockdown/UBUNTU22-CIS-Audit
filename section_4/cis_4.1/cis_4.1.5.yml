@@ -1,0 +1,26 @@
+---
+
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_4_1_5 }}
+command:
+  ufw_outbound:
+    title: 4.1.5 | Ensure ufw outbound connections are configured | Manual
+    exec: echo "Manual - Please confirm firewall outbound Policies match site policies"
+    exit-status: 0
+    stdout:
+    - '!/^Manual/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 4.1.5
+      CISv8:
+      - 4.4
+      - 4.5
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - SC-7
+  {{ end }}
+{{ end }}
