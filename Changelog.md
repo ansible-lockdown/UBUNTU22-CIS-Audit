@@ -1,5 +1,14 @@
 # Changes to Ubuntu22-CIS-Audit
 
+## 2.0 updates - based upon CIS 2.0.0
+
+- Complete rewrite
+  - number ordering changed
+  - section 7 added
+  - tests rewritten
+  - ntp no longer an option
+- run_audit script updated
+
 ## 1.0 updates - based on CIS 1.0.0
 
 script improvements

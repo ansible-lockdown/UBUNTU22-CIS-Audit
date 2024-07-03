@@ -2,7 +2,7 @@
 
 ## Overview
 
-### Based on CIS Ubuntu Linux 22.04 LTS Benchmark v1.0.0 [Release](https://learn.cisecurity.org/l/799323/2022-09-15/3l9d2k)
+### Based on CIS Ubuntu Linux 22.04 LTS Benchmark v2.0.0 [Release](https://downloads.cisecurity.org/#/)
 
 Set of configuration files and directories to run the first stages of CIS of Ubuntu 20.04 servers
 
@@ -36,9 +36,10 @@ root privileges
 
 If running as part of the ansible playbook, this will pull in the relevant branch for the version of benchmark you are remediating.
 
-- e.g. v1.2 will pull in branch benchmark_v1.2
+- e.g. v1.0.0 will pull in branch benchmark-v1.0.0
 
-Devel is normally the latest benchmark, so maybe different from the version of benchmark you wish to test. Details will show in the README.
+Devel is normally the latest benchmark version, so maybe different from the version of benchmark you wish to test.
+Details will show in the README as to the benchmark for the version it is written for.
 
 ## Usage
 

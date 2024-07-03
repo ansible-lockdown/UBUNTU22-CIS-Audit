@@ -15,13 +15,15 @@
 #               linting (thanks to @cf-sewe)
 #               Oracle included by default if RHEL family
 #               benchmark vars moved
+# December 2023 Added goss version and testing
+# April 2024    Updating of OS discovery to work for all supported OSs
 
 # Variables in upper case tend to be able to be adjusted
 # lower case variables are discovered or built from other variables
 
 # Goss benchmark variables (these should not need changing unless new release)
-BENCHMARK=CIS  # Benchmark Name aligns to the audit
-BENCHMARK_VER=1.0.0
+BENCHMARK=CIS # Benchmark Name aligns to the audit
+BENCHMARK_VER=2.0.0
 BENCHMARK_OS=UBUNTU22
 
 # Goss host Variables
@@ -80,10 +82,12 @@ fi
 
 # Discover OS version aligning with audit
 # Define os_vendor variable
-if [ "$(grep -Ec "rhel|oracle" /etc/os-release)" != 0 ]; then
+if [ "$(uname -a | grep -c amzn)" -ge 1 ]; then
+    os_vendor="AMAZON"
+elif [ "$(grep -Ec "rhel|oracle" /etc/os-release)" != 0 ]; then
   os_vendor="RHEL"
 else
-  os_vendor="$(hostnamectl | grep Oper | cut -d : -f2 | awk '{print $1}' | tr '[:lower:]' '[:upper:]' )"
+  os_vendor="$(hostnamectl | grep Oper | cut -d : -f2 | awk '{print tolower($1)}')"
 fi
 
 os_maj_ver="$(grep -w VERSION_ID= /etc/os-release | awk -F\" '{print $2}' | cut -d '.' -f1)"
@@ -135,7 +139,7 @@ else
 fi
 
 ## Set the AUDIT json string
-audit_json_vars='{"benchmark_type":'"$BENCHMARK"'","benchmark_os":"'"$BENCHMARK_OS"'","benchmark_version":"'"$BENCHMARK_VER"'","machine_uuid":"'"$host_machine_uuid"'","epoch":"'"$host_epoch"'","os_locale":"'"$host_os_locale"'","os_release":"'"$host_os_version"'","os_distribution":"'"$host_os_name"'","os_hostname":"'"$host_os_hostname"'","auto_group":"'"$host_auto_group"'","system_type":"'"$host_system_type"'"}'
+audit_json_vars='{"benchmark_type":"'"$BENCHMARK"'","benchmark_os":"'"$BENCHMARK_OS"'","benchmark_version":"'"$BENCHMARK_VER"'","machine_uuid":"'"$host_machine_uuid"'","epoch":"'"$host_epoch"'","os_locale":"'"$host_os_locale"'","os_release":"'"$host_os_version"'","os_distribution":"'"$host_os_name"'","os_hostname":"'"$host_os_hostname"'","auto_group":"'"$host_auto_group"'","system_type":"'"$host_system_type"'"}'
 
 ## Run pre checks
 
