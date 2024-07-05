@@ -1,0 +1,46 @@
+---
+
+{{ if .Vars.ubtu22cis_level_2 }}
+  {{ if .Vars.ubtu22cis_rule_5_5_1_1 }}
+file:
+  login_defs_PASS_MIN_DAYS:
+    title: 5.4.1.2 | Ensure minimum password age is configured
+    path: /etc/login.defs
+    exists: true
+    contents:
+    - '/^PASS_MIN_DAYS\s{{ .Vars.ubtu22cis_pass.min_days }}/'
+    - '/^PASS_MIN_DAYS\s([1-9]|[1-9][0-9]{2,})/'
+    - '!/^PASS_MIN_DAYS\s*(-[1-9]|0)/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 5.4.1.2
+      CISv8: 5.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: NA
+command:
+  users_min_pw_expire:
+    title: 5.4.1.1 | Ensure minimum password age is configured | user_check
+    exec: "awk -F: '(/^[^:]+:[^!*]/) {print $4}' /etc/shadow"
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/^([1-9]|[1-9][0-9]{2,})$/'
+    - '!/^0/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.4.1.1
+      CISv8: 5.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+  {{ end }}
+{{ end }}

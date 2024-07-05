@@ -1,0 +1,25 @@
+---
+
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_6_2_1_2_3 }}
+    {{ if not .Vars.ubtu22cis_is_syslog_server }}
+service:
+  systemd-journal-upload.service:
+    title: 6.2.1.2.3 | Ensure systemd-journal-upload is enabled and active
+    running: true
+    enabled: true
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.2.1.2.3
+      CISv8: 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-2
+      - AU-12
+    {{ end }}
+  {{ end }}
+{{ end }}

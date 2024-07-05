@@ -1,0 +1,31 @@
+---
+
+{{ if .Vars.ubtu22cis_rule_7_2_3 }}
+  {{ if .Vars.ubtu22cis_level_1 }}
+command:
+  passwd_group_exist:
+    title: 7.2.3 | Ensure all groups in /etc/passwd exist in /etc/group
+    exec: "awk -F: '{print $4}' /etc/passwd |sort -u > /tmp/uid && awk -F: '{print $3}' /etc/group| sort -u> /tmp/gid && comm -23 /tmp/uid /tmp/gid && rm -f /tmp/uid /tmp/gid"
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '!/.*/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 7.2.3
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - CM-1
+      - CM-2
+      - CM-6
+      - CM-7
+      - IA-5
+  {{ end }}
+{{ end }}

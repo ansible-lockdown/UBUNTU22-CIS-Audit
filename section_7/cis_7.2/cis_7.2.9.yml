@@ -1,0 +1,65 @@
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_7_2_9 }}
+command:
+  home_dirs_exist:
+    title: 7.2.9 | Ensure local interactive user home directories are configured | Directories exist
+    exec: for i in `cat /etc/passwd | grep -Ev "halt|sync|shutdown|nfsnobody|nologin|false" | cut -d ':' -f6`; do if [ ! -d $i ]; then echo "homedir missing $i"; fi; done
+    exit-status:
+      or:
+      - 0
+      - 1
+      - 2
+    stdout:
+    - '!/./'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 7.2.9
+      CISv8: 3.3
+      CISv8_IG1: True
+      CISv8_IG2: True
+      CISv8_IG3: True
+      NIST800-53R5: NA
+  home_dirs_ownership:
+    title: 7.2.9 | Ensure local interactive user home directories are configured | Directory ownership
+    exec: "getent passwd {1000..60000} | awk -F: '{ print $1  \" \"  $7 }' | while read user dir; do if [ $user != 'ftpd' ]; then owner=$(stat -L -c \"%U\" \"$dir\"); if [ \"$owner\" != \"$user\" ]; then echo \"home dir for $user owned by $owner\"; fi; fi; done"
+    exit-status:
+      or:
+      - 0
+      - 1
+      - 2
+    stdout:
+    - '!/./'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 7.2.9
+      CISv8: 3.3
+      CISv8_IG1: True
+      CISv8_IG2: True
+      CISv8_IG3: True
+      NIST800-53R5: NA
+  home_dirs_permissions:
+    title: 7.2.9 | Ensure local interactive user home directories are configured | Directory permissions
+    exec: export def_home=`grep "^HOME=" /etc/default/useradd |cut -d= -f2` && for i in `ls $def_home`; do stat -c "%a %n" $def_home/$i; done
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+      le:
+      - '750'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 7.2.9
+      CISv8: 3.3
+      CISv8_IG1: True
+      CISv8_IG2: True
+      CISv8_IG3: True
+      NIST800-53R5: NA
+  {{ end }}
+{{ end }}

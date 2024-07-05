@@ -1,0 +1,57 @@
+---
+
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_5_1_5 }}
+file:
+  ssh_banner:
+    title: 5.1.5 | Ensure sshd banner is configured | sshd_default
+    path: /etc/ssh/sshd_config
+    exists: true
+    contents:
+    - 'Banner /etc/issue.net'
+    - '!/^Banner none/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.1.5
+      CISv8:
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - CM-1
+      - CM-2
+      - CM-6
+      - CM-7
+      - IA-5
+command:
+  ssh_configd_banner:
+    title: 5.1.5 | Ensure SSH warning banner configured | conf.d banner settings
+    exec: grep -Eis '^\s*Banner\s+"?none\b'/etc/ssh/sshd_config.d/*.conf
+    exit-status:
+      or:
+      - 0
+      - 1
+      - 2
+    stdout:
+    - '!/.*/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.1.5
+      CISv8:
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - CM-1
+      - CM-2
+      - CM-6
+      - CM-7
+      - IA-5
+  {{ end }}
+{{ end }}

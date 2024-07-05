@@ -1,0 +1,42 @@
+---
+
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_5_3_2_2 }}
+file:
+  pam_faillock_enabled_common_act:
+    title: 5.3.2.2 | Ensure pam_faillock module is enabled
+    path: /etc/pam.d/common-account
+    exists: true
+    contents:
+    - '/^\s*account\s+(requisite|required)\s+pam_faillock.so/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.3.2.2
+      CISv8:
+      - 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: NA
+  pam_faillock_enabled_common_auth:
+    title: 5.3.2.2 | Ensure pam_faillock module is enabled
+    path: /etc/pam.d/common-auth
+    exists: true
+    contents:
+    - '/^\s*auth\s+(requisite|required)\s+pam_faillock.so\s+preauth/'
+    - /^auth\s*[default=die]\s+pam_faillock.so\s+authfail/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.3.2.2
+      CISv8:
+      - 6.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: NA
+  {{ end }}
+{{ end }}

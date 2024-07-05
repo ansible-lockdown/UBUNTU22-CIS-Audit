@@ -1,0 +1,28 @@
+---
+
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_5_1_14 }}
+file:
+  ssh_loglevel:
+    title: 5.1.14 | Ensure sshd LogLevel is configured
+    path: /etc/ssh/sshd_config
+    exists: true
+    stdout:
+    - '/LogLevel (VERBOSE|INFO)/'
+    - '!/^LogLevel DEBUG/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.1.14
+      CISv8:
+      - 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-3
+      - AU-12
+      - SI-5
+ {{ end }}
+{{ end }}

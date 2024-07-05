@@ -1,0 +1,43 @@
+---
+
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_5_3_3_1_1 }}
+file:
+  faillock_attempts_deny:
+    title: 5.3.3.1.1 | Ensure password failed attempts lockout is configured
+    path: /etc/security/faillock.conf
+    exists: true
+    contents:
+    - '/^deny\s*=\s*[1-5]$/'
+    - '!/^deny\s*=\s*([5-9]|[0-9]{2,})/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.3.3.1.1
+      CISv8:
+      - 6.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: NA
+command:
+  faillock_attempts_deny_removed:
+    title: 5.3.3.1.1 | Ensure password failed attempts lockout is configured
+    exec: grep -Pl -- '\bpam_faillock\.so\h+([^#\n\r]+\h+)?deny\b' /usr/share/pam-configs/*
+    exit-status: 1
+    stdout:
+    - '!/.*/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.3.3.1.1
+      CISv8:
+      - 6.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: NA
+  {{ end }}
+{{ end }}

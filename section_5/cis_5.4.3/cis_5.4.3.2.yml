@@ -1,0 +1,25 @@
+---
+
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_5_4_3_2 }}
+command:
+  check_timeout:
+    title: 5.4.3.2 | Ensure default user shell timeout is configured
+    exec: 'grep TMOUT /etc/profile.d/*.sh /etc/profile /etc/profile.d/*.sh| cut -d ":" -f2'
+    exit-status: 0
+    stdout:
+    - '/^(readonly |)TMOUT/'
+    - '/TMOUT=([1-8][0-9]{0,2}|900)$/'
+    - '/export TMOUT/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.4.3.2
+      CISv8: 4.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: NA
+  {{ end }}
+{{ end }}

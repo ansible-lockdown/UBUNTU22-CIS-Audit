@@ -1,0 +1,29 @@
+---
+
+{{ if .Vars.ubtu22cis_level_2 }}
+  {{ if .Vars.ubtu22cis_rule_6_3_2_3 }}
+file:
+  auditd_space_actions:
+    title: 6.3.2.3 | Ensure system is disabled when audit logs are full
+    name: /etc/audit/auditd.conf
+    exists: true
+    contents:
+    - '/disk_full_action\s*=\s*(halt|single)/'
+    - '/disk_error_action\s*=\s*(syslog|single|halt)/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.3.2.3
+      CISv8:
+      - 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-2
+      - AU-8
+      - AU-12
+      - SI-5
+  {{ end }}
+{{ end }}

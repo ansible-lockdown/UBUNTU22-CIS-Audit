@@ -1,0 +1,70 @@
+---
+
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_7_2_10 }}
+command:
+  bad_dot_files:
+    title: 7.2.10 | Ensure local interactive user dot files access is configured | bad dot files
+    exec: 'find /home/ -name "\.forward" -o -name "\.netrc" -o -name "\.rhosts"'
+    exit-status: 0
+    stdout:
+    - '!/./'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 7.2.10
+      CISv8: 3.3
+      CISv8_IG1: True
+      CISv8_IG2: True
+      CISv8_IG3: True
+      NIST800-53R5:
+      - CM-1
+      - CM-2
+      - CM-6
+      - CM-7
+      - IA-5
+  dot_file_perms:
+    title: 7.2.10 | Ensure local interactive user dot files access is configured | dot files permissions
+    exec: 'find /home/ -name "\.*" -perm /g+w,o+w | grep -v .bash_history'
+    exit-status: 0
+    stdout:
+    - '!/./'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 7.2.10
+      CISv8: 3.3
+      CISv8_IG1: True
+      CISv8_IG2: True
+      CISv8_IG3: True
+      NIST800-53R5:
+      - CM-1
+      - CM-2
+      - CM-6
+      - CM-7
+      - IA-5
+  dot_file_bash_history:
+    title: 7.2.10 | Ensure local interactive user dot files access is configured | bash_history files permissions
+    exec: 'find /home/ -name "\.bash_history" -perm /go+rwx'
+    exit-status: 0
+    stdout:
+    - '!/./'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 7.2.10
+      CISv8: 3.3
+      CISv8_IG1: True
+      CISv8_IG2: True
+      CISv8_IG3: True
+      NIST800-53R5:
+      - CM-1
+      - CM-2
+      - CM-6
+      - CM-7
+      - IA-5
+  {{ end }}
+{{ end }}

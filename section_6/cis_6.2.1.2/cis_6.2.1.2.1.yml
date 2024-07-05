@@ -1,0 +1,23 @@
+---
+
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_6_2_1_2_1 }}
+    {{ if not .Vars.ubtu22cis_is_syslog_server }}
+package:
+  systemd-journal-remote:
+    title: 6.2.1.2.1 | Ensure systemd-journal-remote is installed
+    installed: true
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.2.1.2.1
+      CISv8: 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-4
+    {{ end }}
+  {{ end }}
+{{ end }}

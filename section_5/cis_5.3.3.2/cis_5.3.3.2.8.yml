@@ -1,0 +1,28 @@
+---
+
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_5_3_3_2_8 }}
+command:
+  password_quality_enforce_root:
+    title: 5.3.3.2.8 | Ensure password quality checking is enforced
+    exec: grep -Psi -- '^\h*enforce_for_root\h*=\h*\d\b' /etc/security/pwquality.conf /etc/security/pwquality.conf.d/*.conf
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/.*\:enforce_for_root\s*=\s*1/'
+    - '!/.*\:enforce_for_root\s*=\s*0/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.3.3.2.7
+      CISv8:
+      - 5.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: IA-5
+  {{ end }}
+{{ end }}

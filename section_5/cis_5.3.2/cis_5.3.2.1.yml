@@ -1,0 +1,79 @@
+---
+
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_5_3_2_1 }}
+file:
+  pam_unix_enabled_common_act:
+    title: 5.3.2.1 | Ensure pam_unix module is enabled
+    path: /etc/pam.d/common-account
+    exists: true
+    contents:
+    - '/^account\s+[success=1 new_authtok_reqd=done default=ignore]\s+pam_unix.so/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.3.2.1
+      CISv8:
+      - 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - IA-5
+  pam_unix_enabled_common_session:
+    title: 5.3.2.1 | Ensure pam_unix module is enabled
+    path: /etc/pam.d/common-session
+    exists: true
+    contents:
+    - '/^\s*session\s+required\s+pam_unix.so/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.3.2.1
+      CISv8:
+      - 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - IA-5
+  pam_unix_enabled_common_auth:
+    title: 5.3.2.1 | Ensure pam_unix module is enabled
+    path: /etc/pam.d/common-auth
+    exists: true
+    contents:
+    - '/^\s*auth\s+[success=2 default=ignore]\s+pam_unix.so/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.3.2.1
+      CISv8:
+      - 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - IA-5
+  pam_unix_enabled_common_password:
+    title: 5.3.2.1 | Ensure pam_unix module is enabled
+    path: /etc/pam.d/common-password
+    exists: true
+    contents:
+    - '/^\s*password\s+[success=1 default=ignore]s+pam_unix.so/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.3.2.1
+      CISv8:
+      - 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - IA-5
+  {{ end }}
+{{ end }}

@@ -1,0 +1,24 @@
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_5_3_3_4_3 }}
+command:
+  pam_unix_strong_password_pam_configs:
+    title: 5.3.3.4.3 | Ensure pam_unix includes a strong password hashing algorithm
+    exec: grep -PH -- '^\h*password\h+([^#\n\r]+)\h+pam_unix\.so\h+([^#\n\r]+\h+)?(sha512|yescrypt)\b' /etc/pam.d/common-password /usr/share/pam-configs/*
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/.*:password\h+([^#\n\r]+)\h+pam_unix\.so.*(yescrypt|sha512)/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.3.3.4.3
+      CISv8: 3.11
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: NA
+  {{ end }}
+{{ end }}

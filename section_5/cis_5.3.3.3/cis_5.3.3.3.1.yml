@@ -1,0 +1,46 @@
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_5_3_3_3_1 }}
+file:
+  pwhistory_remember_common_passwd:
+    title: 5.3.3.3.1 | Ensure password history remember is configured | common-password
+    path: /etc/pam.d/common-password
+    exists: true
+    contents:
+    - '/^\s*password\s*(requisite|required)\s*pam_pwhistory.so.*remember\s*=\s*(2[4-9]|[3-9][0-9])/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.3.3.3.1
+      CISv8: 5.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: IA-5
+command:
+  pwhistory_remember_pam_configs:
+    title: 5.3.3.3.1 | Ensure password history remember is configured | pam_configs
+    exec: |
+      "for file in `awk '/Password-Type:/{ f = 1;next } /-Type:/{ f = 0 } f {if (/pam_pwhistory\.so/) print FILENAME}' /usr/share/pam-configs/*`
+        do
+          grep pam_pwhistory $file | grep -v remember
+        done"
+
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '!/.*/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.3.3.3.1
+      CISv8: 5.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: IA-5
+  {{ end }}
+{{ end }}

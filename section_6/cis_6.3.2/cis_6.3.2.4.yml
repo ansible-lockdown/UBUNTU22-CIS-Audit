@@ -1,0 +1,31 @@
+---
+
+{{ if .Vars.ubtu22cis_level_2 }}
+  {{ if .Vars.ubtu22cis_rule_6_3_2_4 }}
+command:
+  auditd_space_actions:
+    title: 6.3.2.4 | Ensure system warns when audit logs are low on space
+    exec: grep -E "action" /etc/audit/auditd.conf
+    exit-status: 0
+    stdout:
+    - '/space_left_action\s*=\s*{{ .Vars.ubtu22cis_auditd.space_left_action }}/'
+    - '/space_left_action\s*=\s*(email|exec|single|halt)/'
+    - '/^admin_space_left_action\s*=\s*{{ .Vars.ubtu22cis_auditd.admin_space_left_action }}/'
+    - '/^admin_space_left_action\s*=\s*(single|halt)/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.3.2.4
+      CISv8:
+      - 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-2
+      - AU-8
+      - AU-12
+      - SI-5
+  {{ end }}
+{{ end }}

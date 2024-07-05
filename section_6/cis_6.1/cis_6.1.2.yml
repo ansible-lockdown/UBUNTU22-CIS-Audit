@@ -1,27 +1,63 @@
+---
+
 {{ if .Vars.ubtu22cis_level_1 }}
-  {{ if .Vars.ubtu22cis_rule_6_1_2 }}
+  {{ if .Vars.ubtu22cis_config_aide }}
+    {{ if .Vars.ubtu22cis_rule_6_1_2 }}
+      {{ if eq .Vars.ubtu22cis_aide_scan "cron" }}
 command:
-  passwd-_perms:
-    title: 6.1.2 | Ensure permissions on /etc/passwd- are configured
-    exec:  stat -L -c "%a %U %G" /etc/passwd-
-    exit-status: 0
+  aide_cron:
+    title: 6.1.2 | Ensure filesystem integrity is regularly checked | aide cron
+    exit-status:
+      or:
+      - 0
+      - 2
+    exec: "grep -rs aide /etc/cron.* /etc/crontab /var/spool/cron/*"
     stdout:
-    -  '/(0|6[0,4][0,4]) root root/'
+    - '!/^#/'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 6.1.2
-      CISv8: 3.3
-      CISv8_IG1: true
+      CISv8: 8.5
+      CISv8_IG1: false
       CISv8_IG2: true
       CISv8_IG3: true
-      Mitre_Techniques:
-      - T1003
-      - T1003.008
-      - T1222
-      - T1222.002
-      Mitre_Tactics: TA0005
-      Mitre_Mitigations: M1022
+      NIST800-53R5: NA
+      {{ end }}
+service:
+    {{ if eq .Vars.ubtu22cis_aide_scan "timer" }}
+  aidecheck:
+    title: 6.1.2 | Ensure filesystem integrity is regularly checked | aidecheck service
+    enabled: true
+    running: true
+    skip: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.1.2
+       CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: NA
+  aidecheck.timer:
+    title: 6.1.2 | Ensure filesystem integrity is regularly checked | aidecheck timer
+    enabled: true
+    running: true
+    skip: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.1.2
+      CISv8: 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: NA
+      {{ end }}
+    {{ end }}
   {{ end }}
 {{ end }}

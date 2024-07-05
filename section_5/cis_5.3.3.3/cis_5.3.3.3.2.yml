@@ -1,0 +1,45 @@
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_5_3_3_3_2 }}
+file:
+  pwhistory_enforce_for_root:
+    title: 5.3.3.3.2 | Ensure password history is enforced for the root user | common-password
+    path: /etc/pam.d/common-password
+    exists: true
+    contents:
+    - '/^\s*password\s*(requisite|required)\s*pam_pwhistory.so.*enforce_for_root/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.3.3.3.2
+      CISv8: 5.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: IA-5
+command:
+  pwhistory_enforce_for_root_pam_configs:
+    title: 5.3.3.3.2 | Ensure password history is enforced for the root user | pam_configs
+    exec: |
+      "for file in `awk '/Password-Type:/{ f = 1;next } /-Type:/{ f = 0 } f {if (/pam_pwhistory\.so/) print FILENAME}' /usr/share/pam-configs/*`
+        do
+          grep pam_pwhistory $file | grep -v enforce_for_root
+        done"
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '!/.*/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.3.3.3.2
+      CISv8: 5.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: IA-5
+  {{ end }}
+{{ end }}

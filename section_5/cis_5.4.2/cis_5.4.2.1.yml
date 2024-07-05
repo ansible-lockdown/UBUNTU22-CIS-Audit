@@ -1,0 +1,27 @@
+---
+
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_5_4_2_1 }}
+command:
+  root_only_uid_0:
+    title: 5.4.2.1 | Ensure root is the only UID 0 account
+    exec: "awk -F: '($3 == 0) { print $1 }' /etc/passwd"
+    exit-status: 0
+    stdout: ['root']
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.4.2.1
+      CISv8: NA
+      CISv8_IG1: NA
+      CISv8_IG2: NA
+      CISv8_IG3: NA
+      NIST800-53R5:
+      - CM-1
+      - CM-2
+      - CM-6
+      - CM-7
+      - IA-5
+  {{ end }}
+{{ end }}

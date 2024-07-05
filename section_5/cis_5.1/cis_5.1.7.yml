@@ -1,0 +1,31 @@
+---
+
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_5_1_7 }}
+file:
+  sshd_clientalive:
+    title: 5.1.7 | Ensure sshd ClientAloveInterval and CLientAliveCountMax are configured
+    path: /etc/ssh/sshd_config
+    exists: true
+    contents:
+    - 'ClientAliveInterval {{ .Vars.ubtu22cis_ssh_aliveinterval }}'
+    - 'ClientAliveCountMax {{ .Vars.ubtu22cis_ssh_countmax }}'
+    - '/ClientAliveInterval ([1-9]|[1-2][0-9][0-9]|300)/'
+    - '/ClientAliveCountMax [0-3]/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.1.7
+      CISv8: NA
+      CISv8_IG1: NA
+      CISv8_IG2: NA
+      CISv8_IG3: NA
+      NIST800-53R5:
+      - CM-1
+      - CM-2
+      - CM-6
+      - CM-7
+      - IA-5
+  {{ end }}
+{{ end }}

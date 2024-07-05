@@ -1,0 +1,51 @@
+---
+
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_5_3_3_2_3 }}
+command:
+  password_complex:
+    title: 5.3.3.2.3 | Ensure password complexity is configured
+    exec: grep -Psi -- '^\h*(minclass|[dulo]credit)\b' /etc/security/pwquality.conf /etc/security/pwquality.conf.d/*.conf
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/.*\:minclass\s*=\s*([1-9|[1-9][0-9])/'
+    - '/.*\:ucredit\s*=\s*(0|-\d)/'
+    - '/.*\:lcredit\s*=\s*(0|-\d)/'
+    - '/.*\:dcredit\s*=\s*(0|-\d)/'
+    - '/.*\:ocredit\s*=\s*(0|-\d)/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.3.3.2.3
+      CISv8:
+      - 5.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: IA-5
+  password_complex_not_pamd:
+    title: 5.3.3.2.3 | Ensure password complexity is configured
+    exec: grep -Psi -- '^\h*password\h+(requisite|required|sufficient)\h+pam_pwquality\.so\h+([^#\n\r]+\h+)?(minclass=\d*|[dulo]credit=-?\d*)\b' /etc/pam.d/common-password
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '!/.*/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.3.3.2.3
+      CISv8:
+      - 5.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: IA-5
+  {{ end }}
+{{ end }}

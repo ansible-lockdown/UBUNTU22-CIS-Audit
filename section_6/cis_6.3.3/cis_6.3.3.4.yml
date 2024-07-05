@@ -1,0 +1,49 @@
+---
+
+{{ if .Vars.ubtu22cis_level_2 }}
+  {{ if .Vars.ubtu22cis_rule_6_3_3_4 }}
+command:
+  auditd_time_cnf:
+    title: 6.3.3.4 | Ensure events that modify date and time information are collected | Config
+    exec: grep time-change /etc/audit/rules.d/*.rules
+    exit-status: 0
+    stdout:
+    - '-a always,exit -F arch=b64 -S adjtimex,settimeofday,clock_settime -k time-change'
+    - '-a always,exit -F arch=b32 -S adjtimex,settimeofday,clock_settime -k time-change'
+    - '-w /etc/localtime -p wa -k time-change'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.3.3.4
+      CISv8:
+      - 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-3
+      - CM-6
+  auditd_time_live:
+    title: 6.3.3.4 | Ensure events that modify date and time information are collected | Live
+    exec: auditctl -l | grep time-change
+    exit-status: 0
+    stdout:
+    - '-a always,exit -F arch=b64 -S adjtimex,settimeofday,clock_settime -F key=time-change'
+    - '-a always,exit -F arch=b32 -S settimeofday,adjtimex,clock_settime -F key=time-change'
+    - '-w /etc/localtime -p wa -k time-change'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.3.3.4
+      CISv8:
+      - 8.5
+      CISv8_IG1: false
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-3
+      - CM-6
+  {{ end }}
+{{ end }}

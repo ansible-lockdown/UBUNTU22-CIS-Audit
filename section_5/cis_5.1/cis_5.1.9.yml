@@ -1,0 +1,26 @@
+---
+
+{{ if .Vars.ubtu22cis_level_2 }}
+  {{ if .Vars.ubtu22cis_rule_5_1_9 }}
+file:
+  sshd_gssapiauth:
+    title: 5.1.9 | Ensure sshd GSSAPIAuthentication is disabled
+    path: /etc/ssh/sshd_config
+    exists: true
+    contents:
+    - 'DisabledForwarding yes'
+    - '!/^DisabledForwarding no/'
+    meta:
+      server: 2
+      workstation: 1
+      CIS_ID:
+      - 5.1.9
+      CISv8:
+      - 4.1
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - CM-7
+  {{ end }}
+{{ end }}

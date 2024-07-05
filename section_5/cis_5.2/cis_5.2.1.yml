@@ -1,30 +1,26 @@
+---
+
 {{ if .Vars.ubtu22cis_level_1 }}
   {{ if .Vars.ubtu22cis_rule_5_2_1 }}
-file:
-  sshd_config_perms:
-    title: 5.2.1 | Ensure permissions on /etc/ssh/sshd_config are configured
-    path: /etc/ssh/sshd_config
-    exists: true
-    mode: "0600"
-    owner: root
-    group: root
+package:
+  sudo:
+    title: 5.2.1 | Ensure sudo is installed
+    installed: true
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 5.2.1
       CISv8:
-      - 3.3
+      - 5.4
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-      Mitre_Techniques:
-      - T1098
-      - T1098.004
-      - T1543
-      - T1543.002
-      Mitre_Tactics:
-      - TA0005
-      Mitre_Mitigations: M1022
+      NIST800-53R5:
+      - CM-1
+      - CM-2
+      - CM-6
+      - CM-7
+      - IA-5
   {{ end }}
 {{ end }}

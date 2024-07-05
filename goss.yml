@@ -1,25 +1,18 @@
 gossfile:
+# Section 1
   {{ if .Vars.ubtu22cis_section1 }}
   section_1/*/*.yml: {}
   {{ end }}
 
  # Section 2
   {{ if .Vars.ubtu22cis_section2 }}
-  section_2/cis_2.1/cis_2.1.1.1.yml: {}
-    {{ if eq .Vars.ubtu22cis_time_service "chrony" }}
-  section_2/cis_2.1/cis_2.1.2.*.yml: {}
-    {{ end }}
-    {{ if eq .Vars.ubtu22cis_time_service "timesyncd" }}
-  section_2/cis_2.1/cis_2.1.3.*.yml: {}
-    {{ end }}
-    {{ if eq .Vars.ubtu22cis_time_service "ntp" }}
-  section_2/cis_2.1/cis_2.1.4.*.yml: {}
-    {{ end }}
   # Special Services
-  section_2/cis_2.2/*.yml: {}
+  section_2/cis_2.1/*.yml: {}
   # Client Service
+  section_2/cis_2.2/*.yml: {}
+  # Time services
   section_2/cis_2.3/*.yml: {}
-  # Essential service
+  # scheduling services
   section_2/cis_2.4/*.yml: {}
   {{ end }}
 
@@ -31,37 +24,21 @@ gossfile:
     {{ if .Vars.ubtu22cis_ipv6_required }}
   section_3/cis_3.3/ipv6/*.yml: {}
     {{ end }}
-  section_3/cis_3.4/*.yml: {}
-    # If ufw firewall
-    {{ if eq .Vars.ubtu22cis_firewall "ufw" }}
-  section_3/cis_3.5.1/*.yml: {}
-    {{ end }}
-    # If nftables firewall
-    {{ if eq .Vars.ubtu22cis_firewall "nftables" }}
-  section_3/cis_3.5.2/*.yml: {}
-    {{ end }}
-    # If iptables firewall
-    {{ if eq .Vars.ubtu22cis_firewall "iptables" }}
-  section_3/cis_3.5.3/*.yml: {}
-    {{ end }}
   {{ end }}
 
 # Section 4
   {{ if .Vars.ubtu22cis_section4 }}
-  # Auditd and level 2
-    {{ if .Vars.ubtu22cis_level_2 }}
-      {{ if .Vars.ubtu22cis_auditd }}
-  section_4/cis_4.1.1/*.yml: {}
-  section_4/cis_4.1.2/*.yml: {}
-  section_4/cis_4.1.3/*.yml: {}
-  section_4/cis_4.1.4/*.yml: {}
-      {{ end }}
+    # If ufw firewall
+    {{ if eq .Vars.ubtu22cis_firewall_package "ufw" }}
+  section_4/cis_4.1/*.yml: {}
     {{ end }}
-    {{ if eq .Vars.ubtu22cis_syslog_service "journald" }}
-  section_4/cis_4.2.1/*.yml: {}
+    # If nftables firewall
+    {{ if eq .Vars.ubtu22cis_firewall_package "nftables" }}
+  section_4/cis_4.2/*.yml: {}
     {{ end }}
-    {{ if eq .Vars.ubtu22cis_syslog_service "rsyslog" }}
-  section_4/cis_4.2.2/*.yml: {}
+    # If iptables firewall
+    {{ if eq .Vars.ubtu22cis_firewall_package "iptables" }}
+  section_4/cis_4.3/*.yml: {}
     {{ end }}
   {{ end }}
 
@@ -72,7 +49,22 @@ gossfile:
 
 # Section 6
   {{ if .Vars.ubtu22cis_section6 }}
-  section_6/*/*.yml: {}
+  # Aide
+  section_6/cis_6.1/*.yml: {}
+  # Auditd and level 2
+  # Journald
+  section_6/cis_6.2/*.yml: {}
+  # Auditd
+    {{ if .Vars.ubtu22cis_level_2 }}
+      {{ if .Vars.ubtu22cis_auditd }}
+  section_6/cis_6.3/*.yml: {}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+
+# Section 7
+  {{ if .Vars.ubtu22cis_section6 }}
+  section_7/cis_7.*/*.yml: {}
   {{ end }}
 
 # Metadata

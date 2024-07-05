@@ -1,0 +1,90 @@
+---
+
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_6_2_1_2_4 }}
+    {{ if not .Vars.ubtu22cis_is_syslog_server }}
+service:
+  systemd-journal-remote.service:
+    title: 6.2.1.2.4 | Ensure systemd-journal-remote service is not in use | service
+    running: false
+    enabled: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.2.1.2.4
+      CISv8:
+      - 4.8
+      - 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-2
+      - AU-7
+      - AU-12
+  systemd-journal-remote.socket:
+    title: 6.2.1.2.4 | Ensure systemd-journal-remote service is not in use | socket
+    running: false
+    enabled: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.2.1.2.4
+      CISv8:
+      - 4.8
+      - 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-2
+      - AU-7
+      - AU-12
+command:
+  journald_service_masked:
+    title: 6.2.1.2.4 | Ensure systemd-journal-remote service is not in use | service masked
+    exec: systemctl is-enabled systemd-journal-remote.socket
+    exit-status: 1
+    stdout:
+    - '/^masked/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.2.1.2.4
+      CISv8:
+      - 4.8
+      - 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-2
+      - AU-7
+      - AU-12
+  journald_socket_masked:
+    title: 6.2.1.2.4 | Ensure systemd-journal-remote service is not in use | socket masked
+    exec: systemctl is-enabled systemd-journal-remote.socket
+    exit-status: 1
+    stdout:
+    - '/^masked/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.2.1.2.4
+      CISv8:
+      - 4.8
+      - 8.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AU-2
+      - AU-7
+      - AU-12
+    {{ end }}
+  {{ end }}
+{{ end }}

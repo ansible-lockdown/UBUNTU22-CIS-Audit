@@ -1,30 +1,42 @@
+---
+
 {{ if .Vars.ubtu22cis_level_1 }}
   {{ if .Vars.ubtu22cis_rule_5_2_7 }}
-command:
-  ssh_permit_root:
-    title: 5.2.7 | Ensure SSH root login is disabled
-    exec: grep -Ei "permitrootlogin" /etc/ssh/sshd_config
-    exit-status:
-      or:
-      - 0
-      - 1
-    stdout:
-    - '/^(?i)PermitRootLogin no/'
-    - '!/^(?i)PermitRootLogin yes/'
+file:
+  su_conf:
+    title: 5.2.7 | Ensure access to the su command is restricted
+    path: /etc/pam.d/su
+    exists: true
+    contents:
+    - '/^auth\s+required\s+pam_wheel.so use_uid group={{ .Vars.ubtu22cis_sugroup }}/'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 5.2.7
-      CISv8:
-      - 5.4
+      CISv8: 3.3
       CISv8_IG1: true
       CISv8_IG2: true
       CISv8_IG3: true
-      Mitre_Techniques:
-      - T1021
-      Mitre_Tactics:
-      - TA0008
-      Mitre_Mitigations: M1042
+      NIST800-53R5:
+      - AC-6
+command:
+  sugroup_etc_group:
+    title: 5.2.7 | Ensure access to the su command is restricted
+    exec: grep {{ .Vars.ubtu22cis_sugroup }} /etc/group  | awk -F':' '{print $NF}'
+    exit-status: 0
+    stdout:
+    - '!/^[a-zA-Z]/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.2.7
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AC-6
   {{ end }}
 {{ end }}

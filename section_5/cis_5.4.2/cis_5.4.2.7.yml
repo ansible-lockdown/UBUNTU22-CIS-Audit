@@ -1,0 +1,25 @@
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_5_4_2_7 }}
+command:
+  secure_system_accts:
+    title: 5.4.2.7 | Ensure system accounts do not have a valid login shell
+    exec: "awk -F: '$3<1000' /etc/passwd | grep -Ev 'root|sync|halt|shutdown|nfsnobody|/sbin/nologin|/bin/false'"
+    exit-status: 1
+    stdout:
+    - '!/./'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.4.2.7
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AC-2(5)
+      - AC-3
+      - AC-11
+      - MP-2
+  {{ end }}
+{{ end }}

@@ -1,0 +1,45 @@
+---
+
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_5_3_3_2_1 }}
+command:
+  password_character_changed:
+    title: 5.3.3.2.1 | Ensure password number of changed characters is configured
+    exec: grep -Psi -- '^\h*difok\h*=\h*([2-9]|[1-9][0-9]+)\b' /etc/security/pwquality.conf /etc/security/pwquality.conf.d/*.conf
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/.*\:difok\s*=\s*[2-9]/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.3.3.2.1
+      CISv8:
+      - 5.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: IA-5
+file:
+  passwd_change_not_pamd:
+    title: 5.3.3.2.1 | Ensure password number of changed characters is configured
+    path: /etc./pam.d/common-password
+    exists: true
+    contents:
+    - '!/^\s+password\s+'(requisite|required|sufficient)\s+pam_pwquality\.so\s+([^#\n\ r]+\h+)?difok\s*=\s*([0-1])\b/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.3.3.2.1
+      CISv8:
+      - 5.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: IA-5
+  {{ end }}
+{{ end }}

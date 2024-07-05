@@ -1,0 +1,23 @@
+---
+
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_5_4_1_6 }}
+command:
+  passwd_chg_past:
+    title: 5.4.1.6 | Ensure all users last password change date is in the past
+    exec: 'for usr in `cut -d: -f1 /etc/shadow`; do [ "$(date --date="$(chage --list $usr | grep "^Last password change" | cut -d: -f2)" +%s)" -gt "$(date "+%s")" ] && echo "Failed" ; done'
+    exit-status: 1
+    stdout:
+    - '!/Failed/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 5.4.1.6
+      CISv8: 5.2
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5: NA
+  {{ end }}
+{{ end }}

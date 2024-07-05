@@ -1,0 +1,31 @@
+---
+
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.run_heavy_tests }}
+    {{ if .Vars.ubtu22cis_rule_7_1_12 }}
+command:
+  unowned_dirs:
+    title: 7.1.12 | Ensure no files or directories without an owner and a group exist
+    exec: "df --local -P | awk {'if (NR!=1) print $6'} | xargs -I '{}' find '{}' -xdev -nouser -o -nogroup | grep -v journal-upload"
+    exit-status:
+      or:
+      - 0
+      - 1
+    timeout: {{ .Vars.timeout_ms }}
+    stdout:
+    - '!/./'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 7.1.12
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - AC-3
+      - MP-2
+    {{ end }}
+  {{ end }}
+{{ end }}
