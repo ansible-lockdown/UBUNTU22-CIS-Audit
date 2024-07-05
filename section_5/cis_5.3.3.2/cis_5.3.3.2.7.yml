@@ -5,7 +5,7 @@
 command:
   password_quality_enforce:
     title: 5.3.3.2.7 | Ensure password quality checking is enforced
-    exec: grep -Psi -- '^\h*enforcing\h*=\h*0\b' /etc/security/pwquality.conf /etc/security/pwquality.conf.d/*.conf
+    exec: grep -Psi -- '^\h*enforcing\s*=\s*' /etc/security/pwquality.conf /etc/security/pwquality.conf.d/*.conf
     exit-status:
       or:
       - 0

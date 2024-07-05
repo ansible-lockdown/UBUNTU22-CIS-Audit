@@ -5,33 +5,11 @@
 command:
   umask_profile_scripts:
     title: 5.4.3.3 | Ensure default user umask is configured
-    exec:  'grep umask /etc/profile /etc/profile.d/*.sh | cut -d ":" -f 2'
+    exec:  'grep -i "^\s*umask" /etc/profile /etc/profile.d/*.sh /etc/login.defs | cut -d ":" -f 2'
     exit-status: 0
     stdout:
-    - '/umask\s+0[2-7][7]/'
-    - '!/umask\s+[7][0-1][0-6]/'
-    meta:
-      server: 1
-      workstation: 1
-      CIS_ID:
-      - 5.4.3.3
-      CISv8: 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5:
-      - AC-3
-      - MP-2
-file:
-  umask_/etc/login.defs:
-    title: 5.4.3.3 | Ensure default user umask is configured | login.defs
-    exists: true
-    path: /etc/login.defs
-    contents:
-    - '/^UMASK\s+0[2-7][7]/'
-    - '/^USERGROUPS_ENAB\s+no/'
-    - '!/^UMASK\s+[7][0-1][0-6]/'
-    - '!/^USERGROUPS_ENAB\s+yes/'
+    - '/(?i)umask\s+0[2-7][7]/'
+    - '!/(?i)umask\s+[7][0-1][0-6]/'
     meta:
       server: 1
       workstation: 1

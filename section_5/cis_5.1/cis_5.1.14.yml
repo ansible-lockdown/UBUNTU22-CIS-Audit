@@ -7,7 +7,7 @@ file:
     title: 5.1.14 | Ensure sshd LogLevel is configured
     path: /etc/ssh/sshd_config
     exists: true
-    stdout:
+    contents:
     - '/LogLevel (VERBOSE|INFO)/'
     - '!/^LogLevel DEBUG/'
     meta:

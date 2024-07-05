@@ -20,11 +20,7 @@ file:
 command:
   pwhistory_use_authtok_pam_configs:
     title: 5.3.3.3.2 | Ensure pam_pwhistory includes use_authtok | pam_configs
-    exec: |
-      "for file in `awk '/Password-Type:/{ f = 1;next } /-Type:/{ f = 0 } f {if (/pam_pwhistory\.so/) print FILENAME}' /usr/share/pam-configs/*`
-        do
-          grep pam_pwhistory $file | grep -v use_authtok
-        done"
+    exec: for file in `awk '/Password-Type:/{ f = 1;next } /-Type:/{ f = 0 } f {if (/pam_pwhistory\.so/) print FILENAME}' /usr/share/pam-configs/*`; do grep pam_pwhistory $file | grep -v use_authtok; done
     exit-status:
       or:
       - 0

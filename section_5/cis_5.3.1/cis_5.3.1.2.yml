@@ -7,8 +7,10 @@ package:
     title: 5.3.1.2 | Ensure latest version of libpam-modules is installed
     installed: true
     versions:
-      gt:
-      - 1.5.2-6
+      not:
+      - '1.4.0-11ubuntu2.1'
+      - '1.4.0-11ubuntu2.2'
+      - '1.4.0-11ubuntu2.3'
     meta:
       server: 1
       workstation: 1

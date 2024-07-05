@@ -1,15 +1,15 @@
 {{ if .Vars.ubtu22cis_level_1 }}
   {{ if .Vars.ubtu22cis_rule_5_3_3_4_4 }}
 command:
-  pam_unix_strong_password_pam_configs:
+  pam_unix_use_authtok_pam_configs:
     title: 5.3.3.4.4 | Ensure pam_unix includes a use_authtok
-    exec: grep -PH -- '^\h*password\h+([^#\n\r]+)\h+pam_unix\.so\h+([^#\n\r]+\h+)?use_authtok\b' /etc/pam.d/common-password
+    exec: grep -PH -- '^\s*password\s+([^#\n\r]+)\s+pam_unix\.so\s+([^#\n\r]+\s+)?use_authtok\b' /etc/pam.d/common-password
     exit-status:
       or:
       - 0
       - 1
     stdout:
-    - '/.*:password\h+([^#\n\r]+)\h+pam_unix\.so.*use_authtok/'
+    - '/.*:password\s+([^#\n\r]+)\s+pam_unix\.so.*use_authtok/'
     meta:
       server: 1
       workstation: 1

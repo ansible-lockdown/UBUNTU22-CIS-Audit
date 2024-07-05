@@ -11,7 +11,7 @@ command:
       - 0
       - 1
     stdout:
-    - '/.*\:minclass\s*=\s*([1-9|[1-9][0-9])/'
+    - '/.*\:minclass\s*=\s*([1-9]|[1-9][0-9])/'
     - '/.*\:ucredit\s*=\s*(0|-\d)/'
     - '/.*\:lcredit\s*=\s*(0|-\d)/'
     - '/.*\:dcredit\s*=\s*(0|-\d)/'

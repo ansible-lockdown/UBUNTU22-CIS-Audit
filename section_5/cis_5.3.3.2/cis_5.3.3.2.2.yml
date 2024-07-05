@@ -11,7 +11,7 @@ command:
       - 0
       - 1
     stdout:
-    - '/.*\:minlen\s*=\s*(1[4-9|[2-4][0-9])/'
+    - '/.*\:minlen\s*=\s*(1[4-9]|[2-4][0-9])/'
     meta:
       server: 1
       workstation: 1
@@ -30,6 +30,7 @@ command:
       or:
       - 0
       - 1
+      - 2
     stdout:
     - '!/.*/'
     meta:

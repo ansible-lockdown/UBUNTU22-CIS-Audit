@@ -20,12 +20,7 @@ file:
 command:
   pwhistory_remember_pam_configs:
     title: 5.3.3.3.1 | Ensure password history remember is configured | pam_configs
-    exec: |
-      "for file in `awk '/Password-Type:/{ f = 1;next } /-Type:/{ f = 0 } f {if (/pam_pwhistory\.so/) print FILENAME}' /usr/share/pam-configs/*`
-        do
-          grep pam_pwhistory $file | grep -v remember
-        done"
-
+    exec:  for file in `awk '/Password-Type:/{ f = 1;next } /-Type:/{ f = 0 } f {if (/pam_pwhistory\.so/) print FILENAME}' /usr/share/pam-configs/*`; do grep pam_pwhistory $file | grep -v remember;  done
     exit-status:
       or:
       - 0

@@ -26,10 +26,10 @@ command:
 file:
   passwd_change_not_pamd:
     title: 5.3.3.2.1 | Ensure password number of changed characters is configured
-    path: /etc./pam.d/common-password
+    path: /etc/pam.d/common-password
     exists: true
     contents:
-    - '!/^\s+password\s+'(requisite|required|sufficient)\s+pam_pwquality\.so\s+([^#\n\ r]+\h+)?difok\s*=\s*([0-1])\b/'
+    - '!/^\s+password\s+'(requisite|required|sufficient)\s+pam_pwquality\.so\s+([^#\n\r]+\s+)?difok\s*=\s*([0-1])\b/'
     meta:
       server: 1
       workstation: 1

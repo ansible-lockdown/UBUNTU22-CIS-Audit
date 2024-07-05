@@ -6,10 +6,7 @@ package:
   audit_packages:
     title: 6.3.1.1 | Ensure auditd packages are installed | auditd pkg
     installed: true
-    name:
-      and:
-      - auditd
-      - audispd-plugins
+    name: auditd
     meta:
       server: 2
       workstation: 2
@@ -27,6 +24,7 @@ package:
       - SI-5
   audispd-plugins:
     title: 6.3.1.1 | Ensure auditd is installed | audispd-plugins pkg
+    name: audispd-plugins
     installed: true
     meta:
       server: 2

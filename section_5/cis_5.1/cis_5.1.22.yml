@@ -6,7 +6,7 @@ file:
   ssh_usepam:
     title: 5.1.22 | Ensure SSH PAM is enabled
     path: /etc/ssh/sshd_config
-    exists:
+    exists: true
     contents:
     - 'UsePAM yes'
     - '!/^UsePAM no/'

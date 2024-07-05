@@ -53,17 +53,17 @@ gossfile:
   section_6/cis_6.1/*.yml: {}
   # Auditd and level 2
   # Journald
-  section_6/cis_6.2/*.yml: {}
+  section_6/cis_6.2.*/*.yml: {}
   # Auditd
     {{ if .Vars.ubtu22cis_level_2 }}
       {{ if .Vars.ubtu22cis_auditd }}
-  section_6/cis_6.3/*.yml: {}
+  section_6/cis_6.3.*/*.yml: {}
       {{ end }}
     {{ end }}
   {{ end }}
 
 # Section 7
-  {{ if .Vars.ubtu22cis_section6 }}
+  {{ if .Vars.ubtu22cis_section7 }}
   section_7/cis_7.*/*.yml: {}
   {{ end }}
 

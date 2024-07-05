@@ -1,7 +1,7 @@
 ---
 
 {{ if .Vars.ubtu22cis_level_2 }}
-  {{ if .Vars.ubtu22cis_rule_5_5_1_1 }}
+  {{ if .Vars.ubtu22cis_rule_5_4_1_2 }}
 file:
   login_defs_PASS_MIN_DAYS:
     title: 5.4.1.2 | Ensure minimum password age is configured

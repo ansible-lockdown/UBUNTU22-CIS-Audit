@@ -8,7 +8,7 @@ file:
     path: /etc/login.defs
     exists: true
     contents:
-    - '/^ENCRYPT_METHOD (yescrypt|sha512)/'
+    - '/^ENCRYPT_METHOD (YESCRYPT|SHA512)/'
     - '!/^ENCRYPT_METHOD (md5|bigcrypt|sha256|blowfish)/'
     meta:
       server: 1

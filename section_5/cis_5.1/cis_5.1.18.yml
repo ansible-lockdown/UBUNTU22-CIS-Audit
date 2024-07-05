@@ -2,7 +2,7 @@
 
 {{ if .Vars.ubtu22cis_level_1 }}
   {{ if .Vars.ubtu22cis_rule_5_1_18 }}
-command:
+file:
   ssh_maxstartups:
     title: 5.1.18 | Ensure SSH MaxStartups is configured
     path: /etc/ssh/sshd_config

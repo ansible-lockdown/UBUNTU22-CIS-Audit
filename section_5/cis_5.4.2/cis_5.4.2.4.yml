@@ -5,7 +5,7 @@
 command:
   root_passwd_set:
     title: 5.4.2.4 | Ensure root password is set
-    exec: "passwd -S root | awk '$2 ~ /^P/ {print "OK Password"}'"
+    exec: "passwd -S root | awk '$2 ~ /^P/ {print \"OK Password\"}'"
     exit-status: 0
     stdout: ['OK Password']
     meta:

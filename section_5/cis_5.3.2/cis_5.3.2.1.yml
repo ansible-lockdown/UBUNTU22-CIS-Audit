@@ -8,7 +8,7 @@ file:
     path: /etc/pam.d/common-account
     exists: true
     contents:
-    - '/^account\s+[success=1 new_authtok_reqd=done default=ignore]\s+pam_unix.so/'
+    - '/^account\s*\[success=\d new_authtok_reqd=done default=ignore\]\s*pam_unix.so/'
     meta:
       server: 1
       workstation: 1
@@ -26,7 +26,7 @@ file:
     path: /etc/pam.d/common-session
     exists: true
     contents:
-    - '/^\s*session\s+required\s+pam_unix.so/'
+    - '/^\s*session\s*required\s+pam_unix.so/'
     meta:
       server: 1
       workstation: 1
@@ -44,7 +44,7 @@ file:
     path: /etc/pam.d/common-auth
     exists: true
     contents:
-    - '/^\s*auth\s+[success=2 default=ignore]\s+pam_unix.so/'
+    - '/^\s*auth\s+\[success=\d default=.*\]\s+pam_unix.so/'
     meta:
       server: 1
       workstation: 1
@@ -62,7 +62,7 @@ file:
     path: /etc/pam.d/common-password
     exists: true
     contents:
-    - '/^\s*password\s+[success=1 default=ignore]s+pam_unix.so/'
+    - '/^\s*password\s+\[success=\d default=.*\]\s+pam_unix.so/'
     meta:
       server: 1
       workstation: 1

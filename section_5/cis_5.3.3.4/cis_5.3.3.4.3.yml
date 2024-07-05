@@ -9,7 +9,7 @@ command:
       - 0
       - 1
     stdout:
-    - '/.*:password\h+([^#\n\r]+)\h+pam_unix\.so.*(yescrypt|sha512)/'
+    - '/.*:password\s+([^#\n\r]+)\s+pam_unix\.so.*(yescrypt|sha512)/'
     meta:
       server: 1
       workstation: 1

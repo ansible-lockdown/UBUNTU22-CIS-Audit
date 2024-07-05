@@ -5,7 +5,7 @@
 command:
   password_dictchk:
     title: 5.3.3.2.6 | Ensure password maximum sequential characters is configured
-    exec: grep -Psi -- '^\h*dictcheck\h*=\h*0\b' /etc/security/pwquality.conf /etc/security/pwquality.conf.d/*.conf
+    exec: grep -Psi -- '^\h*dictcheck\s*=' /etc/security/pwquality.conf /etc/security/pwquality.conf.d/*.conf
     exit-status:
       or:
       - 0

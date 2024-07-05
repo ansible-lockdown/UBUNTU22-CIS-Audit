@@ -6,7 +6,7 @@
 command:
   world_writable:
     title: 7.1.11 | Ensure world writable files and directories are secured
-    exec: "df --local -P | awk '{if (NR!=1) print $6}' | xargs -I '{}' find '{}' -xdev -type f -perm -0002 -o -type d \( -perm -0002 -a ! -perm -1000 \)"
+    exec: "df --local -P | awk '{if (NR!=1) print $6}' | xargs -I '{}' find '{}' -xdev -type f -perm -0002 -o -type d \\( -perm -0002 -a ! -perm -1000 \\)"
     exit-status: 0
     timeout: {{ .Vars.timeout_ms }}
     stdout:

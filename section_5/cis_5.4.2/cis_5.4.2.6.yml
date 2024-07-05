@@ -3,23 +3,17 @@
 
 {{ if .Vars.ubtu22cis_level_1 }}
   {{ if .Vars.ubtu22cis_rule_5_4_2_6 }}
-file:
+command:
   root_umask_bash_profile:
-    title: 4.5.2.2 | Ensure root user umask is configured
-    exists: true
-    path:
-      or:
-      - /root/.bash_profile
-      - /root/.bashrc
-    contents:
-      or:
-      - 'umask 0027'
-      - 'umask 0077'
+    title: 5.4.2.6 | Ensure root user umask is configured
+    exec: grep -i umask /root/.bash_profile /root/bashrc
+    stdout:
+      - '/umask 00(2|7)7/'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
-      - 4.5.2.2
+      - 5.4.2.6
       CISv8: 3.3
       CISv8_IG1: true
       CISv8_IG2: true

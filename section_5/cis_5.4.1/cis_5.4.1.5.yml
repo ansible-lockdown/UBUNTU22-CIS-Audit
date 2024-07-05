@@ -8,8 +8,8 @@ command:
     exec: useradd -D | grep INACTIVE
     exit-status: 0
     stdout:
-    - '/^INACTIVE=([1-9]|[12][0-9]|30)$/'
-    - '!/INACTIVE=(-1|3[1-9]|[4-9][0-9]{1,})/'
+    - '/^INACTIVE=([1-9]|[1-3][0-9]|4[0-5])$/'
+    - '!/INACTIVE=(-1|4[6-9]|[5-9][0-9]{1,})/'
     meta:
       server: 1
       workstation: 1
@@ -22,7 +22,7 @@ command:
       NIST800-53R5: NA
   inactive_users:
     title: 5.4.1.5 | Ensure inactive password lock is configured | users
-    exec: 'grep -E ^[^:]+:[^\!*] /etc/shadow | grep -vw root | cut -d : -f1,7'
+    exec: "cat /etc/shadow | grep -v '!*' | awk -F':' '{ if ($7 > 45 ){ print $1 } }'"
     stdout:
     - '!/.*/'
     exit-status: 0

@@ -20,11 +20,7 @@ file:
 command:
   pwhistory_enforce_for_root_pam_configs:
     title: 5.3.3.3.2 | Ensure password history is enforced for the root user | pam_configs
-    exec: |
-      "for file in `awk '/Password-Type:/{ f = 1;next } /-Type:/{ f = 0 } f {if (/pam_pwhistory\.so/) print FILENAME}' /usr/share/pam-configs/*`
-        do
-          grep pam_pwhistory $file | grep -v enforce_for_root
-        done"
+    exec: for file in `awk '/Password-Type:/{ f = 1;next } /-Type:/{ f = 0 } f {if (/pam_pwhistory\.so/) print FILENAME}' /usr/share/pam-configs/*`; do grep pam_pwhistory $file | grep -v enforce_for_root; done
     exit-status:
       or:
       - 0

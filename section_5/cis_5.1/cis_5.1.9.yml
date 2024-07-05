@@ -8,8 +8,8 @@ file:
     path: /etc/ssh/sshd_config
     exists: true
     contents:
-    - 'DisabledForwarding yes'
-    - '!/^DisabledForwarding no/'
+    - 'GSSAPIAuthentication no'
+    - '!/^GSSAPIAuthentication yes/'
     meta:
       server: 2
       workstation: 1

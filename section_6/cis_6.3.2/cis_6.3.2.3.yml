@@ -5,7 +5,7 @@
 file:
   auditd_space_actions:
     title: 6.3.2.3 | Ensure system is disabled when audit logs are full
-    name: /etc/audit/auditd.conf
+    path: /etc/audit/auditd.conf
     exists: true
     contents:
     - '/disk_full_action\s*=\s*(halt|single)/'
