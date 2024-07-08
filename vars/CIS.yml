@@ -23,8 +23,6 @@ run_heavy_tests: true
 #  True is BIOS based system else set to false
 ubtu22_legacy_boot: true
 
-ubtu22_set_boot_pass: true
-
 ##
 ## Rule-specific switches
 ##
@@ -480,29 +478,15 @@ ubtu22_aide_cron:
 # regarding enforcing profiles or putting them in complain mode
 ubtu22cis_apparmor_disable: false
 
-# This variable specifies whether enforce mode or complain  mode is set in Control 1.3.1.3.
-# Possible values are `enforce` and `complain`.
-# ATTENTION: if Control 1.3.1.4 is run (e.g., when running level 2 rules), it OVERRIDES control 1.3.1.3
-# and sets `enforce` mode, no matter what this variable's value is.
-ubtu22cis_apparmor_mode: complain
-
 ## Controls 1.4.x - Boot password
 #
 # THIS VARIABLE SHOULD BE CHANGED AND INCORPORATED INTO VAULT
 # THIS VALUE IS WHAT THE ROOT PW WILL BECOME!!!!!!!!
 # HAVING THAT PW EXPOSED IN RAW TEXT IS NOT SECURE!!!!
 ubtu22cis_grub_user: root
-ubtu22cis_set_grub_user_pass: false
-ubtu22cis_grub_user_passwd: '$y$j9T$MBA5l/tQyWifM869nQjsi.$cTy0ConcNjIYOn6Cppo5NAky20osrkRxz4fEWA8xac6'  # Set to changeme
-ubtu22cis_grub_user_file: /etc/grub.d/00_user
 ubtu22cis_bootloader_password_hash: "grub.pbkdf2.sha512.changethispassword"  # pragma: allowlist secret
-ubtu22cis_set_boot_pass: false
-
-ubtu22cis_grub_file: /boot/grub/grub.cfg
 
 ## Controls 1.5.x
-# Ability to set file in which the kernel systcl changes are placed
-ubtu22cis_sysctl_kernel_conf: /etc/sysctl.d/98_cis_kernel.conf
 
 ## Controls 1.6.x  - Warning banners
 # The controls 1.6.x set various warning banners and protect the respective files
@@ -523,10 +507,6 @@ ubtu22cis_disable_dynamic_motd: true
 # (See https://help.gnome.org/admin/system-admin-guide/stable/dconf-keyfiles.html.en)
 # The default database is `local`.
 ubtu22cis_dconf_db_name: local
-# This variable governs the number of seconds of inactivity before the screen goes blank.
-ubtu22cis_screensaver_idle_delay: 900
-# This variable governs the number of seconds the screen remains blank before it is locked.
-ubtu22cis_screensaver_lock_delay: 5
 
 ##
 # Section 2
@@ -609,7 +589,7 @@ ubtu22cis_time_sync_tool: "systemd-timesyncd"
 # The default setting for the `options` is `iburst maxsources 4` -- please refer to the documentation
 # of the time synchronization mechanism you are using.
 ubtu22cis_time_pool_name: time.nist.gov
-ubtu22cis_time_pool_options: iburst maxsources 4
+
 # The following variable represents a list of of time servers used
 # for configuring chrony and timesyncd
 # Each list item contains two settings, `name` (the domain name of the server) and synchronization `options`.
