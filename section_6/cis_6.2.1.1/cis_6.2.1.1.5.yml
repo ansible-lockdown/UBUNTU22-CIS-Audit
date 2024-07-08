@@ -2,13 +2,16 @@
 
 {{ if .Vars.ubtu22cis_level_1 }}
   {{ if .Vars.ubtu22cis_rule_6_2_1_1_5 }}
-file:
+command:
   storage_journald_conf:
     title: 6.2.1.1.5 | Ensure journald Storage is configured
-    path: /etc/systemd/journald.conf
-    exists: true
-    contents:
-    - '/^Storage=persistent/'
+    exec: grep -i Storage= /etc/systemd/journald.conf /etc/systemd/journald.conf.d/*.conf
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/.*\:Storage=persistent/'
     meta:
       server: 1
       workstation: 1

@@ -2,14 +2,17 @@
 
 {{ if .Vars.ubtu22cis_level_1 }}
   {{ if .Vars.ubtu22cis_rule_6_2_1_1_4 }}
-file:
+command:
   forward_journald_disabled:
     title: 6.2.1.1.4 | Ensure journald ForwardToSyslog is disabled
-    path: /etc/systemd/journald.conf
-    exists: true
-    contents:
-    - '/^\s*ForwardToSyslog\s*=\s*no/'
-    - '!/^\s*ForwardToSyslog\s*=\s*yes/'
+    exec: grep -i forwardtosyslog /etc/systemd/journald.conf /etc/systemd/journald.conf.d/*.conf
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/.*\:ForwardToSyslog\s*=\s*no/'
+    - '!/.*\:ForwardToSyslog\s*=\s*yes/'
     meta:
       server: 1
       workstation: 1

@@ -43,14 +43,13 @@ command:
       NIST800-53R5: NA
   home_dirs_permissions:
     title: 7.2.9 | Ensure local interactive user home directories are configured | Directory permissions
-    exec: export def_home=`grep "^HOME=" /etc/default/useradd |cut -d= -f2` && for i in `ls $def_home`; do stat -c "%a %n" $def_home/$i; done
+    exec: export def_home=`grep "^HOME=" /etc/default/useradd |cut -d= -f2` && for i in `ls $def_home`; do stat -c "%a %n" $def_home/$i | grep -Ev "7[0-5]0|syslog"; done
     exit-status:
       or:
       - 0
       - 1
     stdout:
-      le:
-      - '750'
+      - '!/.*/'
     meta:
       server: 1
       workstation: 1

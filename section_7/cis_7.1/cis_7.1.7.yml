@@ -13,8 +13,10 @@ file:
       - root
       - shadow
     mode:
-      le:
-      - '0640'
+      or:
+      - "0640"
+      - "0600"
+      - "0400"
     meta:
       server: 1
       workstation: 1

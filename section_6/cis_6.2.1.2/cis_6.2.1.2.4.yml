@@ -7,7 +7,7 @@ service:
   systemd-journal-remote.service:
     title: 6.2.1.2.4 | Ensure systemd-journal-remote service is not in use | service
     running: false
-    enabled: false
+    # enabled: false  # managed by socket so seen as indirect although not enabled - goss issue
     meta:
       server: 1
       workstation: 1

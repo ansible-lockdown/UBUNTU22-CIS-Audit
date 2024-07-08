@@ -5,11 +5,11 @@
 command:
   auditd_module_cnf:
     title: 6.3.3.19 | Ensure kernel module loading and unloading is collected | Config
-    exec: grep init_module /etc/audit/rules.d/*.rules
+    exec: grep kernel_module /etc/audit/rules.d/*.rules
     exit-status: 0
     stdout:
     - '/-a always,exit -F arch=b64 -S init_module,finit_module,delete_module -F auid>=1000 -F auid!=(unset|4294967295|-1) -k kernel_modules/'
-    - '/-a always,exit -F path=/usr/bin/kmod -F perm=x -F auid>=1000 -F auid!=(unset|4294967295|-1) -k kernel_modules/'
+    - '/-a always,exit -F path=\/usr\/bin\/kmod -F perm=x -F auid>=1000 -F auid!=(unset|4294967295|-1) -k kernel_modules/'
     meta:
       server: 2
       workstation: 2
@@ -25,10 +25,10 @@ command:
       - CM-6
   auditd_admin_module_live:
     title: 6.3.3.19 | Ensure kernel module loading and unloading is collected | Live
-    exec: auditctl -l | grep init_module
+    exec: auditctl -l | grep kernel_module
     exit-status: 0
     stdout:
-    - '/-a always,exit -F arch=b64 -S create_module,init_module,delete_module,query_module,finit_module -F auid>=1000 -F auid!=(unset|4294967295|-1) -F key=kernel_modules/'
+    - '/-a always,exit -F arch=b64 -S init_module,delete_module,finit_module -F auid>=1000 -F auid!=(unset|4294967295|-1) -F key=kernel_modules/'
     - '/-a always,exit -S all -F path=/usr/bin/kmod -F perm=x -F auid>=1000 -F auid!=(unset|4294967295|-1) -F key=kernel_modules/'
     meta:
       server: 2

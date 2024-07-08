@@ -5,14 +5,14 @@
 command:
   log_rotate_journald_conf:
     title: 6.2.1.1.3 | Ensure journald log file rotation is configured
-    exec: grep -Ei "max|keep" /etc/systemd/journald.conf
+    exec: grep -Ei "max|keep" /etc/systemd/journald.conf /etc/systemd/journald.conf.d/*.conf
     exit-status: 0
     stdout:
-    - '/^SystemMaxUse=/'
-    - '/^SystemKeepFree=/'
-    - '/^RuntimeMaxUse=/'
-    - '/^RuntimeKeepFree=/'
-    - '/^MaxFileSec=/'
+    - '/.*\:SystemMaxUse=/'
+    - '/.*\:SystemKeepFree=/'
+    - '/.*\:RuntimeMaxUse=/'
+    - '/.*\:RuntimeKeepFree=/'
+    - '/.*\:MaxFileSec=/'
     meta:
       server: 1
       workstation: 1
