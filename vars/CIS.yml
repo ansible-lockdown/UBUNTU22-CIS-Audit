@@ -455,23 +455,6 @@ ubtu22cis_desktop_required: false
 # If system uses squahshfs e.gf. snap package manager set true
 ubtu22cis_squashfs_required: true
 
-# AIDE
-ubtu22cis_config_aide: false
-
-# aide setup via - cron, timer
-ubtu22cis_aide_scan: cron
-
-# AIDE cron settings
-ubtu22_aide_cron:
-  cron_user: root
-  cron_file: /etc/crontab
-  aide_job: '/usr/sbin/aide --check'
-  aide_minute: 0
-  aide_hour: 5
-  aide_day: '*'
-  aide_month: '*'
-  aide_weekday: '*'
-
 ## Controls 1.3.1.3 and 1.3.1.4 Ensure all AppArmor Profiles are in enforce (1.3.1.3/4) or complain (1.3.1.3) mode
 
 # This variable disables the implementation of rules 1.3.1.3 and 1.3.1.4
@@ -645,10 +628,7 @@ ubtu22cis_auditd:
 ## syslog
 ubtu22cis_is_syslog_server: false
 
-ubtu22cis_syslog_service: journald
-
 ### Section 5
-ubtu22cis_sshd_limited: false
 # Note the following to understand precedence and layout
 ubtu22cis_sshd_access:
   - AllowUser
@@ -719,7 +699,6 @@ ubtu22cis_pam_passwd_retry: "3"
 
 # choose one of below
 ubtu22cis_pwhistory_so: "14"
-ubtu22cis_unix_so: false
 ubtu22cis_passwd_remember: "5"
 
 # logins.def password settings
@@ -731,9 +710,12 @@ ubtu22cis_pass:
 # set sugroup if differs from wheel
 ubtu22cis_sugroup: nosugroup
 
-# sugroup users list
-ubtu22_sugroup_users: "root"
-
 # var log location variable
 ubtu22_varlog_location: "/var/log/sudo.log"
 
+# Section 6
+
+# 6.1.2
+
+# aide setup via - cron, timer
+ubtu22cis_aide_scan: cron
