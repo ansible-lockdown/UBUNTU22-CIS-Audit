@@ -26,7 +26,7 @@ file:
     exists: true
     contents:
     - '/^\s*auth\s+(requisite|required)\s+pam_faillock.so\s+preauth/'
-    - /^auth\s*[default=die]\s+pam_faillock.so\s+authfail/'
+    - '/^auth\s*\[default=die\]\s+pam_faillock.so\s+authfail/'
     meta:
       server: 1
       workstation: 1
