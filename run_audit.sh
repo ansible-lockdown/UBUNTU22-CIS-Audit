@@ -17,6 +17,7 @@
 #               benchmark vars moved
 # December 2023 Added goss version and testing
 # April 2024    Updating of OS discovery to work for all supported OSs
+# August 2024   Improve failure capture
 
 # Variables in upper case tend to be able to be adjusted
 # lower case variables are discovered or built from other variables
@@ -24,7 +25,7 @@
 # Goss benchmark variables (these should not need changing unless new release)
 BENCHMARK=CIS # Benchmark Name aligns to the audit
 BENCHMARK_VER=2.0.0
-BENCHMARK_OS=UBUNTU22
+BENCHMARK_OS=RHEL9
 
 # Goss host Variables
 AUDIT_BIN="${AUDIT_BIN:-/usr/local/bin/goss}"  # location of the goss executable
@@ -202,12 +203,13 @@ echo
 $AUDIT_BIN -g "$audit_content_dir/$AUDIT_FILE" --vars "$varfile_path"  --vars-inline "$audit_json_vars" v $format_output > "$audit_out"
 
 # create screen output
-if [ "$(grep -c $BENCHMARK "$audit_out")" != 0 ]  || [ "$format" = junit ] || [ "$format" = tap ]; then
+if [ "$(grep -c test-count "$audit_out")" -ge 1 ]  || [ "$format" = junit ] || [ "$format" = tap ]; then
   eval $output_summary
   echo "Completed file can be found at $audit_out"
   echo "###############"
   echo "Audit Completed"
   echo "###############"
 else
-  echo -e "Fail: There were issues when running the audit please investigate $audit_out"
+  echo -e "Fail: There were issues when running the audit please investigate $audit_out";
+  exit 1
 fi

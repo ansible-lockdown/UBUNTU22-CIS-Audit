@@ -11,8 +11,8 @@ command:
       - 0
       - 1
     stdout:
-    - '/.*\:dictchk\s*=\s*1/'
-    - '!/.*\:dictchk\s*=\s*0/'
+    - '/.*\:dictcheck\s*=\s*1/'
+    - '!/.*\:dictcheck\s*=\s*0/'
     meta:
       server: 1
       workstation: 1
