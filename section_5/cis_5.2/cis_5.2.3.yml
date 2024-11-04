@@ -9,7 +9,7 @@ command:
     exit-status:
       lt: 3
     stdout:
-    - '/[1:99]/'
+    - '/[1-99]/'
     meta:
       server: 1
       workstation: 1
