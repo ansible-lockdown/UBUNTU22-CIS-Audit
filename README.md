@@ -4,7 +4,7 @@
 
 ### Based on CIS Ubuntu Linux 22.04 LTS Benchmark v2.0.0 [Release](https://downloads.cisecurity.org/#/)
 
-Set of configuration files and directories to run the first stages of CIS of Ubuntu 20.04 servers
+Set of configuration files and directories to run the first stages of CIS of Ubuntu 22.04 servers
 
 This is configured in a directory structure level.
 
@@ -37,7 +37,7 @@ Which will:
 
 On our [Discord Server](https://www.lockdownenterprise.com/discord) to ask questions, discuss features, or just chat with other Ansible-Lockdown users
 
-Set of configuration files and directories to run the first stages of CIS of RHEL 9 servers
+Set of configuration files and directories to run the first stages of CIS of UBUNTU 22 servers
 
 This is configured in a directory structure level.
 
