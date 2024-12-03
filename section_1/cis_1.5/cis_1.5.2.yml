@@ -10,7 +10,7 @@ kernel-param:
       server: 1
       workstation: 1
       CIS_ID:
-      - 1.5.1
+      - 1.5.2
       CISv8: 10.5
       CISv8_IG1: false
       CISv8_IG2: true
@@ -18,7 +18,7 @@ kernel-param:
       NIST800-53R5: CM-6
 command:
   ptrace_restrict_2:
-    title: 1.5.1 | Ensure ptrace_scope is restricted | sysctl_configured
+    title: 1.5.2 | Ensure ptrace_scope is restricted | sysctl_configured
     exit-status:
       or:
       - 0
@@ -30,7 +30,7 @@ command:
       server: 1
       workstation: 1
       CIS_ID:
-      - 1.5.1
+      - 1.5.2
       CISv8: 10.5
       CISv8_IG1: false
       CISv8_IG2: true
