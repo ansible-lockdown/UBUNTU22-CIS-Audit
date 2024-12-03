@@ -33,6 +33,8 @@ command:
     meta:
       server: 2
       workstation: 2
+      CIS_ID:
+      - 6.3.3.19
       CISv8:
       - 8.5
       CISv8_IG1: false

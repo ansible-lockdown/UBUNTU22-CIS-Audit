@@ -27,7 +27,7 @@ kernel-param:
       server: 1
       workstation: 1
       CIS_ID:
-      - 3.2.6
+      - 3.3.6
       CISv8:
       - 4.8
       CISv8_IG1: false
