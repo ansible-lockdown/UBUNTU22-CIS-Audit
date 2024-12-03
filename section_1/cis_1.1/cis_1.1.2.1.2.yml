@@ -1,0 +1,47 @@
+---
+
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_1_1_2_1_2 }}
+mount:
+  tmp_options_nodev:
+    title:  1.1.2.1.2 | Ensure nodev option set on /tmp partition
+    mountpoint: /tmp
+    exists: true
+    opts:
+    - nodev
+    {{ end }}
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.1.2.1.2
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - CM-7
+      - AC-3
+      - MP-2
+file:
+  tmp_fstab_nodev_options:
+     title: 1.1.2.1.2 | Ensure nodev option set on /tmp partition
+     exists: true
+     path: /etc/fstab
+     contents:
+     - '/\s\/tmp.*nodev.*/'
+     meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.1.2.1.2
+      CISv8: 3.3
+      CISv8_IG1: true
+      CISv8_IG2: true
+      CISv8_IG3: true
+      NIST800-53R5:
+      - CM-7
+      - AC-3
+      - MP-2
+  {{ end }}
+{{ end }}
