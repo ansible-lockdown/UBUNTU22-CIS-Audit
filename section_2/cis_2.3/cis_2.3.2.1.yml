@@ -9,7 +9,7 @@ file:
     path: /etc/systemd/timesyncd.conf.d/50-timesyncd.conf
     exists: true
     contents:
-    - '/^NTP={{ .Vars.ubtu22cis_time_pool_name }}/'
+    - '/^NTP={{- range .Vars.ubtu22cis_time_pool.name }}{{ .name }} {{ end }}/'
     - '/^FallbackNTP={{- range .Vars.ubtu22cis_time_servers }}{{ .name }} {{ end }}/'
     meta:
       server: 1
