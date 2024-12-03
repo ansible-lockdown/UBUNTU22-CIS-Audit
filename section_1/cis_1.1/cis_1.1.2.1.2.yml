@@ -9,7 +9,6 @@ mount:
     exists: true
     opts:
     - nodev
-    {{ end }}
     meta:
       server: 1
       workstation: 1
