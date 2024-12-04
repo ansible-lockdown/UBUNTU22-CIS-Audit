@@ -2,7 +2,7 @@
 
 {{ if eq .Vars.ubtu22cis_time_sync_tool "chrony" }}
   {{ if .Vars.ubtu22cis_level_1 }}
-    {{ if .Vars.ubtu22cis_rule_2_1_2_2 }}
+    {{ if .Vars.ubtu22cis_rule_2_3_3_2 }}
 file:
   chrony_user:
     title: 2.3.3.2 | Ensure chrony is running as user _chrony

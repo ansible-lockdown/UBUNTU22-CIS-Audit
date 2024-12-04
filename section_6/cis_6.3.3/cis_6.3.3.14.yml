@@ -25,7 +25,7 @@ command:
       - AU-3
       - CM-6
   auditd_MAC_live:
-    title: 6.3.6 | Ensure events that modify the system's Mandatory Access Controls are collected | Live
+    title: 6.3.3.14 | Ensure events that modify the system's Mandatory Access Controls are collected | Live
     exec: auditctl -l | grep MAC-policy
     exit-status: 0
     stdout:

@@ -9,10 +9,10 @@ file:
     exists: true
     contents:
     {{ range .Vars.ubtu22cis_ssh_strong_macs }}
-    - '/^MACs.*{{ . }}/'
+    - '/(?i)^MACs.*{{ . }}/'
     {{ end }}
     {{ range .Vars.ubtu22cis_ssh_weak_macs }}
-    - '!/^MACs.*{{ . }}/'
+    - '!/(?i)^MACs.*{{ . }}/'
     {{ end }}
     meta:
       server: 1
