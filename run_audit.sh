@@ -15,12 +15,15 @@
 #               linting (thanks to @cf-sewe)
 #               Oracle included by default if RHEL family
 #               benchmark vars moved
+# December 2023 Added goss version and testing
+# April 2024    Updating of OS discovery to work for all supported OSs
+# August 2024   Improve failure capture
 
 # Variables in upper case tend to be able to be adjusted
 # lower case variables are discovered or built from other variables
 
 # Goss benchmark variables (these should not need changing unless new release)
-BENCHMARK=CIS  # Benchmark Name aligns to the audit
+BENCHMARK=CIS # Benchmark Name aligns to the audit
 BENCHMARK_VER=1.0.0
 BENCHMARK_OS=UBUNTU22
 
@@ -80,10 +83,12 @@ fi
 
 # Discover OS version aligning with audit
 # Define os_vendor variable
-if [ "$(grep -Ec "rhel|oracle" /etc/os-release)" != 0 ]; then
+if [ "$(uname -a | grep -c amzn)" -ge 1 ]; then
+    os_vendor="AMAZON"
+elif [ "$(grep -Ec "rhel|oracle" /etc/os-release)" != 0 ]; then
   os_vendor="RHEL"
 else
-  os_vendor="$(hostnamectl | grep Oper | cut -d : -f2 | awk '{print $1}' | tr '[:lower:]' '[:upper:]' )"
+  os_vendor="$(hostnamectl | grep Oper | cut -d : -f2 | awk '{print toupper($1)}')"
 fi
 
 os_maj_ver="$(grep -w VERSION_ID= /etc/os-release | awk -F\" '{print $2}' | cut -d '.' -f1)"
@@ -198,12 +203,13 @@ echo
 $AUDIT_BIN -g "$audit_content_dir/$AUDIT_FILE" --vars "$varfile_path"  --vars-inline "$audit_json_vars" v $format_output > "$audit_out"
 
 # create screen output
-if [ "$(grep -c $BENCHMARK "$audit_out")" != 0 ]  || [ "$format" = junit ] || [ "$format" = tap ]; then
+if [ "$(grep -c Count: "$audit_out")" -ge 1 ]  || [ "$format" = junit ] || [ "$format" = tap ]; then
   eval $output_summary
   echo "Completed file can be found at $audit_out"
   echo "###############"
   echo "Audit Completed"
   echo "###############"
 else
-  echo -e "Fail: There were issues when running the audit please investigate $audit_out"
+  echo -e "Fail: There were issues when running the audit please investigate $audit_out";
+  exit 1
 fi
