@@ -1,0 +1,20 @@
+---
+
+{{ if .Vars.ubtu22cis_level_2 }}
+  {{ if .Vars.ubtu22cis_rule_6_2_4_10 }}
+command:
+  audit_tools_group:
+    title: 6.2.4.10 | Ensure audit tools group owner is configured
+    exec: stat -c "%n_%G" /sbin/auditctl /sbin/aureport /sbin/ausearch /sbin/autrace /sbin/auditd /sbin/augenrules
+    exit-status: 0
+    stdout:
+    - '/.*_root$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.4.10
+      NIST800-53R5:
+      - AU-3
+  {{ end }}
+{{ end }}

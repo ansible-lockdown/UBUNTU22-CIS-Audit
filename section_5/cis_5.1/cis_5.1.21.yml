@@ -4,22 +4,17 @@
   {{ if .Vars.ubtu22cis_rule_5_1_21 }}
 file:
   ssh_userenv:
-    title: 5.1.21 | Ensure SSH PermitUserEnvironment is disabled
+    title: 5.1.21 | Ensure sshd PermitUserEnvironment is disabled
     path: /etc/ssh/sshd_config
     exists: true
     contents:
-    - '/^(?i)PermitUserEnvironment no/'
-    - '!/^(?i)PermitUserEnvironment yes/'
+    - '/(?i)^PermitUserEnvironment no/'
+    - '!/(?i)^PermitUserEnvironment yes/'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 5.1.21
-      CISv8:
-      - 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - CM-1
       - CM-2

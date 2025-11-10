@@ -1,0 +1,26 @@
+---
+
+{{ if .Vars.ubtu22cis_level_2 }}
+  {{ if .Vars.ubtu22cis_config_aide }}
+    {{ if .Vars.ubtu22cis_rule_6_3_3 }}
+command:
+  audit_tools_crypto:
+    title: 6.3.3 | Ensure cryptographic mechanisms are used to protect the integrity of audit tools
+    exec: grep -P -- '(\/sbin\/(audit|au)\H*\b)' /etc/aide/aide.conf
+    exit-status: 0
+    stdout:
+    - '/sbin/auditctl p+i+n+u+g+s+b+acl+xattrs+sha512'
+    - '/sbin/auditd p+i+n+u+g+s+b+acl+xattrs+sha512'
+    - '/sbin/ausearch p+i+n+u+g+s+b+acl+xattrs+sha512'
+    - '/sbin/aureport p+i+n+u+g+s+b+acl+xattrs+sha512'
+    - '/sbin/autrace p+i+n+u+g+s+b+acl+xattrs+sha512'
+    - '/sbin/augenrules p+i+n+u+g+s+b+acl+xattrs+sha512'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.3.3
+      NIST800-53R5: NA
+    {{ end }}
+  {{ end }}
+{{ end }}

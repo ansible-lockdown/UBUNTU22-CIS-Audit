@@ -1,0 +1,21 @@
+---
+
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_6_1_3_1 }}
+command:
+  logfile_configured:
+    title: 6.1.3.1 | Ensure access to all logfiles has been configured
+    exec: |
+      find /var/log/ -type f \( -name 'lastlog' -o -name 'wtmp' -o -name 'btmp' \) -perm /g+x,o+wx -exec ls -l "{}" + ; find /var/log/ -type f \( -name 'secure' -o -name 'auth*' -o -name 'syslog' -o -name 'messages' \) -perm /u+x,g+wx,o+rwx -exec ls -l "{}" +; find /var/log/ -type f \( -name 'SSSD' -o -name 'sssd' -o -name 'gdm*' \) -perm /ug+x,o+rwx -exec ls -l "{}" +
+    exit-status: 0
+    stdout: ['!/./']
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.1.3.1
+      NIST800-53R5:
+      - AC-3
+      - MP-2
+  {{ end }}
+{{ end }}

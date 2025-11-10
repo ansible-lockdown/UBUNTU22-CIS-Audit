@@ -1,39 +1,31 @@
 ---
 
-{{ if .Vars.ubtu22cis_level_1 }}
+{{ if .Vars.ubtu22cis_level_2 }}
   {{ if .Vars.ubtu22cis_rule_1_1_1_8 }}
 file:
-  usb-storage_disabled:
-    title: 1.1.1.8 | Ensure usb-storage kernel module is not available | modprobe
+  udf_disabled:
+    title: 1.1.1.8 | Ensure udf kernel module is not available | modprobe
     path: /etc/modprobe.d/CIS.conf
     exists: true
     contents:
-    - '/^install usb-storage /bin/(true|false)/'
+    - '/^install udf /bin/(true|false)/'
     meta:
-      server: 1
+      server: 2
       workstation: 2
       CIS_ID: 1.1.1.8
-      CISv8:
-      - 4.8
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5: SI-3
-  usb-storage_blacklist:
-    title: 1.1.1.8 | Ensure usb-storage kernel module is not available | blacklist
+      NIST800-53R5: CM-7
+      CCI: CCI-000381
+  udf_blacklist:
+    title: 1.1.1.8 | Ensure udf kernel module is not available | blacklist
     path: /etc/modprobe.d/blacklist.conf
     exists: true
     contents:
-    - '/^blacklist usb-storage/'
+    - '/^blacklist udf/'
     meta:
-      server: 1
+      server: 2
       workstation: 2
       CIS_ID: 1.1.1.8
-      CISv8:
-      - 4.8
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5: SI-3
+      NIST800-53R5: CM-7
+      CCI: CCI-000381
   {{ end }}
 {{ end }}

@@ -2,7 +2,7 @@
 
 ## Overview
 
-### Based on CIS Ubuntu Linux 22.04 LTS Benchmark v2.0.0 [Release](https://downloads.cisecurity.org/#/)
+### Based on CIS Ubuntu Linux 22.04 LTS Benchmark v3.0.0 [Release](https://downloads.cisecurity.org/#/)
 
 Set of configuration files and directories to run the first stages of CIS of Ubuntu 22.04 servers
 
@@ -45,5 +45,6 @@ Goss is run based on the goss.yml file in the top level directory. This specifie
 
 ## further information
 
+- [ReadtheDocs](https://ansible-lockdown.readthedocs.io/en/stable/)
 - [goss documentation](https://github.com/aelsabbahy/goss/blob/master/docs/manual.md#patterns)
 - [CIS standards](https://www.cisecurity.org)

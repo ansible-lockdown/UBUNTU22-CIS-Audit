@@ -1,0 +1,36 @@
+---
+
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_2_4_1_9 }}
+file:
+  cron_deny_absent:
+    title: 2.4.1.9 | Ensure cron is restricted to authorized users
+    path: /etc/cron.deny
+    exists: false
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 2.4.1.8
+      NIST800-53R5:
+      - AC-3
+      - MP-2
+  /etc/cron.allow:
+    title: 2.4.1.9 | Ensure cron is restricted to authorized users
+    exists: true
+    owner: root
+    group: root
+    mode:
+      or:
+      - '0640'
+      - '0600'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 2.4.1.9
+      NIST800-53R5:
+      - AC-3
+      - MP-2
+  {{ end }}
+{{ end }}

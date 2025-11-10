@@ -8,17 +8,12 @@ file:
     path: /etc/ssh/sshd_config
     exists: true
     contents:
-    - '/^(?i)LoginGraceTime ([1-9]|[1-5][0-9]|60)$/'
+    - '/(?i)^LoginGraceTime ([1-9]|[1-5][0-9]|60)$/'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 5.1.13
-      CISv8:
-      - 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - CM-6
   {{ end }}

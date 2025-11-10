@@ -4,22 +4,17 @@
   {{ if .Vars.ubtu22cis_rule_5_1_10 }}
 file:
   ssh_hostbased_auth:
-    title: 5.1.10 | Ensure SSH HostbasedAuthentication is disabled
+    title: 5.1.10 | Ensure sshd HostbasedAuthentication is disabled
     path: /etc/ssh/sshd_config
     exists: true
     contents:
-    - '/^(?i)HostbasedAuthentication no/'
-    - '!/^(?i)HostbasedAuthentication yes/'
+    - '/(?i)^HostbasedAuthentication no/'
+    - '!/(?i)^HostbasedAuthentication yes/'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 5.1.10
-      CISv8:
-      - 4.1
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - CM-1
       - CM-2

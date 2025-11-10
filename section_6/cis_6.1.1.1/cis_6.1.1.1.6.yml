@@ -1,0 +1,24 @@
+---
+
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_6_1_1_1_6 }}
+command:
+  compress_journald_conf:
+    title: 6.1.1.1.6 | Ensure journald is configured to compress large log files
+    exec: grep -i Compress /etc/systemd/journald.conf /etc/systemd/journald.conf.d/*.conf
+    exit-status:
+      or:
+      - 0
+      - 1
+    stdout:
+    - '/.*\:Compress\s*=\s*yes/'
+    - '!/.*\:Compress\s*=\s*[Nn][Oo]/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 6.1.1.1.6
+      NIST800-53R5:
+      - AU-4
+  {{ end }}
+{{ end }}

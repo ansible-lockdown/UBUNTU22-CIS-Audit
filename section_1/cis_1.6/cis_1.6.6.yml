@@ -9,19 +9,19 @@ file:
     exists: true
     owner: root
     group: root
-    mode: '0644'
+    mode:
+      or:
+      - '0644'
+      - '0640'
+      - '0600'
+      - '0400'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 1.6.6
-      CISv8: 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
-      - CM-6
-      - CM-1
-      - CM-3
+      - AC-3
+      - MP-2
   {{ end }}
 {{ end }}

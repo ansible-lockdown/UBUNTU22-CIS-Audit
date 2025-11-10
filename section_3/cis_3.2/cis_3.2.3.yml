@@ -1,0 +1,36 @@
+{{ if .Vars.ubtu22cis_level_2 }}
+  {{ if .Vars.ubtu22cis_rule_3_2_3 }}
+command:
+  modprobe_RDS:
+    title: 3.2.3 | Ensure rds kernel module is not available | rds config
+    exit-status:
+      or:
+      - 0
+      - 1
+    exec: 'modprobe -n -v rds'
+    stdout:
+      - '/install /bin/(true|false)/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 3.2.3
+      NIST800-53R5:
+      - CM-7
+      CCI: CCI-000381
+  lsmod_RDS:
+    title: 3.2.3 | Ensure rds kernel module is not available | running rds
+    exit-status: 1
+    exec: lsmod | grep -i rds
+    stdout:
+    - '!/^.*/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 3.2.3
+      NIST800-53R5:
+      - CM-7
+      CCI: CCI-000381
+  {{ end }}
+{{ end }}
