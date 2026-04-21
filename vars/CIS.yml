@@ -752,7 +752,7 @@ ubtu22cis_remote_log_retrycount: 100
 ubtu22cis_remote_log_queuesize: 1000
 
 # 6.3.1
-ubtu22cis_config_aide:
+ubtu22cis_config_aide: true
 
 # 6.3.2
 # aide setup via - cron, timer

@@ -8,6 +8,8 @@
 - Molecule testing confirmed audit integration runs successfully (pre and post remediation audits executed in container)
 - **vars/CIS.yml:** Fixed `benchmark_version` from `2.0.0` to `3.0.0` — was stale from v2 and caused version mismatch with remediation repo
 - **vars/CIS.yml:** Updated Section 4 comment from `Controls 4.1.x, 4.2.x, and 4.3.x` to `Controls 4.1.x - Configure UncomplicatedFirewall` — v3.0.0 Section 4 is Host Based Firewall (UFW only), removed references to iptables/nftables options
+- **vars/CIS.yml:** Fixed `ubtu22cis_time_pool_name` (string) → `ubtu22cis_time_pool` (list of dicts with `name` and `options`) — goss test `cis_2.3.2.1.yml` uses `range .Vars.ubtu22cis_time_pool` expecting a list, was causing `map has no entry for key` error at runtime (fixes [#46](https://github.com/ansible-lockdown/UBUNTU22-CIS-Audit/issues/46)) - Thank you @LucasCorey-YaresIT
+- **vars/CIS.yml:** Fixed `ubtu22cis_config_aide:` (null/empty) → `ubtu22cis_config_aide: true` — goss test checks `{{ if .Vars.ubtu22cis_config_aide }}` which fails on null values, causing `map has no entry for key` error (also [#46](https://github.com/ansible-lockdown/UBUNTU22-CIS-Audit/issues/46)) - Thank you @LucasCorey-YaresIT
 
 ---
 
