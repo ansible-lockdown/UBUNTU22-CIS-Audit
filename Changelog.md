@@ -1,8 +1,8 @@
-# Changelog — UBUNTU22-CIS-Audit (2026_April_QA)
+# Changes to Ubuntu22-CIS-Audit
 
-## [2026_April_QA] - 2026-04-21
+## [2026_April_QA] - based upon CIS v3.0.0
 
-### QA Validation (2026-04-21)
+### QA Validation
 
 - Cross-repo validation performed against Private-UBUNTU22-CIS remediation role
 - Molecule testing confirmed audit integration runs successfully (pre and post remediation audits executed in container)
@@ -12,6 +12,8 @@
 - **vars/CIS.yml:** Fixed `ubtu22cis_config_aide:` (null/empty) → `ubtu22cis_config_aide: true` — goss test checks `{{ if .Vars.ubtu22cis_config_aide }}` which fails on null values, causing `map has no entry for key` error (also [#46](https://github.com/ansible-lockdown/UBUNTU22-CIS-Audit/issues/46)) - Thank you @LucasCorey-YaresIT
 
 ---
+
+### 3.0 updates - based upon CIS v3.0.0
 
 ### Added
 - Updated for CIS v3.0.0 benchmark (306 controls)
@@ -58,3 +60,40 @@
 
 ### Security
 - Updated script for security audit improvements
+
+---
+
+## 2.0 updates - based upon CIS 2.0.0
+
+- Complete rewrite
+  - number ordering changed
+  - section 7 added
+  - tests rewritten
+  - ntp no longer an option
+- run_audit script updated
+
+## 1.0 updates - based on CIS 1.0.0
+
+script improvements
+Several tests improved
+sshd mac/ciphers/kex method updated
+more tests migrated to file from command
+multiline banner now there
+1.4.2 updated thanks to @loz on discord community
+several other control and tests updates and logic improved thanks to @loz
+new variable ubtu22cis_disable_dynamic_motd to set to true if you are not loading dynamic variables
+
+- #9 thanks to @zac90
+- #11 thanks to @big-yellow-duck
+- #13 thanks to @berdugonoa
+- #17 thanks to @LoZZoL
+- #18 thanks to @LoZZoL
+
+## 0.2 updates
+
+Several control updates and new tests
+adopted new goss binary >= 0.4.0 now required
+
+## 0.1 initial release
+
+- Based on CIS 1.0
