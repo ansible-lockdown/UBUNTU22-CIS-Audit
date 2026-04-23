@@ -5,22 +5,15 @@
 package:
   libpam-pwquality:
     title: 5.3.1.3 | Ensure latest version of libpam-pwquality is installed
+    name: libpam-pwquality
     installed: true
     versions:
-      not:
-      - '1.4.0-11ubuntu2.1'
-      - '1.4.0-11ubuntu2.2'
-      - '1.4.0-11ubuntu2.3'
+      - 'jammy 1.4.4-1build1'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 5.3.1.3
-      CISv8:
-      - 5.4
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: NA
   {{ end }}
 {{ end }}

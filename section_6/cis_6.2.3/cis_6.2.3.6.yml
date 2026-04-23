@@ -1,0 +1,19 @@
+---
+
+{{ if .Vars.ubtu22cis_level_2 }}
+  {{ if .Vars.ubtu22cis_rule_6_2_3_6 }}
+command:
+  auditd_priv_cmds_cnf:
+    title: 6.2.3.6 | Ensure use of privileged commands is collected | Config
+    exec: grep delete /etc/audit/rules.d/*.rules
+    exit-status: 0
+    stdout:
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.6
+      NIST800-53R5:
+      - AU-3
+  {{ end }}
+{{ end }}

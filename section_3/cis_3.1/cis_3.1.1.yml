@@ -16,11 +16,6 @@ command:
       server: 2
       workstation: 2
       CIS_ID: 3.1.1
-      CISv8:
-      - 4.8
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - CM-7
   ipv6_etc_default_grub:
@@ -34,11 +29,6 @@ command:
       server: 2
       workstation: 2
       CIS_ID: 3.1.1
-      CISv8:
-      - 4.8
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - CM-7
     {{ end }}
@@ -54,11 +44,6 @@ command:
       server: 2
       workstation: 2
       CIS_ID: 3.3.1
-      CISv8:
-      - 4.8
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - CM-7
       {{ end }}

@@ -2,25 +2,22 @@
 
 {{ if .Vars.ubtu22cis_level_1 }}
   {{ if .Vars.ubtu22cis_rule_5_1_4 }}
-file:
+command:
   sshd_access_limited:
-    title: 5.1.4 | Ensure SSH access is configured
-    path: /etc/ssh/sshd_config
-    exists: true
-    contents:
-    {{ range .Vars.ubtu22cis_sshd_access }}
-    - {{ . }}
-    {{ end }}
+    title: 5.1.4 | Ensure sshd access is configured | config
+    exec: grep -Ei "^(Allow|Deny)(Users|Groups)" /etc/ssh/sshd_config /etc/ssh/sshd_config.d/*.conf
+    exit-status:
+      or:
+      - 0
+      - 1
+      - 2
+    stdout:
+    - "/(?i)({{ if .Vars.ubtu22cis_sshd_allowusers }}allowusers {{ .Vars.ubtu22cis_sshd_allowusers }}{{ end }}|{{ if .Vars.ubtu22cis_sshd_allowgroups }}allowgroups {{ .Vars.ubtu22cis_sshd_allowgroups }}{{ end }}|{{ if .Vars.ubtu22cis_sshd_denyusers }}denyusers {{ .Vars.ubtu22cis_sshd_denyusers }}{{ end }}|{{ if .Vars.ubtu22cis_sshd_denygroups }}denygroups {{ .Vars.ubtu22cis_sshd_denygroups }}{{ end }} )/"
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 5.1.4
-      CISv8:
-      - 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - AC-3
       - MP-2

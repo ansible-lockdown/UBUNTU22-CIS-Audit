@@ -1,33 +1,21 @@
 ---
 
-{{ if .Vars.ubtu22cis_level_1 }}
+{{ if .Vars.ubtu22cis_level_2 }}
   {{ if .Vars.ubtu22cis_rule_4_1_4 }}
 command:
-  ufw_loopback:
-    title: 4.1.4 | Ensure ufw loopback traffic is configured
-    exec: ufw status verbose
+  ufw_outgoing_default:
+    title: 4.1.4 | Ensure ufw outgoing default is configured
+    exec: ufw status verbose | awk -F',' '$1~/Default/ {print $2}'
     exit-status: 0
     stdout:
-    - '/^Anywhere on lo\s+ ALLOW IN\s+ Anywhere/'
-    - '/^Anywhere\s+DENY IN\s+127.0.0.0\/8/'
-    - '/^Anywhere\s+ ALLOW OUT\s+ Anywhere on lo/'
-    {{ if .Vars.ubtu22cis_ipv6_required}}
-    - '/^Anywhere \(v6\) on lo\s+ALLOW IN\s+Anywhere \(v6\)/'
-    - '/^Anywhere \(v6\)\s+DENY IN\s+::1/'
-    - '/^Anywhere \(v6\)\s+ALLOW OUT\s+Anywhere \(v6\) on lo/'
-    {{ end }}
+    - '/\s*(deny|reject) \(outgoing\)/'
     meta:
-      server: 1
-      workstation: 1
+      server: 2
+      workstation: 2
       CIS_ID:
-      - 4.1.4
-      CISv8:
-      - 4.4
-      - 4.5
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
+      - 4.1.3
       NIST800-53R5:
-      - SC-7
+      - CM-7
+      CCI: CCI-000382
   {{ end }}
 {{ end }}

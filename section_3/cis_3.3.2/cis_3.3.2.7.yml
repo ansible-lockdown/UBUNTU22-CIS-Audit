@@ -1,0 +1,42 @@
+---
+
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_ipv6_required }}
+    {{ if .Vars.ubtu22cis_rule_3_3_2_7 }}
+kernel-param:
+  net.ipv6.conf.all.accept_ra:
+    title: 3.3.2.7 | Ensure net.ipv6.conf.all.accept_ra is configured
+    value: '0'
+    name: net.ipv6.conf.all.accept_ra
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.2.7
+      NIST800-53R5:
+      - CM-6
+      CCI:
+      - CCI-000366
+command:
+  ipv6_all_accept_ra:
+    title: 3.3.2.7 | Ensure net.ipv6.conf.all.accept_ra is configured | live ipv6 all
+    exec: grep net.ipv6.conf.all.accept_ra /etc/sysctl.conf /etc/sysctl.d/*.conf /run/sysctl.d/*.conf /usr/local/lib/sysctl.d/*.conf /usr/lib/sysctl.d/*.conf /lib/sysctl.d/*.conf
+    exit-status:
+      or:
+      - 0
+      - 2
+    stdout:
+    - '/.*:net.ipv6.conf.all.accept_ra\s*=\s*0/'
+    - '!/.*:net.ipv6.conf.all.accept_ra\s*=\s*1/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.2.7
+      NIST800-53R5:
+      - CM-6
+      CCI:
+      - CCI-000366
+    {{ end }}
+  {{ end }}
+{{ end }}

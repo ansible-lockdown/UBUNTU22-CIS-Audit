@@ -6,19 +6,14 @@ command:
   wireless_disabled:
     title: 3.1.2 | Ensure wireless interfaces are disabled
     exit-status: 0
-    exec: 'nmcli radio all | tail -1'
+    exec: wifi_mod_list=$(find /lib/modules/$(uname -r)/kernel/drivers/net/wireless -name '*.ko' -printf '%f ' | sed 's/\.ko//g') && missing=$(printf '%s\n' $wifi_mod_list | grep -wFxv -f <(grep -oE '\b[[:alnum:]_-]+\b' /etc/modprobe.d/blacklist-wireless.conf | sort -u)); echo $missing
     stdout:
-    - '/^(enabled|disabled)\s\s(disabled)\s\s(enabled|disabled)\s\s(disabled)/'
+    - '!/^.*/'
     meta:
       server: 1
       workstation: 2
       CIS_ID:
       - 3.1.2
-      CISv8:
-      - 4.8
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
       - CM-7
   {{ end }}

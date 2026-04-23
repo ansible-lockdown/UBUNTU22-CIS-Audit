@@ -1,0 +1,40 @@
+---
+
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_3_3_1_5 }}
+kernel-param:
+  net.ipv4.conf.default.send_redirects:
+    title: 3.3.1.5 | Ensure net.ipv4.conf.default.send_redirects is configured | live
+    value: '0'
+    name: net.ipv4.conf.default.send_redirects
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.1.5
+      NIST800-53R5:
+      - CM-6
+      CCI:
+      - CCI-000366
+command:
+  ip4_default_send_redirects:
+    title: 3.3.1.5 | Ensure net.ipv4.conf.default.send_redirects is configured | default_send_redirects conf
+    exec: grep send_redirects /etc/sysctl.conf /etc/sysctl.d/*.conf /run/sysctl.d/*.conf /usr/local/lib/sysctl.d/*.conf /usr/lib/sysctl.d/*.conf /lib/sysctl.d/*.conf
+    exit-status:
+      or:
+      - 0
+      - 2
+    stdout:
+    - '/.*:net.ipv4.conf.default.send_redirects\s*=\s*0/'
+    - '!/.*:net.ipv4.conf.default.send_redirects\s*=\s*1/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.1.5
+      NIST800-53R5:
+      - CM-6
+      CCI:
+      - CCI-000366
+  {{ end }}
+{{ end }}

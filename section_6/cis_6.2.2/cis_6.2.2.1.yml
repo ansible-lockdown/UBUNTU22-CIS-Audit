@@ -1,25 +1,20 @@
 ---
 
-{{ if .Vars.ubtu22cis_level_1 }}
+{{ if .Vars.ubtu22cis_level_2 }}
   {{ if .Vars.ubtu22cis_rule_6_2_2_1 }}
 command:
-  logfile_configured:
-    title: 6.2.2.1 | Ensure all logfiles have appropriate access configured
-    exec: |
-      find /var/log/ -type f \( -name 'lastlog' -o -name 'wtmp' -o -name 'btmp' \) -perm /g+x,o+wx -exec ls -l "{}" + ; find /var/log/ -type f \( -name 'secure' -o -name 'auth*' -o -name 'syslog' -o -name 'messages' \) -perm /u+x,g+wx,o+rwx -exec ls -l "{}" +; find /var/log/ -type f \( -name 'SSSD' -o -name 'sssd' -o -name 'gdm*' \) -perm /ug+x,o+rwx -exec ls -l "{}" +
+  auditd_max_log_file:
+    title: 6.2.2.1 | Ensure audit log storage size is configured
+    exec: grep -E "^max_log_file" /etc/audit/auditd.conf
     exit-status: 0
-    stdout: ['!/./']
+    stdout:
+    - '/max_log_file\s*=\s*[1-9][0-9]{1,2}/'
     meta:
-      server: 1
-      workstation: 1
+      server: 2
+      workstation: 2
       CIS_ID:
       - 6.2.2.1
-      CISv8: 3.3
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5:
-      - AC-3
-      - MP-2
+      - AU-8
   {{ end }}
 {{ end }}

@@ -3,29 +3,6 @@
 {{ if .Vars.ubtu22cis_level_1 }}
   {{ if .Vars.ubtu22cis_rule_1_5_3 }}
 command:
-  core_dumps_limits:
-    title: 1.5.3 | Ensure core dumps are restricted | security/limits.conf
-    exit-status:
-      or:
-      - 0
-      - 2
-    exec: 'grep -E "\*.*hard.*core.*0" /etc/security/limits.conf /etc/security/limits.d/*'
-    stdout:
-    - '/^\/*.*\shard.*core.*0/'
-    meta:
-      server: 1
-      workstation: 1
-      CIS_ID:
-      - 1.5.3
-      CISv8: NA
-      CISv8_IG1: NA
-      CISv8_IG2: NA
-      CISv8_IG3: NA
-      Mitre_Techniques:
-      - T1005
-      - T1005.000
-      Mitre_Tactics: TA0007
-      Mitre_Mitigations: NA
   suid_dumpable_2:
     title: 1.5.3 | Ensure core dumps are restricted | sysctl.conf
     exit-status: 0
@@ -37,11 +14,7 @@ command:
       workstation: 1
       CIS_ID:
       - 1.5.3
-      CISv8: NA
-      CISv8_IG1: NA
-      CISv8_IG2: NA
-      CISv8_IG3: NA
-      NIST800-53R5: CM-6
+      NIST800-53R5: NA
 kernel-param:
   fs.suid_dumpable:
     title: 1.5.3 | Ensure core dumps are restricted | kernel_sysctl
@@ -51,44 +24,6 @@ kernel-param:
       workstation: 1
       CIS_ID:
       - 1.5.3
-      CISv8: NA
-      CISv8_IG1: NA
-      CISv8_IG2: NA
-      CISv8_IG3: NA
-      NIST800-53R5: CM-6
-service:
-  coredump:
-    title: 1.5.3 | Ensure core dumps are restricted | coredump service
-    enabled: false
-    running: false
-    skip: false
-    meta:
-      server: 1
-      workstation: 1
-      CIS_ID:
-      - 1.5.3
-      CISv8: NA
-      CISv8_IG1: NA
-      CISv8_IG2: NA
-      CISv8_IG3: NA
-      NIST800-53R5: CM-6
-file:
-  coredump_restricted_conf:
-    title: 1.5.3 | Ensure core dumps are restricted | coredump.conf
-    exists: true
-    path: /etc/systemd/coredump.conf
-    contents:
-    - '/^Storage=none/'
-    - '/^ProcessSizeMax=0/'
-    meta:
-      server: 1
-      workstation: 1
-      CIS_ID:
-      - 1.5.3
-      CISv8: NA
-      CISv8_IG1: NA
-      CISv8_IG2: NA
-      CISv8_IG3: NA
-      NIST800-53R5: CM-6
+      NIST800-53R5: NA
   {{ end }}
 {{ end }}

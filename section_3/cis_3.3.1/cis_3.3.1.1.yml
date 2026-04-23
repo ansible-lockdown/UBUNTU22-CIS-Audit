@@ -1,0 +1,42 @@
+---
+
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if not .Vars.ubtu22cis_is_router }}
+    {{ if .Vars.ubtu22cis_rule_3_3_1_1 }}
+kernel-param:
+  net.ipv4.ip_forward:
+    title: 3.3.1.1 | Ensure net.ipv4.ip_forward is configured | ipv4 live
+    value: '0'
+    name: net.ipv4.ip_forward
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.1.1
+      NIST800-53R5:
+      - CM-6
+      CCI:
+      - CCI-000366
+command:
+  ip4_forward_conf:
+    title: 3.3.1.1 | Ensure net.ipv4.ip_forward is configured | ipv4 conf
+    exec: grep net.ipv4.ip_forward /etc/sysctl.conf /etc/sysctl.d/*.conf /run/sysctl.d/*.conf /usr/local/lib/sysctl.d/*.conf /usr/lib/sysctl.d/*.conf /lib/sysctl.d/*.conf
+    exit-status:
+      or:
+      - 0
+      - 2
+    stdout:
+    - '/.*:net.ipv4.ip_forward\s*=\s*0/'
+    - '!/.*:net.ipv4.ip_forward\s*=\s*1/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.1.1
+      NIST800-53R5:
+      - CM-6
+      CCI:
+      - CCI-000366
+    {{ end }}
+  {{ end }}
+{{ end }}

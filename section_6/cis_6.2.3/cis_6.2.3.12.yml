@@ -1,0 +1,35 @@
+---
+
+{{ if .Vars.ubtu22cis_level_2 }}
+  {{ if .Vars.ubtu22cis_rule_6_2_3_12 }}
+command:
+  auditd_logins_cnf:
+    title: 6.2.3.12 | Ensure login and logout events are collected | Config
+    exec: grep -R --include="*.rules" logins /etc/audit/rules.d/
+    exit-status: 0
+    stdout:
+    - '/.*\:-w /var/run/faillock -p wa -k logins/'
+    - '/.*\:-w /var/log/lastlog -p wa -k logins/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.12
+      NIST800-53R5:
+      - AU-3
+  auditd_logins_live:
+    title: 6.2.3.12 | Ensure login and logout events are collected | Live
+    exec: auditctl -l | grep logins
+    exit-status: 0
+    stdout:
+    - '-w /var/run/faillock -p wa -k logins'
+    - '-w /var/log/lastlog -p wa -k logins'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.12
+      NIST800-53R5:
+      - AU-3
+  {{ end }}
+{{ end }}

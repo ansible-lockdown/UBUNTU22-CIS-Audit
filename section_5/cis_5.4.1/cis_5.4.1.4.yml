@@ -4,7 +4,7 @@
   {{ if .Vars.ubtu22cis_rule_5_4_1_4 }}
 file:
   yescrypt_login_defs:
-    title: 5.4.1.4 | Ensure password hashing algorithm is up to date with the latest standards | common password
+    title: 5.4.1.4 | Ensure strong password hashing algorithm is configured | common password
     path: /etc/login.defs
     exists: true
     contents:
@@ -15,10 +15,6 @@ file:
       workstation: 1
       CIS_ID:
       - 5.4.1.4
-      CISv8: 3.11
-      CISv8_IG1: true
-      CISv8_IG2: true
-      CISv8_IG3: true
       NIST800-53R5: IA-5
   {{ end }}
 {{ end }}

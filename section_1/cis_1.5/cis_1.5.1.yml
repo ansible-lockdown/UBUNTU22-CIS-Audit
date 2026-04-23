@@ -4,37 +4,31 @@
   {{ if .Vars.ubtu22cis_rule_1_5_1 }}
 kernel-param:
   kernel.randomize_va_space:
-    title: 1.5.1 | Ensure address space layout randomization (ASLR) is enabled | sysctl_live
+    title: 1.5.1 | Ensure randomize_va_space is configured | sysctl_live
     value: '2'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 1.5.1
-      CISv8: 10.5
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5: CM-6
+      NIST800-53R5: SI-16
+      CCI: CCI-002824
 command:
   aslr_enabled_2:
-    title: 1.5.1 | Ensure address space layout randomization (ASLR) is enabled | sysctl_configured
+    title: 1.5.1 | Ensure randomize_va_space is configured | sysctl_configured
     exit-status:
       or:
       - 0
       - 2
     exec: 'grep "^kernel\.randomize_va_space" /etc/sysctl.conf /etc/sysctl.d/* | cut -d ":" -f2'
     stdout:
-    - '/kernel.randomize_va_space(\s|)=(\s|)2/'
+    - '/kernel.randomize_va_space\s*=\s*2/'
     meta:
       server: 1
       workstation: 1
       CIS_ID:
       - 1.5.1
-      CISv8: 10.5
-      CISv8_IG1: false
-      CISv8_IG2: true
-      CISv8_IG3: true
-      NIST800-53R5: CM-6
+      NIST800-53R5: SI-16
+      CCI: CCI-002824
   {{ end }}
 {{ end }}

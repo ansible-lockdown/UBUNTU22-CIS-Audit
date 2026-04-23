@@ -1,0 +1,40 @@
+---
+
+{{ if .Vars.ubtu22cis_level_1 }}
+  {{ if .Vars.ubtu22cis_rule_3_3_1_3 }}
+kernel-param:
+  net.ipv4.conf.default.forwarding:
+    title: 3.3.1.3 | Ensure net.ipv4.conf.default.forwarding is configured | live
+    value: '0'
+    name: net.ipv4.conf.default.forwarding
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.1.2
+      NIST800-53R5:
+      - CM-6
+      CCI:
+      - CCI-000366
+command:
+  ip4_default_forwarding:
+    title: 3.3.1.3 | Ensure net.ipv4.conf.default.forwarding is configured | default_forwarding conf
+    exec: grep forwarding /etc/sysctl.conf /etc/sysctl.d/*.conf /run/sysctl.d/*.conf /usr/local/lib/sysctl.d/*.conf /usr/lib/sysctl.d/*.conf /lib/sysctl.d/*.conf
+    exit-status:
+      or:
+      - 0
+      - 2
+    stdout:
+    - '/.*:net.ipv4.conf.default.forwarding\s*=\s*0/'
+    - '!/.*:net.ipv4.conf.default.forwarding\s*=\s*1/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 3.3.1.3
+      NIST800-53R5:
+      - CM-6
+      CCI:
+      - CCI-000366
+  {{ end }}
+{{ end }}
