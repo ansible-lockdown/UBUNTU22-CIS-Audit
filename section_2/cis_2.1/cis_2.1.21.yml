@@ -18,7 +18,7 @@ command:
       - CM-7
 file:
   /etc/postfix/main.conf:
-    title: 2.1.21 | Ensure mail transfer agent is configured for local-only mode
+    title: 2.1.21 | Ensure mail transfer agents are configured for local-only mode
     exists: true
     contents:
     - '/^inet_interfaces\s*=\s*loopback-only/'

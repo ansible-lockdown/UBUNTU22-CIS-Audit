@@ -4,7 +4,7 @@
   {{ if .Vars.ubtu22cis_rule_6_1_2_5 }}
 file:
   /etc/rsyslog.conf:
-    title: 6.1.2.5 | Ensure logging is configured
+    title: 6.1.2.5 | Ensure rsyslog logging is configured
     exists: true
     contents:
     - '/^\*.emerg\s+:omusrmsg:\*/'

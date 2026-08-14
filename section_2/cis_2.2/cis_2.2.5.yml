@@ -5,7 +5,7 @@
     {{ if .Vars.ubtu22cis_rule_2_2_5 }}
 package:
   ldap-utils:
-    title: 2.2.5 | Ensure LDAP client is not installed
+    title: 2.2.5 | Ensure ldap client is not installed
     installed: false
     name: ldap-utils
     meta:

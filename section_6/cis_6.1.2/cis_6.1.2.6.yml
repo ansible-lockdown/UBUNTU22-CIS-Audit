@@ -5,7 +5,7 @@
     {{ if not .Vars.ubtu22cis_remote_log_server }}
 command:
   remote_syslog:
-    title: 6.1.2.6 | Ensure rsyslog is configured to send logs to a remote host
+    title: 6.1.2.6 | Ensure rsyslog is configured to send logs to a remote log host
     exec: 'grep -E "action.*omfwd.*target" /etc/rsyslog.conf /etc/rsyslog.d/*.conf'
     exit-status:
       or:

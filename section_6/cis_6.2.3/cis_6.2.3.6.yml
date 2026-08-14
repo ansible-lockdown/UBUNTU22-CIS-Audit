@@ -4,7 +4,7 @@
   {{ if .Vars.ubtu22cis_rule_6_2_3_6 }}
 command:
   auditd_priv_cmds_cnf:
-    title: 6.2.3.6 | Ensure use of privileged commands is collected | Config
+    title: 6.2.3.6 | Ensure use of privileged commands are collected | Config
     exec: grep delete /etc/audit/rules.d/*.rules
     exit-status: 0
     stdout:

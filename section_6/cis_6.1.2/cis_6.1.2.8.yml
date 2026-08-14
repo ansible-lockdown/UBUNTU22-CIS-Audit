@@ -4,7 +4,7 @@
   {{ if .Vars.ubtu22cis_rule_6_1_2_8 }}
 command:
   rsyslog_logrotate:
-    title: 6.1.2.8 | Ensure rsyslog logrotate is configured | Manual check required
+    title: 6.1.2.8 | Ensure logrotate is configured | Manual check required
     exec: echo "Manual"
     exit-status: 0
     stdout:

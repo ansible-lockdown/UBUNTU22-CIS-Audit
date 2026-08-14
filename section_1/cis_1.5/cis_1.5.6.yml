@@ -4,7 +4,7 @@
   {{ if .Vars.ubtu22cis_rule_1_5_6 }}
 package:
   apport:
-    title: 1.5.6 | Ensure Automatic Error Reporting is not enabled | Package
+    title: 1.5.6 | Ensure Automatic Error Reporting is configured | Package
     installed: false
     meta:
       server: 1
@@ -13,7 +13,7 @@ package:
       - 1.5.6
 file:
   error_report_apport_disable:
-    title: 1.5.6 | Ensure Automatic Error Reporting is not enabled | disabled
+    title: 1.5.6 | Ensure Automatic Error Reporting is configured | disabled
     exists: true
     path: /etc/default/apport
     contents:

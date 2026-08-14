@@ -5,7 +5,7 @@
     {{ if .Vars.ubtu22cis_rule_1_7_1 }}
 package:
   gdm3:
-    title: 1.7.1 | Ensure GNOME Display Manager is removed
+    title: 1.7.1 | Ensure GDM is removed
     installed: false
     meta:
       server: 2

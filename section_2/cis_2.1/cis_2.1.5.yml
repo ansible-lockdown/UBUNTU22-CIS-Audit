@@ -6,7 +6,7 @@
       {{ if not .Vars.ubtu22cis_dnsmasq_mask }}
 package:
   dnsmasq_pkg:
-    title: 2.1.5 | Ensure dnsmasq server services are not in use | pkg removed
+    title: 2.1.5 | Ensure dnsmasq services are not in use | pkg removed
     name: dnsmasq
     installed: false
     meta:
@@ -20,7 +20,7 @@ package:
       {{ if .Vars.ubtu22cis_dnsmasq_mask }}
 file:
   dnsmasq_service_masked:
-    title: 2.1.5 | Ensure dnsmasq server services are not in use | masked
+    title: 2.1.5 | Ensure dnsmasq services are not in use | masked
     path: /etc/systemd/system/dnsmasq.service
     exists: true
     filetype: symlink

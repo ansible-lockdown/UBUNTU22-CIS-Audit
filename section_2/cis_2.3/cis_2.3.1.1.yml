@@ -15,7 +15,7 @@ package:
       - AU-12
   {{ if eq .Vars.ubtu22cis_time_sync_tool "systemd-timesyncd" }}
   ntp:
-    title: 2.3.1.1 | Ensure time synchronization is in use | ntp service
+    title: 2.3.1.1 | Ensure a single time synchronization daemon is in use | ntp service
     installed: false
     meta:
       server: 1
@@ -25,7 +25,7 @@ package:
       - AU-3
       - AU-12
   chrony:
-    title: 2.3.1.1 | Ensure time synchronization is in use | chrony service
+    title: 2.3.1.1 | Ensure a single time synchronization daemon is in use | chrony service
     installed: false
     meta:
       server: 1
@@ -38,7 +38,7 @@ package:
   {{ if ne .Vars.ubtu22cis_time_sync_tool "systemd-timesyncd" }}
 file:
   timesync_masked:
-    title: 2.3.1.1 | Ensure time synchronization is in use | systemd-timesyncd masked
+    title: 2.3.1.1 | Ensure a single time synchronization daemon is in use | systemd-timesyncd masked
     path: /etc/systemd/system/systemd-timesyncd.service
     filetype: symlink
     linked-to: /dev/null

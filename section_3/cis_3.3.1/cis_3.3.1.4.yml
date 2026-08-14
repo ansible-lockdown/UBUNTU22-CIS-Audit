@@ -4,7 +4,7 @@
   {{ if .Vars.ubtu22cis_rule_3_3_1_4 }}
 kernel-param:
   net.ipv4.conf.all.send_redirects:
-    title: 3.3.1.4 | Ensure net.ipv4.conf.all.send_redirects is configured| live
+    title: 3.3.1.4 | Ensure net.ipv4.conf.all.send_redirects is configured
     value: '0'
     name: net.ipv4.conf.all.send_redirects
     meta:

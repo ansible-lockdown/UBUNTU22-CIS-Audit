@@ -4,7 +4,7 @@
   {{ if .Vars.ubtu22cis_rule_7_1_5 }}
 file:
   shadow_perms:
-    title: 7.1.5 | Ensure permissions on /etc/shadow are configured
+    title: 7.1.5 | Ensure access to /etc/shadow is configured
     path: /etc/shadow
     exists: true
     owner: root
