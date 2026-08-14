@@ -1,5 +1,21 @@
 # Changes to Ubuntu22-CIS-Audit
 
+## [v3.00_aug26] - based upon CIS v3.0.0
+
+- v3.00_aug26 branch
+  - 1.6.1: invalid YAML escapes aborted the audit
+  - 1.7.2: banner quote collision aborted the audit
+  - 3.1.1: misindented file key, CIS_ID corrected
+  - 3.1.2 and 5.4.2.8: process substitution removed, dash safe
+  - 7.2.3: /tmp writes removed, audit read only again
+  - goss.yml: IPv6 include glob corrected, eight checks were unreachable
+  - Rule IDs corrected in gates, titles and CIS_ID metadata
+  - run_audit.sh: goss version parse fixed, aligned to latest version
+  - Minimum goss version raised to 0.5.0
+  - Titles updated for alignment
+  - README goss links and version updated
+  - gitignore patterns added, spelling corrected
+
 ## [2026_April_QA] - based upon CIS v3.0.0
 
 ### QA Validation
