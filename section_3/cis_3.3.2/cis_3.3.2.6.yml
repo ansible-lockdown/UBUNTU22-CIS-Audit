@@ -19,7 +19,7 @@ kernel-param:
       - CCI-000366
 command:
   ipv6_default_source_routed:
-    title: 3.3.2.5 | Ensure net.ipv6.conf.default.accept_source_route is configured | live ipv6 default
+    title: 3.3.2.6 | Ensure net.ipv6.conf.default.accept_source_route is configured | live ipv6 default
     exec: grep net.ipv6.conf.default.accept_source_route /etc/sysctl.conf /etc/sysctl.d/*.conf /run/sysctl.d/*.conf /usr/local/lib/sysctl.d/*.conf /usr/lib/sysctl.d/*.conf /lib/sysctl.d/*.conf
     exit-status:
       or:
@@ -32,7 +32,7 @@ command:
       server: 1
       workstation: 1
       CIS_ID:
-      - 3.3.2.5
+      - 3.3.2.6
       NIST800-53R5:
       - CM-6
       CCI:

@@ -4,21 +4,21 @@
   {{ if .Vars.ubtu22cis_rule_3_3_1_6 }}
 kernel-param:
   net.ipv4.icmp_ignore_bogus_error_responses:
-    title: 3.3.1.5 | Ensure net.ipv4.icmp_ignore_bogus_error_responses is configured
+    title: 3.3.1.6 | Ensure net.ipv4.icmp_ignore_bogus_error_responses is configured
     value: '1'
     name: net.ipv4.icmp_ignore_bogus_error_responses
     meta:
       server: 1
       workstation: 1
       CIS_ID:
-      - 3.3.1.5
+      - 3.3.1.6
       NIST800-53R5:
       - CM-6
       CCI:
       - CCI-000366
 command:
   ipv4_ignore_bogus:
-    title: 3.3.1.5 | Ensure bogus ICMP responses are ignored | live ipv4 all
+    title: 3.3.1.6 | Ensure net.ipv4.icmp_ignore_bogus_error_responses is configured | live ipv4 all
     exec: grep net.ipv4.icmp_ignore_bogus_error_responses /etc/sysctl.conf /etc/sysctl.d/*.conf /run/sysctl.d/*.conf /usr/local/lib/sysctl.d/*.conf /usr/lib/sysctl.d/*.conf /lib/sysctl.d/*.conf
     exit-status:
       or:
@@ -31,7 +31,7 @@ command:
       server: 1
       workstation: 1
       CIS_ID:
-      - 3.3.1.5
+      - 3.3.1.6
       NIST800-53R5:
       - CM-6
       CCI:

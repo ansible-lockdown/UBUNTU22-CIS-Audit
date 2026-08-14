@@ -4,7 +4,7 @@
   {{ if .Vars.ubtu22cis_rule_1_6_4 }}
 file:
   motd_perms:
-    title: 1.7.4 | Ensure access to /etc/motd is configured
+    title: 1.6.4 | Ensure access to /etc/motd is configured
     path: /etc/motd
     exists:
       or:

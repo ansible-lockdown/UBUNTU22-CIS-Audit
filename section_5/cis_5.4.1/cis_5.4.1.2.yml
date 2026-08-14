@@ -19,7 +19,7 @@ file:
       NIST800-53R5: IA-5
 command:
   users_min_pw_expire:
-    title: 5.4.1.1 | Ensure minimum password days is configured | user_check
+    title: 5.4.1.2 | Ensure minimum password days is configured | user_check
     exec: "awk -F: '(/^[^:]+:[^!*]/) {print $4}' /etc/shadow"
     exit-status:
       or:
