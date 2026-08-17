@@ -5,7 +5,7 @@
     {{ if .Vars.ubtu22cis_rule_1_7_3 }}
 command:
   gdm_disable_user:
-    title: 1.7.3 | Ensure disable-user-list is enabled
+    title: 1.7.3 | Ensure GDM disable-user-list option is enabled
     exec: grep -E "^disable-user-list" /etc/gdm3/greeter.dconf-defaults
     exit-status: 0
     stdout:

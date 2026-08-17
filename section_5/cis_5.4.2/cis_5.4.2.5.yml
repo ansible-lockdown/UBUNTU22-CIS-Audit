@@ -4,7 +4,7 @@
   {{ if .Vars.ubtu22cis_rule_5_4_2_5 }}
 command:
   root_path_check:
-    title: 5.4.2.5 | Ensure root path Integrity
+    title: 5.4.2.5 | Ensure root path integrity
     exec: "/bin/bash --login -c 'env | grep ^PATH=' | sed -e 's/PATH=//' -e 's/::/:/' -e 's/:$//' -e 's/:/\\n/g'"
     exit-status: 0
     stdout:

@@ -4,7 +4,7 @@
   {{ if .Vars.ubtu22cis_rule_1_5_4 }}
 command:
   core_dumps_limits:
-    title: 1.5.4 | Ensure core dumps are restricted | security/limits.conf
+    title: 1.5.4 | Ensure core file size is configured | security/limits.conf
     exit-status:
       or:
       - 0

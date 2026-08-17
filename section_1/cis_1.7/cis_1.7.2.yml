@@ -11,7 +11,7 @@ file:
     contents:
     - '/^[org/gnome/login-screen]/'
     - '/^banner-message-enable=true/'
-    - '/^banner-message-text='{{ .Vars.ubtu22cis_warning_banner }}'/'
+    - "/^banner-message-text='{{ .Vars.ubtu22cis_warning_banner }}'/"
     meta:
       server: 1
       workstation: 1

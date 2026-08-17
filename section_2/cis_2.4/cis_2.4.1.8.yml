@@ -4,7 +4,7 @@
   {{ if .Vars.ubtu22cis_rule_2_4_1_8 }}
 file:
   cron_d_perms:
-    title: 2.4.1.8 | Ensure permissions on /etc/cron.d are configured
+    title: 2.4.1.8 | Ensure access to /etc/cron.d is configured
     path: /etc/cron.d
     exists: true
     owner: root

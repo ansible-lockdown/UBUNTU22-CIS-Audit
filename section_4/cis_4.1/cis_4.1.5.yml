@@ -4,7 +4,7 @@
   {{ if .Vars.ubtu22cis_rule_4_1_5 }}
 command:
   ufw_routed_default:
-    title: 4.1.5 | Ensure ufw outgoing default is configured
+    title: 4.1.5 | Ensure ufw routed default is configured
     exec: ufw status verbose | awk -F',' '$1="Default"{print $3}'
     exit-status: 0
     stdout:

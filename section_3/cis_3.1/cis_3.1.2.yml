@@ -4,11 +4,12 @@
   {{ if .Vars.ubtu22cis_rule_3_1_2 }}
 command:
   wireless_disabled:
-    title: 3.1.2 | Ensure wireless interfaces are disabled
+    title: 3.1.2 | Ensure wireless interfaces are not available
     exit-status: 0
-    exec: wifi_mod_list=$(find /lib/modules/$(uname -r)/kernel/drivers/net/wireless -name '*.ko' -printf '%f ' | sed 's/\.ko//g') && missing=$(printf '%s\n' $wifi_mod_list | grep -wFxv -f <(grep -oE '\b[[:alnum:]_-]+\b' /etc/modprobe.d/blacklist-wireless.conf | sort -u)); echo $missing
+    exec: "find /sys/class/net/*/wireless -type d 2>/dev/null | sed 's|/wireless$||' | while read iface; do cat \"$iface/operstate\" 2>/dev/null; done | grep -qv '^down$' && echo FAIL || echo OK"
     stdout:
-    - '!/^.*/'
+    - '/^OK/'
+    - '!/^FAIL/'
     meta:
       server: 1
       workstation: 2

@@ -4,7 +4,7 @@
   {{ if .Vars.ubtu22cis_rule_5_3_3_1_3 }}
 file:
   faillock_even_root:
-    title: 5.3.3.1.3 | Ensure password unlock time is configured
+    title: 5.3.3.1.3 | Ensure password failed attempts lockout includes root account
     path: /etc/security/faillock.conf
     exists: true
     contents:
@@ -17,7 +17,7 @@ file:
       NIST800-53R5: NA
 command:
   faillock_even_root_removed:
-    title: 5.3.3.1.3 | Ensure password unlock time is configured
+    title: 5.3.3.1.3 | Ensure password failed attempts lockout includes root account
     exec: grep -Pl -- '\bpam_faillock\.so\h+([^#\n\r]+\h+)?(even_deny_root|root_unlock_time)' /usr/share/pam-configs/*
     exit-status: 1
     stdout:

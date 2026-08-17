@@ -21,7 +21,7 @@ package:
   {{ if .Vars.ubtu22cis_samba_mask }}
 file:
   samba_service_masked:
-    title: 2.1.14 | Ensure samba server services are not in use | masked
+    title: 2.1.14 | Ensure samba file server services are not in use | masked
     path: /etc/systemd/system/smbd.service
     exists: true
     filetype: symlink
