@@ -5,7 +5,7 @@
 kernel-param:
   kernel.yama.ptrace_scope:
     title: 1.5.2 | Ensure ptrace_scope is configured | sysctl_live
-    value: '[1-3]'
+    value: '{{ .Vars.ubtu22cis_ptrace_scope }}'
     meta:
       server: 1
       workstation: 1
