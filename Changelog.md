@@ -15,6 +15,7 @@
   - Titles updated for alignment
   - README goss links and version updated
   - gitignore patterns added, spelling corrected
+  - several tests fixed
 
 ## [2026_April_QA] - based upon CIS v3.0.0
 
