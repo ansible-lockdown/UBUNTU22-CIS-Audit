@@ -8,7 +8,7 @@ file:
     path: /etc/ssh/sshd_config
     exists: true
     contents:
-    - '/(?i)^UsePAM yes'
+    - '/(?i)^UsePAM yes/'
     - '!/(?i)^UsePAM no/'
     meta:
       server: 1
