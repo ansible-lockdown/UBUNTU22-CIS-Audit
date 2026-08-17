@@ -7,10 +7,12 @@ file:
     exists: true
     contents:
     - '/(?i)^MaxSessions ([2-9]|10)/'
-    - '!/(?i)^MaxSessions (1|1[1-9]|[2-9][0-9]|[1-9]{3,})/'
+    - '!/(?i)^MaxSessions (1|1[1-9]|[2-9][0-9]|[1-9]{3,})$/'
     meta:
       server: 1
       workstation: 1
+      CIS_ID:
+      - 5.1.17
       NIST800-53R5:
       - CM-1
       - CM-2
