@@ -478,6 +478,8 @@ ubtu22cis_grub_user: root
 ubtu22cis_bootloader_password_hash: "grub.pbkdf2.sha512.changethispassword"  # pragma: allowlist secret
 
 ## Controls 1.5.x
+# The value applied to kernel.yama.ptrace_scope by control 1.5.2
+ubtu22cis_ptrace_scope: 1
 
 ## Controls 1.6.x  - Warning banners
 # The controls 1.6.x set various warning banners and protect the respective files
@@ -624,6 +626,8 @@ ubtu22cis_sysctl_network_conf: /etc/sysctl.conf
 # The option that has an effect on the system is `ufw`.
 # Any other value, e.g. `none` will skip all firewall-related controls.
 ubtu22cis_firewall_package: "ufw"
+# Control 4.1.4 sets the outgoing default to allow when all outbound ports are permitted
+ubtu22cis_ufw_allow_out_all: false
 
 ## auditd settings
 ubtu22cis_auditd:
@@ -654,7 +658,7 @@ ubtu22cis_sshd_allowgroups: ""
 # for users whose user name matches one of the patterns. This is done
 # by setting the value of `DenyUsers` option in `/etc/ssh/sshd_config` file.
 # If an USER@HOST format will be used, the specified user will be restricted only on that particular host.
-ubtu22cis_sshd_denyusers: ""
+ubtu22cis_sshd_denyusers: "nobody"
 
 # This variable, if specified, configures a list of GROUP name patterns, separated by spaces,
 # to prevent SSH access for users whose primary group or supplementary group list matches one of the patterns. This is done
