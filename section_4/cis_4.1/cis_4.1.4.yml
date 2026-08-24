@@ -8,7 +8,11 @@ command:
     exec: ufw status verbose | awk -F',' '$1~/Default/ {print $2}'
     exit-status: 0
     stdout:
+{{ if .Vars.ubtu22cis_ufw_allow_out_all }}
+    - '/\s*allow \(outgoing\)/'
+{{ else }}
     - '/\s*(deny|reject) \(outgoing\)/'
+{{ end }}
     meta:
       server: 2
       workstation: 2
