@@ -2,6 +2,13 @@
 
 ## [v3.00_aug26] - based upon CIS v3.0.0
 
+- aug26_updates branch
+  - vars/CIS.yml: ubtu22cis_ptrace_scope added, 1.5.2 compared against an empty value
+  - vars/CIS.yml: ubtu22cis_sshd_denyusers aligned to the role default
+  - 4.1.4: outgoing default assertion follows ubtu22cis_ufw_allow_out_ports, all outbound permitted failed a deny only check ([#328](https://github.com/ansible-lockdown/UBUNTU22-CIS/issues/328)) - Thank you @tmeckel
+  - vars/CIS.yml: ubtu22cis_ufw_allow_out_all added
+  - CONTRIBUTING.md updated to the canonical version, README section added
+
 - v3.00_aug26 branch
   - 1.6.1: invalid YAML escapes aborted the audit
   - 1.7.2: banner quote collision aborted the audit

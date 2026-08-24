@@ -37,6 +37,12 @@ Which will:
 
 On our [Discord Server](https://www.lockdownenterprise.com/discord) to ask questions, discuss features, or just chat with other Ansible-Lockdown users
 
+## Contributing
+
+Bug reports and feature requests are welcome from everyone, please raise an issue.
+
+Pull requests are accepted from approved contributors only. To be onboarded, join the [Discord Server](https://www.lockdownenterprise.com/discord) and request contributor access. See [CONTRIBUTING.md](CONTRIBUTING.md) for the full process.
+
 ## further information
 
 - [ReadtheDocs](https://ansible-lockdown.readthedocs.io/en/stable/)
