@@ -478,6 +478,8 @@ ubtu22cis_grub_user: root
 ubtu22cis_bootloader_password_hash: "grub.pbkdf2.sha512.changethispassword"  # pragma: allowlist secret
 
 ## Controls 1.5.x
+# The value applied to kernel.yama.ptrace_scope by control 1.5.2
+ubtu22cis_ptrace_scope: 1
 
 ## Controls 1.6.x  - Warning banners
 # The controls 1.6.x set various warning banners and protect the respective files

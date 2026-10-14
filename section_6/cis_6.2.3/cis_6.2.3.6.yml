@@ -5,9 +5,23 @@
 command:
   auditd_priv_cmds_cnf:
     title: 6.2.3.6 | Ensure use of privileged commands are collected | Config
-    exec: grep delete /etc/audit/rules.d/*.rules
+    exec: grep privileged /etc/audit/rules.d/*.rules
     exit-status: 0
     stdout:
+    - '/-a always,exit -F path=\S+ -F perm=x -F auid>=\d+ -F auid!=(unset|4294967295|-1) -k privileged$/'
+    meta:
+      server: 2
+      workstation: 2
+      CIS_ID:
+      - 6.2.3.6
+      NIST800-53R5:
+      - AU-3
+  auditd_priv_cmds_live:
+    title: 6.2.3.6 | Ensure use of privileged commands are collected | Live
+    exec: auditctl -l | grep privileged
+    exit-status: 0
+    stdout:
+    - '/^-a always,exit (-S all )?-F path=\S+ -F perm=x -F auid>=\d+ -F auid!=(-1|unset|4294967295) -F key=privileged$/'
     meta:
       server: 2
       workstation: 2

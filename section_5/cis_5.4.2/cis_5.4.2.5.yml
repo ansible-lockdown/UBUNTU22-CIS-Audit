@@ -5,10 +5,12 @@
 command:
   root_path_check:
     title: 5.4.2.5 | Ensure root path integrity
-    exec: "/bin/bash --login -c 'env | grep ^PATH=' | sed -e 's/PATH=//' -e 's/::/:/' -e 's/:$//' -e 's/:/\\n/g'"
+    exec: "/bin/bash --login -c 'env | grep ^PATH=' | sed -e 's/^PATH=//' | tr ':' '\\n'"
     exit-status: 0
     stdout:
-    - '!/\\./'
+    - '/^\//'
+    - '!/^$/'
+    - '!/^[^\/]/'
     meta:
       server: 1
       workstation: 1

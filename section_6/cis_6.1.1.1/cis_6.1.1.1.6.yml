@@ -5,14 +5,10 @@
 command:
   compress_journald_conf:
     title: 6.1.1.1.6 | Ensure journald Compress is configured
-    exec: grep -i Compress /etc/systemd/journald.conf /etc/systemd/journald.conf.d/*.conf
-    exit-status:
-      or:
-      - 0
-      - 1
+    exec: 'systemd-analyze cat-config systemd/journald.conf | grep -Pi -- ''^\h*Compress\h*='' | tail -n 1'
+    exit-status: 0
     stdout:
-    - '/.*\:Compress\s*=\s*yes/'
-    - '!/.*\:Compress\s*=\s*[Nn][Oo]/'
+    - '/(?i)^\s*Compress\s*=\s*yes\s*$/'
     meta:
       server: 1
       workstation: 1

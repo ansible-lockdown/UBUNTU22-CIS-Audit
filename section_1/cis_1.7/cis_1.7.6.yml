@@ -1,6 +1,6 @@
 ---
 
-{{ if .Vars.ubtu22cis_level_1 }}
+{{ if .Vars.ubtu22cis_level_2 }}
   {{ if .Vars.ubtu22cis_desktop_required }}
     {{ if .Vars.ubtu22cis_rule_1_7_6 }}
 file:
@@ -14,7 +14,7 @@ file:
     - '/^automount-open=false/'
     meta:
       server: 1
-      workstation: 1
+      workstation: 2
       CIS_ID:
       - 1.7.6
       NIST800-53R5:

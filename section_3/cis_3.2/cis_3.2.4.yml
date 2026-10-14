@@ -1,4 +1,4 @@
-{{ if .Vars.ubtu22cis_level_2 }}
+{{ if .Vars.ubtu22cis_level_1 }}
   {{ if .Vars.ubtu22cis_rule_3_2_4 }}
 command:
   modprobe_sctp:
@@ -8,8 +8,8 @@ command:
     stdout:
       - '/install /bin/(true|false)/'
     meta:
-      server: 2
-      workstation: 2
+      server: 1
+      workstation: 1
       CIS_ID:
       - 3.2.4
       NIST800-53R5:
@@ -22,8 +22,8 @@ command:
     stdout:
     - '!/^.*/'
     meta:
-      server: 2
-      workstation: 2
+      server: 1
+      workstation: 1
       CIS_ID:
       - 3.2.4
       NIST800-53R5:

@@ -5,10 +5,10 @@
 command:
   audit_tools_owner:
     title: 6.2.4.9 | Ensure audit tools owner is configured
-    exec: stat -c "%n_%U" /sbin/auditctl /sbin/aureport /sbin/ausearch /sbin/autrace /sbin/auditd /sbin/augenrules
+    exec: find /sbin/auditctl /sbin/aureport /sbin/ausearch /sbin/autrace /sbin/auditd /sbin/augenrules ! -user root
     exit-status: 0
     stdout:
-    - '/.*_root$/'
+    - '!/./'
     meta:
       server: 2
       workstation: 2

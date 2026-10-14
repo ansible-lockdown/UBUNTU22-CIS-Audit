@@ -5,10 +5,10 @@
 command:
   audit_logfile_owner:
     title: 6.2.4.2 | Ensure audit log files owner is configured
-    exec: for file in `grep ^log_file /etc/audit/auditd.conf | awk '{ print $NF }'`; do stat -Lc "%n_%U" $file; done
+    exec: d=$(dirname $(grep ^log_file /etc/audit/auditd.conf | awk '{ print $NF }')); find $d -maxdepth 1 -type f ! -user root
     exit-status: 0
     stdout:
-    - '/.*_root$/'
+    - '!/./'
     meta:
       server: 2
       workstation: 2

@@ -4,13 +4,31 @@
   {{ if .Vars.ubtu22cis_desktop_required }}
     {{ if .Vars.ubtu22cis_rule_1_7_3 }}
 command:
-  gdm_disable_user:
-    title: 1.7.3 | Ensure GDM disable-user-list option is enabled
-    exec: grep -E "^disable-user-list" /etc/gdm3/greeter.dconf-defaults
+  gdm_profile_1_7_3:
+    title: 1.7.3 | Ensure GDM disable-user-list option is enabled | dconf profile
+    exec: grep -PHs '^\h*(user-db|system-db):' /etc/dconf/profile/*
     exit-status: 0
     stdout:
-    - '/^disable-user-list=true/'
-    - '!/^disable-user-list=false/'
+    - '/:user-db:user$/'
+    - '/:system-db:{{ .Vars.ubtu22cis_dconf_db_name }}$/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.7.3
+      NIST800-53R5:
+      - CM-1
+      - CM-2
+      - CM-6
+      - CM-7
+      - IA-5
+  gdm_disable_user:
+    title: 1.7.3 | Ensure GDM disable-user-list option is enabled | disable-user-list setting
+    exec: cat /etc/dconf/db/{{ .Vars.ubtu22cis_dconf_db_name }}.d/* 2>/dev/null | grep -E '^\s*disable-user-list\s*='
+    exit-status: 0
+    stdout:
+    - '/^disable-user-list=true$/'
+    - '!/^\s*disable-user-list\s*=\s*false/'
     meta:
       server: 1
       workstation: 1

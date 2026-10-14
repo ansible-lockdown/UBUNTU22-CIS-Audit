@@ -7,13 +7,14 @@
 command:
   aide_cron:
     title: 6.3.2 | Ensure filesystem integrity is regularly checked | aide cron
+    exec: |
+      grep -Prs '^([^#\n\r]+\h+)?(\/usr\/s?bin\/|^\h*)aide(\.wrapper)?\h+([^#\n\r]+\h+)?(--(check|update)|\$AIDEARGS)\b' /etc/cron.* /etc/crontab /var/spool/cron/
     exit-status:
       or:
       - 0
       - 2
-    exec: "grep -rs aide /etc/cron.* /etc/crontab /var/spool/cron/*"
     stdout:
-    - '!/^#/'
+    - '/aide/'
     meta:
       server: 1
       workstation: 1
@@ -21,13 +22,12 @@ command:
       - 6.3.2
       NIST800-53R5: NA
       {{ end }}
-service:
     {{ if eq .Vars.ubtu22cis_aide_scan "timer" }}
+service:
   aidecheck:
     title: 6.3.2 | Ensure filesystem integrity is regularly checked | aidecheck service
     name: aidecheck.service
     enabled: true
-    running: true
     skip: false
     meta:
       server: 1

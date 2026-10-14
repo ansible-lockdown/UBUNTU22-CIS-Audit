@@ -19,12 +19,8 @@ command:
       NIST800-53R5: NA
   home_dirs_ownership:
     title: 7.2.9 | Ensure local interactive user home directories are configured | Directory ownership
-    exec: "getent passwd {1000..60000} | awk -F: '{ print $1  \" \"  $7 }' | while read user dir; do if [ $user != 'ftpd' ]; then owner=$(stat -L -c \"%U\" \"$dir\"); if [ \"$owner\" != \"$user\" ]; then echo \"home dir for $user owned by $owner\"; fi; fi; done"
-    exit-status:
-      or:
-      - 0
-      - 1
-      - 2
+    exec: "getent passwd | awk -F: '$3 >= 1000 && $3 <= 60000 && $1 != \"ftpd\" {print $1, $6}' | while read user dir; do [ -e \"$dir\" ] && owner=$(stat -L -c \"%U\" \"$dir\" 2>/dev/null) && [ \"$owner\" != \"$user\" ] && echo \"home dir for $user owned by $owner\"; done; true"
+    exit-status: 0
     stdout:
     - '!/./'
     meta:
@@ -35,11 +31,8 @@ command:
       NIST800-53R5: NA
   home_dirs_permissions:
     title: 7.2.9 | Ensure local interactive user home directories are configured | Directory permissions
-    exec: export def_home=`grep "^HOME=" /etc/default/useradd |cut -d= -f2` && for i in `ls $def_home`; do stat -c "%a %n" $def_home/$i | grep -Ev "7[0-5]0|syslog"; done
-    exit-status:
-      or:
-      - 0
-      - 1
+    exec: "getent passwd | awk -F: '$3 >= 1000 && $3 <= 60000 {print $6}' | while read dir; do [ -d \"$dir\" ] && find \"$dir\" -maxdepth 0 -perm /027; done; true"
+    exit-status: 0
     stdout:
       - '!/.*/'
     meta:

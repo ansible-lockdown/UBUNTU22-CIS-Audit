@@ -1,6 +1,6 @@
 ---
 
-{{ if .Vars.ubtu22cis_level_1 }}
+{{ if .Vars.ubtu22cis_level_2 }}
   {{ if .Vars.ubtu22cis_rule_1_1_1_11 }}
 file:
   firewire-core_disabled:
@@ -11,7 +11,7 @@ file:
     - '/^install firewire-core /bin/(true|false)/'
     meta:
       server: 1
-      workstation: 1
+      workstation: 2
       CIS_ID: 1.1.1.11
       NIST800-53R5: CM-7
       CCI: CCI-000381
@@ -23,7 +23,7 @@ file:
     - '/^blacklist firewire-core/'
     meta:
       server: 1
-      workstation: 1
+      workstation: 2
       CIS_ID: 1.1.1.11
       NIST800-53R5: CM-7
       CCI: CCI-000381

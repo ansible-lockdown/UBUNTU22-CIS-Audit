@@ -13,8 +13,8 @@ command:
     - '/^\s*linux.*ipv6.disable=1/'
     - '!/ipv6.disable=0/'
     meta:
-      server: 2
-      workstation: 2
+      server: 1
+      workstation: 1
       CIS_ID: 3.1.1
       NIST800-53R5:
       - CM-7
@@ -26,8 +26,8 @@ command:
     - '/^GRUB_CMDLINE_LINUX=.*ipv6.disable=1/'
     - '!/ipv6.disable=0/'
     meta:
-      server: 2
-      workstation: 2
+      server: 1
+      workstation: 1
       CIS_ID: 3.1.1
       NIST800-53R5:
       - CM-7
@@ -41,8 +41,8 @@ file:
     contents:
     - '/^1/'
     meta:
-      server: 2
-      workstation: 2
+      server: 1
+      workstation: 1
       CIS_ID: 3.1.1
       NIST800-53R5:
       - CM-7
