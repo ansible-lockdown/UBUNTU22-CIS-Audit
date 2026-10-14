@@ -5,13 +5,10 @@
 command:
   storage_journald_conf:
     title: 6.1.1.1.5 | Ensure journald Storage is configured
-    exec: grep -i Storage= /etc/systemd/journald.conf /etc/systemd/journald.conf.d/*.conf
-    exit-status:
-      or:
-      - 0
-      - 1
+    exec: 'systemd-analyze cat-config systemd/journald.conf | grep -Pi -- ''^\h*Storage\h*='' | tail -n 1'
+    exit-status: 0
     stdout:
-    - '/.*\:Storage=persistent/'
+    - '/(?i)^\s*Storage\s*=\s*persistent\s*$/'
     meta:
       server: 1
       workstation: 1

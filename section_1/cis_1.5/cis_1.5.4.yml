@@ -11,7 +11,7 @@ command:
       - 2
     exec: 'grep -E "\*.*hard.*core.*0" /etc/security/limits.conf /etc/security/limits.d/*'
     stdout:
-    - '/^\/*.*\shard.*core.*0/'
+    - '/^\/etc\/security\/limits\.(conf|d\/[^:]+\.conf):\s*\*\s+hard\s+core\s+0(\s|$)/'
     meta:
       server: 1
       workstation: 1

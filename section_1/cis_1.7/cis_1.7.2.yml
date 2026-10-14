@@ -3,15 +3,33 @@
 {{ if .Vars.ubtu22cis_level_1 }}
   {{ if .Vars.ubtu22cis_desktop_required }}
     {{ if .Vars.ubtu22cis_rule_1_7_2 }}
-file:
+command:
+  gdm_profile_1_7_2:
+    title: 1.7.2 | Ensure GDM login banner is configured | dconf profile
+    exec: grep -PHs '^\h*(user-db|system-db):' /etc/dconf/profile/*
+    exit-status: 0
+    stdout:
+    - '/:user-db:user$/'
+    - '/:system-db:{{ .Vars.ubtu22cis_dconf_db_name }}$/'
+    meta:
+      server: 1
+      workstation: 1
+      CIS_ID:
+      - 1.7.2
+      NIST800-53R5:
+      - CM-1
+      - CM-2
+      - CM-6
+      - CM-7
+      - IA-5
   gdm_banner:
-    title: 1.7.2 | Ensure GDM login banner is configured
-    path: /etc/gdm3/greeter.dconf-defaults
-    exists: true
-    contents:
-    - '/^[org/gnome/login-screen]/'
-    - '/^banner-message-enable=true/'
-    - "/^banner-message-text='{{ .Vars.ubtu22cis_warning_banner }}'/"
+    title: 1.7.2 | Ensure GDM login banner is configured | banner settings
+    exec: cat /etc/dconf/db/{{ .Vars.ubtu22cis_dconf_db_name }}.d/* 2>/dev/null | grep -E '^\s*banner-message-(enable|text)\s*='
+    exit-status: 0
+    stdout:
+    - '/^banner-message-enable=true$/'
+    - '!/^\s*banner-message-enable\s*=\s*false/'
+    - '/^banner-message-text=''.+''$/'
     meta:
       server: 1
       workstation: 1

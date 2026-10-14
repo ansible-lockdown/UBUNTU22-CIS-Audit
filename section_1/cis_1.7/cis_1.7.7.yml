@@ -1,6 +1,6 @@
 ---
 
-{{ if .Vars.ubtu22cis_level_1 }}
+{{ if .Vars.ubtu22cis_level_2 }}
   {{ if .Vars.ubtu22cis_desktop_required }}
     {{ if .Vars.ubtu22cis_rule_1_7_7 }}
 file:
@@ -13,7 +13,7 @@ file:
     - '^/\/org\/gnome\/desktop\/media-handling\/automount-open/'
     meta:
       server: 1
-      workstation: 1
+      workstation: 2
       CIS_ID:
       - 1.7.7
       NIST800-53R5:

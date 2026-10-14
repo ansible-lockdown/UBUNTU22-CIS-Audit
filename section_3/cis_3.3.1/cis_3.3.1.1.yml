@@ -1,6 +1,6 @@
 ---
 
-{{ if .Vars.ubtu22cis_level_1 }}
+{{ if .Vars.ubtu22cis_level_2 }}
   {{ if not .Vars.ubtu22cis_is_router }}
     {{ if .Vars.ubtu22cis_rule_3_3_1_1 }}
 kernel-param:
@@ -9,7 +9,7 @@ kernel-param:
     value: '0'
     name: net.ipv4.ip_forward
     meta:
-      server: 1
+      server: 2
       workstation: 1
       CIS_ID:
       - 3.3.1.1
@@ -29,7 +29,7 @@ command:
     - '/.*:net.ipv4.ip_forward\s*=\s*0/'
     - '!/.*:net.ipv4.ip_forward\s*=\s*1/'
     meta:
-      server: 1
+      server: 2
       workstation: 1
       CIS_ID:
       - 3.3.1.1

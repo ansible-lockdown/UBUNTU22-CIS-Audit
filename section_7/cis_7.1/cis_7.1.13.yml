@@ -5,15 +5,27 @@
     {{ if .Vars.ubtu22cis_rule_7_1_13 }}
 command:
   audit_sgid:
-    title: 7.1.13 | Ensure SUID and SGID files are reviewed | Manual
-    exec: "df --local -P | awk '{if (NR!=1) print $6}' | xargs -I '{}' find '{}' -xdev -type f -perm -02000 -o -perm -04000"
+    title: 7.1.13 | Ensure SUID and SGID files are reviewed | package ownership and integrity
+    exec: |
+      findmnt -Dkerno fstype,target,options | awk '($1 !~ /^[[:space:]]*(nfs|proc|smb|vfat|iso9660|efivarfs|selinuxfs)/ && $2 !~ /^\/run\/user\// && $3 !~ /noexec/ && $3 !~ /nosuid/){print $2}' | while IFS= read -r l_mount; do
+        find "$l_mount" -xdev -type f \( -perm -4000 -o -perm -2000 \) -print 2>/dev/null
+      done | sort -u | while IFS= read -r l_file; do
+        echo "reviewed: $l_file"
+        l_alt="${l_file#/usr}"
+        l_pkg=$(dpkg -S "$l_file" 2>/dev/null || dpkg -S "$l_alt" 2>/dev/null)
+        if [ -z "$l_pkg" ]; then
+          echo "FAIL: $l_file is not owned by any package"
+        else
+          dpkg -V "${l_pkg%%:*}" 2>/dev/null | awk -v f="$l_file" -v a="$l_alt" '($NF == f || $NF == a) && $1 ~ /5/ {print "FAIL: " f " differs from its package (" $1 ")"}'
+        fi
+      done
+      echo "scan_done"
     timeout: {{ .Vars.timeout_ms }}
-    exit-status:
-      or:
-      - 0
-      - 1
+    exit-status: 0
     stdout:
-    - '!/./'
+    - '/^scan_done$/'
+    - '/^reviewed: /'
+    - '!/^FAIL:/'
     meta:
       server: 1
       workstation: 1

@@ -18,10 +18,13 @@ command:
       NIST800-53R5: NA
   inactive_users:
     title: 5.4.1.5 | Ensure inactive password lock is configured | users
-    exec: "cat /etc/shadow | grep -v '!*' | awk -F':' '{ if ($7 > 45 ){ print $1 } }'"
-    stdout:
-    - '!/.*/'
+    exec: |
+      awk -F: '($2~/^\$.+\$/) {if($7 == "" || $7 > 45 || $7 < 0) print "FAIL: " $1 " INACTIVE: " $7}' /etc/shadow
+      echo "scan_done"
     exit-status: 0
+    stdout:
+    - '/^scan_done$/'
+    - '!/^FAIL:/'
     meta:
       server: 1
       workstation: 1

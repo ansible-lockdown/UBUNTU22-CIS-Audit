@@ -12,7 +12,7 @@ command:
     - '!/^FAIL/'
     meta:
       server: 1
-      workstation: 2
+      workstation: NA
       CIS_ID:
       - 3.1.2
       NIST800-53R5:
