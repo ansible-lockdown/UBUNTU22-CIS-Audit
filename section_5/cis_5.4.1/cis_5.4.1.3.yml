@@ -19,6 +19,7 @@ file:
 command:
   user_expire_warn:
     title: 5.4.1.3 | Ensure password expiration warning days is configured | user_warning
+    skip: {{ not .Vars.ubtu22cis_disruption_high }}
     exec: |
       awk -F: '($2~/^\$.+\$/) {if($6 < 7) print "FAIL: " $1 " PASS_WARN_AGE: " $6}' /etc/shadow
       echo "scan_done"
