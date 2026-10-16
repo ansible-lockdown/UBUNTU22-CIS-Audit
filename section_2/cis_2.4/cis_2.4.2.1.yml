@@ -4,7 +4,7 @@
   {{ if .Vars.ubtu22cis_rule_2_4_2_1 }}
 file:
   at_deny_absent:
-    title: 2.4.2.1 | Ensure at is restricted to authorized users
+    title: 2.4.2.1 | Ensure access to at is configured
     path: /etc/at.deny
     exists: false
     meta:
@@ -16,7 +16,7 @@ file:
       - AC-3
       - MP-2
   /etc/at.allow:
-    title: 2.4.2.1 | Ensure at is restricted to authorized users
+    title: 2.4.2.1 | Ensure access to at is configured
     exists: true
     owner: root
     group: root

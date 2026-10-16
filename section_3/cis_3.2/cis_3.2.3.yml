@@ -1,4 +1,4 @@
-{{ if .Vars.ubtu22cis_level_2 }}
+{{ if .Vars.ubtu22cis_level_1 }}
   {{ if .Vars.ubtu22cis_rule_3_2_3 }}
 command:
   modprobe_RDS:
@@ -11,8 +11,8 @@ command:
     stdout:
       - '/install /bin/(true|false)/'
     meta:
-      server: 2
-      workstation: 2
+      server: 1
+      workstation: 1
       CIS_ID:
       - 3.2.3
       NIST800-53R5:
@@ -25,8 +25,8 @@ command:
     stdout:
     - '!/^.*/'
     meta:
-      server: 2
-      workstation: 2
+      server: 1
+      workstation: 1
       CIS_ID:
       - 3.2.3
       NIST800-53R5:

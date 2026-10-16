@@ -5,7 +5,7 @@
     {{ if .Vars.ubtu22cis_rule_2_1_21 }}
 command:
   mta_listening_port25:
-    title: 2.1.21 Ensure mail transfer agent is configured for local-only mode
+    title: 2.1.21 | Ensure mail transfer agent is configured for local-only mode
     exit-status: 1
     exec: 'ss -lntu | grep -E ":25\s" | grep -E -v "\s(127.0.0.1|\[?::1\]?):25\s"'
     stdout: ['!/./']
@@ -18,7 +18,7 @@ command:
       - CM-7
 file:
   /etc/postfix/main.conf:
-    title: 2.1.21 | Ensure mail transfer agent is configured for local-only mode
+    title: 2.1.21 | Ensure mail transfer agents are configured for local-only mode
     exists: true
     contents:
     - '/^inet_interfaces\s*=\s*loopback-only/'

@@ -5,7 +5,7 @@
 command:
   auditd_immutable:
     title: 6.2.3.20 | Ensure the audit configuration is immutable
-    exec: 'grep "-e 2" /etc/audit/rules.d/*.rules | cut -d ":" -f2'
+    exec: 'grep -h -- "-e 2" /etc/audit/rules.d/*.rules'
     exit-status: 0
     stdout:
     - '-e 2'

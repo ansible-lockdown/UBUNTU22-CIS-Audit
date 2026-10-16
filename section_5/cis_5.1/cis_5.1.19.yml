@@ -4,7 +4,7 @@
   {{ if .Vars.ubtu22cis_rule_5_1_19 }}
 file:
   ssh_empty_passwd:
-    title: 5.1.19 | Ensure SSH PermitEmptyPasswords is configured
+    title: 5.1.19 | Ensure sshd PermitEmptyPasswords is disabled
     path: /etc/ssh/sshd_config
     exists: true
     contents:

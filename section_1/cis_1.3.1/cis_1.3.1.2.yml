@@ -4,7 +4,7 @@
   {{ if .Vars.ubtu22cis_rule_1_3_1_2 }}
 file:
   apparmor_boot_grub:
-    title: 1.3.1.2 | Ensure AppArmor is enabled in the bootloader configuration | running grub
+    title: 1.3.1.2 | Ensure AppArmor is enabled | running grub
     path: /boot/grub/grub.cfg
     exists: true
     contents:
@@ -18,7 +18,7 @@ file:
       - 1.3.1.2
       NIST800-53R5: AC-3
   grub_app_armor:
-    title: 1.3.1.2 | Ensure AppArmor is enabled in the bootloader configuration | default grub
+    title: 1.3.1.2 | Ensure AppArmor is enabled | default grub
     exists: true
     path: /etc/default/grub
     contents:

@@ -4,7 +4,7 @@
   {{ if .Vars.ubtu22cis_rule_5_1_7 }}
 file:
   sshd_clientalive:
-    title: 5.1.7 | Ensure sshd ClientAliveInterval and CLientAliveCountMax are configured
+    title: 5.1.7 | Ensure sshd ClientAliveInterval and ClientAliveCountMax are configured
     path: /etc/ssh/sshd_config
     exists: true
     contents:

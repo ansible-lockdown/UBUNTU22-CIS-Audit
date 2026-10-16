@@ -4,7 +4,7 @@
   {{ if .Vars.ubtu22cis_rule_6_2_1_4 }}
 command:
   auditd_grub_backlog:
-    title: 6.2.1.4 | Ensure audit_backlog_limit is sufficient | bootloader file
+    title: 6.2.1.4 | Ensure audit_backlog_limit is configured | bootloader file
     exec: grep "^\s*linux" /boot/grub/grub.cfg | grep -Evc "audit_backlog_limit="
     exit-status: 1
     stdout:
@@ -20,7 +20,7 @@ command:
       - AU-12
 file:
   grub_audit_backlog:
-    title: 6.2.1.4 | Ensure audit_backlog_limit is sufficient | default grub
+    title: 6.2.1.4 | Ensure audit_backlog_limit is configured | default grub
     path: /etc/default/grub
     exists: true
     contents:

@@ -4,7 +4,7 @@
   {{ if .Vars.ubtu22cis_rule_7_1_9 }}
 file:
   etc_shells_perms:
-    title: 7.1.9 | Ensure permissions on /etc/shells are configured
+    title: 7.1.9 | Ensure access to /etc/shells is configured
     path: /etc/shells
     exists: true
     owner: root

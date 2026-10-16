@@ -22,7 +22,7 @@ gossfile:
   section_3/cis_3.2/*.yml: {}
   section_3/cis_3.3.1/*.yml: {}
     {{ if .Vars.ubtu22cis_ipv6_required }}
-  section_3/cis_3.3.2/ipv6/*.yml: {}
+  section_3/cis_3.3.2/*.yml: {}
     {{ end }}
   {{ end }}
 

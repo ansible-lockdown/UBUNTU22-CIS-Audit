@@ -5,10 +5,10 @@
 command:
   audit_tools_group:
     title: 6.2.4.10 | Ensure audit tools group owner is configured
-    exec: stat -c "%n_%G" /sbin/auditctl /sbin/aureport /sbin/ausearch /sbin/autrace /sbin/auditd /sbin/augenrules
+    exec: find /sbin/auditctl /sbin/aureport /sbin/ausearch /sbin/autrace /sbin/auditd /sbin/augenrules ! -group root
     exit-status: 0
     stdout:
-    - '/.*_root$/'
+    - '!/./'
     meta:
       server: 2
       workstation: 2

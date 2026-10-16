@@ -2,15 +2,17 @@
   {{ if .Vars.ubtu22cis_rule_5_1_17 }}
 file:
   ssh_maxsessions:
-    title: 5.1.17 | Ensure SSH MaxSessions is limited
+    title: 5.1.17 | Ensure sshd MaxSessions is configured
     path: /etc/ssh/sshd_config
     exists: true
     contents:
     - '/(?i)^MaxSessions ([2-9]|10)/'
-    - '!/(?i)^MaxSessions (1|1[1-9]|[2-9][0-9]|[1-9]{3,})/'
+    - '!/(?i)^MaxSessions (1|1[1-9]|[2-9][0-9]|[1-9]{3,})$/'
     meta:
       server: 1
       workstation: 1
+      CIS_ID:
+      - 5.1.17
       NIST800-53R5:
       - CM-1
       - CM-2

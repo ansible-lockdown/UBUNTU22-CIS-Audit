@@ -4,7 +4,7 @@
   {{ if .Vars.ubtu22cis_rule_5_2_6 }}
 command:
   sudo_timeout:
-    title: 5.2.6 | Ensure sudo authentication timeout is configured correctly
+    title: 5.2.6 | Ensure sudo timestamp_timeout is configured
     exec: grep -rP "timestamp_timeout=\K[0-9]*" /etc/sudoers*
     exit-status: 0
     stdout:

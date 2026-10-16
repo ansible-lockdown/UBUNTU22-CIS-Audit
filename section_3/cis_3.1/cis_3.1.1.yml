@@ -13,8 +13,8 @@ command:
     - '/^\s*linux.*ipv6.disable=1/'
     - '!/ipv6.disable=0/'
     meta:
-      server: 2
-      workstation: 2
+      server: 1
+      workstation: 1
       CIS_ID: 3.1.1
       NIST800-53R5:
       - CM-7
@@ -26,14 +26,14 @@ command:
     - '/^GRUB_CMDLINE_LINUX=.*ipv6.disable=1/'
     - '!/ipv6.disable=0/'
     meta:
-      server: 2
-      workstation: 2
+      server: 1
+      workstation: 1
       CIS_ID: 3.1.1
       NIST800-53R5:
       - CM-7
     {{ end }}
     {{ if eq .Vars.ubtu22cis_ipv6_disable "sysctl" }}
- file:
+file:
   ipv6_disabled:
     title: 3.1.1 | Ensure IPv6 status is identified | sysctl all disable
     path: /proc/sys/net/ipv6/conf/all/disable_ipv6
@@ -41,9 +41,9 @@ command:
     contents:
     - '/^1/'
     meta:
-      server: 2
-      workstation: 2
-      CIS_ID: 3.3.1
+      server: 1
+      workstation: 1
+      CIS_ID: 3.1.1
       NIST800-53R5:
       - CM-7
       {{ end }}

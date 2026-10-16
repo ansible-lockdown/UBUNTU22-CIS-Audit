@@ -1,5 +1,62 @@
 # Changes to Ubuntu22-CIS-Audit
 
+## CIS Benchmark 3.0.0
+
+## October 2026 - QA fixes
+
+- 1.3.1.4 complain mode test made dash-compatible and corrected
+- 1.5.1 to 1.5.3 sysctl conf regex fixed, conflicting values detected
+- 1.5.4 limits regex anchored to the file path
+- 1.7.2 checks the dconf profile and the dconf db banner settings
+- 1.7.3 checks the dconf profile and the dconf db disable-user-list setting
+- 5.1.2 private key mode 0600 required when group is root
+- 5.1.3 public host key perms test fixed: variable name, mask /133
+- 5.1.2 and 5.1.3 find -name globs quoted
+- 5.1.5 sshd_config.d Banner grep missing space fixed
+- 5.3.3.4.1 and 5.3.3.4.2 brace expansion replaced with explicit file list
+- 5.4.1.1 to 5.4.1.3 per-user checks flag each failing account
+- 5.4.1.5 per-user INACTIVE check flags each failing account
+- 5.4.1.6 exit status no longer depends on the last account
+- 5.4.2.1 detects any non-root UID 0 account
+- 5.4.2.2 and 5.4.2.3 GID 0 tests flag any non-root entry
+- 5.4.2.5 root PATH test detects empty and relative entries
+- 6.1.1.1.3 to 6.1.1.1.6 and 6.1.2.3 journald tests read systemd-analyze cat-config
+- 6.1.1.2.4 checks not enabled and not active instead of masked
+- 6.1.2.5 rsyslog rule regexes anchored and escaped
+- 6.2.3.6 checks privileged rules, live rule test added
+- 6.2.4.x log, config and tool tests report every non-compliant file
+- 6.2.4.7 checks group owner instead of owner
+- 6.3.2 cron check requires an aide --check or --update job
+- 6.3.2 timer check no longer requires aidecheck.service running
+- 7.1.13 lists SUID/SGID files, fails on unpackaged or modified ones
+- 7.2.5 to 7.2.8 duplicate checks sort before uniq -d
+- 7.2.9 owner check brace expansion and home field corrected
+- 7.2.9 home directory mode check covers every home directory
+- meta levels and level gates aligned to Profile Applicability
+- vars/CIS.yml: ubtu22cis_ptrace_scope default added
+- 2.1.21 title separator added
+- 1.6.1 dynamic motd check matches literal escapes, not whitespace
+- LICENSE: company name updated to MindPoint Group - A Quantum Sky Company
+- 6.2.3.20 grep reads -e 2 as a pattern, not an option
+- 5.4.1.1, 5.4.1.2, 5.4.1.3 and 5.4.1.5 per-user checks skipped unless ubtu22cis_disruption_high
+
+## [v3.00_aug26] - based upon CIS v3.0.0
+
+- v3.00_aug26 branch
+  - 1.6.1: invalid YAML escapes aborted the audit
+  - 1.7.2: banner quote collision aborted the audit
+  - 3.1.1: misindented file key, CIS_ID corrected
+  - 3.1.2 and 5.4.2.8: process substitution removed, dash safe
+  - 7.2.3: /tmp writes removed, audit read only again
+  - goss.yml: IPv6 include glob corrected, eight checks were unreachable
+  - Rule IDs corrected in gates, titles and CIS_ID metadata
+  - run_audit.sh: goss version parse fixed, aligned to latest version
+  - Minimum goss version raised to 0.5.0
+  - Titles updated for alignment
+  - README goss links and version updated
+  - gitignore patterns added, spelling corrected
+  - several tests fixed
+
 ## [2026_April_QA] - based upon CIS v3.0.0
 
 ### QA Validation

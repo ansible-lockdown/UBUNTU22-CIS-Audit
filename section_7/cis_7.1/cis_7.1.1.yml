@@ -4,7 +4,7 @@
   {{ if .Vars.ubtu22cis_rule_7_1_1 }}
 file:
   passwd_perms:
-    title: 7.1.1 | Ensure permissions on /etc/passwd are configured
+    title: 7.1.1 | Ensure access to /etc/passwd is configured
     path: /etc/passwd
     exists: true
     owner: root

@@ -4,7 +4,7 @@
   {{ if .Vars.ubtu22cis_rule_5_1_20 }}
 file:
   ssh_permit_root:
-    title: 5.1.20 | Ensure sshd PermitRootLogin is configured
+    title: 5.1.20 | Ensure sshd PermitRootLogin is disabled
     path: /etc/ssh/sshd_config
     exists: true
     contents:

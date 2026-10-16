@@ -31,12 +31,12 @@ service:
       - AU-7
       - AU-12
 command:
-  journald_service_masked:
-    title: 6.1.1.2.4 | Ensure systemd-journal-remote service is not in use | service masked
-    exec: systemctl is-enabled systemd-journal-remote.socket
+  journald_remote_not_enabled:
+    title: 6.1.1.2.4 | Ensure systemd-journal-remote service is not in use | not enabled
+    exec: systemctl is-enabled systemd-journal-remote.socket systemd-journal-remote.service 2>/dev/null | grep '^enabled'
     exit-status: 1
     stdout:
-    - '/^masked/'
+    - '!/./'
     meta:
       server: 1
       workstation: 1
@@ -46,12 +46,12 @@ command:
       - AU-2
       - AU-7
       - AU-12
-  journald_socket_masked:
-    title: 6.1.1.2.4 | Ensure systemd-journal-remote service is not in use | socket masked
-    exec: systemctl is-enabled systemd-journal-remote.socket
+  journald_remote_not_active:
+    title: 6.1.1.2.4 | Ensure systemd-journal-remote service is not in use | not active
+    exec: systemctl is-active systemd-journal-remote.socket systemd-journal-remote.service 2>/dev/null | grep '^active'
     exit-status: 1
     stdout:
-    - '/^masked/'
+    - '!/./'
     meta:
       server: 1
       workstation: 1

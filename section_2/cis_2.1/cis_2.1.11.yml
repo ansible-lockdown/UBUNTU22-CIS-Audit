@@ -1,6 +1,6 @@
 ---
 
-{{ if .Vars.ubtu22cis_level_1 }}
+{{ if .Vars.ubtu22cis_level_2 }}
   {{ if .Vars.ubtu22cis_rule_2_1_11 }}
     {{ if not .Vars.ubtu22cis_print_server }}
       {{ if not .Vars.ubtu22cis_print_mask }}
@@ -11,7 +11,7 @@ package:
     installed: false
     meta:
       server: 1
-      workstation: 1
+      workstation: 2
       CIS_ID:
       - 2.1.11
       NIST800-53R5:
@@ -27,7 +27,7 @@ file:
     linked-to: /dev/null
     meta:
       server: 1
-      workstation: 1
+      workstation: 2
       CIS_ID:
       - 2.1.11
       NIST800-53R5:
@@ -40,7 +40,7 @@ file:
     linked-to: /dev/null
     meta:
       server: 1
-      workstation: 1
+      workstation: 2
       CIS_ID:
       - 2.1.11
       NIST800-53R5:

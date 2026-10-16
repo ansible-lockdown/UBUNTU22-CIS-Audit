@@ -478,6 +478,8 @@ ubtu22cis_grub_user: root
 ubtu22cis_bootloader_password_hash: "grub.pbkdf2.sha512.changethispassword"  # pragma: allowlist secret
 
 ## Controls 1.5.x
+# The value applied to kernel.yama.ptrace_scope by control 1.5.2
+ubtu22cis_ptrace_scope: 1
 
 ## Controls 1.6.x  - Warning banners
 # The controls 1.6.x set various warning banners and protect the respective files
@@ -513,7 +515,7 @@ ubtu22cis_dconf_db_name: local
 # Options are
 # true to leave installed if exists not changes take place
 # false - this removes the package
-# mask - if a dependancy for product so cannot be removed
+# mask - if a dependency for product so cannot be removed
 # Server Services
 ubtu22cis_autofs_services: false
 ubtu22cis_autofs_mask: true
@@ -607,7 +609,7 @@ ubtu22cis_ipv6_disable: grub
 # Options are
 # true to leave installed if exists not changes take place
 # false - this removes the package
-# mask - if a dependancy for product so cannot be removed
+# mask - if a dependency for product so cannot be removed
 ubtu22cis_bluetooth_service: false
 ubtu22cis_bluetooth_mask: false
 
@@ -730,6 +732,9 @@ ubtu22cis_pass:
   max_days: "365"
   min_days: "1"
   warn_age: "7"
+
+# existing users only changed when disruption_high is true
+ubtu22cis_disruption_high: true
 
 # set sugroup if differs from wheel
 ubtu22cis_sugroup: nosugroup

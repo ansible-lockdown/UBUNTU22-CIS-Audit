@@ -4,11 +4,15 @@
   {{ if .Vars.ubtu22cis_rule_1_5_3 }}
 command:
   suid_dumpable_2:
-    title: 1.5.3 | Ensure core dumps are restricted | sysctl.conf
-    exit-status: 0
+    title: 1.5.3 | Ensure suid_dumpable is configured | sysctl.conf
+    exit-status:
+      or:
+      - 0
+      - 2
     exec: 'grep "fs\.suid_dumpable" /etc/sysctl.conf /etc/sysctl.d/*'
     stdout:
-    - fs.suid_dumpable=0
+    - '/^\/etc\/sysctl\.(conf|d\/[^:]+\.conf):fs\.suid_dumpable\s*=\s*0$/'
+    - '!/:\s*fs\.suid_dumpable\s*=\s*([^0\s]|0\S)/'
     meta:
       server: 1
       workstation: 1
@@ -17,7 +21,7 @@ command:
       NIST800-53R5: NA
 kernel-param:
   fs.suid_dumpable:
-    title: 1.5.3 | Ensure core dumps are restricted | kernel_sysctl
+    title: 1.5.3 | Ensure suid_dumpable is configured | kernel_sysctl
     value: '0'
     meta:
       server: 1

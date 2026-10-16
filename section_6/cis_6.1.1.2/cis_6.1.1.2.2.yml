@@ -5,14 +5,14 @@
     {{ if not .Vars.ubtu22cis_is_syslog_server }}
 file:
   journal_remote_configured:
-    title: 6.1.1.2.2 | Ensure systemd-journal-remote authentication is configured
+    title: 6.1.1.2.2 | Ensure systemd-journal-upload authentication is configured
     path: /etc/systemd/journal-upload.conf
     exists: true
     contents:
     - '/^URL=/'
-    - '/ServerKeyFile=.*.pem'
-    - '/ServerCertificateFile=.*.pem'
-    - '/TrustedCertificateFile=.*.pem'
+    - '/ServerKeyFile=.*\.pem/'
+    - '/ServerCertificateFile=.*\.pem/'
+    - '/TrustedCertificateFile=.*\.pem/'
     meta:
       server: 1
       workstation: 1

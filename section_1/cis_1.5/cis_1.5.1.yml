@@ -20,9 +20,10 @@ command:
       or:
       - 0
       - 2
-    exec: 'grep "^kernel\.randomize_va_space" /etc/sysctl.conf /etc/sysctl.d/* | cut -d ":" -f2'
+    exec: 'grep "kernel\.randomize_va_space" /etc/sysctl.conf /etc/sysctl.d/*'
     stdout:
-    - '/kernel.randomize_va_space\s*=\s*2/'
+    - '/^\/etc\/sysctl\.(conf|d\/[^:]+\.conf):kernel\.randomize_va_space\s*=\s*2$/'
+    - '!/:\s*kernel\.randomize_va_space\s*=\s*([^2\s]|2\S)/'
     meta:
       server: 1
       workstation: 1

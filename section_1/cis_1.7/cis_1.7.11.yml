@@ -2,10 +2,10 @@
 
 {{ if .Vars.ubtu22cis_level_2 }}
   {{ if .Vars.ubtu22cis_desktop_required }}
-    {{ if .Vars.ubtu22cis_rule_1_7_10 }}
+    {{ if .Vars.ubtu22cis_rule_1_7_11 }}
 file:
   /etc/gdm/custom.conf:
-    title: 1.8.7 | Ensure Xwayland is configured
+    title: 1.7.11 | Ensure Xwayland is configured
     path: /etc/gdm/custom.conf
     exists: true
     contents:

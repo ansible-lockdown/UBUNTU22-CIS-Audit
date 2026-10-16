@@ -4,7 +4,7 @@
   {{ if .Vars.ubtu22cis_rule_1_4_2 }}
 file:
   default_grub_perms:
-    title: 1.4.2 | Ensure access to bootloader if configured
+    title: 1.4.2 | Ensure access to bootloader config is configured
     exists: true
     path: /boot/grub/grub.cfg
     owner: root

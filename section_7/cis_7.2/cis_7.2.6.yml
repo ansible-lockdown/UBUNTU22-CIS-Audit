@@ -5,7 +5,7 @@
 command:
   no_dup_gid:
     title: 7.2.6 | Ensure no duplicate GIDs exist
-    exec: "cat /etc/group | cut -d: -f3 | uniq -d"
+    exec: "cat /etc/group | cut -d: -f3 | sort | uniq -d"
     exit-status: 0
     stdout:
     - '!/./'

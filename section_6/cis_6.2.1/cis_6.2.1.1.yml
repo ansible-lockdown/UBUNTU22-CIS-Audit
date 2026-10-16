@@ -18,7 +18,7 @@ package:
       - AU-12
       - SI-5
   audispd-plugins:
-    title: 6.2.1.1 | Ensure auditd is installed | audispd-plugins pkg
+    title: 6.2.1.1 | Ensure auditd packages are installed | audispd-plugins pkg
     name: audispd-plugins
     installed: true
     meta:

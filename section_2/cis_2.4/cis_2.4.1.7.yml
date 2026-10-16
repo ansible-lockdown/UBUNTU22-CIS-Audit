@@ -4,7 +4,7 @@
   {{ if .Vars.ubtu22cis_rule_2_4_1_7 }}
 file:
   cron_yearly_perms:
-    title: 2.4.1.7 | Ensure permissions on /etc/cron.yearly are configured
+    title: 2.4.1.7 | Ensure access to /etc/cron.yearly is configured
     path: /etc/cron.yearly
     exists: true
     owner: root

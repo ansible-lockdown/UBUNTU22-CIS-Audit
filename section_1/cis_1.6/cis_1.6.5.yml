@@ -4,7 +4,7 @@
   {{ if .Vars.ubtu22cis_rule_1_6_5 }}
 file:
   etc_issue_perms:
-    title: 1.6.5 | Ensure acces to /etc/issue is configured
+    title: 1.6.5 | Ensure access to /etc/issue is configured
     exists: true
     path: /etc/issue
     owner: root

@@ -4,7 +4,7 @@
   {{ if .Vars.ubtu22cis_rule_6_1_2_5 }}
 file:
   /etc/rsyslog.conf:
-    title: 6.1.2.5 | Ensure logging is configured
+    title: 6.1.2.5 | Ensure rsyslog logging is configured
     exists: true
     contents:
     - '/^\*.emerg\s+:omusrmsg:\*/'
@@ -14,9 +14,9 @@ file:
     - '/^mail.warning\s+-/var/log/mail.warning/'
     - '/^mail.err\s+/var/log/mail.err/'
     - '/^cron.\*\s+/var/log/cron/'
-    - '/^*.=warning;\*.=err\s+-/var/log/warn/'
-    - '/^*.crit\s+/var/log/warn/'
-    - '/^*.*;mail.none;news.none\s+-/var/log/messages/'
+    - '/^\*\.=warning;\*\.=err\s+-\/var\/log\/warn/'
+    - '/^\*\.crit\s+-?\/var\/log\/warn/'
+    - '/^\*\.\*;mail\.none;news\.none\s+-?\/var\/log\/messages/'
     - '/^local0,local1.\*\s+-/var/log/localmessages/'
     - '/^local2,local3.\*\s+-/var/log/localmessages/'
     - '/^local4,local5.\*\s+-/var/log/localmessages/'

@@ -20,7 +20,7 @@ package:
       - IA-5
 service:
   cron:
-    title: 2.4.1.1 | Ensure cron daemon is enabled and running | service
+    title: 2.4.1.1 | Ensure cron daemon is enabled and active | service
     running: true
     enabled: true
     meta:
