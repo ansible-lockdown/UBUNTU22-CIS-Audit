@@ -37,6 +37,8 @@
 - 2.1.21 title separator added
 - 1.6.1 dynamic motd check matches literal escapes, not whitespace
 - LICENSE: company name updated to MindPoint Group - A Quantum Sky Company
+- 6.2.3.20 grep reads -e 2 as a pattern, not an option
+- 5.4.1.1, 5.4.1.2, 5.4.1.3 and 5.4.1.5 per-user checks skipped unless ubtu22cis_disruption_high
 
 ## [v3.00_aug26] - based upon CIS v3.0.0
 

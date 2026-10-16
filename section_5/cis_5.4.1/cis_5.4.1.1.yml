@@ -25,6 +25,7 @@ file:
 command:
   users_max_pw_expire:
     title: 5.4.1.1 | Ensure password expiration is configured | user_check
+    skip: {{ not .Vars.ubtu22cis_disruption_high }}
     exec: |
       awk -F: '($2~/^\$.+\$/) {if($5 > 365 || $5 < 1) print "FAIL: " $1 " PASS_MAX_DAYS: " $5}' /etc/shadow
       echo "scan_done"
